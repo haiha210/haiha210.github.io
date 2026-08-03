@@ -1,0 +1,46 @@
+# Workflow này dành cho repo haiha210/haiha210.github.io, KHÔNG chạy trong repo hiện tại.
+# ./deploy.sh --with-workflow sẽ copy nó sang đó thành .github/workflows/pages.yml
+#
+# Mục đích: đăng thẳng file tĩnh, không đem đi build bằng Jekyll.
+# GitHub Pages mặc định dùng workflow tự sinh "pages-build-deployment" (actions/jekyll-build-pages),
+# loại đó LUÔN chạy Jekyll và bỏ qua file .nojekyll. Workflow này thay thế nó.
+#
+# Cần bật một lần trong repo đích:  Settings → Pages → Build and deployment
+#                                  → Source: GitHub Actions
+# Chưa bật mà đã đẩy workflow lên thì job deploy sẽ fail (site vẫn chạy bình thường bằng luồng cũ).
+
+name: Deploy static site to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Không huỷ lần deploy đang chạy, để lượt đẩy sau không làm site dở dang
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      # path: . → đăng nguyên nội dung repo, không qua bước build nào
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
