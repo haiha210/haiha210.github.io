@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DP-300 · Luyện tập</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --fg:#1a1d21; --muted:#646b74; --line:#e2e5ea;
+  --accent:#0b6bcb; --accent-soft:#e7f0fb;
+  --ok:#127c3f; --ok-soft:#e4f4ea; --bad:#c0392b; --bad-soft:#fbeceb;
+  --radius:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#14171a; --card:#1c2025; --fg:#e6e8ea; --muted:#98a0aa; --line:#2c323a;
+    --accent:#5aa9ff; --accent-soft:#16283d;
+    --ok:#4ade80; --ok-soft:#14301f; --bad:#f87171; --bad-soft:#331817;
+  }
+}
+:root[data-theme=light]{
+  --bg:#f6f7f9; --card:#fff; --fg:#1a1d21; --muted:#646b74; --line:#e2e5ea;
+  --accent:#0b6bcb; --accent-soft:#e7f0fb;
+  --ok:#127c3f; --ok-soft:#e4f4ea; --bad:#c0392b; --bad-soft:#fbeceb;
+}
+:root[data-theme=dark]{
+  --bg:#14171a; --card:#1c2025; --fg:#e6e8ea; --muted:#98a0aa; --line:#2c323a;
+  --accent:#5aa9ff; --accent-soft:#16283d;
+  --ok:#4ade80; --ok-soft:#14301f; --bad:#f87171; --bad-soft:#331817;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+code,kbd,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 80px}
+header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+h1{font-size:20px;margin:0;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:13px}
+.spacer{flex:1}
+button{font:inherit;color:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);padding:7px 12px}
+button:hover:not(:disabled){border-color:var(--accent)}
+button:disabled{opacity:.45;cursor:default}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+button.primary:hover:not(:disabled){filter:brightness(1.08)}
+select{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+
+/* setup screen */
+.setup{margin-top:16px}
+.field{margin-bottom:16px}
+.field > label{display:block;font-weight:600;font-size:13px;margin-bottom:7px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 13px;font-size:13.5px}
+.chip[aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px}
+.stat b{display:block;font-size:22px;line-height:1.2;letter-spacing:-.02em}
+.stat span{color:var(--muted);font-size:12px}
+
+/* quiz */
+.bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin:14px 0}
+.bar > i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:12px}
+.badge{background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:2px 8px;font-weight:600;font-size:11.5px}
+.badge.plain{background:transparent;color:var(--muted);border:1px solid var(--line);font-weight:500}
+.q{font-size:16.5px;font-weight:600;margin:0 0 16px;line-height:1.5;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:transparent;line-height:1.5}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.opt .k{flex:none;width:22px;height:22px;border:1px solid var(--line);border-radius:5px;display:grid;place-items:center;font-size:11.5px;font-weight:700;color:var(--muted);margin-top:1px}
+.opt[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed=true] .k{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.ok .k{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.bad .k{background:var(--bad);color:#fff;border-color:var(--bad)}
+.expl{margin-top:14px;padding:13px 15px;border-radius:8px;border-left:3px solid var(--accent);background:var(--accent-soft);font-size:14px}
+.expl b{display:block;margin-bottom:3px}
+.expl.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.expl.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+.nav{display:flex;gap:8px;align-items:center;margin-top:16px}
+.hint{color:var(--muted);font-size:12px;margin-top:14px}
+kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;font-size:11px}
+
+/* results */
+.score{text-align:center;padding:8px 0 4px}
+.score b{font-size:44px;letter-spacing:-.03em;display:block;line-height:1.1}
+.score span{color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:12px;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.review{margin-top:20px}
+.review > h3{font-size:14px;margin:0 0 10px}
+.rev{border:1px solid var(--line);border-radius:8px;padding:13px 15px;margin-bottom:9px}
+.rev .qq{font-weight:600;margin-bottom:8px;white-space:pre-wrap}
+.rev .line{font-size:13.5px;margin:3px 0}
+.rev .line .tag{display:inline-block;min-width:56px;color:var(--muted);font-size:12px}
+.rev .yours{color:var(--bad)}
+.rev .right{color:var(--ok)}
+.rev .why{margin-top:8px;font-size:13.5px;color:var(--muted)}
+.empty{color:var(--muted);text-align:center;padding:30px}
+.note-link{display:inline-block;margin-top:9px;font-size:13px;font-weight:600;
+  color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+.note-link:hover{border-bottom-color:var(--accent)}
+.rev .note-link{margin-top:7px}
+header a.top{font-size:13px;color:var(--accent);text-decoration:none}
+header a.top:hover{text-decoration:underline}
+
+/* ---------- điện thoại ---------- */
+@media (max-width:640px){
+  html{-webkit-text-size-adjust:100%}
+  .wrap{padding:16px 12px 90px}
+  header{gap:8px}
+  h1{font-size:18px}
+  .card{padding:15px}
+  .q{font-size:17px}
+  /* vùng chạm tối thiểu 44px cho ngón tay */
+  button{min-height:44px}
+  header a.top{min-height:44px;display:inline-flex;align-items:center}
+  .chip{min-height:44px;display:inline-flex;align-items:center}
+  select{min-height:44px;font-size:16px}          /* 16px để iOS không tự phóng to */
+  .opt{min-height:52px;padding:13px 14px}
+  .note-link{min-height:44px;display:inline-flex;align-items:center}
+  .stats{grid-template-columns:repeat(auto-fit,minmax(94px,1fr))}
+  /* nội dung dài không được đẩy trang rộng ra */
+  table{display:block;overflow-x:auto}
+  code{overflow-wrap:anywhere}
+  .q,.rev .qq,.expl,.rev .line{overflow-wrap:anywhere}
+  .score b{font-size:38px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>DP-300 · Luyện tập</h1>
+    <span class="sub" id="qcount"></span>
+    <a class="top" href="notes.html">Xem toàn bộ note →</a>
+    <span class="spacer"></span>
+    <button id="theme" title="Đổi giao diện sáng/tối">◐</button>
+  </header>
+
+  <!-- ===== SETUP ===== -->
+  <section id="setup" class="setup">
+    <div class="card">
+      <div class="field">
+        <label>Phạm vi (Skills measured)</label>
+        <div class="chips" id="domains"></div>
+      </div>
+      <div class="field">
+        <label>Chế độ</label>
+        <div class="chips" id="modes">
+          <button class="chip" data-mode="study" aria-pressed="true">Học — hiện đáp án ngay</button>
+          <button class="chip" data-mode="exam" aria-pressed="false">Thi thử — chấm ở cuối</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="num">Số câu</label>
+        <select id="num">
+          <option value="20">20 câu</option>
+          <option value="40" selected>40 câu</option>
+          <option value="60">60 câu</option>
+          <option value="0">Tất cả</option>
+        </select>
+      </div>
+      <div class="nav">
+        <button class="primary" id="start">Bắt đầu</button>
+        <button id="startWrong">Ôn lại câu đã sai (<span id="wrongCount">0</span>)</button>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section id="quiz" hidden>
+    <div class="bar"><i id="prog"></i></div>
+    <div class="card">
+      <div class="meta">
+        <span class="badge" id="mDomain"></span>
+        <span class="badge plain" id="mTopic"></span>
+        <span class="spacer"></span>
+        <span id="mPos"></span>
+        <span id="mScore"></span>
+      </div>
+      <p class="q" id="qtext"></p>
+      <div class="opts" id="opts"></div>
+      <div id="expl"></div>
+      <div class="nav">
+        <button id="check" class="primary">Kiểm tra</button>
+        <button id="next" class="primary" hidden>Câu tiếp →</button>
+        <span class="spacer"></span>
+        <button id="quit">Kết thúc</button>
+      </div>
+      <div class="hint">Phím tắt: <kbd>1</kbd>–<kbd>9</kbd> chọn đáp án · <kbd>Enter</kbd> kiểm tra / câu tiếp</div>
+    </div>
+  </section>
+
+  <!-- ===== RESULT ===== -->
+  <section id="result" hidden>
+    <div class="card">
+      <div class="score">
+        <b id="rPct"></b>
+        <span id="rRaw"></span>
+      </div>
+      <table id="rTable"></table>
+      <div class="nav" style="margin-top:18px">
+        <button class="primary" id="again">Làm lại</button>
+        <button id="reviewWrong">Ôn ngay các câu sai</button>
+      </div>
+    </div>
+    <div class="review" id="rReview"></div>
+  </section>
+</div>
+
+<script>
+/* ============================================================
+   Ngân hàng câu hỏi — soạn từ DP-300Notes260424.pdf (161 trang)
+   d = domain 1-5 · t = chủ đề · q = câu hỏi · o = lựa chọn
+   a = index đáp án đúng (số = 1 đáp án, mảng = nhiều đáp án)
+   e = giải thích
+   ============================================================ */
+const DOMAINS = [
+  "Plan & implement data platform resources",
+  "Implement a secure environment",
+  "Monitor, configure & optimize",
+  "Automation of tasks",
+  "High availability & disaster recovery"
+];
+const DOMAIN_SHORT = ["Platform", "Security", "Monitor & tune", "Automation", "HA/DR"];
+
+/* Chủ đề "<domain>|<t>" -> mục tương ứng trong notes.html (bản HTML của file PDF gốc).
+   Khoá gồm cả domain vì cùng một nhãn chủ đề có thể xuất hiện ở hai phạm vi khác nhau. */
+const NOTE_REF = {
+  "1|Deployment":"s1", "1|Patching":"s3", "1|Azure Arc":"s6a", "1|Fabric":"s6b",
+  "1|Partitioning":"s8", "1|Azure SQL DB":"s9", "1|Azure SQL MI":"s10", "1|SQL on VM":"s11",
+  "1|Compression":"s13", "1|Migration":"s15", "1|Data Sync":"s20", "1|MI copy/move":"s22a",
+  "1|Resource":"s-16",
+
+  "2|Authentication":"s23", "2|Users & logins":"s24", "2|Server roles":"s25",
+  "2|Database roles":"s25", "2|Permissions":"s29-3", "2|Custom roles":"s29-4",
+  "2|Certificates":"s29", "2|TDE":"s30", "2|Firewall":"s32", "2|Always Encrypted":"s33",
+  "2|Secure enclaves":"s33a", "2|Dynamic Data Masking":"s34", "2|Private Link":"s34a",
+  "2|TLS":"s35", "2|Classification":"s36", "2|Auditing":"s37", "2|Change Tracking":"s38",
+  "2|CDC":"s38", "2|Ledger":"s41", "2|RLS":"s42", "2|Defender":"s43",
+  "2|Vulnerability":"s39", "2|Purview":"s40", "2|Key Vault":"s34-2",
+
+  "3|Baseline":"s44", "3|Metrics":"s46", "3|Query Perf Insight":"s46", "3|SQL Insights":"s48",
+  "3|Database watcher":"s48a", "3|Query Store":"s50", "3|Blocking":"s52",
+  "3|Extended Events":"s52", "3|DMV":"s53", "3|Wait stats":"s60", "3|Index":"s54",
+  "3|Hints":"s56", "3|Execution plan":"s57", "3|Intelligent Insights":"s57a",
+  "3|Statistics":"s59", "3|DBCC":"s60-3", "3|Auto-tuning":"s61", "3|Resource Governor":"s63",
+  "3|Scoped config":"s64", "3|DB options":"s64-2", "3|Autogrowth":"s65-2",
+  "3|Free space":"s65-3", "3|IQP":"s66", "3|Index maintenance":"s58",
+
+  "4|SQL Agent":"s67", "4|Notifications":"s68", "4|Database Mail":"s68", "4|ARM/Bicep":"s70-2",
+  "4|PowerShell":"s71", "4|Azure CLI":"s72", "4|Deployment":"s70", "4|Elastic Jobs":"s74",
+  "4|Multi-server":"s75", "4|VM backup":"s75-2", "4|Policies":"s75-4", "4|Alerts":"s77-2",
+  "4|Config changes":"s77-3", "4|Logic Apps":"s76", "4|Automation":"s75-3",
+  "4|VM automation":"s3", "4|Maintenance":"s13",
+
+  "5|SLA / RPO / RTO":"s79", "5|SLA":"s79", "5|Hybrid HADR":"s4", "5|FCI":"s4",
+  "5|Site Recovery":"s4", "5|Geo-replication":"s94", "5|Failover group":"s82",
+  "5|Availability Group":"s90", "5|AG listener":"s90-4", "5|AG setup":"s90",
+  "5|Quorum":"s92", "5|Backup":"s88-3", "5|Log backup":"s88", "5|Restore":"s85",
+  "5|PITR":"s86", "5|LTR":"s87", "5|Cloud backup":"s88a", "5|Replication":"s94",
+  "5|Log shipping":"s94-2", "5|MI restore":"s86"
+};
+
+/* Link "đọc thêm" trỏ vào đúng mục của notes.html */
+function noteLink(q){
+  const id = NOTE_REF[q.d + "|" + q.t];
+  if (!id) return null;
+  const a = document.createElement("a");
+  a.className = "note-link";
+  a.href = "notes.html#" + id;
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.textContent = "Đọc note: " + q.t + " →";
+  return a;
+}
+
+const QUESTIONS = [
+/* ---------- 1. Plan and implement data platform resources ---------- */
+{d:1,t:"Deployment",q:"What is the minimum length of the admin account password when creating an Azure SQL Managed Instance?",
+ o:["12 characters","8 characters","10 characters","16 characters"],a:0,
+ e:"Admin account password phải dài ít nhất 12 ký tự. Server name cũng phải unique trên toàn Azure."},
+{d:1,t:"Deployment",q:"You need to assign a Managed Service Account to MULTIPLE servers. What should you use?",
+ o:["A Group Managed Service Account (gMSA)","A Managed Service Account (MSA)","A Local System account","A Virtual Account"],a:0,
+ e:"MSA dùng cho một máy đơn lẻ chạy service. gMSA dùng khi cần gán MSA cho nhiều server."},
+{d:1,t:"Deployment",q:"When creating a Virtual Network for an Azure VM running SQL Server, which Service Endpoint must be added to the subnet?",
+ o:["Microsoft.Sql","Microsoft.Storage","Microsoft.Network","Microsoft.Compute"],a:0,
+ e:"Trong IP Addresses – default subnet – Edit subnet, thêm Service Endpoint 'Microsoft.Sql'."},
+{d:1,t:"Patching",q:"Which statement about patching for Azure SQL Database and Managed Instance (PaaS) is TRUE?",
+ o:["They have built-in patching and always use the latest stable Database Engine version","You must schedule patches yourself every month","Patches are applied only if you enable Automated Patching","They are never patched, to guarantee compatibility"],a:0,
+ e:"PaaS (SQL Database, MI) có built-in patching, luôn dùng latest stable Database Engine version. Bạn không kiểm soát thời điểm."},
+{d:1,t:"Patching",q:"What is the minimum version required for Automated Patching of SQL Server on an Azure VM?",
+ o:["SQL Server 2008 R2 or above and Windows Server 2008 R2 or above","SQL Server 2012 and Windows Server 2012","SQL Server 2016 and Windows Server 2016","SQL Server 2019 and Windows Server 2019"],a:0,
+ e:"Automated Patching cần SQL Server 2008 R2+ và Windows Server 2008 R2+. Cấu hình gồm day, start hour, window duration."},
+{d:1,t:"Patching",q:"Which PowerShell cmdlet sets the schedule for Automated Patching on a SQL Server VM?",
+ o:["New-AzVMSqlServerAutoPatchingConfig -Enable","Set-AzVMSqlServerExtension","New-AzSqlDatabaseExport","Set-AzSqlServer"],a:0,
+ e:"New-AzVMSqlServerAutoPatchingConfig -Enable đặt lịch; Set-AzVMSqlServerExtension cài extension cùng lịch đó."},
+{d:1,t:"Azure Arc",q:"From which version does Azure Arc-enabled SQL Server support Entra ID authentication?",
+ o:["SQL Server 2022 or above","SQL Server 2016 or above","SQL Server 2019 or above","Any version"],a:0,
+ e:"Arc cho phép dùng Entra ID để xác thực với SQL Server 2022 trở lên, mang lại mức bảo mật cao hơn."},
+{d:1,t:"Azure Arc",q:"Which of the following is NOT a capability of Azure Arc-enabled SQL services?",
+ o:["Automatically scaling out to multiple regions under heavy load","Running a best practices assessment on your instances","Taking an inventory of all your SQL Server instances","Using a pay-as-you-go model instead of buying licenses"],a:0,
+ e:"Arc mở rộng dịch vụ Azure ra SQL Server ngoài Azure: inventory, best-practices assessment, Defender, Purview, pay-as-you-go, migration assessment. Nó không tự scale out."},
+{d:1,t:"Fabric",q:"How does Azure SQL Database in Microsoft Fabric differ from standard Azure SQL Database?",
+ o:["It is a SaaS solution, whereas Azure SQL Database is PaaS","It is IaaS, whereas Azure SQL Database is PaaS","It requires the DTU purchasing model","It does not support Row-Level Security"],a:0,
+ e:"SQL Database trong Fabric là SaaS (không cần cấu hình, mirroring đã sẵn), còn Azure SQL Database là PaaS. Nó vẫn hỗ trợ RLS và OLS."},
+{d:1,t:"Partitioning",q:"Which partitioning type divides data by COLUMN, separating rarely used or sensitive columns?",
+ o:["Vertical partitioning","Horizontal partitioning (sharding)","Functional partitioning","Hash partitioning"],a:0,
+ e:"Vertical partitioning: mỗi partition giữ một tập con các cột. Tất cả partition phải join được với nhau (ví dụ cùng primary key)."},
+{d:1,t:"Partitioning",q:"Which statement about horizontal partitioning (sharding) is TRUE?",
+ o:["All partitions share the same schema and each shard holds a subset of the rows","Each partition holds a subset of the columns","Each partition contains different tables based on function","Each shard has its own optimized, different schema"],a:0,
+ e:"Sharding = horizontal: cùng schema, mỗi shard giữ subset các rows. Dữ liệu tĩnh/nhỏ nên replicate ở mọi shard để giảm cross-partition access."},
+{d:1,t:"Partitioning",q:"Which sharding strategy distributes data most evenly and reduces hotspots?",
+ o:["Hash strategy","Range strategy","Lookup strategy","Functional strategy"],a:0,
+ e:"Hash strategy phân bố đều nhờ yếu tố ngẫu nhiên, giảm hotspot; nhược điểm là tốn chi phí tính hash và khó rebalance."},
+{d:1,t:"Partitioning",q:"Which sharding strategy uses sequential shard keys in ranges, for example one per month?",
+ o:["Range strategy","Hash strategy","Lookup strategy","Round-robin strategy"],a:0,
+ e:"Range strategy dùng shard key tuần tự theo khoảng, giúp lấy nhiều item liền kề trong một thao tác, nhưng cân bằng tải không tối ưu."},
+{d:1,t:"Partitioning",q:"Which sharding strategy uses a map to look up which shard holds the data?",
+ o:["Lookup strategy","Range strategy","Hash strategy","Merge strategy"],a:0,
+ e:"Lookup strategy có shard key (ID) và một map chỉ ra dữ liệu ở đâu — kiểm soát tốt hơn nhưng thêm overhead."},
+{d:1,t:"Azure SQL DB",q:"Which Azure SQL Database compute tier supports automatic pausing and resuming, and bills only for storage while paused?",
+ o:["Serverless","Provisioned","Elastic pool","Hyperscale"],a:0,
+ e:"Serverless dùng cho pattern on-off với compute trung bình thấp; hỗ trợ auto-pause/resume, khi pause chỉ trả tiền storage."},
+{d:1,t:"Azure SQL DB",q:"Which Azure SQL Database service tier provides 1-2 ms storage latency and a free read-only secondary replica?",
+ o:["Business Critical","General Purpose","Hyperscale","Basic"],a:0,
+ e:"Business Critical: low-latency I/O 1-2 ms, nhiều update / transaction dài, độ bền cao, có free read-only secondary replica. General Purpose có latency 5-10 ms."},
+{d:1,t:"Azure SQL DB",q:"Which statement about Hyperscale in Azure SQL Database is TRUE?",
+ o:["Once you move to Hyperscale you cannot change out of it","It is also available in Azure SQL Managed Instance","It is limited to 4 TB like the other tiers","It can only be used with the DTU model"],a:0,
+ e:"Hyperscale chỉ có ở Azure SQL Database, lên tới 100 TB, và KHÔNG thể chuyển ngược ra tier khác."},
+{d:1,t:"Azure SQL DB",q:"What are the maximums of the vCore purchasing model on Gen5?",
+ o:["80 vCores, 4 TB memory, 4 TB database (except Hyperscale at 100 TB)","128 vCores, 8 TB memory, 8 TB database","40 vCores, 2 TB memory, 2 TB database","80 vCores, 400 GB memory, 16 TB database"],a:0,
+ e:"vCore Gen5: tối đa 80 vCores, 4 TB memory, 4 TB database size — trừ Hyperscale lên tới 100 TB."},
+{d:1,t:"Azure SQL DB",q:"In the vCore model, log size is calculated as what percentage of the Data Max size?",
+ o:["30%","50%","10%","100%"],a:0,
+ e:"Khi tính vCore, Log size = 30% của Data Maximum size."},
+{d:1,t:"Azure SQL DB",q:"Which DTU-model tiers CANNOT use Change Data Capture?",
+ o:["Basic and Standard S0, S1 and S2 (less than 1 vCore)","Basic only","Premium","They all can"],a:0,
+ e:"Basic và Standard S0/S1/S2 có ít hơn 1 vCore nên không dùng được Change Data Capture."},
+{d:1,t:"Azure SQL DB",q:"When does Microsoft recommend considering a move from DTUs to vCores?",
+ o:["When you exceed 300 DTUs","When you exceed 100 DTUs","When you exceed 1000 DTUs","Never — the two models are independent"],a:0,
+ e:"Nên cân nhắc chuyển sang vCore khi > 300 DTU — có thể giảm chi phí, và không có downtime khi chuyển."},
+{d:1,t:"Azure SQL DB",q:"After re-scaling a database, which command should you run so that the DMVs report accurate figures?",
+ o:["EXEC sp_query_store_flush_db;","DBCC FREEPROCCACHE;","EXEC sp_updatestats;","DBCC DROPCLEANBUFFERS;"],a:0,
+ e:"Sau khi re-scale, cần flush Query Store bằng EXEC sp_query_store_flush_db; để DMV có số liệu chính xác."},
+{d:1,t:"Azure SQL DB",q:"Which connection policy establishes a connection directly to the database node?",
+ o:["Redirect","Proxy","Default","Direct"],a:0,
+ e:"Redirect kết nối thẳng tới database node. Proxy đi qua gateway. Default = Redirect nếu từ trong Azure, Proxy nếu từ ngoài."},
+{d:1,t:"Azure SQL DB",q:"How many tempdb files does Azure SQL Database create?",
+ o:["1 file per vCore, 32 GB per file, capped at 32 files (serverless only)","12 files regardless of the number of vCores","8 files, fixed","A single file"],a:0,
+ e:"Azure SQL Database: 1 tempdb file/vCore, 32 GB mỗi file, cap 32 file (chỉ với serverless). Managed Instance thì luôn tạo 12 file."},
+{d:1,t:"Azure SQL MI",q:"How many tempdb files does Azure SQL Managed Instance create?",
+ o:["12 files, regardless of the number of vCores","1 file per vCore","8 files","32 files"],a:0,
+ e:"MI luôn tạo 12 tempdb file bất kể số vCore, khác với Azure SQL Database (1 file/vCore)."},
+{d:1,t:"Azure SQL MI",q:"Which feature exists in Azure SQL Managed Instance but NOT in Azure SQL Database?",
+ o:["SQL Agent and the msdb database","Automatic tuning","Transparent Data Encryption","Dynamic Data Masking"],a:0,
+ e:"MI có cross-database queries, CLR, SQL Agent và msdb — những thứ Azure SQL Database không có."},
+{d:1,t:"Azure SQL MI",q:"What are the limits of Azure SQL Managed Instance?",
+ o:["Up to 80 vCores, 400 GB memory, 100 databases, 16 TB","Up to 80 vCores, 4 TB memory, 100 TB","Up to 40 vCores, 400 GB memory, unlimited databases","Up to 128 vCores, 1 TB memory, 50 databases"],a:0,
+ e:"MI: tối đa 80 vCores, 400 GB memory, tối đa 100 database, database size tối đa 16 TB. MI không hỗ trợ DTU model và không có Hyperscale."},
+{d:1,t:"SQL on VM",q:"Which SLA applies to 2+ VM instances placed in 2+ Availability Zones within the same region?",
+ o:["99.99%","99.95%","99.9%","99.5%"],a:0,
+ e:"99.95% = 2+ instance trong cùng Availability Set (cùng datacenter). 99.99% = 2+ instance trong 2+ Availability Zones (datacenter vật lý khác nhau)."},
+{d:1,t:"SQL on VM",q:"What is the SLA for a single-instance VM using Premium SSD or Ultra Disks?",
+ o:["99.9%","99.5%","95%","99.99%"],a:0,
+ e:"95% = Standard HDD; 99.5% = Standard SSD; 99.9% = Premium SSD hoặc Ultra Disk."},
+{d:1,t:"SQL on VM",q:"When SHOULD you choose SQL Server on an Azure VM instead of PaaS?",
+ o:["When you need SSAS, SSIS, SSRS or an older version of SQL Server","When you want to minimise administration effort","When you need auto-patching","When you need Hyperscale"],a:0,
+ e:"Dùng VM khi cần bản SQL Server cũ, quyền truy cập Windows OS, cần SSAS/SSIS/SSRS, hoặc tính năng không có ở SQL Database / MI."},
+{d:1,t:"SQL on VM",q:"How should disk caching be configured for SQL Server files on an Azure VM?",
+ o:["ReadOnly for data files, None for log files","ReadWrite for data files, ReadOnly for log files","None for both","ReadWrite for both"],a:0,
+ e:"ReadOnly cho data file (đọc từ cache nhanh hơn nhiều so với Azure Blob storage), None cho log file (ghi tuần tự). ReadWrite KHÔNG được dùng cho file SQL Server vì không đảm bảo data consistency."},
+{d:1,t:"SQL on VM",q:"Which Storage Spaces resiliency type needs at least 3 physical disks and suits archive and backup?",
+ o:["Parity","Mirror","Simple","Striped"],a:0,
+ e:"Simple: ≥1 đĩa, không resiliency. Mirror: ≥2 đĩa, dùng cho hầu hết deployment. Parity: ≥3 đĩa, stripe data + parity, dùng cho archive và backup."},
+{d:1,t:"SQL on VM",q:"What is the tempdb data file best practice for SQL Server on an Azure VM?",
+ o:["One tempdb data file per core, up to 8 files","Always exactly 12 files","A single large file","One file per 4 cores"],a:0,
+ e:"Best practice: 1 tempdb data file mỗi core, tối đa 8 file. Tempdb nên đặt trên ổ D (SSD cục bộ)."},
+{d:1,t:"SQL on VM",q:"What does the SQL IaaS Agent Extension provide?",
+ o:["Automated backup, automated patching and Azure Key Vault integration","Automated backup only","Automatic failover and availability groups","Enhanced Query Store"],a:0,
+ e:"SQL IaaS Agent Extension: automated backup, automated patching, Azure Key Vault integration, và hiển thị thông tin cấu hình SQL Server trong Azure Portal."},
+{d:1,t:"SQL on VM",q:"Which storage account redundancy should be used for SQL Server on an Azure VM?",
+ o:["Locally Redundant Storage (LRS)","Geo-Redundant Storage (GRS)","Read-Access Geo-Redundant Storage","Zone-Redundant Storage is mandatory"],a:0,
+ e:"Dùng Local Redundant Storage, không dùng Geo-redundant storage, trên storage account cho SQL Server VM."},
+{d:1,t:"SQL on VM",q:"Which VM series is best suited to a relational database server?",
+ o:["Memory optimized","Compute optimized","General purpose","Storage optimized"],a:0,
+ e:"Memory optimized (high memory, tới 4 TB) tốt cho relational database server, cache vừa-lớn, in-memory analytics."},
+{d:1,t:"Compression",q:"Page compression consists of three operations in which order?",
+ o:["Row compression, then Prefix compression, then Dictionary compression","Prefix, then Row, then Dictionary","Dictionary, then Prefix, then Row","Row, then Dictionary, then Prefix"],a:0,
+ e:"Page compression = Row compression, rồi Prefix compression, rồi Dictionary compression. Page chỉ được nén khi có thể nhét thêm dòng vào page đã đầy."},
+{d:1,t:"Compression",q:"Which data types do NOT benefit from row compression?",
+ o:["varchar and nvarchar","char and nchar","datetime2","int"],a:0,
+ e:"Row compression nén numeric (trừ tinyint), datetime/datetime2/datetimeoffset, char/nchar. varchar và nvarchar không hưởng lợi."},
+{d:1,t:"Compression",q:"You CANNOT use data compression on a table with which characteristic?",
+ o:["A table with SPARSE columns","A heap (no clustered index)","A table with a nonclustered index","An indexed view"],a:0,
+ e:"Không dùng được data compression với bảng có SPARSE columns. Heap, clustered index, nonclustered index và indexed view đều nén được. System table thì không."},
+{d:1,t:"Compression",q:"Which stored procedure estimates compression savings but is NOT available on Azure SQL Database?",
+ o:["sp_estimate_data_compression_savings","sp_spaceused","sp_helpindex","sp_updatestats"],a:0,
+ e:"sp_estimate_data_compression_savings không dùng được trên Azure SQL Database. Tham số Index_ID: 0 = heap, 1 = clustered, >1 = nonclustered, NULL = cả bảng."},
+{d:1,t:"Compression",q:"Which T-SQL enables page compression on all partitions of a table?",
+ o:["ALTER TABLE Schema.Table REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE);","ALTER TABLE Schema.Table SET COMPRESSION = PAGE;","ALTER DATABASE SET COMPRESSION = PAGE;","EXEC sp_compress_table 'Schema.Table', 'PAGE';"],a:0,
+ e:"ALTER TABLE ... REBUILD PARTITION = 1 | ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE). Với index thì dùng ALTER INDEX ... REBUILD."},
+{d:1,t:"Compression",q:"When is archival compression for columnstore most appropriate?",
+ o:["Data that is rarely read but must be retained for regulatory or business reasons","OLTP data that is read and written constantly","Small tables under 1000 rows","Data that must be queried in real time"],a:0,
+ e:"Archival compression tiết kiệm dung lượng nhưng chi phí CPU giải nén rất cao, vượt cả phần I/O tiết kiệm được — chỉ dùng cho dữ liệu ít đọc cần lưu giữ."},
+{d:1,t:"Migration",q:"You need to migrate an Oracle database to Azure SQL. Which tool should you use?",
+ o:["SQL Server Migration Assistant (SSMA)","Data Migration Assistant (DMA)","Database Experimentation Assistant (DEA)","Azure Migrate"],a:0,
+ e:"SSMA dùng cho non-SQL objects: Access, DB2, MySQL, Oracle, SAP ASE. DMA dùng cho SQL Server → Azure SQL."},
+{d:1,t:"Migration",q:"You need to compare workloads between the source and target SQL Server. Which tool should you use?",
+ o:["Database Experimentation Assistant (DEA)","Data Migration Assistant","Azure Migrate","SQL Server Profiler"],a:0,
+ e:"DEA capture workload của môi trường SQL Server nguồn, so sánh và phát hiện vấn đề tương thích."},
+{d:1,t:"Migration",q:"You need to lift and shift SQL Server to a Virtual Machine and assess your whole data estate. What should you use?",
+ o:["Azure Migrate","SSMA","DMA","Azure Data Factory"],a:0,
+ e:"Azure Migrate dùng cho lift-and-shift sang VM; nó cũng discover và assess SQL data estate ở quy mô lớn, đưa ra khuyến nghị deployment, sizing và ước tính chi phí."},
+{d:1,t:"Migration",q:"Which outbound port does Azure Database Migration Service (DMS) require?",
+ o:["443 (HTTPS), and possibly 1434 (UDP)","1433 (TCP) and 3306","80 (HTTP)","5432 and 3306"],a:0,
+ e:"DMS cần outbound port 443 (HTTPS), có thể cần 1434 (UDP). Lưu ý: 3306 = MySQL, 5432 = PostgreSQL, 1433 = SQL Server."},
+{d:1,t:"Migration",q:"Which permissions are required to run Azure Database Migration Service?",
+ o:["CONTROL SERVER on the source and CONTROL DATABASE on the target","sysadmin on both","db_owner on the target","VIEW SERVER STATE on the source"],a:0,
+ e:"Cần CONTROL SERVER trên SQL Server nguồn và CONTROL DATABASE trên Azure SQL đích."},
+{d:1,t:"Migration",q:"Which backups does Azure DMS use when migrating?",
+ o:["Existing full and log backups; it takes no backups itself and does not use differentials","It takes a new full backup itself","Differential backups only","Snapshots only"],a:0,
+ e:"DMS không khởi tạo backup nào; nó dùng full và log backup đã có sẵn, KHÔNG dùng differential."},
+{d:1,t:"Migration",q:"Which Azure DMS pricing tier allows online (continuous) migration?",
+ o:["Premium","Standard","Basic","Free"],a:0,
+ e:"Standard miễn phí nhưng chỉ offline (one-off). Premium (~$1 cho 3 giờ) cho phép cả online lẫn offline, tốc độ nhanh hơn."},
+{d:1,t:"Migration",q:"In the Data Migration Assistant, which option identifies unsupported features that may block migration?",
+ o:["Check database compatibility","Check feature parity","Migration scope: Schema only","Assessment report"],a:0,
+ e:"Check database compatibility phát hiện tính năng bị hỗ trợ một phần hoặc không hỗ trợ, có thể chặn migration. Check feature parity đưa ra hướng tiếp cận thay thế."},
+{d:1,t:"Migration",q:"After migration you find a query has regressed because of the new compatibility level. What is the most appropriate action?",
+ o:["Force the last known good plan","Lower the compatibility level of the whole server to 100","Drop and recreate every index","Switch to the DTU model"],a:0,
+ e:"Khi có regression sau khi đổi compatibility level, force last known good plan. Cũng cần kiểm tra parameter sniffing và recompile stored procedure nếu cần."},
+{d:1,t:"Migration",q:"What is the correct order of feature completeness, from fewest to most features?",
+ o:["Azure SQL Database, then Azure SQL MI, then SQL Server on-premises/VM","SQL Server on-premises, then Azure SQL MI, then Azure SQL Database","Azure SQL MI, then Azure SQL Database, then SQL Server on-premises","They all have the same features"],a:0,
+ e:"Azure SQL Database có ít tính năng hơn Azure SQL MI, và MI ít hơn on-prem hoặc Azure VM."},
+{d:1,t:"Data Sync",q:"What is required of tables when using Azure SQL Data Sync?",
+ o:["Each table must have a primary key, and that primary key cannot be changed","Each table must have a clustered columnstore index","Each table must be smaller than 1 GB","Each table must have Change Data Capture enabled"],a:0,
+ e:"Bảng phải có primary key, và PK không thể thay đổi (chỉ có thể xóa rồi tạo lại dòng). Data Sync KHÔNG hoạt động với Azure SQL Managed Instance."},
+{d:1,t:"Data Sync",q:"What must the Sync Metadata Database in SQL Data Sync be?",
+ o:["An empty Azure SQL Database in the same region as the Hub Database","A Managed Instance in any region","The Hub Database itself","An on-premises SQL Server"],a:0,
+ e:"Sync Metadata Database chứa metadata và log; phải là Azure SQL Database cùng region với Hub Database, và nên là database rỗng."},
+{d:1,t:"Data Sync",q:"What are the Conflict Resolution Policy options in a Sync Group?",
+ o:["Hub wins or Member wins","Newest wins or Oldest wins","Manual or Automatic","Primary wins or Secondary wins"],a:0,
+ e:"Chỉ có 'Hub wins' hoặc 'Member wins'. Nếu nhiều member thì kết quả phụ thuộc member nào sync trước."},
+{d:1,t:"Migration",q:"What does an SSMS Data-tier Application export produce?",
+ o:["A bacpac, containing both schema and data","A dacpac, containing data only","A bak binary backup","A bcp text file"],a:0,
+ e:"Export Data-tier Application tạo bacpac (back-up package), archive chứa cả schema lẫn data. sqlpackage.exe cũng tạo bacpac."},
+{d:1,t:"Migration",q:"What is the limitation of using the Azure Portal to export/import a bacpac?",
+ o:["It is not supported for exporting from or importing into Managed Instance","It does not support Azure SQL Database","It only works for databases under 1 GB","It handles data but not schema"],a:0,
+ e:"Azure Portal không hỗ trợ export từ hay import vào MI. Sau khi export ra bacpac có thể dùng SSMS để import vào MI."},
+{d:1,t:"Migration",q:"Which PowerShell cmdlet exports an Azure SQL Database to a bacpac?",
+ o:["New-AzSqlDatabaseExport","New-AzSqlDatabaseImport","Export-AzSqlDatabase","Backup-AzSqlDatabase"],a:0,
+ e:"New-AzSqlDatabaseExport để export, New-AzSqlDatabaseImport để import. Azure CLI dùng az sql db import."},
+{d:1,t:"MI copy/move",q:"What is the difference between Copy and Move for databases between two Managed Instances?",
+ o:["Copy leaves the original online; Move drops the original afterwards","Copy risks data loss, Move does not","Move is faster because no data is transferred","Copy transfers schema only"],a:0,
+ e:"Copy: database gốc vẫn online, không đồng bộ tiếp, cả hai đều read/write được. Move: database gốc bị drop sau đó."},
+{d:1,t:"MI copy/move",q:"If a copy/move between two Managed Instances is not completed within what period is it cancelled?",
+ o:["24 hours","1 hour","12 hours","7 days"],a:0,
+ e:"Nếu không click 'Ready for completion' rồi 'Complete' trong 24 giờ, copy/move bị hủy và database đích bị drop."},
+{d:1,t:"Resource",q:"What is the unit price of an eDTU pool compared with DTUs for a single database?",
+ o:["1.5 times","The same","2 times","0.5 times"],a:0,
+ e:"Unit price cho eDTU pool là 1.5x đơn giá DTU của single database. Còn vCore pool thì cùng đơn giá với single database."},
+{d:1,t:"Resource",q:"What is the main difference between a single database and an elastic pool?",
+ o:["An elastic pool shares resources and can autoscale; a single database scales manually only","A single database is always cheaper","An elastic pool does not support the vCore model","A single database cannot be moved into a pool"],a:0,
+ e:"Single database: cô lập, portable, scale thủ công (không autoscale). Elastic pool: chia sẻ tài nguyên giữa các database, có thể autoscale — tốt khi các database có pattern sử dụng biến động."},
+
+/* ---------- 2. Implement a secure environment ---------- */
+{d:2,t:"Authentication",q:"An application runs on a machine that is NOT in Azure and is NOT domain-joined. Which authentication method should it use?",
+ o:["A certificate","A managed identity","Passwordless authentication","SQL authentication"],a:0,
+ e:"App trên Azure VM → passwordless. App trên máy ngoài Azure có domain-join → managed identity. Máy ngoài Azure không domain-join → certificate. App cũ không đổi được connection string → SQL authentication."},
+{d:2,t:"Authentication",q:"According to the decision tree, when should you choose federated authentication?",
+ o:["When you want to integrate with an existing federation provider, or you have a sign-in requirement Azure AD does not natively support","When you want Azure AD to handle sign-in entirely in the cloud","In all remaining cases","When you have cloud-only identities"],a:0,
+ e:"Cloud-only: Azure AD xử lý sign-in hoàn toàn trên cloud. Federated: tích hợp federation provider có sẵn hoặc yêu cầu đặc biệt. Pass-through: mọi trường hợp còn lại."},
+{d:2,t:"Authentication",q:"Which SQL Server authentication method sends the user name and password in plain text?",
+ o:["SQL Server authentication","Microsoft Entra ID authentication","Windows authentication","Certificate-based authentication"],a:0,
+ e:"SQL Server authentication gửi user name và password dạng plain text. Entra ID (trước là Azure AD) an toàn hơn và có thể sync với on-prem Windows Server AD."},
+{d:2,t:"Users & logins",q:"In Azure SQL Database, what is the RECOMMENDED way to create a user from an Entra ID account?",
+ o:["CREATE USER [user_name] FROM EXTERNAL PROVIDER, in the target database","CREATE LOGIN ... FROM EXTERNAL PROVIDER then CREATE USER ... FOR LOGIN","Create the user through the Azure Portal","EXEC sp_adduser"],a:0,
+ e:"Với Azure SQL Database, best practice là dùng CREATE USER [tên] FROM EXTERNAL PROVIDER trực tiếp trong database. Cách tạo login ở master rồi user cũng chạy được nhưng không phải best practice."},
+{d:2,t:"Users & logins",q:"Can database users be created using the Azure Portal?",
+ o:["No — database users cannot be created from the Azure Portal","Yes, on the database Security tab","Yes, but only for Managed Instance","Yes, but only contained users"],a:0,
+ e:"Database user không tạo được từ Azure Portal, cũng không tạo được SQL Server login từ Portal. Nhưng bạn có thể tạo Azure AD admin ở đó."},
+{d:2,t:"Users & logins",q:"Which user type cannot log in, but can still be granted permissions and makes the database more portable?",
+ o:["SQL user without login","SQL user with password","SQL user with login","Windows user"],a:0,
+ e:"'SQL user without login' không có password, không login được nhưng vẫn được grant permission, và giúp database portable. Được phép trong Azure SQL Database và contained database."},
+{d:2,t:"Users & logins",q:"Who is the ONLY principal able to create contained database users based on Azure AD users and groups?",
+ o:["A Microsoft Entra ID Administrator for SQL Server","A SQL Server Administrator","db_owner","securityadmin"],a:0,
+ e:"Cả SQL Server Admin lẫn Entra ID Admin đều tạo được user từ SQL login và contained user từ SQL auth. Nhưng chỉ Entra ID Administrator mới tạo được contained user dựa trên Azure AD user/group."},
+{d:2,t:"Server roles",q:"Which fixed server role allows the BULK INSERT statement to be run?",
+ o:["bulkadmin","dbcreator","serveradmin","setupadmin"],a:0,
+ e:"bulkadmin chạy BULK INSERT. setupadmin thêm/xóa linked server. diskadmin quản lý disk file. processadmin kết thúc process. dbcreator create/alter/drop/restore database."},
+{d:2,t:"Server roles",q:"Which fixed server role can GRANT, DENY and REVOKE server-level permissions?",
+ o:["securityadmin","serveradmin","sysadmin","processadmin"],a:0,
+ e:"securityadmin GRANT/DENY/REVOKE quyền server-level, và cả quyền database-level nếu có quyền vào database đó — nghĩa là gán được hầu hết quyền server."},
+{d:2,t:"Database roles",q:"Which database role can back up the database on MI or a VM (but is not applicable to Azure SQL Database)?",
+ o:["db_backupoperator","db_owner","db_ddladmin","db_securityadmin"],a:0,
+ e:"db_backupoperator back up được database trên MI hoặc VM. Không áp dụng cho Azure SQL Database vì lệnh BACKUP/RESTORE không có ở đó."},
+{d:2,t:"Database roles",q:"What is the notable security characteristic of db_securityadmin?",
+ o:["It can modify membership of custom roles only, but it can elevate its own permissions","It can DROP the database","It has full sysadmin rights","It cannot manage permissions at all"],a:0,
+ e:"db_securityadmin chỉ sửa role membership cho custom role và quản lý permission — nhưng nó CÓ THỂ tự nâng quyền của chính mình, nên cần cẩn trọng."},
+{d:2,t:"Database roles",q:"In Azure SQL Database, which special role exists only in the master database and can create and delete databases?",
+ o:["dbmanager","loginmanager","dbcreator","db_owner"],a:0,
+ e:"Trong master của Azure SQL Database có 2 role đặc biệt: dbmanager (tạo/xóa database, kết nối như dbo) và loginmanager (tạo/xóa login)."},
+{d:2,t:"Permissions",q:"Which statement about DENY is TRUE?",
+ o:["DENY overrides any GRANT, but does not apply to sysadmin members or object owners","DENY only applies when the user is not in any role","DENY is always weaker than GRANT","DENY and REVOKE are equivalent"],a:0,
+ e:"DENY ghi đè GRANT. DENY không áp dụng cho sysadmin và object owner. Nếu DENY áp lên public role thì mọi non-sysadmin đều mất quyền đó."},
+{d:2,t:"Permissions",q:"Why would you use REVOKE instead of DENY?",
+ o:["REVOKE removes a granted permission but does not stop the permission being obtained through another role","REVOKE is stronger than DENY","REVOKE also applies to sysadmin","REVOKE automatically re-grants after 24 hours"],a:0,
+ e:"REVOKE là ngược lại của GRANT: gỡ quyền đã cấp nhưng KHÔNG chặn quyền có được từ role khác. DENY thì chặn tuyệt đối."},
+{d:2,t:"Permissions",q:"Which permission gives ownership-like capability and includes all other permissions, including ALTER, SELECT, INSERT and UPDATE?",
+ o:["CONTROL","ALTER","TAKE OWNERSHIP","REFERENCES"],a:0,
+ e:"CONTROL cho quyền như owner và bao gồm mọi quyền khác. TAKE OWNERSHIP chỉ cho phép nhận quyền sở hữu chứ không tự động nhận."},
+{d:2,t:"Permissions",q:"Which permission is required to create a FOREIGN KEY constraint referencing a table?",
+ o:["REFERENCES","CONTROL","ALTER","VIEW DEFINITION"],a:0,
+ e:"REFERENCES là quyền tạo FOREIGN KEY constraint. VIEW DEFINITION cho truy cập metadata."},
+{d:2,t:"Permissions",q:"How does ownership chaining work?",
+ o:["If two objects have the same owner, permissions on the second object called from the first are not separately checked","Every object inherits permissions from the database","Permissions are checked twice for extra security","It only works with system stored procedures"],a:0,
+ e:"Ownership chaining: nếu hai object cùng owner, permission ở object thứ hai (được gọi từ object thứ nhất) không bị kiểm tra riêng. Nhờ đó có thể cấp EXECUTE trên stored procedure mà không cần cấp quyền trên bảng bên dưới."},
+{d:2,t:"Permissions",q:"Which syntax grants SELECT on a single COLUMN?",
+ o:["GRANT SELECT ON OBJECT::Customer(CustomerName) TO Phillip;","GRANT SELECT ON COLUMN::CustomerName TO Phillip;","GRANT SELECT(CustomerName) ON Customer TO Phillip;","GRANT COLUMN SELECT ON Customer.CustomerName TO Phillip;"],a:0,
+ e:"Cú pháp cột: GRANT SELECT ON OBJECT::Table(Column) TO Principal. SECURABLE có thể là OBJECT::, SCHEMA::, DATABASE:: hoặc SERVER::."},
+{d:2,t:"Permissions",q:"Which option allows the grantee to grant that permission on to others?",
+ o:["WITH GRANT OPTION","WITH DELEGATION","AS OWNER","WITH CASCADE"],a:0,
+ e:"[WITH GRANT OPTION] cho phép principal cấp lại quyền đó cho người khác."},
+{d:2,t:"Permissions",q:"Which function checks your own current permissions at database level?",
+ o:["SELECT * FROM sys.fn_my_permissions (NULL, 'DATABASE')","SELECT * FROM sys.database_principals","EXEC sp_helprole","SELECT * FROM sys.server_principals"],a:0,
+ e:"fn_my_permissions(NULL,'DATABASE') cho quyền của login; fn_my_permissions('DBName','DATABASE') cho quyền của user; fn_builtin_permissions(default) liệt kê tất cả permission."},
+{d:2,t:"Permissions",q:"How can you TEST another user's permissions?",
+ o:["EXECUTE AS USER = 'user_name' ... then REVERT","EXEC sp_test_permissions 'user_name'","SET USER = 'user_name'","GRANT IMPERSONATE TO SELF"],a:0,
+ e:"Dùng EXECUTE AS USER = 'tên' (hoặc EXECUTE AS LOGIN nếu là sysadmin trên MI/VM), rồi REVERT để quay lại. Cũng có thể tạo procedure WITH EXECUTE AS user_name."},
+{d:2,t:"Permissions",q:"Which stored procedures are NOT available on Azure SQL Database?",
+ o:["sp_helprotect and sp_helprolemember","sp_helprole","sp_executesql","sp_rename"],a:0,
+ e:"sp_helprotect (quyền của user trên object) và sp_helprolemember (thành viên trực tiếp của role) không có trên Azure SQL Database. sp_helprole thì có."},
+{d:2,t:"Custom roles",q:"Which statement adds a user to a database role?",
+ o:["ALTER ROLE db_datareader ADD MEMBER database_principal","EXEC sp_addrolemember 'db_datareader', 'user'","GRANT ROLE db_datareader TO user","CREATE ROLE db_datareader FOR user"],a:0,
+ e:"ALTER ROLE <role> ADD MEMBER <principal> (hoặc DROP MEMBER). Cần quyền ALTER trên role, hoặc ALTER ANY ROLE, hoặc db_securityadmin / db_owner."},
+{d:2,t:"Certificates",q:"If CREATE CERTIFICATE omits ENCRYPTION BY PASSWORD, what encrypts the private key?",
+ o:["The database master key","The service master key","Nothing — it is unencrypted","An Azure Key Vault key"],a:0,
+ e:"Nếu không dùng ENCRYPTION BY PASSWORD, private key được mã hóa bằng database master key. Certificate mặc định lưu ở database master."},
+{d:2,t:"Certificates",q:"If no dates are specified in CREATE CERTIFICATE, what is the default EXPIRY_DATE?",
+ o:["One year after START_DATE","One month after START_DATE","It never expires","10 years"],a:0,
+ e:"START_DATE mặc định là ngày hiện tại (UTC), EXPIRY_DATE mặc định là một năm sau START_DATE."},
+{d:2,t:"Certificates",q:"What can ALTER CERTIFICATE change?",
+ o:["The private key password, but not the SUBJECT or the dates","The SUBJECT and EXPIRY_DATE","Only the EXPIRY_DATE","Every property"],a:0,
+ e:"ALTER CERTIFICATE ... WITH PRIVATE KEY (ENCRYPTION BY PASSWORD = ...) đổi được password, nhưng không đổi được SUBJECT hay các DATE."},
+{d:2,t:"TDE",q:"How does TDE differ from TLS?",
+ o:["TDE encrypts data at rest at page level; TLS encrypts data in transit","TDE encrypts in transit; TLS encrypts at rest","Both encrypt data at rest","TDE encrypts individual columns, TLS encrypts individual tables"],a:0,
+ e:"TDE mã hóa/giải mã ở mức page khi ghi/đọc — dữ liệu at rest. TLS (Transport Layer Security) mã hóa dữ liệu khi truyền."},
+{d:2,t:"TDE",q:"At which level is TDE set for Azure SQL Database?",
+ o:["At server level; new databases are encrypted by default, except those created by restore or database copy","At database level, enabled manually for each one","At subscription level","At elastic pool level"],a:0,
+ e:"Với Azure SQL Database, TDE đặt ở server level; database mới mã hóa mặc định NHƯNG database tạo qua restore hoặc database copy thì không. Với MI thì đặt ở instance level."},
+{d:2,t:"TDE",q:"Which statement is TRUE about enabling TDE for Azure SQL Managed Instance?",
+ o:["It cannot be enabled from the Azure Portal; use T-SQL ALTER DATABASE ... SET ENCRYPTION ON","It can only be enabled from the Azure Portal","MI does not support TDE","It is always on and cannot be disabled"],a:0,
+ e:"Với MI không dùng Portal được — dùng ALTER DATABASE ... SET ENCRYPTION ON/OFF. Lưu ý: không thể đổi TDE protector sang key trong Key Vault bằng T-SQL."},
+{d:2,t:"TDE",q:"Which type of database can TDE NOT encrypt?",
+ o:["System databases","Databases larger than 1 TB","Databases in an elastic pool","Databases using the Full recovery model"],a:0,
+ e:"TDE không mã hóa được system database. Nó dùng symmetric Database Encryption Key (DEK), được bảo vệ bởi TDE protector (service-managed certificate hoặc asymmetric key trong Key Vault)."},
+{d:2,t:"Firewall",q:"In what order are firewall rules checked in Azure SQL Database?",
+ o:["Database rules are checked BEFORE server-level rules","Server-level rules first, then database rules","Only server-level rules are checked","Both in parallel — whichever blocks first wins"],a:0,
+ e:"Database rule được kiểm tra trước server-level rule. Server-level rule cho phép truy cập tất cả database; database rule dành cho một user/app cụ thể."},
+{d:2,t:"Firewall",q:"How are database-level firewall rules created?",
+ o:["Only with T-SQL, and CONTROL DATABASE permission is required","Only through the Azure Portal","With PowerShell or the Portal","With Azure CLI"],a:0,
+ e:"Database firewall rule chỉ tạo được bằng T-SQL (sp_set_database_firewall_rule) và cần CONTROL DATABASE. Phải có server-level firewall rule trước đó."},
+{d:2,t:"Firewall",q:"What does a firewall rule of 0.0.0.0 mean?",
+ o:["It lets all Azure services bypass the server-level firewall rule","It blocks all access","It allows every IP address on the internet","It allows localhost only"],a:0,
+ e:"Rule 0.0.0.0 cho phép mọi Azure service bypass server-level firewall — trong Portal thì tương ứng bật 'Allow Azure services and resources to access this server'."},
+{d:2,t:"Firewall",q:"Where are server-level firewall rules for Azure SQL Database stored?",
+ o:["In the master database","In the msdb database","In each individual database","In Azure Resource Manager"],a:0,
+ e:"Server-level rule lưu ở master (xem qua sys.firewall_rules). Database-level rule lưu trong chính database đó (sys.database_firewall_rules)."},
+{d:2,t:"Always Encrypted",q:"Which Always Encrypted encryption type allows equality joins, GROUP BY, indexes and DISTINCT?",
+ o:["Deterministic","Randomized","Symmetric","Asymmetric"],a:0,
+ e:"Deterministic cho phép equality join, GROUP BY, index và DISTINCT; yêu cầu collation _BIN2 với chuỗi (ví dụ Latin1_General_BIN2). Randomized ngăn tất cả những thao tác đó."},
+{d:2,t:"Always Encrypted",q:"When connecting to a database with Always Encrypted columns, which parameter must be added in SSMS?",
+ o:["Column Encryption Setting=enabled","Always Encrypted=true","Encrypt=strict","Trusted_Connection=yes"],a:0,
+ e:"Trong tab 'Additional Connection Parameters', nhập: Column Encryption Setting=enabled."},
+{d:2,t:"Always Encrypted",q:"If the Security Administrator and the DBA are TWO different people, which tool must be used to configure Always Encrypted?",
+ o:["PowerShell only","SSMS only","Either SSMS or PowerShell","The Azure Portal only"],a:0,
+ e:"Nếu cần role separation (Security Admin giữ key nhưng không truy cập database; DBA quản metadata nhưng không giữ key) thì chỉ dùng được PowerShell. Nếu cùng một người thì SSMS hoặc PowerShell đều được."},
+{d:2,t:"Always Encrypted",q:"Which permission is required to create or delete a column encryption key?",
+ o:["ALTER ANY COLUMN ENCRYPTION KEY","ALTER ANY COLUMN MASTER KEY","VIEW ANY COLUMN ENCRYPTION KEY DEFINITION","CONTROL DATABASE"],a:0,
+ e:"ALTER ANY COLUMN MASTER KEY để tạo/xóa column master key; ALTER ANY COLUMN ENCRYPTION KEY cho column encryption key; VIEW ANY ... DEFINITION để đọc metadata."},
+{d:2,t:"Secure enclaves",q:"What is the main difference between a VBS enclave and an Intel SGX enclave?",
+ o:["VBS does not require Microsoft Azure Attestation; SGX requires Attestation and a DC-series database","VBS provides stronger security isolation","SGX needs no special hardware","VBS is only available on SQL Server 2016"],a:0,
+ e:"Intel SGX cần Azure SQL Database DC-series và Microsoft Azure Attestation. VBS có ở mọi phiên bản Azure SQL Database (kể cả Elastic Pool) và SQL Server 2019+, không cần Attestation — nhưng cách ly bảo mật yếu hơn SGX."},
+{d:2,t:"Secure enclaves",q:"After enabling 'Enable secure enclaves' on a database, can you turn it off again?",
+ o:["No — it cannot be switched off once it has been switched on","Yes, at any time in the Portal","Yes, but only using T-SQL","Yes, but the database must be restarted"],a:0,
+ e:"Không thể chuyển 'Enable secure enclaves' về Off sau khi đã bật On."},
+{d:2,t:"Dynamic Data Masking",q:"What is the default mask value for date and time data types in Dynamic Data Masking?",
+ o:["01-01-1900","0","XXXX","NULL"],a:0,
+ e:"Default value: XXXX cho string, 0 cho numeric, 01-01-1900 cho date/time."},
+{d:2,t:"Dynamic Data Masking",q:"Who is ALWAYS excluded from Dynamic Data Masking?",
+ o:["Administrators — they can always read the real data","db_datareader members","Nobody","Only users with the UNMASK permission"],a:0,
+ e:"Administrator luôn được loại trừ khỏi DDM. Ngoài ra có thể chỉ định user cụ thể (phân cách bằng dấu chấm phẩy) hoặc dùng GRANT UNMASK."},
+{d:2,t:"Dynamic Data Masking",q:"Which T-SQL applies an email mask to a column?",
+ o:["ALTER TABLE ... ALTER COLUMN col ADD MASKED WITH (FUNCTION = 'email()')","ALTER COLUMN col SET MASK = 'email'","CREATE MASK ON col WITH email()","EXEC sp_add_mask 'col', 'email'"],a:0,
+ e:"ALTER TABLE Schema.Table ALTER COLUMN ColumnName ADD MASKED WITH (FUNCTION = 'email()') — hoặc 'default()', 'random(1,1000)', 'partial(1,\"xxxxx\",1)'."},
+{d:2,t:"Private Link",q:"A Private Endpoint must be in the same region as which component?",
+ o:["The Virtual Network — the target service may be in a different region","The Azure SQL Database","Both the Virtual Network and the target service","The subscription"],a:0,
+ e:"Private Endpoint phải cùng region với Virtual Network, nhưng KHÔNG cần cùng region với service nó kết nối tới. Toàn bộ traffic đi qua mạng Microsoft, không qua public internet."},
+{d:2,t:"Private Link",q:"When creating a Private Endpoint for Azure SQL Database, which target sub-resource should you select?",
+ o:["sqlServer","sqlDatabase","managedInstance","sqlPool"],a:0,
+ e:"Trong tab Resource, chọn target sub-resource là 'sqlServer'."},
+{d:2,t:"TLS",q:"Which TLS version is the most commonly used, uses SHA-256, and is considered to create a secure connection?",
+ o:["TLS 1.2","TLS 1.0","TLS 1.1","TLS 1.3"],a:0,
+ e:"TLS 1.2 (2008) dùng SHA-256, độ tin cậy và hiệu năng tốt hơn — là bản phổ biến nhất. TLS 1.3 (2018) kết nối nhanh hơn. TLS 1.0/1.1 đã bị deprecate rộng rãi khoảng 2020."},
+{d:2,t:"TLS",q:"Where do you configure the minimum TLS version for Azure SQL in the Portal?",
+ o:["SQL Server (not the database) – Security – Networking – Connectivity","Database – Security – Transparent data encryption","Subscription – Policies","Resource group – Settings"],a:0,
+ e:"Vào SQL Server (không phải database) – Security – Networking – Connectivity – đổi 'Minimum TLS version'. Hoặc Set-AzSqlServer -MinimalTlsVersion, hoặc az sql server update --set minimalTlsVersion."},
+{d:2,t:"Classification",q:"Which roles can MODIFY a database's data classification?",
+ o:["Owner, Contributor and SQL Security Manager","Reader and User Access Administrator","Owner only","db_datareader"],a:0,
+ e:"Owner, Contributor và SQL Security Manager sửa và đọc được. Reader và User Access Administrator chỉ ĐỌC được, không sửa."},
+{d:2,t:"Classification",q:"Which T-SQL adds a sensitivity classification to a column?",
+ o:["ADD SENSITIVITY CLASSIFICATION TO schema.table.column WITH (LABEL=..., INFORMATION_TYPE=..., RANK=...)","ALTER TABLE ... ADD CLASSIFICATION","EXEC sp_add_classification","CREATE SENSITIVITY LABEL"],a:0,
+ e:"ADD SENSITIVITY CLASSIFICATION TO ... WITH (LABEL, INFORMATION_TYPE, RANK). RANK có thể là NONE, LOW, MEDIUM, HIGH, CRITICAL. Kiểm tra bằng sys.sensitivity_classifications."},
+{d:2,t:"Classification",q:"Which rule must be followed when creating a classification?",
+ o:["You cannot select [n/a] for BOTH the Information Type and the Sensitivity Label","You must select [n/a] for at least one of the two","The Sensitivity Label is optional","The Information Type must always be Financial"],a:0,
+ e:"Bạn không thể chọn [n/a] cho cả Information Type và Sensitivity Label cùng lúc."},
+{d:2,t:"Auditing",q:"Which action groups does the default Azure SQL auditing policy include?",
+ o:["BATCH_COMPLETED_GROUP, SUCCESSFUL_ and FAILED_DATABASE_AUTHENTICATION_GROUP","FAILED_DATABASE_AUTHENTICATION_GROUP only","DDL_DATABASE_LEVEL_EVENTS","SCHEMA_OBJECT_ACCESS_GROUP"],a:0,
+ e:"Default policy: BATCH_COMPLETED_GROUP (mọi query và stored procedure) + SUCCESSFUL_/FAILED_DATABASE_AUTHENTICATION_GROUP (login thành công/thất bại). Lưu tối đa 4.000 ký tự mỗi audit."},
+{d:2,t:"Auditing",q:"Which type of blob are Azure SQL audit logs written to?",
+ o:["Append Blobs","Block Blobs","Page Blobs","Table storage"],a:0,
+ e:"Audit được ghi vào Append Blob trong Blob storage. Không hỗ trợ premium storage hay hierarchical namespace."},
+{d:2,t:"Auditing",q:"What does Microsoft recommend regarding server-level versus database-level auditing?",
+ o:["Use server-level auditing only, unless you need to audit different event types for a specific database","Always use both for better coverage","Use database-level auditing only","Avoid server-level auditing because of the cost"],a:0,
+ e:"Server policy audit luôn áp cho database bất kể database-level policy — hai cái chạy song song. Microsoft khuyến nghị CHỈ dùng server-level trừ khi cần audit loại sự kiện khác cho một database riêng."},
+{d:2,t:"Auditing",q:"Which T-SQL function reads an audit file?",
+ o:["sys.fn_get_audit_file ('NameOfFile.sqlaudit', default, default)","sys.dm_audit_actions","sys.fn_read_audit","sp_get_audit_log"],a:0,
+ e:"SELECT * FROM sys.fn_get_audit_file('file.sqlaudit', default, default). Trong SSMS có thể dùng File – Open – Merge Audit Files."},
+{d:2,t:"Change Tracking",q:"How does Change Tracking differ from Change Data Capture (CDC)?",
+ o:["Change Tracking records only that a column changed and keeps no historic data; CDC tracks historic data","Change Tracking keeps historic data, CDC does not","Both keep historic data","Change Tracking is heavier than CDC"],a:0,
+ e:"Change Tracking nhẹ hơn, ít storage hơn: chỉ biết dòng nào/cột nào đã đổi, KHÔNG xem được dữ liệu trước đó. CDC theo dõi cả dữ liệu lịch sử."},
+{d:2,t:"Change Tracking",q:"What is the default retention period for Change Tracking?",
+ o:["2 days","1 hour","7 days","30 days"],a:0,
+ e:"Mặc định 2 Days. Tối thiểu là 1 Minute, không có giá trị tối đa. AUTO_CLEANUP quyết định có tự xóa dữ liệu quá hạn hay không."},
+{d:2,t:"Change Tracking",q:"What must you do first in order to disable Change Tracking at database level?",
+ o:["Disable change tracking on all tables first","Put the database in SINGLE_USER mode","Take a transaction log backup","Nothing — it can be disabled directly"],a:0,
+ e:"Muốn tắt ở cấp database, phải tắt change tracking trên toàn bộ các bảng trước (ALTER TABLE ... DISABLE CHANGE_TRACKING)."},
+{d:2,t:"CDC",q:"What is the minimum resource requirement to use Change Data Capture on Azure SQL Database?",
+ o:["At least 1 vCore or 100 DTUs/eDTUs","At least 2 vCores","Any tier, including Basic","Premium tier only"],a:0,
+ e:"CDC cần tối thiểu 1 vCore hoặc 100 DTU/eDTU. Không dùng được trên Free, Basic hay Standard S0/S1/S2, và không dùng được trên Elastic Pool có vCore < 1 hoặc eDTU < 100."},
+{d:2,t:"CDC",q:"In CDC, what does _$operation = 2 mean?",
+ o:["Insert","Delete","Update (before image)","Update (after image)"],a:0,
+ e:"_$operation: 1 = delete, 2 = insert, 3 hoặc 4 = update."},
+{d:2,t:"CDC",q:"Before enabling CDC on a table, what must you do and which permission is required?",
+ o:["Run EXEC sys.sp_cdc_enable_db, which requires sysadmin","Run sp_cdc_enable_table first, requiring db_owner","Enable Change Tracking first","Enable snapshot isolation"],a:0,
+ e:"Phải chạy EXEC sys.sp_cdc_enable_db trước (cần sysadmin), chỉ dùng cho user database. Sau đó mới sp_cdc_enable_table. Cả hai trả về 0 = thành công, 1 = thất bại."},
+{d:2,t:"Ledger",q:"When is a block closed in the Azure SQL Database ledger?",
+ o:["After 30 seconds or 100,000 transactions","After 60 seconds or 10,000 transactions","After every transaction","After 5 minutes"],a:0,
+ e:"Root hash được lưu trong block; block đóng sau 30 giây hoặc 100.000 transaction. Block được hash cùng root hash của block trước, tạo thành blockchain. Hash của block mới nhất gọi là 'database digest'."},
+{d:2,t:"Ledger",q:"What characterises an append-only ledger table?",
+ o:["Only inserts are allowed; updates and deletes are denied even for sysadmins, and no history table is created","Updates are allowed but deletes are not","It creates a history table like an updatable ledger table","It is only available on SQL Server 2019"],a:0,
+ e:"Append-only: chỉ INSERT. Update/delete bị từ chối ngay cả với sysadmin/DBA. Không có history table (vì không có update/delete), chỉ thêm 2 cột GENERATED ALWAYS."},
+{d:2,t:"Ledger",q:"Can you convert an existing non-ledger table into a ledger table?",
+ o:["No — you must create a new ledger table and copy the data across","Yes, using ALTER TABLE ... SET LEDGER = ON","Yes, but only for empty tables","Yes, automatically when the ledger database is enabled"],a:0,
+ e:"Không convert được. Phải tạo ledger table mới, copy dữ liệu (sp_copy_data_in_batches, SELECT INTO hoặc BULK INSERT), rồi đổi tên. sp_copy_data_in_batches chia thành batch 10.000-100.000 dòng chạy song song."},
+{d:2,t:"Ledger",q:"What does Microsoft recommend for querying the change history of an updatable ledger table?",
+ o:["The ledger view, which joins the table with its history table","The history table directly","sys.database_ledger_transactions","Temporal table syntax"],a:0,
+ e:"Microsoft khuyến nghị dùng ledger view thay vì đọc trực tiếp history table. View hiển thị transaction ID và loại thao tác (UPDATE = cả DELETE lẫn INSERT)."},
+{d:2,t:"RLS",q:"In Row-Level Security, which operations does a FILTER PREDICATE apply to?",
+ o:["SELECT (and it affects UPDATE and DELETE)","INSERT","DELETE only","DDL statements"],a:0,
+ e:"FILTER PREDICATE lọc dòng được đọc (SELECT, UPDATE, DELETE). BLOCK PREDICATE chặn ghi (AFTER INSERT/AFTER UPDATE cho dữ liệu mới; BEFORE UPDATE/BEFORE DELETE cho dữ liệu hiện có)."},
+{d:2,t:"RLS",q:"What form must a Row-Level Security function take?",
+ o:["An inline table-valued function returning 1 when the user may see the row","A scalar function returning BIT","A stored procedure returning a recordset","A multi-statement table-valued function"],a:0,
+ e:"RLS dùng inline table-valued function (thường WITH SCHEMABINDING), trả về 1 khi user được xem dòng. Cần cấp SELECT trên function. Nên đặt các object RLS ở schema riêng."},
+{d:2,t:"RLS",q:"Which permission is required to create a security policy for Row-Level Security?",
+ o:["ALTER ANY SECURITY POLICY, plus SELECT and REFERENCES on the functions and target tables","CONTROL DATABASE","db_securityadmin","ALTER ANY SCHEMA"],a:0,
+ e:"Cần ALTER ANY SECURITY POLICY, cộng SELECT và REFERENCES trên các function, bảng và cột liên quan."},
+{d:2,t:"RLS",q:"From which version is Row-Level Security available?",
+ o:["SQL Server 2016 or later, and Azure SQL Database","SQL Server 2012 or later","Azure SQL Database only","SQL Server 2019 or later"],a:0,
+ e:"RLS có từ SQL Server 2016 trở lên và trên Azure SQL Database."},
+{d:2,t:"Defender",q:"What does Microsoft Defender for SQL / Advanced Threat Protection alert you about?",
+ o:["Suspicious database activities, potential vulnerabilities and SQL injection attacks","Failed logins only","Cost overruns only","Query performance only"],a:0,
+ e:"Advanced Threat Protection cảnh báo về hoạt động đáng ngờ (kể cả access và query pattern bất thường), lỗ hổng, và SQL injection. Tích hợp với Microsoft Defender for Cloud kèm hành động khuyến nghị."},
+{d:2,t:"Vulnerability",q:"In a Vulnerability Assessment, what does 'Approve as Baseline' do?",
+ o:["Similar future results are placed in the Passed section","It disables the rule permanently","It deletes the result from the report","It automatically remediates the vulnerability"],a:0,
+ e:"'Approve as Baseline' đưa các kết quả tương tự vào mục 'Passed'. Muốn bỏ hẳn rule thì dùng 'Disable rule'. Kết quả có thể export ra Excel."},
+{d:2,t:"Purview",q:"What are the three main elements of Azure Purview Studio?",
+ o:["Data Map, Data Catalog and Data Insights","Data Factory, Data Lake and Data Explorer","Data Map, Data Flow and Data Sync","Scanner, Classifier and Reporter"],a:0,
+ e:"Data Map thu thập metadata bằng cách scan và classify; Data Catalog giúp tìm dữ liệu qua bộ lọc classification/metadata; Data Insights cho thấy dữ liệu nhạy cảm ở đâu và luân chuyển thế nào."},
+{d:2,t:"Key Vault",q:"When creating a Key Vault for Azure VM disk encryption, which access policy must be enabled?",
+ o:["Azure Disk Encryption for volume encryption","Azure Backup","Azure Resource Manager for template deployment","Azure Virtual Machines for deployment"],a:0,
+ e:"Trong tab Access Policies, bật 'Enable Access to: Azure Disk Encryption for volume encryption'. Sau khi tạo Key Vault, để trống ô Key, click Select rồi Save."},
+
+/* ---------- 3. Monitor, configure and optimize database resources ---------- */
+{d:3,t:"Baseline",q:"At what frequency, and over what period, does sys.dm_db_resource_stats return data?",
+ o:["One row every 15 seconds, for roughly the past hour","One row per minute, for the past 24 hours","One row per hour, retained for 90 days","One row every 5 seconds, for 30 minutes"],a:0,
+ e:"sys.dm_db_resource_stats cho CPU, IO, memory — một dòng mỗi 15 giây cho khoảng 1 giờ qua. Với MI dùng sys.server_resource_stats."},
+{d:3,t:"Baseline",q:"Which view gives an HOURLY summary of resource usage and retains 90 days of history?",
+ o:["sys.resource_usage (or sys.resource_stats in master)","sys.dm_db_resource_stats","sys.dm_os_performance_counters","sys.dm_exec_requests"],a:0,
+ e:"sys.resource_usage cho tổng hợp theo giờ, giữ lịch sử 90 ngày (hiện đang ở trạng thái preview). sys.dm_db_resource_stats chỉ giữ ~1 giờ."},
+{d:3,t:"Metrics",q:"How many days can Metrics Explorer show at once, and how far back can you go?",
+ o:["Up to 30 days at once, going back up to 93 days","Up to 7 days at once, going back 30 days","Up to 90 days at once, going back 1 year","There is no limit"],a:0,
+ e:"Metrics Explorer hiển thị tối đa 30 ngày cùng lúc, dùng mũi tên trái/phải để lùi tới 93 ngày trong quá khứ."},
+{d:3,t:"Metrics",q:"What is the fundamental difference between Metrics and Logs in Azure Monitor?",
+ o:["Metrics are numerical time-series values, lightweight and suited to near real-time alerting; Logs are events that may contain non-numerical data","Metrics hold text and Logs hold numbers","Metrics can only be viewed through Log Analytics","Logs are faster than Metrics"],a:0,
+ e:"Metrics: giá trị số thu thập đều đặn, lưu trong time-series database, nhẹ, cho phép alert gần realtime. Logs: sự kiện, có thể chứa dữ liệu phi số, có cấu trúc hoặc tự do — xem trong Log Analytics."},
+{d:3,t:"Metrics",q:"What happens if xtp_storage_percent (In-Memory OLTP storage) reaches 100%?",
+ o:["INSERT, UPDATE, ALTER and CREATE operations fail; SELECT and DELETE still work","The whole database goes offline","Only SELECT operations fail","The database scales up automatically"],a:0,
+ e:"Khi xtp_storage_percent chạm 100%, các thao tác INSERT, UPDATE, ALTER, CREATE sẽ fail; SELECT và DELETE vẫn hoạt động. Trả về 0 nếu không dùng In-Memory OLTP."},
+{d:3,t:"Metrics",q:"What does max_worker_percent measure?",
+ o:["Maximum concurrent requests divided by the service tier limit","The percentage of CPU in use","Maximum concurrent sessions divided by the limit","The number of idle worker threads"],a:0,
+ e:"max_worker_percent = số concurrent request tối đa / giới hạn service tier. max_session_percent = số concurrent session tối đa / giới hạn."},
+{d:3,t:"Metrics",q:"Data space used percent is running high. Which actions are appropriate?",
+ o:["Upgrade the service tier, shrink the database, or scale out using sharding","Only upgrading the service tier is possible","Increase MAXDOP","Enable Query Store"],a:0,
+ e:"Khi Data space used percent cao: nâng service tier, shrink database, hoặc scale out bằng sharding. Nếu đang trong elastic pool, cân nhắc chuyển database ra khỏi pool."},
+{d:3,t:"Query Perf Insight",q:"What does Query Performance Insight (Intelligent Performance) let you see?",
+ o:["Top queries by CPU, duration or execution count, plus details of individual queries","Deadlocks only","Firewall configuration","Backup history"],a:0,
+ e:"Query Performance Insight: top CPU-consuming query, chi tiết từng query, top query theo Duration hoặc Execution Count, kèm biểu tượng performance recommendation."},
+{d:3,t:"SQL Insights",q:"Which configuration does SQL Insights NOT support?",
+ o:["Azure SQL Database with elastic pools, or the Basic, S0, S1 and S2 tiers","Azure SQL Managed Instance","SQL Server on Azure VMs","SQL Server 2012 or later"],a:0,
+ e:"SQL Insights không hỗ trợ Azure SQL Database dùng elastic pool hoặc tier Basic/S0/S1/S2. Nó cũng không hỗ trợ monitor nhiều hơn 1 secondary replica mỗi database, và không hỗ trợ Azure AD authentication."},
+{d:3,t:"SQL Insights",q:"How many monitoring VMs does Microsoft recommend per number of connection strings?",
+ o:["One Standard_B2s VM for every 100 connection strings","One VM for every 10 connection strings","One VM for every 1000 connection strings","No VM is required"],a:0,
+ e:"Khuyến nghị 1 VM Standard_B2s (2 CPU, 4 GB, Ubuntu 18.04) cho mỗi 100 connection string. Dữ liệu lưu vào Log Analytics workspace."},
+{d:3,t:"SQL Insights",q:"Which permission must be granted to the SQL Insights user on Azure SQL Database?",
+ o:["GRANT VIEW DATABASE STATE","GRANT VIEW SERVER STATE","GRANT CONTROL DATABASE","db_owner membership"],a:0,
+ e:"Với Azure SQL Database: tạo user trong database liên quan (không phải master) và GRANT VIEW DATABASE STATE. Với MI và SQL Server VM: GRANT VIEW SERVER STATE và VIEW ANY DEFINITION."},
+{d:3,t:"Database watcher",q:"Where does database watcher store its data?",
+ o:["An Azure Data Explorer cluster, or Real-Time Analytics in Microsoft Fabric","A Log Analytics workspace","Azure Blob Storage","The monitored database itself"],a:0,
+ e:"Database watcher lưu vào Azure Data Explorer cluster hoặc Real-Time Analytics trong Fabric. Truy vấn bằng KQL (Kusto) hoặc T-SQL; xem trong ADX dashboard, Power BI, Grafana, Excel."},
+{d:3,t:"Database watcher",q:"How is database watcher charged?",
+ o:["Creating watchers and dashboards is free; you only pay for storage","Per monitored resource","Per user","It is completely free"],a:0,
+ e:"Tạo watcher và dashboard là miễn phí, không tính theo resource hay theo user — nhưng phải trả tiền storage."},
+{d:3,t:"Query Store",q:"How many stores does Query Store contain, and which are they?",
+ o:["3: the plan store, the runtime stats store and the wait stats store","2: the plan store and the runtime stats store","4: plan, runtime, wait and error stores","1: the plan store"],a:0,
+ e:"Query Store gồm 3 store: Plan store (execution plan), Runtime stats store (thống kê thực thi), Wait stats store."},
+{d:3,t:"Query Store",q:"What is the default state of Query Store?",
+ o:["Disabled for new SQL Server databases, enabled for new Azure SQL Databases","Enabled for both","Disabled for both","Enabled only once the database exceeds 1 GB"],a:0,
+ e:"Query Store TẮT mặc định với database SQL Server mới (ví dụ trên VM), nhưng BẬT mặc định với Azure SQL Database mới."},
+{d:3,t:"Query Store",q:"What happens when Query Store reaches MAX_STORAGE_SIZE_MB?",
+ o:["It switches to read-only, stops collecting new data and becomes stale","It grows its allocation automatically","It deletes all data and starts again","The database becomes read-only"],a:0,
+ e:"Khi chạm giới hạn, Query Store chuyển read-only và ngừng thu thập — dữ liệu trở nên stale. Kiểm tra bằng sys.database_query_store_options; readonly_reason = 65536 nghĩa là đã chạm MAX_STORAGE_SIZE_MB."},
+{d:3,t:"Query Store",q:"With SIZE_BASED_CLEANUP_MODE = AUTO, when does cleanup start and when does it stop?",
+ o:["It starts at about 90% of MAX_STORAGE_SIZE_MB and stops at about 80%","It starts at 100% and stops at 50%","It starts at 75% and stops at 25%","It runs every 24 hours regardless of size"],a:0,
+ e:"Khi dữ liệu đạt ~90% MAX_STORAGE_SIZE_MB, cleanup bắt đầu, xóa dữ liệu cũ nhất/ít tốn kém nhất, dừng khi còn ~80%."},
+{d:3,t:"Query Store",q:"In sys.database_query_store_options, what does actual_state = 2 mean?",
+ o:["READ_WRITE","READ_ONLY","OFF","ERROR"],a:0,
+ e:"actual_state = 2 là READ_WRITE, = 1 là READ_ONLY."},
+{d:3,t:"Query Store",q:"What is the default QUERY_CAPTURE_MODE in SQL Server 2019 and Azure SQL?",
+ o:["AUTO — it ignores infrequent queries and those with small compile/execution times","ALL — it captures every query","NONE","CUSTOM"],a:0,
+ e:"Mặc định trước đây là ALL, nhưng từ SQL Server 2019 và Azure SQL thì là AUTO — bỏ qua query không thường xuyên và query có compile/execution time nhỏ."},
+{d:3,t:"Query Store",q:"What does DATA_FLUSH_INTERVAL_SECONDS control?",
+ o:["How long data is retained in memory before being written to disk","How long before old data is deleted","The interval over which each query's statistics are aggregated","How often cleanup runs"],a:0,
+ e:"DATA_FLUSH_INTERVAL_SECONDS = thời gian dữ liệu ở trong memory trước khi lưu xuống đĩa. Giá trị cao thì ít ghi đĩa hơn nhưng mất dữ liệu nếu SQL Server crash/restart."},
+{d:3,t:"Query Store",q:"Which values can INTERVAL_LENGTH_MINUTES take?",
+ o:["1, 5, 10, 15, 30, 60 or 1440 minutes","Any integer from 1 to 1440","15 or 60 only","5, 10 or 15"],a:0,
+ e:"Chọn từ 1, 5, 10, 15, 30, 60 hoặc 1440 phút. Trong mỗi khoảng đó, mỗi query có tối đa 1 dòng thống kê."},
+{d:3,t:"Query Store",q:"Which statement clears all Query Store data?",
+ o:["ALTER DATABASE DatabaseName SET QUERY_STORE CLEAR;","EXEC sp_query_store_clear;","DBCC FREEPROCCACHE;","TRUNCATE TABLE sys.query_store_plan;"],a:0,
+ e:"ALTER DATABASE ... SET QUERY_STORE CLEAR; hoặc nút 'Purge Query Data' trong SSMS."},
+{d:3,t:"Query Store",q:"Which SSMS Query Store report helps you find queries that have become SLOWER?",
+ o:["Regressed Queries","Top Resource Consuming Queries","Queries With Forced Plans","Overall Resource Consumption"],a:0,
+ e:"Regressed Queries cho thấy query bị chậm đi — xem Duration, CPU Time, Logical/Physical Reads. Queries with High Variation cho query có độ dao động lớn."},
+{d:3,t:"Query Store",q:"In the Tracked Queries view, what does a square represent?",
+ o:["A query cancelled by the client","A completed query","A query that failed due to an exception","A currently running query"],a:0,
+ e:"Hình tròn = query hoàn tất; hình vuông = bị client hủy; hình tam giác = thất bại do exception làm ngắt thực thi."},
+{d:3,t:"Query Store",q:"Which view holds Query Store execution plans?",
+ o:["sys.query_store_plan","sys.dm_exec_cached_plans","sys.query_store_runtime_stats","sys.dm_exec_query_plan"],a:0,
+ e:"sys.query_store_plan chứa plan; sys.query_store_runtime_stats chứa thống kê; join sys.query_store_query với sys.query_store_query_text để xem câu lệnh; sys.query_store_wait_stats cho wait."},
+{d:3,t:"Blocking",q:"Which isolation level causes NO blocking but permits dirty reads?",
+ o:["READ UNCOMMITTED","READ COMMITTED","REPEATABLE READ","SERIALIZABLE"],a:0,
+ e:"READ UNCOMMITTED: không block nhưng có dirty read. REPEATABLE READ: không dirty read nhưng block. SERIALIZABLE: không dirty read, block cả update/insert."},
+{d:3,t:"Blocking",q:"What is the default setting of READ_COMMITTED_SNAPSHOT on SQL Server and on Azure SQL Database?",
+ o:["OFF on SQL Server, ON on Azure SQL Database","ON for both","OFF for both","ON on SQL Server, OFF on Azure SQL Database"],a:0,
+ e:"READ_COMMITTED_SNAPSHOT mặc định OFF trên SQL Server (nên READ COMMITTED có thể block) và ON trên Azure SQL Database (dùng snapshot nên không block)."},
+{d:3,t:"Blocking",q:"Which database option must be enabled for the SNAPSHOT isolation level?",
+ o:["ALLOW_SNAPSHOT_ISOLATION ON","READ_COMMITTED_SNAPSHOT ON","AUTO_UPDATE_STATISTICS ON","CHANGE_TRACKING ON"],a:0,
+ e:"SNAPSHOT cần ALTER DATABASE ... SET ALLOW_SNAPSHOT_ISOLATION ON. Option này khiến DML sinh row version — cho phép snapshot chứ chưa bật nó."},
+{d:3,t:"Blocking",q:"Which query identifies sessions that are currently blocked?",
+ o:["SELECT ... FROM sys.dm_exec_requests WHERE blocking_session_id > 0","SELECT * FROM sys.dm_tran_locks","SELECT * FROM sys.dm_exec_sessions","SELECT * FROM sys.dm_os_wait_stats"],a:0,
+ e:"sys.dm_exec_requests với blocking_session_id > 0 cho biết ai đang bị block bởi ai. sys.dm_tran_locks xem các lock. sys.dm_os_waiting_tasks xem wait type theo task."},
+{d:3,t:"Blocking",q:"Which command shows the current isolation level of a session?",
+ o:["DBCC USEROPTIONS","SELECT @@ISOLATION","DBCC SHOWOPTIONS","EXEC sp_isolation"],a:0,
+ e:"DBCC USEROPTIONS hiển thị các tùy chọn SET của session hiện tại, bao gồm isolation level."},
+{d:3,t:"Extended Events",q:"Which Extended Events target detects start events with no matching end event?",
+ o:["Pair Matching","Histogram","Ring Buffer","Event Counter"],a:0,
+ e:"Pair Matching (asynchronous) phát hiện start event không có end event tương ứng. Histogram đếm số lần; Ring Buffer cho tập dữ liệu nhỏ hoặc thu thập liên tục."},
+{d:3,t:"Extended Events",q:"Which Extended Events targets process data SYNCHRONOUSLY?",
+ o:["Event Tracing for Windows (ETW) and Event Counter","Event File and Histogram","Ring Buffer and Pair Matching","Event File only"],a:0,
+ e:"ETW và Event Counter xử lý synchronous. Event File, Histogram, Pair Matching và Ring Buffer là asynchronous."},
+{d:3,t:"Extended Events",q:"Which Extended Events template is used to identify slow queries?",
+ o:["TSQL_Duration","TSQL_Locks","TSQL_Replay","Count Query Locks"],a:0,
+ e:"TSQL_Duration để tìm query chậm; TSQL_Locks cho deadlock; TSQL_Replay cho benchmark; Count Query Locks nằm trong nhóm Locks and Blocks."},
+{d:3,t:"DMV",q:"Which DMV shows the top completed queries by cumulative CPU?",
+ o:["sys.dm_exec_query_stats","sys.dm_exec_requests","sys.dm_exec_connections","sys.dm_os_wait_stats"],a:0,
+ e:"sys.dm_exec_query_stats (thường CROSS APPLY với sys.dm_exec_sql_text) cho top query theo total_worker_time. sys.dm_exec_requests cho query ĐANG chạy."},
+{d:3,t:"DMV",q:"You need to find CURRENTLY RUNNING queries consuming a lot of CPU. Which DMV should you use?",
+ o:["sys.dm_exec_requests","sys.dm_exec_query_stats","sys.query_store_runtime_stats","sys.dm_db_resource_stats"],a:0,
+ e:"sys.dm_exec_requests cho các query đang chạy (long running) và tài nguyên chúng đang chờ. dm_exec_query_stats là cho query đã hoàn tất."},
+{d:3,t:"DMV",q:"Which hint writes the execution plan to Extended Events?",
+ o:["OPTION (USE HINT ('QUERY_PLAN_PROFILE'))","OPTION (RECOMPILE)","OPTION (MAXDOP 1)","OPTION (KEEPFIXED PLAN)"],a:0,
+ e:"Thêm OPTION(USE HINT('QUERY_PLAN_PROFILE')) vào cuối query để đưa plan vào Extended Events (lightweight profiling)."},
+{d:3,t:"DMV",q:"Which permission is required to use DATABASE-scoped DMVs?",
+ o:["VIEW DATABASE STATE — VIEW SERVER STATE is not sufficient","VIEW SERVER STATE","CONTROL DATABASE","db_datareader membership"],a:0,
+ e:"DMV cấp database cần VIEW DATABASE STATE trên database — VIEW SERVER STATE KHÔNG đủ. DMV cấp server thì cần VIEW SERVER STATE."},
+{d:3,t:"DMV",q:"What does SERVERPROPERTY('EngineEdition') return for Azure SQL Managed Instance?",
+ o:["8","5","3","Less than 5"],a:0,
+ e:"EngineEdition: 5 = Azure SQL Database, 8 = Managed Instance, < 5 = on-prem hoặc VM."},
+{d:3,t:"Wait stats",q:"What does the CXPACKET wait type usually suggest?",
+ o:["MAXDOP may be too high, or indexes may be needed","Data file I/O problems","Waiting for a memory grant","Log rate governance throttling"],a:0,
+ e:"CXPACKET: MAXDOP có thể quá cao hoặc cần tạo index. SOS_SCHEDULER_YIELD: CPU cao, thường do thiếu index — hay đi kèm CXPACKET."},
+{d:3,t:"Wait stats",q:"What problem does the PAGEIOLATCH_* wait type indicate?",
+ o:["Data file I/O issues","tempdb I/O issues","Transaction log I/O issues","Waiting for a memory grant"],a:0,
+ e:"PAGEIOLATCH_* = data file I/O. PAGELATCH_* = tempdb I/O. WRITE_LOG = transaction log I/O. RESOURCE_SEMAPHORE = chờ memory."},
+{d:3,t:"Wait stats",q:"Which wait type relates to log rate governance for an Elastic Pool?",
+ o:["POOL_LOG_RATE_GOVERNOR","LOG_RATE_GOVERNOR","INSTANCE_LOG_GOVERNOR","HADR_THROTTLE_LOG_RATE"],a:0,
+ e:"LOG_RATE_GOVERNOR = Azure SQL Database; POOL_LOG_RATE_GOVERNOR = Elastic Pool; INSTANCE_LOG_GOVERNOR = MI; RBIO* = Hyperscale; HADR_THROTTLE_LOG_RATE = Business Critical và geo-replication."},
+{d:3,t:"Index",q:"If a query uses LIKE '%text%', will an index normally help?",
+ o:["No — apart from a full-text index, an index will not help","Yes, if it is a clustered index","Yes, if it uses INCLUDE","Yes, if it is a filtered index"],a:0,
+ e:"Với LIKE '%text%' (wildcard ở đầu) thì index thông thường không giúp được — chỉ full-text index mới hỗ trợ."},
+{d:3,t:"Index",q:"What characteristics should a clustered index have?",
+ o:["UNIQUE or many distinct values, accessed sequentially in ranges, IDENTITY, frequently used","As many columns as possible","It should be on a long varchar column","Each table should have several clustered indexes"],a:0,
+ e:"Chỉ có 1 clustered index mỗi bảng (nó sắp xếp lại bảng). Nên UNIQUE hoặc có nhiều giá trị phân biệt, truy cập theo range, IDENTITY, dùng thường xuyên."},
+{d:3,t:"Index",q:"When you see a Key Lookup or RID Lookup in an execution plan, what is the usual fix?",
+ o:["Add the required columns to the index using INCLUDE","Drop the clustered index","Increase MAXDOP","Switch to a columnstore index"],a:0,
+ e:"Dùng INCLUDE để ghi dữ liệu vào index nhưng ở phần tách khỏi Key — nhanh hơn mà không làm index chậm đi nhiều. INCLUDE cũng được tính trong uniqueness test của unique index."},
+{d:3,t:"Index",q:"Which of these is a SARGable predicate (index-friendly)?",
+ o:["WHERE OrderDate BETWEEN '2024-01-01' AND '2024-12-31'","WHERE YEAR(OrderDate) = 2024","WHERE LEFT(Name,3) = 'ABC'","WHERE ISNULL(Status,'X') = 'X'"],a:0,
+ e:"SARGable: dùng BETWEEN thay YEAR() cho ngày, dùng LIKE thay LEFT() cho chuỗi, dùng (X IS NULL OR X = 'Y') thay ISNULL(X,'Y')."},
+{d:3,t:"Index",q:"When creating an index from the missing index DMV, how should the columns be ordered?",
+ o:["equality_columns first, then inequality_columns (both as key columns), with included_columns in INCLUDE","Inequality columns before equality columns","Only the included columns","Alphabetical order"],a:0,
+ e:"Đặt equality columns trước inequality columns (cả hai đều là key), và INCLUDE các included columns."},
+{d:3,t:"Index",q:"What is the drawback of having too many indexes?",
+ o:["Every INSERT, UPDATE, DELETE and MERGE has to adjust all of the indexes","SELECT queries become slower","Reads consume more CPU","There is no drawback"],a:0,
+ e:"Khi INSERT/UPDATE/DELETE/MERGE, mọi index đều phải được điều chỉnh — càng nhiều index thì ghi càng chậm."},
+{d:3,t:"Index",q:"If you only need an index over a small portion of the data, which index type should you use?",
+ o:["A filtered index","A columnstore index","A clustered index","A unique index"],a:0,
+ e:"Filtered Index (dùng mệnh đề WHERE khi CREATE INDEX) khi chỉ cần index một phần nhỏ dữ liệu. FillFactor dùng khi cần chừa chỗ cho tăng trưởng."},
+{d:3,t:"Hints",q:"Which query hint prevents recompilation when statistics change?",
+ o:["KEEPFIXED PLAN","KEEP PLAN","ROBUST PLAN","OPTIMIZE FOR UNKNOWN"],a:0,
+ e:"KEEPFIXED PLAN: không recompile vì statistics thay đổi — chỉ recompile khi schema đổi hoặc chạy sp_recompile. KEEP PLAN chỉ giảm tần suất recompile."},
+{d:3,t:"Hints",q:"What does OPTIMIZE FOR UNKNOWN do?",
+ o:["It uses the average selectivity of the predicate instead of the parameter value at compile time","It recompiles on every execution","It forces a Nested Loops join","It ignores statistics"],a:0,
+ e:"OPTIMIZE FOR UNKNOWN dùng average selectivity của predicate, thay vì giá trị runtime của tham số lúc query được compile — hữu ích khi parameter sniffing gây plan xấu."},
+{d:3,t:"Hints",q:"Which join hint CANNOT be used with a RIGHT or FULL JOIN?",
+ o:["LOOP","HASH","MERGE","All three can be used"],a:0,
+ e:"LOOP không chỉ định được với RIGHT hoặc FULL join. Join hint gồm LOOP, HASH, MERGE — ví dụ INNER LOOP JOIN."},
+{d:3,t:"Hints",q:"What does Microsoft recommend about using query hints?",
+ o:["Use them only as a last resort, because the Query Optimizer usually picks the best plan","Always use them to keep plans stable","Use them on every query containing a JOIN","Use them instead of indexes"],a:0,
+ e:"Microsoft nói Query Optimizer thường chọn được execution plan tốt nhất, nên chỉ dùng hint như biện pháp cuối cùng. Hint chỉ ảnh hưởng một câu DELETE/INSERT/SELECT/UPDATE/MERGE."},
+{d:3,t:"Execution plan",q:"When is a Nested Loops join most suitable?",
+ o:["Input1 is small, Input2 is large, and Input2 is indexed on the join column","Both inputs are large and unsorted","Both inputs are already sorted on the join column","For intermediate results in a complex query"],a:0,
+ e:"Nested Loops: Input1 nhỏ, Input2 lớn và có index trên join — dùng ít I/O và ít so sánh nhất. Merge join khi cả hai đã sort. Hash join cho input lớn, chưa sort, không index."},
+{d:3,t:"Execution plan",q:"How does the Batch mode Adaptive Join (SQL Server 2017) work?",
+ o:["It converts to a Hash Join or Nested Loops join after the first input has been scanned","It always uses a Merge Join","It chooses the join type at compile time from statistics","It runs both join types in parallel"],a:0,
+ e:"Adaptive Join chọn Hash Join hay Nested Loops trong RUNTIME, sau khi đã scan input đầu tiên, dựa trên số dòng thực tế so với ngưỡng."},
+{d:3,t:"Execution plan",q:"In which direction is an execution plan read, and what does arrow thickness represent?",
+ o:["Right to left; arrow thickness represents the number of rows","Left to right; thickness represents CPU cost","Top to bottom; thickness represents elapsed time","Right to left; thickness represents the execution count"],a:0,
+ e:"Execution plan chạy từ phải sang trái. Độ dày mũi tên = số dòng. Càng nhiều estimated row thì càng nhiều memory được reserve."},
+{d:3,t:"Execution plan",q:"Which SET statement displays execution plan information WITHOUT executing the statement?",
+ o:["SET SHOWPLAN_ALL ON or SET SHOWPLAN_TEXT ON","SET STATISTICS IO ON","SET STATISTICS TIME ON","SET NOEXEC ON"],a:0,
+ e:"SHOWPLAN_ALL và SHOWPLAN_TEXT hiển thị thông tin plan mà không chạy câu lệnh. 'Display Estimated Execution Plan' cũng không chạy query; 'Include Actual Execution Plan' thì có chạy."},
+{d:3,t:"Execution plan",q:"You see an expensive Sort operator in the plan. What is the most appropriate action?",
+ o:["Check whether the sort is really needed, or create an index already sorted on those columns","Set MAXDOP to 0","Add OPTION (HASH JOIN)","Rewrite the query using a cursor"],a:0,
+ e:"Sort rất tốn kém — cân nhắc bỏ nếu không cần, hoặc tạo index đã sort sẵn theo các cột đó."},
+{d:3,t:"Execution plan",q:"If the code uses a cursor, what should you do?",
+ o:["Replace it with a set-based operation","Add an index for the cursor","Increase the memory grant","Add OPTION (RECOMPILE)"],a:0,
+ e:"Cursor xử lý từng dòng, rất chậm — nên thay bằng set-based operation."},
+{d:3,t:"Intelligent Insights",q:"Intelligent Insights compares the current workload against what period?",
+ o:["The last hour of workload against the previous 7 days","24 hours against 30 days","One week against one month","Real time against a manual baseline"],a:0,
+ e:"Intelligent Insights so sánh workload 1 giờ gần nhất với 7 ngày qua, dùng dữ liệu từ Query Store, và cung cấp root cause analysis dạng dễ đọc."},
+{d:3,t:"Intelligent Insights",q:"Where can Intelligent Insights be streamed to, and in what formats?",
+ o:["Log Analytics; Event Hubs (Avro); Azure Storage (Extended Events format)","Log Analytics only","Azure Storage only, as CSV","Directly to Power BI"],a:0,
+ e:"Stream tới Log Analytics workspace (cách phổ biến nhất, dùng với Azure SQL Analytics, truy vấn bằng KQL), Azure Event Hubs (định dạng Avro — binary JSON), hoặc Azure Storage (định dạng Extended Events)."},
+{d:3,t:"Statistics",q:"When SHOULD statistics be updated manually?",
+ o:["After a bulk insert, when queries are slow, or when inserting into ascending/descending key columns such as IDENTITY","After every index rebuild","Every hour","After every backup"],a:0,
+ e:"Cập nhật thủ công khi query chậm, khi insert vào cột key tăng/giảm dần (IDENTITY, timestamp), hoặc sau bulk insert. LƯU Ý: rebuild/reorganize index KHÔNG cần update statistics vì không đổi phân bố dữ liệu."},
+{d:3,t:"Statistics",q:"UPDATE STATISTICS ... WITH FULLSCAN is equivalent to what?",
+ o:["SAMPLE 100 PERCENT","SAMPLE 50 PERCENT","RESAMPLE","PERSIST_SAMPLE_PERCENT = ON"],a:0,
+ e:"WITH FULLSCAN quét toàn bộ dòng, tương đương SAMPLE 100 PERCENT. RESAMPLE dùng lại tỉ lệ mẫu gần nhất."},
+{d:3,t:"Statistics",q:"What does PERSIST_SAMPLE_PERCENT = ON do?",
+ o:["That sample rate becomes the default for future statistics updates","It saves statistics into Query Store","It disables auto update statistics","It applies to the whole database"],a:0,
+ e:"PERSIST_SAMPLE_PERCENT = ON khiến tỉ lệ mẫu hiện tại thành mặc định cho các lần cập nhật sau (trừ khi bạn chỉ định số dòng cụ thể)."},
+{d:3,t:"Statistics",q:"Which stored procedure updates statistics for ALL user-defined and internal tables?",
+ o:["sp_updatestats","sp_update_statistics","UPDATE STATISTICS ALL","sp_recompile"],a:0,
+ e:"sp_updatestats cập nhật statistics cho mọi user-defined và internal table."},
+{d:3,t:"DBCC",q:"Which commands does DBCC CHECKDB run internally?",
+ o:["DBCC CHECKALLOC, DBCC CHECKTABLE for all tables and indexed views, and DBCC CHECKCATALOG","DBCC CHECKTABLE only","DBCC CHECKALLOC and DBCC CHECKCONSTRAINTS","DBCC CHECKIDENT and DBCC CHECKFILEGROUP"],a:0,
+ e:"CHECKDB chạy CHECKALLOC (cấu trúc cấp phát disk), CHECKTABLE (mọi bảng và indexed view), CHECKCATALOG (nhất quán catalog). Sau đó nên chạy DBCC CHECKCONSTRAINTS để kiểm tra referential integrity."},
+{d:3,t:"DBCC",q:"Which DBCC CHECKDB repair option may cause data loss?",
+ o:["REPAIR_ALLOW_DATA_LOSS","REPAIR_REBUILD","REPAIR_FAST","NOINDEX"],a:0,
+ e:"REPAIR_ALLOW_DATA_LOSS sửa mọi lỗi tìm thấy nhưng có thể mất dữ liệu — cần SET EMERGENCY rồi SINGLE_USER trước. REPAIR_REBUILD chỉ sửa những gì không gây mất dữ liệu. REPAIR_FAST không làm gì, chỉ giữ để tương thích ngược."},
+{d:3,t:"DBCC",q:"Which DBCC CHECKDB WITH option performs no checks and only reports the tempdb space required?",
+ o:["ESTIMATEONLY","PHYSICAL_ONLY","NO_INFOMSGS","TABLOCK"],a:0,
+ e:"ESTIMATEONLY không kiểm tra, chỉ ước tính tempdb cần. PHYSICAL_ONLY giới hạn kiểm tra ở page structure và record header. TABLOCK lấy exclusive lock — nhanh hơn nhưng giảm concurrency."},
+{d:3,t:"DBCC",q:"Which syntax is correct when passing a name to DBCC CHECKDB and DBCC CHECKTABLE?",
+ o:["DBCC CHECKDB (MyDatabase) without quotes; DBCC CHECKTABLE ('TableName') with quotes","Both take quotes","Neither takes quotes","CHECKDB takes quotes, CHECKTABLE does not"],a:0,
+ e:"DBCC CHECKDB (MyDatabase) và DBCC CHECKCATALOG (NameOfDatabase) KHÔNG dùng nháy. DBCC CHECKTABLE ('TableName') thì có nháy (là chuỗi). DBCC CHECKDB(0) = database hiện tại."},
+{d:3,t:"DBCC",q:"On which objects does DBCC CHECKCATALOG NOT work?",
+ o:["tempdb and Filestream data","User databases","Indexed views","Tables with a clustered index"],a:0,
+ e:"DBCC CHECKCATALOG không hoạt động trên tempdb hay Filestream data (BLOB trên file system)."},
+{d:3,t:"Auto-tuning",q:"When does FORCE_LAST_GOOD_PLAN trigger?",
+ o:["When plan regression is detected and the estimated gain is over 10 seconds, or the new plan has more errors","After every recompilation","When CPU exceeds 80%","Every 24 hours"],a:0,
+ e:"FORCE_LAST_GOOD_PLAN (bật mặc định trên Azure SQL Database và MI) ép dùng plan tốt gần nhất khi có regression, với estimated gain > 10 giây hoặc plan mới nhiều lỗi hơn."},
+{d:3,t:"Auto-tuning",q:"Which automatic tuning feature is NOT available on Azure SQL Managed Instance?",
+ o:["CREATE_INDEX and DROP_INDEX","FORCE_LAST_GOOD_PLAN","Query Store","Automatic patching"],a:0,
+ e:"CREATE INDEX và DROP INDEX tự động chỉ có trên Azure SQL Database, không có trên MI. FORCE_LAST_GOOD_PLAN có ở cả hai."},
+{d:3,t:"Auto-tuning",q:"Indexes are only auto-created when resources are below which threshold?",
+ o:["CPU, data I/O and log I/O are all below 80%","CPU is below 50%","Only when the database is completely idle","There is no threshold"],a:0,
+ e:"Index chỉ được auto-create khi CPU, data I/O và log I/O đều dưới 80%. Xem index tự tạo bằng SELECT * FROM sys.indexes WHERE auto_created = 1. Nếu không cải thiện hiệu năng, index sẽ tự bị drop."},
+{d:3,t:"Auto-tuning",q:"Which view contains tuning recommendations?",
+ o:["sys.dm_db_tuning_recommendations","sys.dm_db_missing_index_details","sys.database_query_store_options","sys.dm_db_index_usage_stats"],a:0,
+ e:"SELECT * FROM sys.dm_db_tuning_recommendations cho các khuyến nghị. Cấu hình bằng ALTER DATABASE ... SET AUTOMATIC_TUNING = AUTO | INHERIT | CUSTOM."},
+{d:3,t:"Resource Governor",q:"Where can Resource Governor be used?",
+ o:["On VMs and Azure SQL MI; it exists in Azure SQL Database but is not configurable","Azure SQL Database only","It is configurable in every deployment","On VMs only"],a:0,
+ e:"Resource Governor có trong Azure SQL Database nhưng KHÔNG cấu hình được. Trên VM và MI thì cấu hình được để cân bằng CPU, physical I/O và memory giữa các workload."},
+{d:3,t:"Resource Governor",q:"Which two resource pools are created when SQL Server is installed?",
+ o:["internal and default","system and user","primary and secondary","admin and guest"],a:0,
+ e:"Hai pool tạo sẵn: internal và default. Không bật Resource Governor thì session mới vào default workload group, request hệ thống vào internal group."},
+{d:3,t:"Resource Governor",q:"What is the difference between MAX_CPU_PERCENT and CAP_CPU_PERCENT?",
+ o:["MAX_CPU_PERCENT is a maximum AVERAGE that applies only under contention; CAP_CPU_PERCENT is a hard limit","The reverse: CAP is the average, MAX is the hard limit","They are the same thing","CAP applies to memory only"],a:0,
+ e:"MAX_CPU_PERCENT là maximum AVERAGE CPU và chỉ áp dụng khi tổng yêu cầu vượt 100%. CAP_CPU_PERCENT là hard limit."},
+{d:3,t:"Resource Governor",q:"After creating a resource pool or registering a classifier function, which statement must be run?",
+ o:["ALTER RESOURCE GOVERNOR RECONFIGURE;","EXEC sp_configure 'resource governor', 1;","DBCC FREEPROCCACHE;","Restart the SQL Server service"],a:0,
+ e:"Luôn phải ALTER RESOURCE GOVERNOR RECONFIGURE; sau khi thay đổi. Classifier function đăng ký bằng ALTER RESOURCE GOVERNOR WITH (CLASSIFIER_FUNCTION = dbo.fn...)."},
+{d:3,t:"Scoped config",q:"What is the default MAXDOP for a new Azure SQL Database?",
+ o:["8","0","1","4"],a:0,
+ e:"MAXDOP mặc định của Azure SQL Database mới là 8 — phù hợp cho hầu hết workload điển hình. MAXDOP quá cao có thể khiến query mới bị đói tài nguyên."},
+{d:3,t:"Scoped config",q:"What does OPTIMIZE_FOR_AD_HOC_WORKLOADS do?",
+ o:["It stores a compiled plan stub the first time a batch is compiled, using less memory","It recompiles every query","It disables parameter sniffing","It forces legacy cardinality estimation"],a:0,
+ e:"Lần compile đầu chỉ lưu plan stub (nhỏ hơn nhiều). Khi batch được compile/chạy lại thì mới thay bằng full compiled plan — tiết kiệm plan cache."},
+{d:3,t:"Scoped config",q:"What does LAST_QUERY_PLAN_STATS enable or disable?",
+ o:["Actual execution plans in sys.dm_exec_query_plan_stats","Query Store","Lightweight profiling","The plan cache"],a:0,
+ e:"LAST_QUERY_PLAN_STATS bật/tắt actual execution plan trong sys.dm_exec_query_plan_stats."},
+{d:3,t:"Scoped config",q:"Who does the FOR SECONDARY clause of ALTER DATABASE SCOPED CONFIGURATION apply to?",
+ o:["Geo-replicated secondary databases — they all share that configuration","The first secondary only","Availability group replicas","Elastic pools"],a:0,
+ e:"FOR SECONDARY áp dụng cho các geo-replicated secondary database, và tất cả chúng dùng chung cùng một cấu hình."},
+{d:3,t:"DB options",q:"When does AUTO_SHRINK trigger, and should it be enabled?",
+ o:["When more than 25% of the file is free space; it is recommended to leave it OFF","When more than 50% is free; it should be on","Every night; it should be on","When the file exceeds 1 GB; it should be on"],a:0,
+ e:"AUTO_SHRINK shrink khi hơn 25% file là unused space. Khuyến nghị để OFF vì gây fragmentation và tốn tài nguyên."},
+{d:3,t:"DB options",q:"Which recovery model only minimally logs large-scale bulk operations?",
+ o:["BULK_LOGGED","FULL","SIMPLE","MINIMAL"],a:0,
+ e:"FULL dùng transaction log backup. BULK_LOGGED chỉ minimally log các thao tác bulk lớn. SIMPLE chỉ cho phép complete backup, không có log backup."},
+{d:3,t:"DB options",q:"Who can connect when a database is set to RESTRICTED_USER?",
+ o:["Members of db_owner, plus dbcreator and sysadmin — any number of them","Only one user at a time","Any user with appropriate permissions","sysadmin only"],a:0,
+ e:"SINGLE_USER: chỉ 1 user cùng lúc. RESTRICTED_USER: chỉ db_owner, dbcreator, sysadmin (số lượng bất kỳ). MULTI_USER: mọi user có quyền."},
+{d:3,t:"DB options",q:"What is the lowest compatibility level that can be set on Azure SQL Database and MI?",
+ o:["100 (SQL Server 2008/R2)","90 (SQL Server 2005)","110 (SQL Server 2012)","130 (SQL Server 2016)"],a:0,
+ e:"Trên Azure SQL Database, MI và SQL Server 2014 trở lên, không đặt được compatibility level thấp hơn 100 (SQL Server 2008). 150 = SQL Server 2019."},
+{d:3,t:"Autogrowth",q:"What does AUTOGROW_ALL_FILES do at filegroup level?",
+ o:["When any file in the filegroup hits its autogrow threshold, ALL files in the filegroup grow","Only the full file grows","It disables autogrowth for the filegroup","It doubles every file monthly"],a:0,
+ e:"ALTER DATABASE ... MODIFY FILEGROUP FilegroupName AUTOGROW_ALL_FILES: nếu bất kỳ file nào chạm ngưỡng autogrow thì mọi file trong filegroup đều tăng."},
+{d:3,t:"Free space",q:"In sys.database_files, what does max_size = -1 mean?",
+ o:["Unlimited","The file is corrupt","The file is read-only","The size is zero"],a:0,
+ e:"max_size = -1 nghĩa là unlimited. Dùng EXEC sp_spaceused để xem dung lượng đã dùng và unallocated space."},
+{d:3,t:"Free space",q:"What information does DBCC SQLPERF (LOGSPACE) show?",
+ o:["Transaction log space statistics only","All data and log space","tempdb pages by session","Index fragmentation"],a:0,
+ e:"DBCC SQLPERF (LOGSPACE) chỉ hiển thị thống kê transaction log space. Với tempdb dùng sys.dm_db_session_space_usage và sys.dm_db_task_space_usage."},
+{d:3,t:"IQP",q:"What error rate does APPROX_COUNT_DISTINCT guarantee?",
+ o:["Up to a 2% error rate, within a 97% probability","Up to 5%, within 95% probability","Up to 1%, within 99% probability","No guarantee is given"],a:0,
+ e:"APPROX_COUNT_DISTINCT đảm bảo sai số tối đa 2% trong 97% xác suất. Dùng khi cần phản hồi nhanh và không cần độ chính xác tuyệt đối. Cách duy nhất để 'tắt' là không dùng hàm đó."},
+{d:3,t:"IQP",q:"From where is TSQL_SCALAR_UDF_INLINING enabled by default?",
+ o:["Azure or SQL Server 2019+, at compatibility level 150+","SQL Server 2017, level 140","Every version","SQL Server 2022, level 160"],a:0,
+ e:"Scalar UDF inlining bật mặc định trên Azure hoặc SQL Server 2019+ với compatibility level 150+. Tắt cho một UDF cụ thể bằng WITH INLINE = OFF trước 'AS BEGIN'."},
+{d:3,t:"IQP",q:"How does BATCH_MODE_MEMORY_GRANT_FEEDBACK adjust memory?",
+ o:["If a query spills to disk it grants more memory next time; if over 50% is wasted it grants less","It always doubles the grant","It fixes the grant from statistics","It only ever increases, never decreases"],a:0,
+ e:"Memory grant feedback: nếu query spill to disk thì cấp thêm memory cho lần chạy sau; nếu lãng phí hơn 50% memory thì giảm bớt."},
+{d:3,t:"IQP",q:"What problem does INTERLEAVED_EXECUTION_TVF solve?",
+ o:["It uses the actual cardinality of a multi-statement TVF instead of a fixed guess of 100 rows","It speeds up scalar UDFs","It converts row mode to batch mode","It re-allocates memory grants"],a:0,
+ e:"INTERLEAVED_EXECUTION_TVF dùng cardinality thực tế của multi-statement table valued function ở lần compile đầu, thay vì đoán cố định (100 dòng từ SQL Server 2014). Câu lệnh phải read-only."},
+{d:3,t:"IQP",q:"DEFERRED_COMPILATION_TV is like INTERLEAVED_EXECUTION_TVF, but for what, and replacing which default guess?",
+ o:["Table variables, replacing a fixed guess of 1 row","Temp tables, replacing a guess of 100 rows","CTEs, replacing a guess of 1000 rows","Scalar UDFs, replacing a guess of 1 row"],a:0,
+ e:"DEFERRED_COMPILATION_TV áp dụng cho Table Variable — dùng cardinality thực tế thay cho giá trị đoán cố định 1 dòng."},
+{d:3,t:"IQP",q:"Which view shows which database-scoped configurations are enabled?",
+ o:["sys.database_scoped_configurations","sys.configurations","sys.databases","sys.dm_os_sys_info"],a:0,
+ e:"sys.database_scoped_configurations cho cấu hình cấp database. sys.configurations cho cấu hình cấp server (đổi bằng sp_configure — không dùng được trên Azure SQL Database)."},
+{d:3,t:"Index maintenance",q:"On an Azure VM, which tool analyses a workload and recommends indexes?",
+ o:["Database Engine Tuning Advisor","Automatic tuning in the Portal","Query Performance Insight","Azure Advisor"],a:0,
+ e:"Trên VM dùng Database Engine Tuning Advisor (Tools – Database Engine Tuning Advisor), cấp cho nó Query Store hoặc file .sql chứa workload rồi Start Analysis."},
+
+/* ---------- 4. Configure and manage automation of tasks ---------- */
+{d:4,t:"SQL Agent",q:"How does SQL Server Agent behave on Azure SQL Managed Instance?",
+ o:["It is always running and does not need to be enabled, but lacks some on-premises functionality","It must be started manually after each restart","It does not exist on MI","It runs only when a job is scheduled"],a:0,
+ e:"Trên MI, SQL Server Agent luôn chạy, không cần enable. Nó không có đủ 100% chức năng của on-prem nhưng có hầu hết. Azure SQL Database KHÔNG có SQL Agent."},
+{d:4,t:"SQL Agent",q:"Which schedule option is NOT supported on Azure SQL Managed Instance?",
+ o:["Start automatically when SQL Server Agent starts","Recurring daily","One time","Start whenever the CPUs become idle"],a:0,
+ e:"'Start automatically when SQL Server Agent starts' không được hỗ trợ trên MI. Các lựa chọn khác (One time, Recurring, CPU idle) thì có."},
+{d:4,t:"SQL Agent",q:"In sp_add_schedule, what does @freq_type = 8 mean?",
+ o:["Weekly","Daily","Monthly by day of month","Once"],a:0,
+ e:"@freq_type: 1 = Once, 4 = Daily, 8 = Weekly, 16 = Monthly (ngày trong tháng), 32 = Monthly relative (ví dụ Chủ nhật thứ X), 64 = khi SQL Agent khởi động, 128 = khi máy rảnh."},
+{d:4,t:"SQL Agent",q:"In sp_add_schedule, which value means 'when the computer is idle'?",
+ o:["128","64","32","16"],a:0,
+ e:"@freq_type = 128 là 'When computer is idle'; 64 là 'When SQL Agent service starts'."},
+{d:4,t:"SQL Agent",q:"Which stored procedure attaches an existing schedule to a job?",
+ o:["sp_attach_schedule","sp_add_schedule","sp_add_jobschedule","sp_update_job"],a:0,
+ e:"sp_add_schedule tạo schedule, sp_attach_schedule gắn nó vào job (@job_name, @schedule_name). Cả hai chạy trong msdb."},
+{d:4,t:"SQL Agent",q:"Where in SSMS do you see when jobs have run?",
+ o:["SQL Server Agent – Job Activity Monitor","Management – Extended Events","Reports – Standard Reports","Object Explorer – Databases – msdb"],a:0,
+ e:"Job Activity Monitor cho biết job đã chạy khi nào. Cũng có thể query msdb.dbo.sysschedules để xem các schedule."},
+{d:4,t:"Notifications",q:"In sp_add_notification, what does @notification_method = 1 mean?",
+ o:["Email","Pager","Net Send","Windows event log"],a:0,
+ e:"@notification_method: 1 = Email, 2 = Pager, 4 = Net Send. Pager và Net Send đã bị deprecate."},
+{d:4,t:"Notifications",q:"At what level do SQL Agent job notifications apply?",
+ o:["The entire job, not individual steps","Each individual step","The database","The server"],a:0,
+ e:"Notification cấu hình cho toàn bộ job (khi fail, succeed, hoặc complete), không phải cho từng step riêng lẻ. Email/pager phải được tạo trước."},
+{d:4,t:"Database Mail",q:"On Azure SQL Managed Instance, what must the Database Mail profile be named in order to send mail from SQL Agent jobs?",
+ o:["AzureManagedInstance_dbmail_profile","DefaultProfile","SQLAgentMailProfile","MI_dbmail"],a:0,
+ e:"Trên MI, profile phải tên chính xác là AzureManagedInstance_dbmail_profile nếu muốn gửi email từ SQL Agent job. Database Mail đã bật sẵn trên MI."},
+{d:4,t:"Database Mail",q:"After creating a Database Mail profile, which msdb role must the user be added to?",
+ o:["DatabaseMailUserRole","db_datawriter","SQLAgentOperatorRole","msdb_mailsender"],a:0,
+ e:"Thêm user vào DatabaseMailUserRole trong msdb, và đặt profile đó làm default profile cho msdb ('Default Profile' = Yes trong Manage Profile Security)."},
+{d:4,t:"ARM/Bicep",q:"What is Bicep?",
+ o:["A Domain Specific Language using declarative syntax, an extension of the ARM template language","A scripting language replacing PowerShell","An Azure CI/CD service","A compression format for ARM templates"],a:0,
+ e:"Bicep là DSL dùng declarative syntax để deploy tài nguyên Azure, mở rộng từ ARM template language. ARM template viết bằng JSON."},
+{d:4,t:"ARM/Bicep",q:"Which Azure CLI command converts an ARM template to Bicep?",
+ o:["az bicep decompile --file myfile.json","az bicep build --file myfile.json","az bicep convert","az deployment create --bicep"],a:0,
+ e:"az bicep decompile --file myfile.json (hoặc nút 'Decompile'). Chiều ngược lại — Bicep sang ARM — dùng Bicep Playground."},
+{d:4,t:"ARM/Bicep",q:"Which ARM template resource type is used for Azure SQL Managed Instance?",
+ o:["Microsoft.Sql/managedInstances","Microsoft.Sql/servers","Microsoft.SqlVirtualMachine/sqlVirtualMachines","Microsoft.SqlManagedInstance/instances"],a:0,
+ e:"Microsoft.Sql/servers và Microsoft.Sql/servers/databases cho SQL Database; Microsoft.Sql/managedInstances cho MI; Microsoft.Compute/virtualMachines + Microsoft.SqlVirtualMachine/sqlVirtualMachines cho VM."},
+{d:4,t:"PowerShell",q:"Which cmdlet creates an Azure SQL Managed Instance?",
+ o:["New-AzSqlInstance","New-AzSqlServer","New-AzSqlDatabase","New-AzVM"],a:0,
+ e:"New-AzSqlServer tạo logical server; New-AzSqlDatabase tạo database; New-AzSqlInstance tạo MI; New-AzVM tạo Azure VM."},
+{d:4,t:"Azure CLI",q:"Which Azure CLI command creates an Azure SQL Database?",
+ o:["az sql db create","az sql server create","az sql mi create","az vm create"],a:0,
+ e:"az group create → az sql server create → az sql db create. Với MI dùng az sql mi; với VM dùng az vm create."},
+{d:4,t:"Deployment",q:"In an Azure Pipeline, which artifact is used to deploy a database?",
+ o:["A DACPAC (data-tier application portable artifact), added to azure-pipelines.yml","A BACPAC","A BAK file","An MDF file"],a:0,
+ e:"Dùng DACPAC trong Azure Pipeline, thêm vào azure-pipelines.yml. Cũng có thể dùng SQL script kết hợp PowerShell."},
+{d:4,t:"Elastic Jobs",q:"What is an Elastic Job agent, and what is it the equivalent of in SQL Server?",
+ o:["An Azure resource that runs jobs — the equivalent of SQL Agent Jobs, for Azure SQL Database which has no SQL Agent","A VM running SQL Agent","An extension of Managed Instance","A service within Azure Data Factory"],a:0,
+ e:"Elastic Job agent (miễn phí) là tương đương của SQL Agent Jobs cho Azure SQL Database — nơi SQL Agent không tồn tại. MI thì đã có SQL Agent."},
+{d:4,t:"Elastic Jobs",q:"What is the minimum service tier for the Elastic Jobs job database?",
+ o:["Standard S0 or above (S1+ recommended)","Basic","Premium P1","Any tier"],a:0,
+ e:"Job database phải là Standard (S0 trở lên) hoặc Premium; khuyến nghị S1+ và cao hơn nếu chạy job thường xuyên hoặc target group lớn. Nó bị tính phí như một Azure SQL Database."},
+{d:4,t:"Elastic Jobs",q:"What property must Elastic Job step scripts have?",
+ o:["They must be idempotent — capable of running twice with the same result","They must run in an explicit transaction","They must be under 8000 characters","They must be read-only"],a:0,
+ e:"Script phải idempotent — chạy lại nhiều lần vẫn cho cùng kết quả."},
+{d:4,t:"Elastic Jobs",q:"How long is Elastic Jobs job history kept, and where?",
+ o:["45 days, in jobs.job_executions","30 days, in msdb","90 days, in Log Analytics","7 days, in Azure Storage"],a:0,
+ e:"Job history lưu 45 ngày trong jobs.job_executions. Job output có thể lưu vào một bảng."},
+{d:4,t:"Elastic Jobs",q:"Which stored procedure creates a target group for Elastic Jobs?",
+ o:["jobs.sp_add_target_group","jobs.sp_add_job","jobs.sp_add_jobstep","jobs.sp_start_job"],a:0,
+ e:"jobs.sp_add_target_group tạo group, jobs.sp_add_target_group_member thêm thành viên (@target_type = 'SqlDatabase', 'SqlServer' hoặc 'PoolGroup'; @membership_type = 'Exclude' nếu muốn loại trừ)."},
+{d:4,t:"Elastic Jobs",q:"Where can Elastic Jobs targets be located?",
+ o:["In different servers, subscriptions or regions, but they must be in the same Azure cloud","Only within the same server","Only within the same subscription","Anywhere, including other clouds"],a:0,
+ e:"Target có thể ở server, subscription hay region khác nhau nhưng phải cùng một Azure cloud. Có thể là một hoặc nhiều database, tất cả database trong một server/elastic pool, hoặc shard map."},
+{d:4,t:"Multi-server",q:"In multi-server automation, how many master servers can a target server be linked to?",
+ o:["Only one","Up to two","Any number","Up to five"],a:0,
+ e:"Một target server chỉ liên kết được với MỘT master server. MSX là viết tắt của Master Server."},
+{d:4,t:"Multi-server",q:"Where do you create a master server for multi-server automation?",
+ o:["Right-click SQL Server Agent – Multi Server Administration – Make this a Master","Right-click the server – Properties – Multi Server","Azure Portal – SQL Server – Automation","Management – Policy Management"],a:0,
+ e:"Right-click SQL Server Agent – Multi Server Administration – Make this a Master (hoặc Make this a Target với target server). Multi-server automation dùng cho MI và VM, không phải Azure SQL Database."},
+{d:4,t:"VM backup",q:"What does Automated Backup version 2 on an Azure VM require?",
+ o:["Windows Server 2012 R2 or higher and SQL Server 2016+ Standard/Enterprise/Developer","Windows Server 2012 and SQL Server 2014","Any version","SQL Server Enterprise only"],a:0,
+ e:"Version 1: Windows Server 2012 + SQL Server 2014 Standard/Enterprise. Version 2: Windows Server 2012 R2+ và SQL Server 2016+ Standard/Enterprise/Developer."},
+{d:4,t:"VM backup",q:"What is the maximum retention period for Automated Backup on an Azure VM?",
+ o:["30 days","7 days","35 days","10 years"],a:0,
+ e:"Retention period của Automated Backup trên VM tối đa 30 ngày. Bắt buộc dùng Full recovery model."},
+{d:4,t:"VM backup",q:"How does Automated Backup on a VM behave when there are several named instances but no default instance?",
+ o:["It will fail","It backs up the first instance","It backs up all instances","It creates a default instance"],a:0,
+ e:"Có thể backup default instance hoặc MỘT named instance duy nhất. Nếu không có default instance mà có nhiều named instance thì thao tác sẽ thất bại."},
+{d:4,t:"Policies",q:"Which Policy-Based Management evaluation mode uses DDL triggers to block non-compliant changes?",
+ o:["On change: prevent","On change: log","On demand","On schedule"],a:0,
+ e:"'On change: prevent' dùng DDL trigger để chặn. 'On change: log' chỉ ghi vào event notification. Policy-Based Management không áp dụng cho Azure SQL Database hay MI."},
+{d:4,t:"Policies",q:"In a policy condition, what does the condition you enter represent?",
+ o:["The state that SHOULD exist — the policy fails if the condition is not true","The violation to detect","A default value","An alerting threshold"],a:0,
+ e:"Condition mô tả trạng thái NÊN có; policy fail nếu điều kiện đó KHÔNG đúng. Lưu ý: != nghĩa là <>."},
+{d:4,t:"Alerts",q:"Which SQL Server Agent alert type is based on an error number or severity?",
+ o:["SQL Server event","WMI event alert","SQL Server performance condition","Metric alert"],a:0,
+ e:"'SQL Server event' dựa trên error number hoặc severity. 'WMI event alert' dùng Windows Management Instrumentation. 'SQL Server performance condition' chọn Object, Counter, Instance và ngưỡng."},
+{d:4,t:"Alerts",q:"In a SQL Agent alert, what does a delay between responses of 0 minutes and 0 seconds mean?",
+ o:["You want a response for every occurrence of the alert","You never want a response","Only the first occurrence gets a response","A response every minute"],a:0,
+ e:"Delay 0 phút 0 giây = muốn có response cho mỗi lần alert xảy ra."},
+{d:4,t:"Alerts",q:"How does a dynamic threshold differ from a static threshold in an Azure alert rule?",
+ o:["Dynamic learns the data and models it algorithmically, detecting seasonality (hourly, daily, weekly)","Dynamic is only for log alerts","Static is always more accurate","Dynamic does not need an action group"],a:0,
+ e:"Dynamic threshold học dữ liệu, mô hình hóa và phát hiện pattern như seasonality (hourly, daily, weekly). Chọn sensitivity High (nhiều alert, sai lệch nhỏ), Medium (mặc định), Low (ít alert, sai lệch lớn)."},
+{d:4,t:"Alerts",q:"What is the severity scale for an Azure alert rule?",
+ o:["0 (Critical) to 4 (Verbose)","1 (Low) to 5 (High)","0 (Info) to 3 (Critical)","1 to 10"],a:0,
+ e:"Severity từ 0 (Critical) tới 4 (Verbose)."},
+{d:4,t:"Alerts",q:"What can an Azure alert action group contain?",
+ o:["Email, SMS, Azure app Push Notifications and Voice, plus Automation Runbook, Azure Function, ITSM, Logic App and Webhook","Email only","Webhooks only","SMS and email only"],a:0,
+ e:"Notification: Email, SMS, Push Notification, Voice. Actions: Automation Runbook, Azure Function, ITSM, Logic App, Webhook."},
+{d:4,t:"Alerts",q:"Which deployment do SQL Server Agent event notifications apply to?",
+ o:["SQL Server on a VM only — MI has SQL Agent but does not allow event notifications","Both Azure SQL Database and MI","Azure SQL Database only","All deployments"],a:0,
+ e:"Event notification dùng SQL Server Agent nên chỉ áp dụng cho SQL Server VM. Azure SQL Database không có SQL Agent; MI có SQL Agent nhưng không cho phép event notification."},
+{d:4,t:"Config changes",q:"To track server configuration changes made with sp_configure, which option must be enabled?",
+ o:["sp_configure 'default trace enabled', 1 (after enabling 'show advanced options')","sp_configure 'audit level', 3","sp_configure 'track config', 1","Change Data Capture"],a:0,
+ e:"Bật sp_configure 'show advanced options', 1 rồi RECONFIGURE, sau đó sp_configure 'default trace enabled', 1 rồi RECONFIGURE. Xem kết quả ở Reports – Standard Reports – Configuration Changes History."},
+{d:4,t:"Logic Apps",q:"What does a workflow in Azure Logic Apps begin with?",
+ o:["A trigger, followed by one or more actions","An action, followed by a trigger","A connection","A mandatory schedule"],a:0,
+ e:"Workflow bắt đầu bằng trigger (dữ liệu mới được thêm, item được tạo/sửa trong SQL Server, hoặc theo lịch), rồi tiếp tục bằng nhiều action."},
+{d:4,t:"Logic Apps",q:"Which connection type does NOT require a Gateway in Logic Apps?",
+ o:["Azure SQL Database — a Gateway is only needed for on-premises SQL Server","Managed identity","Service principal","Azure AD Integrated"],a:0,
+ e:"Với Azure SQL Database thì không cần Gateway; Gateway là cho SQL Server on-prem. Các loại authentication: Service principal, Logic Apps Managed Identity, Azure AD Integrated, SQL Server/Windows Authentication."},
+{d:4,t:"Logic Apps",q:"How is the Logic Apps Consumption plan charged?",
+ o:["About $1 per 40,000 actions, with the first 4,000 actions free","A flat $180 per month","It is completely free","By data volume"],a:0,
+ e:"Standard: khoảng $180/tháng. Consumption: ~$1 cho 40.000 action và $1.25 cho 10.000 standard connector execution mỗi ngày; 4.000 action đầu tiên miễn phí."},
+{d:4,t:"Automation",q:"How does patching work for PaaS (Azure SQL Database and MI)?",
+ o:["Automatically — you do not control when, so use retry logic to minimise impact","You schedule it in the Portal","Only when you request it","Once per quarter at weekends"],a:0,
+ e:"PaaS patch tự động; bạn không kiểm soát thời điểm nhưng tác động tối thiểu nếu dùng retry logic. Với database quorum, luôn có ít nhất 1 primary replica online; Business Critical và Premium còn có ít nhất 1 secondary replica online."},
+{d:4,t:"SQL Agent",q:"Which button in a job step checks the T-SQL syntax before saving?",
+ o:["Parse","Validate","Compile","Test"],a:0,
+ e:"Trong tab Steps, sau khi nhập lệnh T-SQL, click 'Parse' để kiểm tra cú pháp. Mỗi step cần chọn database và user chạy lệnh."},
+{d:4,t:"Notifications",q:"In sp_add_operator, what does @enabled = 1 mean?",
+ o:["The operator is enabled","The operator receives email","The operator is an administrator","The operator uses a pager"],a:0,
+ e:"@enabled = 1 là enabled, 0 là not enabled. Các tham số khác gồm @name và @email_address; vẫn còn tham số pager nhưng pager đã deprecate."},
+{d:4,t:"Notifications",q:"Besides email and pager, what other job notification options exist?",
+ o:["Write to the Windows Application event log, and Automatically delete job","Write to Query Store","Call a webhook","Send an SMS"],a:0,
+ e:"Trong tab Notifications của job: Email, Page(r), 'Write to the Windows Application event log', và 'Automatically delete job' — kích hoạt khi job fails, succeeds hoặc completes."},
+{d:4,t:"Elastic Jobs",q:"Which command runs an Elastic Job immediately?",
+ o:["EXEC jobs.sp_start_job 'My first job'","EXEC jobs.sp_run_job","EXEC msdb.dbo.sp_start_job","EXEC jobs.sp_execute_job"],a:0,
+ e:"jobs.sp_start_job chạy ngay. jobs.sp_update_job đặt lịch với @schedule_interval_type ('Minutes', 'Hours', 'Days', 'Weeks', 'Months', 'Once') và @schedule_interval_count."},
+{d:4,t:"Elastic Jobs",q:"In the Elastic Job target database, which role must the JobU user be added to?",
+ o:["db_owner","db_datareader","db_ddladmin","dbmanager"],a:0,
+ e:"Trong target user database: CREATE USER JobU FROM LOGIN JobU rồi ALTER ROLE db_owner ADD MEMBER JobU. Trong master thì tạo login MasterU và JobU."},
+{d:4,t:"Elastic Jobs",q:"If a target group targets a server or elastic pool, what must you supply?",
+ o:["A master database credential so the databases can be enumerated","A manual list of databases","The job agent's managed identity","Nothing extra"],a:0,
+ e:"Khi target là server hay elastic pool, mọi database trong đó tại thời điểm chạy job đều bị ảnh hưởng — cần credential của master database để enumerate. Dùng @refresh_credential_name khi target server/pool."},
+{d:4,t:"Alerts",q:"Which values can aggregation granularity take in an Azure log alert rule?",
+ o:["5, 10, 15, 30 or 45 minutes, 1-6 hours, or 1-2 days","Only 1, 5 or 15 minutes","Any value from 1 minute to 1 year","Hourly values only"],a:0,
+ e:"Aggregation granularity và frequency of evaluation đều nhận: 5, 10, 15, 30, 45 phút, 1-6 giờ, hoặc 1-2 ngày. Aggregation type: Average, Total, Maximum, Minimum."},
+{d:4,t:"Alerts",q:"In an alert rule, how does 'Aggregation granularity period' differ from 'Frequency of evaluation'?",
+ o:["Granularity is how measures are grouped together; frequency is how often the check runs","They are the same thing","Granularity is the violation count; frequency is the threshold","Granularity applies only to dynamic thresholds"],a:0,
+ e:"Aggregation granularity period = các measure được gộp lại theo khoảng thời gian nào. Frequency of evaluation = bao lâu thì kiểm tra một lần."},
+{d:4,t:"Alerts",q:"How is an alert period displayed while it is 'unresolved'?",
+ o:["The line turns from blue to red dots and the background turns light red","The chart disappears","The line turns grey","There is no visual change"],a:0,
+ e:"Khoảng thời gian alert hiển thị màu khác khi 'unresolved': đường từ xanh dương sang chấm đỏ, nền chuyển đỏ nhạt. Bạn chọn được có tự động resolve alert hay không."},
+{d:4,t:"Logic Apps",q:"Which actions are available for SQL Server in Logic Apps?",
+ o:["Delete/Get/Insert/Update row, Get rows or tables, Execute an SQL query, Execute stored procedure","Insert and Update row only","Execute stored procedure only","Backup and Restore database"],a:0,
+ e:"Action SQL Server: Delete/Get/Insert/Update row; Get rows hoặc tables; Execute an SQL query; Execute stored procedure. Control action gồm Conditions, Switch, For each, Until."},
+{d:4,t:"Logic Apps",q:"Where do you view all API connections used across the subscription?",
+ o:["Azure Portal – API connections (not inside the Logic App)","Logic App – API connections","Resource group – Connections","Azure Monitor – Connections"],a:0,
+ e:"Logic App – API connections chỉ hiện connection của Logic App đó. Vào Azure Portal – API connections (không phải Logic App) để xem tất cả connection."},
+{d:4,t:"VM automation",q:"What does 'Automatic SQL Server VM registration' do?",
+ o:["It checks daily for unregistered VMs in the subscription and registers them in lightweight mode","It installs SQL Server on new VMs","It patches every VM automatically","It backs up every VM automatically"],a:0,
+ e:"Kiểm tra hàng ngày xem có VM nào chưa đăng ký trong subscription không, và đăng ký ở lightweight mode. Muốn dùng đủ tính năng thì vẫn phải upgrade thủ công. Bật ở Azure Portal – SQL virtual machines – 'Automatic SQL Server VM registration'."},
+{d:4,t:"Maintenance",q:"When enabling compression on a VM through SSMS, which Schedule options are offered?",
+ o:["One time, recurring (Daily/Weekly/Monthly), when SQL Server Agent starts, or whenever the CPUs become idle","One time only","Daily and Weekly only","No schedule options are offered"],a:0,
+ e:"Trên VM, Manage Compression cho phép Schedule: one time, recurring (Daily, Weekly, Monthly), khi SQL Server Agent starts, hoặc whenever the CPUs become idle."},
+
+/* ---------- 5. Plan and implement a HA/DR environment ---------- */
+{d:5,t:"SLA / RPO / RTO",q:"What are the RPO and RTO of an auto-failover group?",
+ o:["RPO 5 seconds, RTO 1 hour","RPO 1 hour, RTO 12 hours","RPO 5 seconds, RTO 30 seconds","RPO 0, RTO 0"],a:0,
+ e:"Geo-restore: RPO 1 giờ, RTO 12 giờ. Auto-failover group: RPO 5 giây, RTO 1 giờ. Manual database failover sang geo-replicated secondary: RPO 5 giây, RTO 30 giây."},
+{d:5,t:"SLA / RPO / RTO",q:"What are the RPO and RTO of geo-restore from geo-replicated backups?",
+ o:["RPO 1 hour, RTO 12 hours","RPO 5 seconds, RTO 1 hour","RPO 5 seconds, RTO 30 seconds","RPO 12 hours, RTO 1 hour"],a:0,
+ e:"Geo-restore: RPO 1 giờ (có thể mất tới 1 giờ dữ liệu), RTO 12 giờ (mất tới 12 giờ mới dùng lại được)."},
+{d:5,t:"SLA / RPO / RTO",q:"What do RPO and RTO mean?",
+ o:["RPO is how much data you can lose; RTO is the maximum time until you can use it again","RPO is the recovery time; RTO is the data lost","Both measure downtime","RPO is the replica count; RTO is the region count"],a:0,
+ e:"RPO (Recovery Point Objective) = bạn có thể mất bao nhiêu dữ liệu. RTO (Recovery Time Objective) = bao lâu thì dùng lại được, tức thời gian failover tối đa."},
+{d:5,t:"SLA",q:"What is the SLA for Azure SQL Database Business Critical/Premium with a Zone Redundant Deployment?",
+ o:["99.995%","99.99%","99.95%","99.9%"],a:0,
+ e:"Các tier Azure SQL Database khác và MI: 99.99%. Business Critical/Premium có Zone Redundant Deployment: 99.995% (26 phút/năm)."},
+{d:5,t:"SLA",q:"What is the Hyperscale SLA with ONE replica?",
+ o:["99.95%","99.9%","99.99%","99.995%"],a:0,
+ e:"Hyperscale: 99.9% với zero replica, 99.95% với một replica."},
+{d:5,t:"SLA",q:"If the committed RTO is exceeded, what does the customer receive?",
+ o:["A credit of 100% of the total monthly cost of the Secondary","A credit of 50% of the Primary cost","A full subscription refund","Nothing"],a:0,
+ e:"Nếu vượt RTO, bạn được credit 100% tổng chi phí hàng tháng của Secondary."},
+{d:5,t:"Hybrid HADR",q:"What does an Availability Group require in a hybrid environment?",
+ o:["A domain controller VM (an Active Directory domain is required) and a VPN connection for the whole failover cluster","A VPN only","Server certificates only","Nothing special"],a:0,
+ e:"AG cần Active Directory domain (nên cần domain controller VM), VPN connection cho toàn bộ failover cluster (multi-subnet failover cluster), và cho DR thì cần replica domain controller ở site DR. Failover ở cấp DATABASE, không phải instance."},
+{d:5,t:"Hybrid HADR",q:"What advantage does database mirroring between an Azure VM and on-premises have over an Availability Group?",
+ o:["No VPN is required and they need not be in the same Active Directory domain (server certificates are used)","It is faster","It supports more secondaries","It has better automatic failover"],a:0,
+ e:"Database mirroring: Azure VM chạy SQL Server 2012+ và on-prem chạy SQL Server 2008 R2+, dùng server certificate. KHÔNG cần VPN và không cần cùng AD domain."},
+{d:5,t:"Hybrid HADR",q:"What does log shipping between on-premises and an Azure VM require?",
+ o:["A VPN tunnel, because log shipping requires Windows file sharing","Port 1433 only","A shared Active Directory domain","Azure ExpressRoute, mandatorily"],a:0,
+ e:"Log shipping cần Windows file sharing nên phải có VPN tunnel. Secondary database nằm trên server thứ hai hoặc warm standby."},
+{d:5,t:"FCI",q:"What does a Failover Cluster Instance (FCI) on Azure VMs provide?",
+ o:["High availability, but NOT disaster recovery","Both HA and DR","DR only","Read scale-out"],a:0,
+ e:"FCI cho HA nhưng không cho DR. Nó bảo vệ khỏi lỗi network card hoặc disk. Có 5 cấu hình: Azure shared disks (WS2019), Storage Spaces Direct (WS2016+), Premium File Share (WS2012+), giải pháp bên thứ ba, Azure ExpressRoute."},
+{d:5,t:"Site Recovery",q:"What does Azure Site Recovery provide for SQL Server?",
+ o:["Simple DR (not HA) for Azure VMs from a primary to a secondary region; not a SQL Server solution but usable with SQL on VMs","HA and DR for Azure SQL Database","Backup only","Automatic failover for MI"],a:0,
+ e:"Azure Site Recovery: DR đơn giản (không phải HA) cho VM, replicate liên tục, có recovery point snapshot (bắt disk data, dữ liệu trong memory, transaction đang xử lý). Hữu ích chống ransomware. Không phải giải pháp SQL Server nhưng dùng với SQL trên VM được."},
+{d:5,t:"Geo-replication",q:"How many readable secondaries can one Azure SQL Database primary have?",
+ o:["4","2","8","Unlimited"],a:0,
+ e:"Tối đa 4 secondary mỗi primary database, có thể ở region khác nhau. Cần nhiều hơn thì tạo secondary của secondary (replication tới đó chậm hơn)."},
+{d:5,t:"Geo-replication",q:"When UPGRADING the service tier of a geo-replicated pair, which should you upgrade first?",
+ o:["Upgrade the secondary first","Upgrade the primary first","Upgrade both simultaneously","The order does not matter"],a:0,
+ e:"Khi upgrade thì nâng SECONDARY trước; khi downgrade thì hạ PRIMARY trước. Secondary phải có service tier ít nhất bằng primary."},
+{d:5,t:"Geo-replication",q:"When must you disconnect secondaries before changing the service tier?",
+ o:["When moving between General Purpose and Business Critical","On every tier change","When changing the vCore count","Never"],a:0,
+ e:"Không cần disconnect secondary trừ khi chuyển giữa General Purpose và Business Critical."},
+{d:5,t:"Geo-replication",q:"Which isolation mode do readable secondaries use?",
+ o:["Snapshot isolation, so updates from the primary are not delayed by long-running queries on the secondary","Read committed","Serializable","Read uncommitted"],a:0,
+ e:"Secondary dùng snapshot isolation mode, nhờ đó update từ primary không bị trì hoãn bởi long-running query trên secondary."},
+{d:5,t:"Geo-replication",q:"How does geo-replication replicate changes, and how does that differ from transactional replication?",
+ o:["It streams the transaction log; transactional replication executes DML commands (INSERT/UPDATE/DELETE)","It executes DML commands; transactional replication streams the log","Both stream the log","Both use snapshots"],a:0,
+ e:"Geo-replication stream database transaction log. Transactional replication replicate bằng cách thực thi các lệnh DML như INSERT/UPDATE/DELETE."},
+{d:5,t:"Failover group",q:"Which deployments can use auto-failover groups?",
+ o:["Both Azure SQL Database and Managed Instance, but NOT VMs","Azure SQL Database only","Managed Instance only","All three, including VMs"],a:0,
+ e:"Auto-failover group dùng cho Azure SQL Database và MI, không dùng cho SQL Server trên VM (VM thì dùng Availability Group)."},
+{d:5,t:"Failover group",q:"How soon does automatic failover trigger?",
+ o:["Not for at least 1 hour, since it may only be a minor outage","Immediately","After 5 minutes","After 24 hours"],a:0,
+ e:"Auto-failover không xảy ra trong ít nhất 1 giờ (có thể chỉ là outage nhỏ). Khi đã xảy ra thì bản thân failover chỉ mất vài giây."},
+{d:5,t:"Failover group",q:"What is the permitted range of the Read/Write grace period on a failover group?",
+ o:["1 to 24 hours","1 to 60 minutes","1 to 7 days","5 to 30 seconds"],a:0,
+ e:"Khi tạo failover group: tên duy nhất, server, Read/Write failover policy (automatic hoặc manual) và Read/Write grace period từ 1 đến 24 giờ."},
+{d:5,t:"Failover group",q:"What happens when you fail over a failover group?",
+ o:["All databases in the group are failed over","Only the selected database fails over","Each database must be failed over manually","Only the primary database fails over"],a:0,
+ e:"Tất cả database trong failover group đều được failover cùng lúc. Forced (manual) failover có nguy cơ mất dữ liệu."},
+{d:5,t:"Failover group",q:"Which cmdlet fails over ALL databases in an elastic pool?",
+ o:["Invoke-AzSqlElasticPoolFailover","Invoke-AzSqlDatabaseFailover","Invoke-AzSqlInstanceFailover","Invoke-AzSqlServerFailover"],a:0,
+ e:"Invoke-AzSqlInstanceFailover cho MI; Invoke-AzSqlDatabaseFailover cho một database (kể cả một database trong pool mà không ảnh hưởng cái khác); Invoke-AzSqlElasticPoolFailover cho toàn bộ pool."},
+{d:5,t:"Failover group",q:"When SHOULD you use an auto-failover group rather than geo-restore?",
+ o:["When the system is mission critical, the SLA does not allow 12+ hours of downtime, and you cannot lose up to an hour of data","When you want to save money","When you only need backups","When the database is under 1 GB"],a:0,
+ e:"Dùng auto-failover group khi mission critical, SLA không cho phép 12+ giờ downtime (RTO của geo-restore), không chấp nhận mất tới 1 giờ dữ liệu (RPO geo-restore), và geo-replication thì đắt hơn mức cần thiết."},
+{d:5,t:"Availability Group",q:"How many secondary replicas does an Availability Group support?",
+ o:["1 to 8 secondaries (only 1 on SQL Server Standard)","Up to 4","Up to 2","Unlimited"],a:0,
+ e:"AG có 1 primary replica và 1-8 secondary replica (SQL Server Standard chỉ cho 1). Phải có ít nhất 2 failover partner. Secondary KHÔNG thay thế backup."},
+{d:5,t:"Availability Group",q:"Which failover types involve no data loss and apply only to synchronous-commit mode?",
+ o:["Planned manual failover and automatic failover","Forced manual failover","Automatic failover only","All types"],a:0,
+ e:"Planned manual failover và Automatic failover đều không mất dữ liệu và chỉ cho synchronous-commit mode (secondary phải synchronized). Automatic failover còn cần WSFC quorum. Forced manual failover dành cho asynchronous-commit và là phương án DR."},
+{d:5,t:"Availability Group",q:"If the target secondary replica is NOT synchronized with the primary, which failover type is available?",
+ o:["Forced manual failover only","Planned manual failover","Automatic failover","None"],a:0,
+ e:"Forced manual failover (forced failover) là loại DUY NHẤT có thể thực hiện khi secondary chưa synchronized — dùng cho asynchronous-commit mode."},
+{d:5,t:"Availability Group",q:"What happens in asynchronous-commit mode?",
+ o:["The primary commits without acknowledgement from the secondary — lower latency but the secondary lags","The primary waits until the secondary has hardened the log","No replication occurs","It is only used within a single datacenter"],a:0,
+ e:"Asynchronous-commit: primary commit không chờ acknowledgement — giảm transaction latency nhưng dữ liệu trên secondary bị trễ. Synchronous-commit: primary không commit cho tới khi secondary đã hardened log."},
+{d:5,t:"Availability Group",q:"Which T-SQL statement fails over an Availability Group?",
+ o:["ALTER AVAILABILITY GROUP MyAg FAILOVER;","ALTER DATABASE ... SET HADR FAILOVER;","EXEC sp_failover_ag 'MyAg';","BACKUP LOG ... WITH NORECOVERY;"],a:0,
+ e:"ALTER AVAILABILITY GROUP MyAg FAILOVER; Trong SSMS thì kết nối tới server chứa SECONDARY replica, vào AlwaysOn High Availability – Availability Groups – right-click – Failover."},
+{d:5,t:"Availability Group",q:"How do you prepare a database for an Availability Group?",
+ o:["BACKUP then RESTORE WITH NORECOVERY onto the secondary; the primary must use the full recovery model and the names must match","Just copy the MDF file","RESTORE WITH RECOVERY","Detach and attach the database"],a:0,
+ e:"Secondary phải giống hệt primary: BACKUP và RESTORE (gồm cả tail-log backup), dùng RESTORE WITH NORECOVERY. Primary dùng full recovery model, tên database secondary phải trùng primary."},
+{d:5,t:"Availability Group",q:"Which statement joins a database to an Availability Group?",
+ o:["ALTER DATABASE Db1 SET HADR AVAILABILITY GROUP = MyAG;","ALTER AVAILABILITY GROUP MyAG JOIN Db1;","ALTER DATABASE Db1 JOIN GROUP MyAG;","EXEC sp_add_ag_database 'Db1';"],a:0,
+ e:"ALTER AVAILABILITY GROUP MyAG ADD DATABASE MyDb3; rồi ALTER DATABASE Db1 SET HADR AVAILABILITY GROUP = MyAG;"},
+{d:5,t:"AG listener",q:"What is the character limit for an Availability Group listener name in SSMS?",
+ o:["15 characters (letters, numbers, hyphens and underscores)","30 characters","63 characters","128 characters"],a:0,
+ e:"Listener DNS name tối đa 15 ký tự trong SSMS. Listener port mặc định 1433; probe port của internal load balancer mặc định 59999."},
+{d:5,t:"AG listener",q:"Which TCP protocol option should be used for a listener?",
+ o:["A static IP — DHCP is not recommended in a production environment","DHCP","Either is equally good","Automatic"],a:0,
+ e:"Dùng Static IP; DHCP không được khuyến nghị cho production. Với static, phải chỉ định IP tĩnh cho mọi subnet có availability replica."},
+{d:5,t:"AG setup",q:"How many free IP addresses are needed to create an Availability Group on Azure VMs?",
+ o:["2 — one for the internal load balancer and one for the AG listener","1","3","4"],a:0,
+ e:"Cần 2 IP chưa dùng: một cho internal load balancer, một cho availability group listener (cùng subnet với AG). VM phải domain-joined, chạy SQL Server 2012+ Enterprise hoặc 2016+ Standard, và đăng ký SQL IaaS Agent extension ở full manageability mode."},
+{d:5,t:"AG setup",q:"What does an 'Internal' load balancer type mean for an Availability Group?",
+ o:["Applications in the same Virtual Network can connect to the availability group","It can be reached from the public internet","It is used for DR only","No static IP is needed"],a:0,
+ e:"Internal: app trong cùng Virtual Network kết nối được. External: app kết nối qua public internet. IP address assignment nên là Static."},
+{d:5,t:"Quorum",q:"Which witness type is recommended whenever possible?",
+ o:["Cloud Witness — unless you have a failover cluster solution with shared storage","Disk Witness","File share witness","No witness at all"],a:0,
+ e:"Cloud Witness (Windows Server 2016+) được khuyến nghị whenever possible, trừ khi có failover cluster dùng shared storage. Chỉ 1 MB, dùng port 443, cần General Purpose + Standard Storage với Locally redundant storage."},
+{d:5,t:"Quorum",q:"What is the limitation of a Disk Witness on Azure?",
+ o:["It can only be used with a cluster using Azure Shared Disks, and cannot be a Cluster Shared Volume","It cannot be used on Azure","It requires Premium storage","It must be larger than 1 GB"],a:0,
+ e:"Disk Witness là clustered disk nhỏ (<1 GB) trong Cluster Available Storage group, highly available. Trên Azure chỉ dùng được với cluster dùng Azure Shared Disks, và không thể là Cluster Shared Volume."},
+{d:5,t:"Quorum",q:"What is the drawback of the 'No majority (disk witness only)' quorum configuration?",
+ o:["It is not recommended because it is a single point of failure","It requires more nodes","It is slower","It only works with 2 nodes"],a:0,
+ e:"'No majority (disk witness only)': chỉ disk witness có vote — không khuyến nghị vì single point of failure."},
+{d:5,t:"Quorum",q:"How does a two-node cluster behave without a quorum resource?",
+ o:["It functions, but using a quorum resource is recommended to give an odd number of votes","It cannot function","Three nodes are mandatory","It creates a cloud witness automatically"],a:0,
+ e:"Cluster 2 node hoạt động được không cần quorum resource, nhưng nên dùng — nó cho số vote lẻ và tối thiểu 3 quorum vote."},
+{d:5,t:"Backup",q:"Which backup type can be created manually on Managed Instance?",
+ o:["Full database COPY_ONLY backups only — no differential, log or file snapshot backups","Full, differential and log backups","Transaction log backups only","No manual backups are supported"],a:0,
+ e:"MI có automatic backup; bạn chỉ tạo thủ công được full database COPY_ONLY backup, không tạo được differential, log hay file snapshot backup."},
+{d:5,t:"Backup",q:"What does WITH COPY_ONLY do?",
+ o:["It creates a full backup that does not count as a full backup for subsequent DIFFERENTIAL and LOG backups","It copies the schema only","It compresses the backup","It overwrites the media set"],a:0,
+ e:"COPY_ONLY tạo full backup nhưng không làm gián đoạn chuỗi backup thông thường — không được coi là full backup cho các DIFFERENTIAL/LOG backup tiếp theo."},
+{d:5,t:"Backup",q:"What is the default of NOINIT/INIT in the BACKUP statement?",
+ o:["NOINIT — append to the existing backup set","INIT — overwrite","It depends on the recovery model","There is no default"],a:0,
+ e:"Mặc định NOINIT = append. INIT = ghi đè các backup set trên media."},
+{d:5,t:"Backup",q:"What does the FORMAT option in BACKUP do, and what is the risk?",
+ o:["It writes a new media header, overwriting the existing header and backup sets, rendering the whole media set unusable; FORMAT implies SKIP","It sets the output file format","It is safe and only adds metadata","It compresses the backup"],a:0,
+ e:"NOFORMAT là mặc định. FORMAT ghi media header mới, ghi đè header và backup set hiện có — cẩn thận vì làm toàn bộ media set không dùng được. FORMAT ngầm định SKIP."},
+{d:5,t:"Backup",q:"What is the CHECKSUM default in the BACKUP statement?",
+ o:["NO_CHECKSUM — no backup checksums are generated","CHECKSUM — always verified","It depends on the edition","It is enabled only on Enterprise"],a:0,
+ e:"Mặc định là NO_CHECKSUM. Mặc định STOP_ON_ERROR (dừng nếu có page checksum error); CONTINUE_AFTER_ERROR dùng khi đã biết có checksum error."},
+{d:5,t:"Backup",q:"What is the default value of STATS in the BACKUP statement?",
+ o:["10 per cent","1 per cent","5 per cent","100 per cent"],a:0,
+ e:"STATS = X hiển thị thông báo tiến độ mỗi X phần trăm; mặc định là 10."},
+{d:5,t:"Backup",q:"What are the limitations of MIRROR TO in a BACKUP statement?",
+ o:["Enterprise edition only, up to 3 secondaries, and it must happen at the same time as the primary backup","It is available in all editions","Only 1 secondary is allowed","It works only with TAPE"],a:0,
+ e:"MIRROR TO chỉ có ở Enterprise edition, phải thực hiện cùng lúc với primary backup, tối đa 3 secondary."},
+{d:5,t:"Backup",q:"Which encryption algorithms can be used with ENCRYPTION in BACKUP?",
+ o:["AES_128, AES_192, AES_256 and TRIPLE_DES_3KEY","AES_256 only","RSA_2048 and AES_256","MD5 and SHA_256"],a:0,
+ e:"AES_128, AES_192, AES_256, TRIPLE_DES_3KEY, hoặc NO_ENCRYPTION (mặc định). Nếu mã hóa thì cần SERVER CERTIFICATE hoặc SERVER ASYMMETRIC KEY."},
+{d:5,t:"Backup",q:"What is the maximum backup stripe (blob) size when backing up MI to a URL?",
+ o:["195 GB — add more files if you need more space","1 TB","500 GB","There is no limit"],a:0,
+ e:"Maximum backup stripe size (blob size) là 195 GB. Muốn nhiều hơn thì thêm file (nhiều URL)."},
+{d:5,t:"Backup",q:"What state does a tail-log backup in SSMS leave the database in?",
+ o:["The restoring state — unavailable to users until it is completely restored","Online as normal","Read-only","Emergency"],a:0,
+ e:"'Backup the transaction log tail' để database ở restoring state, không dùng được cho tới khi restore hoàn tất. Tùy chọn còn lại là backup log và truncate để giải phóng dung lượng, database vẫn online."},
+{d:5,t:"Log backup",q:"What does NO_TRUNCATE do in BACKUP LOG?",
+ o:["The log is not truncated and SQL Server attempts the backup regardless of the state of the database — useful if the database is damaged","It deletes the whole log","It compresses the log backup","It leaves the database in standby"],a:0,
+ e:"NO_TRUNCATE buộc SQL Server cố backup bất kể trạng thái database — hữu ích khi database bị damaged/suspended. Nên dùng NO_TRUNCATE cùng NORECOVERY."},
+{d:5,t:"Log backup",q:"What state does BACKUP LOG ... WITH STANDBY = standby_file_name leave the database in?",
+ o:["Read-only and STANDBY; the standby file holds the rolled back changes","Restoring and inaccessible","Online and read-write","Emergency"],a:0,
+ e:"STANDBY backup tail của log và để database ở trạng thái read-only, STANDBY. File standby giữ các thay đổi đã bị rolled back."},
+{d:5,t:"Log backup",q:"Which recovery model does NOT use transaction log backups?",
+ o:["SIMPLE","FULL","BULK_LOGGED","Both FULL and BULK_LOGGED"],a:0,
+ e:"SIMPLE recovery model không dùng transaction log backup — chỉ cho phép complete backup. Cần FULL hoặc BULK_LOGGED để backup log."},
+{d:5,t:"Log backup",q:"Which roles already have the BACKUP DATABASE and backup log permissions?",
+ o:["sysadmin (server), plus db_owner and db_backupoperator (database)","sysadmin only","db_datareader","dbcreator"],a:0,
+ e:"Quyền BACKUP DATABASE và backup log đã được cấp cho sysadmin fixed server role, và db_owner + db_backupoperator fixed database role."},
+{d:5,t:"Restore",q:"Which permission is required to restore a NEW database?",
+ o:["CREATE DATABASE — held by sysadmin, dbcreator, and dbo for existing databases","RESTORE DATABASE","db_backupoperator","CONTROL SERVER"],a:0,
+ e:"User cần quyền CREATE DATABASE, có trong sysadmin và dbcreator fixed server role, và dbo (owner) với database đã tồn tại."},
+{d:5,t:"Restore",q:"Which recovery state leaves the database in the Restoring state so further backups can be applied?",
+ o:["RESTORE WITH NORECOVERY","RESTORE WITH RECOVERY","RESTORE WITH STANDBY","RESTORE VERIFYONLY"],a:0,
+ e:"WITH NORECOVERY để database ở Restoring state, cho phép restore thêm. WITH RECOVERY (mặc định) đưa database online. WITH STANDBY cho truy cập read-only hạn chế và cần chỉ định standby file."},
+{d:5,t:"Restore",q:"What does RESTORE VERIFYONLY do?",
+ o:["It verifies the backup but does NOT restore it","It restores and then checks integrity","It restores the schema only","It restores into tempdb for testing"],a:0,
+ e:"RESTORE VERIFYONLY FROM ... kiểm tra backup mà không thực hiện restore."},
+{d:5,t:"Restore",q:"In the SSMS Restore dialog, which databases do NOT appear in the Destination dropdown?",
+ o:["master and tempdb","msdb and model","tempdb and msdb","None are excluded"],a:0,
+ e:"Dropdown Destination gồm mọi database trên server, TRỪ master và tempdb."},
+{d:5,t:"Restore",q:"Who can access the database when 'Restrict access to the restored database' is selected?",
+ o:["Members of db_owner, dbcreator and sysadmin only","sysadmin only","Any user with SELECT permission","The owner of the backup only"],a:0,
+ e:"Restrict access giới hạn cho db_owner, dbcreator và sysadmin — tương đương RESTRICTED_USER."},
+{d:5,t:"Restore",q:"Which syntax restores to a specific point in time?",
+ o:["RESTORE ... WITH FILE = 6 NORECOVERY, STOPAT = 'Jun 19, 2024 12:00 PM';","RESTORE ... WITH POINT_IN_TIME = '...';","RESTORE ... AS OF '...';","RESTORE ... WITH RECOVERY_POINT = '...';"],a:0,
+ e:"Dùng STOPAT = 'datetime'. Cũng có STOPATMARK / STOPBEFOREMARK = { MarkName | LSNNumber } [AFTER 'datetime']."},
+{d:5,t:"PITR",q:"What is the automatic backup schedule for Azure SQL Database and MI?",
+ o:["Full weekly, differential every 12-24 hours, transaction log every 5-10 minutes","Full daily, log hourly","Full monthly, differential daily","Full weekly only"],a:0,
+ e:"Full backup mỗi tuần, differential mỗi 12-24 giờ, transaction log backup mỗi 5-10 phút. Backup đầu tiên được lên lịch ngay sau khi database được tạo hoặc restore."},
+{d:5,t:"PITR",q:"What is the default point-in-time restore retention, and what range can it be set to?",
+ o:["7 days by default, configurable to 1-35 days (except Hyperscale and Basic — Basic maxes at 7 days)","35 days by default, configurable 1-35","14 days by default, configurable 7-30","Fixed at 7 days"],a:0,
+ e:"PITR mặc định 7 ngày, có thể đặt 1-35 ngày — trừ Hyperscale và Basic tier (Basic tối đa 7 ngày). Trên MI, PITR áp dụng cho từng database, không cho toàn instance."},
+{d:5,t:"PITR",q:"Can you restore over an existing database?",
+ o:["No — restore to a new database and rename it afterwards","Yes, using WITH REPLACE","Yes, from the Azure Portal","Yes, using PowerShell"],a:0,
+ e:"Trên Azure SQL, không restore đè lên database đang tồn tại được (kể cả bằng PowerShell) — restore ra database mới rồi rename."},
+{d:5,t:"LTR",q:"What is the maximum retention of a Long-Term Retention backup?",
+ o:["10 years","35 days","1 year","5 years"],a:0,
+ e:"LTR lưu tới 10 năm. Cấu hình gồm Weekly, Monthly, Yearly và WeekOfYear backup."},
+{d:5,t:"LTR",q:"Which statement about LTR backups is TRUE?",
+ o:["Azure performs them; you cannot control the timing or create one manually, and the first may take up to 7 days to appear","You schedule them in SSMS","You create them with BACKUP DATABASE","They are stored inside the database"],a:0,
+ e:"LTR backup do Azure làm; bạn không kiểm soát timing, không tạo thủ công được, và có thể mất tới 7 ngày mới thấy backup LTR đầu tiên. Lưu trong Azure Blob storage, mỗi tuần một container khác."},
+{d:5,t:"LTR",q:"What happens to LTR backups once the original database is deleted?",
+ o:["No further backups are made, and existing ones are deleted as they expire","All backups are deleted immediately","Backups are kept forever","Backups move to an archive tier"],a:0,
+ e:"Sau khi database gốc bị xóa: không có backup mới; các backup hiện có sẽ bị xóa dần khi hết hạn."},
+{d:5,t:"LTR",q:"What should you note about LTR policies on secondary databases?",
+ o:["Ensure secondaries have an LTR policy, to be created only when they become primary","Secondaries do not need an LTR policy","LTR is copied to secondaries automatically","LTR only runs on secondaries"],a:0,
+ e:"Cần đảm bảo có LTR policy trên secondary database, nhưng chỉ được tạo khi chúng trở thành primary."},
+{d:5,t:"Cloud backup",q:"When backing up to a URL from SSMS, what does 'Create Credential' generate?",
+ o:["A Shared Access Signature (SAS)","A storage account key","A service principal","A managed identity"],a:0,
+ e:"Click 'Create Credential' sinh ra Shared Access Signature (SAS). Nếu khi restore không thấy backup file thì có thể do dùng sai SAS key."},
+{d:5,t:"Cloud backup",q:"What is the limitation of restoring MI from Azure Blob Storage using T-SQL?",
+ o:["It can only be restored onto another MI, not onto an on-premises SQL Server","Only COPY_ONLY backups can be restored","Multiple URLs are not supported","You must use SSMS, not T-SQL"],a:0,
+ e:"RESTORE DATABASE ... FROM URL = 'https://...' trên MI chỉ restore được sang MI khác, KHÔNG restore sang SQL Server on-prem. Trên MI chỉ dùng T-SQL cho complete restore từ Azure Blob Storage."},
+{d:5,t:"Replication",q:"Which transactional replication component CANNOT be an Azure SQL Database?",
+ o:["The Publisher and the Distributor","A push subscriber","A pull subscriber","None of them"],a:0,
+ e:"Publisher và Distributor phải là Azure SQL MI hoặc SQL Server instance — KHÔNG thể là Azure SQL Database (với nó thì dùng Data Sync). Azure SQL Database chỉ làm được push subscriber."},
+{d:5,t:"Replication",q:"Which replication types does Azure SQL Database support as a push subscriber?",
+ o:["Standard Transactional and Snapshot only","Transactional, Snapshot and Bidirectional","Merge and Peer-to-peer","All types"],a:0,
+ e:"Azure SQL Database (push subscriber): chỉ Standard Transactional và Snapshot. Azure SQL MI: thêm cả Bidirectional. Peer-to-peer chỉ cho on-prem và VM."},
+{d:5,t:"Replication",q:"Which replication type allows data to be changed at BOTH the Publisher and the Subscriber?",
+ o:["Merge replication","Transactional replication","Snapshot replication","Peer-to-peer replication"],a:0,
+ e:"Merge replication: dữ liệu đổi được ở cả hai phía; khi kết nối lại thì đồng bộ các dòng đã thay đổi. Dùng cho on-prem, VM và MI."},
+{d:5,t:"Replication",q:"What happens if you do not specify a Distributor when creating a Publication?",
+ o:["The Publisher acts as its own Distributor, and you must specify a default snapshot folder","Publication creation fails","Azure creates a Distributor for you","The Subscriber becomes the Distributor"],a:0,
+ e:"Không chỉ định thì Publisher tự làm Distributor — khi đó cần chỉ định default snapshot folder mà các agent đọc/ghi được."},
+{d:5,t:"Replication",q:"If the Distributor is a SQL Server instance, what must its version be relative to the Publisher?",
+ o:["The same or higher than the Publisher","Always lower","Exactly identical","It does not matter"],a:0,
+ e:"Distributor (nếu là SQL Server instance) phải có version bằng hoặc cao hơn Publisher. Push subscriber SQL Server phải mới hơn Publisher, hoặc thấp hơn không quá 2 version."},
+{d:5,t:"Log shipping",q:"How does failover work in log shipping?",
+ o:["Manually — it is not automatic","Automatically after 30 seconds","Automatically if a witness is present","Automatically after the primary is offline for 5 minutes"],a:0,
+ e:"Log shipping failover là THỦ CÔNG, không tự động. Quy trình: primary backup transaction log → copy sang secondary → restore trên secondary."},
+{d:5,t:"Log shipping",q:"What does the optional monitor server in log shipping track?",
+ o:["When the log was backed up, when secondaries copied and restored it, and any backup failure alerts","Disk space only","Query performance","Firewall configuration"],a:0,
+ e:"Monitor server (optional) theo dõi: khi nào transaction log được backup trên primary, khi nào secondary copy và restore file, và mọi cảnh báo backup failure."},
+{d:5,t:"Log shipping",q:"When is 'Delay restoring backups at least X minutes' useful in log shipping?",
+ o:["When someone deletes data on the primary by mistake and you need time to retrieve the version on the secondary","When the network is slow","When the secondary is weaker than the primary","When you need to save disk space"],a:0,
+ e:"Delay restore hữu ích khi ai đó xóa nhầm một dòng trên primary — bạn có thời gian kiểm tra phiên bản trên secondary trước khi thay đổi được áp vào."},
+{d:5,t:"Log shipping",q:"What is the limitation of 'Standby mode' for a log shipping secondary?",
+ o:["It is not available if the secondary server's major version is greater than the primary's","It does not allow reads","It requires the Enterprise edition","It only works with Azure VMs"],a:0,
+ e:"'Standby mode' không khả dụng nếu major version của secondary server cao hơn primary. Khi restore thì không đọc được secondary."},
+{d:5,t:"Log shipping",q:"Which stored procedure is run on the PRIMARY when configuring log shipping with T-SQL?",
+ o:["sp_add_log_shipping_primary_database","sp_add_log_shipping_secondary_primary","sp_add_log_shipping_secondary_database","sp_update_job"],a:0,
+ e:"Trên primary: sp_add_log_shipping_primary_database, sp_add_jobschedule, sp_add_log_shipping_alert_job, sp_add_log_shipping_primary_secondary. Trên secondary: sp_add_log_shipping_secondary_primary, sp_add_jobschedule, sp_attach_schedule."},
+{d:5,t:"MI restore",q:"How do you restore an Azure SQL database to a different REGION?",
+ o:["Create a new database and, on the Additional settings tab, change 'Use existing data' to 'Backup' and select the backup","Use RESTORE DATABASE ... FROM URL","Copy the MDF file to the new region","It is not possible"],a:0,
+ e:"Tạo database, trong 'Additional settings' đổi 'Use existing data' sang 'Backup' và chọn backup. Với MI: vào MI, '+New database', chọn tên và đổi 'Use existing data' sang 'Backup'."},
+];
+
+/* ============================================================
+   Engine
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const LS_WRONG = "dp300.wrong.v1";
+const LS_BEST  = "dp300.best.v1";
+const LS_THEME = "dp300.theme.v1";
+
+const state = {
+  domains: new Set([0,1,2,3,4]),
+  mode: "study",
+  list: [],
+  i: 0,
+  picked: null,      // number | Set
+  checked: false,
+  correct: 0,
+  answers: []        // {qi, picked, ok}
+};
+
+/* ---- utilities ---- */
+const isMulti = q => Array.isArray(q.a);
+const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const loadWrong = () => { try{ return new Set(JSON.parse(localStorage.getItem(LS_WRONG)||"[]")); }catch(e){ return new Set(); } };
+const saveWrong = s => { try{ localStorage.setItem(LS_WRONG, JSON.stringify([...s])); }catch(e){} };
+
+/* Trộn thứ tự lựa chọn nhưng giữ đúng ánh xạ đáp án */
+function prepare(q, idx){
+  const order = shuffle(q.o.map((_,i)=>i));
+  const opts  = order.map(i => q.o[i]);
+  const remap = i => order.indexOf(i);
+  const a = isMulti(q) ? q.a.map(remap).sort((x,y)=>x-y) : remap(q.a);
+  return { ...q, o: opts, a, qi: idx };
+}
+
+/* ---- theme ---- */
+(function(){
+  const saved = localStorage.getItem(LS_THEME);
+  if (saved) document.documentElement.dataset.theme = saved;
+  $("#theme").onclick = () => {
+    const cur = document.documentElement.dataset.theme
+      || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem(LS_THEME, next);
+  };
+})();
+
+/* ---- setup screen ---- */
+function renderSetup(){
+  $("#qcount").textContent = QUESTIONS.length + " câu hỏi";
+
+  const box = $("#domains");
+  box.innerHTML = "";
+  DOMAINS.forEach((name, i) => {
+    const n = QUESTIONS.filter(q => q.d === i+1).length;
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.textContent = `${DOMAIN_SHORT[i]} (${n})`;
+    b.title = name;
+    b.setAttribute("aria-pressed", state.domains.has(i));
+    b.onclick = () => {
+      if (state.domains.has(i)) { if (state.domains.size > 1) state.domains.delete(i); }
+      else state.domains.add(i);
+      renderSetup();
+    };
+    box.appendChild(b);
+  });
+
+  $("#modes").querySelectorAll("[data-mode]").forEach(b => {
+    b.setAttribute("aria-pressed", b.dataset.mode === state.mode);
+    b.onclick = () => { state.mode = b.dataset.mode; renderSetup(); };
+  });
+
+  const wrong = loadWrong();
+  $("#wrongCount").textContent = wrong.size;
+  $("#startWrong").disabled = wrong.size === 0;
+
+  // thống kê điểm cao nhất theo domain
+  let best = {};
+  try { best = JSON.parse(localStorage.getItem(LS_BEST) || "{}"); } catch(e){}
+  const stats = $("#stats");
+  stats.innerHTML = "";
+  DOMAINS.forEach((name, i) => {
+    const b = best[i+1];
+    const el = document.createElement("div");
+    el.className = "stat";
+    el.innerHTML = `<b>${b ? Math.round(b) + "%" : "—"}</b><span>${DOMAIN_SHORT[i]}</span>`;
+    el.title = name + " — điểm cao nhất";
+    stats.appendChild(el);
+  });
+}
+
+/* ---- start ---- */
+function start(pool){
+  if (!pool){
+    pool = QUESTIONS.map((q,i)=>({q,i})).filter(x => state.domains.has(x.q.d - 1));
+    shuffle(pool);
+    const n = +$("#num").value;
+    if (n > 0) pool = pool.slice(0, n);
+  }
+  if (!pool.length) return;
+
+  state.list = pool.map(x => prepare(x.q, x.i));
+  state.i = 0; state.correct = 0; state.answers = [];
+  $("#setup").hidden = true; $("#result").hidden = true; $("#quiz").hidden = false;
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = state.list[state.i];
+  state.picked = isMulti(q) ? new Set() : null;
+  state.checked = false;
+
+  $("#prog").style.width = (state.i / state.list.length * 100) + "%";
+  $("#mDomain").textContent = DOMAIN_SHORT[q.d - 1];
+  $("#mTopic").textContent  = q.t;
+  $("#mPos").textContent    = `${state.i + 1}/${state.list.length}`;
+  $("#mScore").textContent  = state.mode === "study" ? ` · ${state.correct} đúng` : "";
+  $("#qtext").textContent   = q.q + (isMulti(q) ? `\n(Chọn ${q.a.length} đáp án)` : "");
+
+  const box = $("#opts");
+  box.innerHTML = "";
+  q.o.forEach((text, i) => {
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.setAttribute("aria-pressed", "false");
+    b.innerHTML = `<span class="k">${i+1}</span><span></span>`;
+    b.lastChild.textContent = text;
+    b.onclick = () => pick(i);
+    box.appendChild(b);
+  });
+
+  $("#expl").innerHTML = "";
+  $("#check").hidden = false;
+  $("#check").disabled = true;
+  $("#check").textContent = state.mode === "study" ? "Kiểm tra" : "Trả lời";
+  $("#next").hidden = true;
+}
+
+function pick(i){
+  if (state.checked) return;
+  const q = state.list[state.i];
+  const btns = [...$("#opts").children];
+  if (isMulti(q)){
+    state.picked.has(i) ? state.picked.delete(i) : state.picked.add(i);
+    btns.forEach((b, k) => b.setAttribute("aria-pressed", state.picked.has(k)));
+    $("#check").disabled = state.picked.size !== q.a.length;
+  } else {
+    state.picked = i;
+    btns.forEach((b, k) => b.setAttribute("aria-pressed", k === i));
+    $("#check").disabled = false;
+  }
+}
+
+function check(){
+  const q = state.list[state.i];
+  if (state.checked) return;
+  const picked = isMulti(q) ? [...state.picked].sort((a,b)=>a-b) : state.picked;
+  const ok = isMulti(q)
+    ? picked.length === q.a.length && picked.every((v,k) => v === q.a[k])
+    : picked === q.a;
+
+  state.checked = true;
+  if (ok) state.correct++;
+  state.answers.push({ qi: q.qi, listIdx: state.i, picked, ok });
+
+  // ghi nhớ câu sai để ôn lại
+  const wrong = loadWrong();
+  ok ? wrong.delete(q.qi) : wrong.add(q.qi);
+  saveWrong(wrong);
+
+  if (state.mode === "study"){
+    const right = isMulti(q) ? q.a : [q.a];
+    const yours = isMulti(q) ? picked : [picked];
+    [...$("#opts").children].forEach((b, i) => {
+      b.disabled = true;
+      if (right.includes(i)) b.classList.add("ok");
+      else if (yours.includes(i)) b.classList.add("bad");
+    });
+    const e = document.createElement("div");
+    e.className = "expl " + (ok ? "ok" : "bad");
+    e.innerHTML = "<b></b><span></span>";
+    e.firstChild.textContent = ok ? "Chính xác" : "Chưa đúng";
+    e.lastChild.textContent = q.e;
+    const ln = noteLink(q);
+    if (ln) e.appendChild(ln);
+    $("#expl").appendChild(e);
+    $("#mScore").textContent = ` · ${state.correct} đúng`;
+  } else {
+    [...$("#opts").children].forEach(b => b.disabled = true);
+  }
+  $("#check").hidden = true;
+  $("#next").hidden = false;
+  $("#next").textContent = state.i === state.list.length - 1 ? "Xem kết quả →" : "Câu tiếp →";
+  $("#next").focus();
+}
+
+function next(){
+  if (state.i === state.list.length - 1) return finish();
+  state.i++;
+  renderQuestion();
+}
+
+function finish(){
+  $("#quiz").hidden = true; $("#result").hidden = false;
+  const total = state.answers.length;
+  const pct = total ? state.correct / total * 100 : 0;
+  $("#rPct").textContent = Math.round(pct) + "%";
+  $("#rRaw").textContent = `${state.correct}/${total} câu đúng` + (pct >= 70 ? " — đạt ngưỡng 700/1000" : "");
+
+  // bảng theo domain
+  const per = {};
+  state.answers.forEach(a => {
+    const d = QUESTIONS[a.qi].d;
+    per[d] = per[d] || { n:0, ok:0 };
+    per[d].n++; if (a.ok) per[d].ok++;
+  });
+  let html = "<tr><th>Phạm vi</th><th class='num'>Đúng</th><th class='num'>Tổng</th><th class='num'>%</th></tr>";
+  let best = {};
+  try { best = JSON.parse(localStorage.getItem(LS_BEST) || "{}"); } catch(e){}
+  Object.keys(per).sort().forEach(d => {
+    const p = per[d].ok / per[d].n * 100;
+    if (per[d].n >= 5 && (!best[d] || p > best[d])) best[d] = p;
+    html += `<tr><td>${DOMAIN_SHORT[d-1]}</td><td class='num'>${per[d].ok}</td><td class='num'>${per[d].n}</td><td class='num'>${Math.round(p)}%</td></tr>`;
+  });
+  $("#rTable").innerHTML = html;
+  try { localStorage.setItem(LS_BEST, JSON.stringify(best)); } catch(e){}
+
+  // review các câu sai
+  const bad = state.answers.filter(a => !a.ok);
+  const rv = $("#rReview");
+  rv.innerHTML = "";
+  if (!bad.length){
+    rv.innerHTML = "<div class='empty'>Không sai câu nào.</div>";
+  } else {
+    const h = document.createElement("h3");
+    h.textContent = `Xem lại ${bad.length} câu sai`;
+    rv.appendChild(h);
+    bad.forEach(a => {
+      const q = state.list[a.listIdx];
+      const right = isMulti(q) ? q.a : [q.a];
+      const yours = isMulti(q) ? a.picked : [a.picked];
+      const d = document.createElement("div");
+      d.className = "rev";
+      const qq = document.createElement("div"); qq.className = "qq"; qq.textContent = q.q;
+      d.appendChild(qq);
+      const mk = (cls, label, idxs) => {
+        const l = document.createElement("div"); l.className = "line " + cls;
+        const t = document.createElement("span"); t.className = "tag"; t.textContent = label;
+        l.appendChild(t);
+        l.appendChild(document.createTextNode(idxs.map(i => q.o[i]).join("  |  ")));
+        d.appendChild(l);
+      };
+      mk("yours", "Bạn chọn", yours);
+      mk("right", "Đáp án", right);
+      const w = document.createElement("div"); w.className = "why"; w.textContent = q.e;
+      d.appendChild(w);
+      const ln = noteLink(q);
+      if (ln) d.appendChild(ln);
+      rv.appendChild(d);
+    });
+  }
+  $("#reviewWrong").disabled = !bad.length;
+  $("#reviewWrong").onclick = () => start(bad.map(a => ({ q: QUESTIONS[a.qi], i: a.qi })));
+  renderSetup();
+}
+
+function home(){
+  $("#quiz").hidden = true; $("#result").hidden = true; $("#setup").hidden = false;
+  renderSetup();
+}
+
+/* ---- wiring ---- */
+$("#start").onclick = () => start(null);
+$("#startWrong").onclick = () => {
+  const w = loadWrong();
+  const pool = [...w].filter(i => QUESTIONS[i]).map(i => ({ q: QUESTIONS[i], i }));
+  shuffle(pool); start(pool);
+};
+$("#check").onclick = check;
+$("#next").onclick = next;
+$("#quit").onclick = () => state.answers.length ? finish() : home();
+$("#again").onclick = home;
+
+document.addEventListener("keydown", e => {
+  if ($("#quiz").hidden) return;
+  if (e.key >= "1" && e.key <= "9"){
+    const i = +e.key - 1;
+    if (i < state.list[state.i].o.length){ pick(i); e.preventDefault(); }
+  } else if (e.key === "Enter"){
+    e.preventDefault();
+    state.checked ? next() : (!$("#check").disabled && check());
+  }
+});
+
+renderSetup();
+</script>
+</body>
+</html>

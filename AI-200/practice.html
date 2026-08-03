@@ -1,0 +1,1749 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-200 · Luyện tập</title>
+<style>
+:root{
+  --bg:#ffffff;--card:#f6f8fa;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;
+  --accent:#0969da;--accent-soft:#ddf4ff;--ok:#1a7f37;--ok-soft:#dafbe1;
+  --bad:#cf222e;--bad-soft:#ffebe9;--warn:#9a6700;--warn-soft:#fff8c5;
+  --code-bg:#f0f3f6;--pre-bg:#1f2328;--pre-fg:#e6edf3;--shadow:0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0d1117;--card:#161b22;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;
+  --accent:#4493f8;--accent-soft:#121d2f;--ok:#3fb950;--ok-soft:#0f2417;
+  --bad:#f85149;--bad-soft:#2d1114;--warn:#d29922;--warn-soft:#2b2200;
+  --code-bg:#1c2128;--pre-bg:#161b22;--pre-fg:#e6edf3;--shadow:0 1px 3px rgba(0,0,0,.4);}}
+:root[data-theme="light"]{
+  --bg:#ffffff;--card:#f6f8fa;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;
+  --accent:#0969da;--accent-soft:#ddf4ff;--ok:#1a7f37;--ok-soft:#dafbe1;
+  --bad:#cf222e;--bad-soft:#ffebe9;--warn:#9a6700;--warn-soft:#fff8c5;
+  --code-bg:#f0f3f6;--pre-bg:#1f2328;--pre-fg:#e6edf3;}
+:root[data-theme="dark"]{
+  --bg:#0d1117;--card:#161b22;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;
+  --accent:#4493f8;--accent-soft:#121d2f;--ok:#3fb950;--ok-soft:#0f2417;
+  --bad:#f85149;--bad-soft:#2d1114;--warn:#d29922;--warn-soft:#2b2200;
+  --code-bg:#1c2128;--pre-bg:#161b22;--pre-fg:#e6edf3;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Noto Sans",Arial,sans-serif}
+code{background:var(--code-bg);border:1px solid var(--line);border-radius:5px;padding:.1em .35em;
+  font:13.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+pre{background:var(--pre-bg);color:var(--pre-fg);padding:14px 16px;border-radius:10px;overflow-x:auto;
+  border:1px solid var(--line);font:13.2px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;border:0;padding:0;color:inherit;font-size:inherit}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:10px 18px;
+  background:var(--bg);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{font-weight:700;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.brand small{font-weight:400;color:var(--muted);font-size:12px}
+.sp{flex:1}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:8px;
+  padding:7px 13px;font-size:14px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
+.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+#timer{font-variant-numeric:tabular-nums;font-weight:650;padding:6px 12px;border-radius:8px;
+  background:var(--card);border:1px solid var(--line);font-size:14px}
+#timer.low{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 90px}
+
+h1{font-size:27px;margin:6px 0 4px}
+.sub{color:var(--muted);margin:0 0 22px}
+.secttl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;margin:26px 0 10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:13px}
+.card{border:1px solid var(--line);border-radius:14px;padding:17px;background:var(--card);
+  cursor:pointer;transition:.15s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:16.5px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .tag{display:inline-block;margin-top:11px;font-size:12px;padding:2px 9px;border-radius:20px;
+  background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}
+.stat{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--card);min-width:118px}
+.stat b{display:block;font-size:21px}
+.stat span{font-size:12px;color:var(--muted)}
+.note{margin-top:24px;padding:12px 16px;border-left:4px solid var(--warn);background:var(--warn-soft);
+  border-radius:0 8px 8px 0;font-size:14px}
+
+.qhead{display:flex;align-items:center;gap:9px;margin-bottom:6px;flex-wrap:wrap}
+.pill{font-size:12px;padding:2px 10px;border-radius:20px;border:1px solid var(--line);
+  background:var(--card);color:var(--muted)}
+.pill.d1{border-color:#8250df;color:#8250df}.pill.d2{border-color:#1a7f37;color:#1a7f37}
+.pill.d3{border-color:#bc4c00;color:#bc4c00}.pill.d4{border-color:#0969da;color:#0969da}
+.pill.kind{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.qtext{font-size:18px;font-weight:600;line-height:1.5;margin:10px 0 16px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;
+  padding:13px 15px;cursor:pointer;background:var(--bg);transition:.12s;font-size:15.5px}
+.opt:hover{border-color:var(--accent);background:var(--accent-soft)}
+.opt .k{flex:none;width:24px;height:24px;border-radius:7px;border:1px solid var(--line);
+  display:grid;place-items:center;font-size:12.5px;font-weight:700;background:var(--card)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.sel .k{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+.opt.correct .k{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .k{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opt.locked{cursor:default}
+
+/* build list */
+.build{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.buildcol{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:12px;min-height:150px}
+.buildcol h4{margin:0 0 9px;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.step{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:9px 12px;margin:7px 0;
+  cursor:pointer;font-size:14.5px;display:flex;gap:9px;align-items:flex-start}
+.step:hover{border-color:var(--accent)}
+.step .n{flex:none;width:21px;height:21px;border-radius:6px;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-size:11.5px;font-weight:700}
+.step.ok{border-color:var(--ok);background:var(--ok-soft)} .step.ok .n{background:var(--ok)}
+.step.no{border-color:var(--bad);background:var(--bad-soft)} .step.no .n{background:var(--bad)}
+.step.locked{cursor:default}
+.empty{color:var(--muted);font-size:13.5px;padding:14px 4px;text-align:center}
+
+/* fill */
+.fillcode select{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--bg);color:var(--fg);
+  border:1px solid var(--accent);border-radius:6px;padding:2px 5px;margin:0 2px;max-width:280px}
+.fillcode select.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--fg)}
+.fillcode select.no{border-color:var(--bad);background:var(--bad-soft);color:var(--fg)}
+
+/* yes/no */
+.goalbox{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--card);
+  border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0}
+.goalbox h4{margin:0 0 5px;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.solbox{border:1px solid var(--line);border-left:4px solid var(--warn);background:var(--card);
+  border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0}
+.solbox h4{margin:0 0 5px;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--warn)}
+.ynrow{display:flex;gap:12px;margin-top:14px}
+.ynbtn{flex:1;padding:16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);
+  font-size:16px;font-weight:650;cursor:pointer;color:var(--fg)}
+.ynbtn:hover{border-color:var(--accent)}
+.ynbtn.sel{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.ynbtn.correct{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.ynbtn.wrong{border-color:var(--bad);background:var(--bad-soft);color:var(--bad)}
+
+/* case study */
+.casebox{border:1px solid var(--accent);border-radius:12px;background:var(--accent-soft);margin:0 0 18px;overflow:hidden}
+.casebar{display:flex;align-items:center;gap:10px;padding:11px 15px;cursor:pointer;font-weight:650;font-size:15px}
+.casebar .who{color:var(--accent)}
+.casebody{padding:0 17px 15px;font-size:14.5px;border-top:1px solid var(--line);background:var(--bg)}
+.casebody h5{margin:15px 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.casebody ul{margin:6px 0;padding-left:22px}
+.casebody p{margin:7px 0}
+
+.expl{margin-top:16px;padding:13px 16px;border-radius:10px;border:1px solid var(--line);
+  background:var(--card);font-size:14.5px}
+.bar{display:flex;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+.prog{height:6px;background:var(--card);border-radius:4px;overflow:hidden;margin:0 0 16px;border:1px solid var(--line)}
+.prog div{height:100%;background:var(--accent);width:0;transition:width .2s}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.nav button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--card);
+  color:var(--muted);font-size:12.5px;cursor:pointer}
+.nav button.done{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.nav button.mark{border-color:var(--warn);color:var(--warn)}
+.nav button.cur{outline:2px solid var(--accent);outline-offset:1px}
+.nav button.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.nav button.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+
+.score{text-align:center;padding:26px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.score .big{font-size:56px;font-weight:800;line-height:1}
+.score .verdict{font-size:19px;font-weight:700;margin-top:8px}
+.pass{color:var(--ok)}.fail{color:var(--bad)}
+table{border-collapse:collapse;width:100%;margin:20px 0;font-size:14.5px}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left}
+th{background:var(--card);font-weight:650}
+.mini{height:8px;background:var(--card);border-radius:4px;overflow:hidden;min-width:110px;border:1px solid var(--line)}
+.mini div{height:100%}
+.rev{border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:12px 0;background:var(--card)}
+.rev .q{font-weight:600;margin-bottom:9px}
+.rev .row{font-size:14px;margin:3px 0}
+.rev .yes{color:var(--ok)}.rev .no{color:var(--bad)}
+[hidden]{display:none!important}
+
+/* ---------- điện thoại ---------- */
+@media (max-width:700px){
+  html{-webkit-text-size-adjust:100%}
+  .top{gap:8px;padding:8px 12px}
+  .brand small{display:none}
+  .wrap{padding:16px 12px 90px}
+  h1{font-size:23px}
+  .cards{grid-template-columns:1fr}
+  .build{grid-template-columns:1fr}
+  /* vùng chạm tối thiểu 44px cho ngón tay */
+  .btn{min-height:44px;display:inline-flex;align-items:center;padding:8px 14px}
+  #timer{min-height:44px;display:inline-flex;align-items:center}
+  .opt{min-height:52px;padding:14px 15px}
+  .ynbtn{min-height:60px}
+  .step{min-height:48px;padding:12px 13px}
+  .nav button{width:44px;height:44px;font-size:13.5px}
+  .fillcode select{min-height:40px;font-size:16px;max-width:100%}  /* 16px để iOS không tự phóng to */
+  /* nội dung dài không được đẩy trang rộng ra */
+  table{display:block;overflow-x:auto}
+  .score .big{font-size:46px}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand"><span class="dot"></span>Luyện thi AI-200 <small>Azure AI Cloud Developer Associate</small></div>
+  <div class="sp"></div>
+  <div id="timer" hidden>--:--</div>
+  <button class="btn" id="submitBtn" hidden>Nộp bài</button>
+  <button class="btn" id="quitBtn" hidden>Thoát</button>
+  <button class="btn" id="themeBtn" title="Sáng/tối">◐</button>
+  <a class="btn" href="notes.html">📖 Tài liệu</a>
+</div>
+
+<div class="wrap">
+  <section id="home">
+    <h1>Luyện thi AI-200</h1>
+    <p class="sub">Ngân hàng <b id="nq">0</b> câu, gồm đủ các dạng câu hỏi theo format kỳ thi Microsoft.</p>
+    <div class="secttl">Đề mô phỏng</div>
+    <div class="cards" id="modesExam"></div>
+    <div class="secttl">Luyện theo dạng câu hỏi</div>
+    <div class="cards" id="modesKind"></div>
+    <div class="secttl">Luyện theo domain</div>
+    <div class="cards" id="modesDomain"></div>
+    <div class="stats" id="stats"></div>
+    <div class="note">
+      Câu hỏi <b>tự soạn theo study guide chính thức</b> (bản 2026-04-15), không phải đề thi thật.
+      Microsoft <b>chưa phát hành practice assessment</b> cho AI-200. Điểm quy đổi thang 1000 (đạt từ 700)
+      chỉ là ước lượng theo tỷ lệ câu đúng, không phải thuật toán chấm thật.
+      Dạng <b>lab tương tác</b> của đề thật không mô phỏng được ở đây — hãy làm lab thật theo lộ trình trong tài liệu.
+    </div>
+  </section>
+
+  <section id="quiz" hidden>
+    <div class="prog"><div id="progbar"></div></div>
+    <div id="casePanel"></div>
+    <div class="qhead">
+      <span class="pill" id="qidx"></span>
+      <span class="pill" id="qdom"></span>
+      <span class="pill kind" id="qkind"></span>
+      <div class="sp"></div>
+      <button class="btn" id="markBtn">⚑ Đánh dấu</button>
+    </div>
+    <div class="qtext" id="qtext"></div>
+    <div id="body"></div>
+    <div class="expl" id="expl" hidden></div>
+    <div class="bar">
+      <button class="btn" id="prevBtn">← Câu trước</button>
+      <button class="btn primary" id="nextBtn">Câu sau →</button>
+      <div class="sp"></div>
+      <span style="color:var(--muted);font-size:13px" id="hint"></span>
+    </div>
+    <div class="nav" id="navgrid"></div>
+  </section>
+
+  <section id="result" hidden></section>
+</div>
+
+<script>
+/* ============================================================
+   Ngân hàng câu hỏi — tự soạn theo study guide AI-200 (bản 2026-04-15)
+   Không phải đề thi thật.
+
+   Trắc nghiệm (QUESTIONS)
+     id = mã câu (duy nhất trên toàn bộ ngân hàng, dùng để ghi nhớ câu đã sai)
+     d  = domain 1-4 · q = câu hỏi · o = lựa chọn
+     a  = index đáp án đúng (số = 1 đáp án, mảng = nhiều đáp án)
+     e  = giải thích
+
+   Các dạng theo format kỳ thi
+     ORDER  steps = các bước ĐÃ theo đúng thứ tự (engine tự trộn khi hiển thị)
+     FILL   code  = đoạn code, {{n}} là chỗ trống thứ n · blanks[n] = {o, a}
+     YESNO  series = nhóm câu cùng một mục tiêu · a = true/false
+     CASES  sections = bối cảnh (markdown rút gọn) · questions = câu hỏi bám bối cảnh
+   ============================================================ */
+/* 4 mảng kỹ năng của đề thi, chú thích là tên chính thức trong study guide */
+const DOMAINS = [
+  "Container trên Azure",                    // Develop containerized solutions on Azure
+  "Data services & Vector cho AI",           // Develop AI solutions by using Azure data management services
+  "Kết nối và tiêu thụ dịch vụ Azure",       // Connect to and consume Azure services
+  "Bảo mật, giám sát và xử lý sự cố",        // Secure, monitor, and troubleshoot Azure solutions
+];
+const DOMAIN_SHORT  = ["Containers", "Data & Vector", "Messaging & Functions", "Bảo mật & Giám sát"];
+const DOMAIN_WEIGHT = ["20–25%", "25–30%", "20–25%", "20–25%"];
+
+const QUESTIONS = [
+/* ---------- 1. Containers trên Azure (20–25%) — 45 câu ---------- */
+{id:1,d:1,q:"Pipeline CI chạy trên agent không cài Docker daemon. Bạn cần build và push container image lên Azure Container Registry. Dùng gì?",
+ o:["`docker build` rồi `docker push`","`az acr build`","`az acr import`","`az container create`"],a:1,
+ e:"`az acr build` là một quick task của ACR Tasks: mã nguồn được gửi lên ACR, build **trên phía dịch vụ** rồi push tự động. Không cần Docker trên agent. `az acr import` chỉ sao chép image có sẵn giữa các registry."},
+{id:2,d:1,q:"Image của bạn dựa trên `python:3.12-slim`. Yêu cầu: khi base image có bản vá bảo mật, image con phải tự động được build lại. Cấu hình gì?",
+ o:["Scheduled ACR Task chạy hằng đêm","ACR Task với base image update trigger","Webhook của ACR gọi vào pipeline","Azure Policy quét image"],a:1,
+ e:"Base image update trigger theo dõi image cha; khi image cha thay đổi, task tự chạy lại. Scheduled task cũng rebuild được nhưng lãng phí và trễ, không phải cơ chế đúng."},
+{id:3,d:1,q:"Container của bạn lắng nghe port 8000. Sau khi deploy lên Azure App Service (Linux container), truy cập trả về lỗi 502. Sửa gì trước tiên?",
+ o:["Bật Always On","Thêm app setting `WEBSITES_PORT=8000`","Nâng SKU lên Premium","Bật health check"],a:1,
+ e:"App Service mặc định dò cổng 80/8080. Container nghe cổng khác phải khai báo `WEBSITES_PORT` (hoặc `PORT`) để platform biết chuyển tiếp request tới đâu."},
+{id:4,d:1,q:"Bạn phải cho App Service kéo image từ ACR mà không bật admin user và không lưu mật khẩu ở đâu cả. Cách đúng?",
+ o:["Bật admin user và lưu mật khẩu trong Key Vault","Gán managed identity cho web app, cấp role `AcrPull`, bật `acrUseManagedIdentityCreds`","Tạo SAS token cho registry","Bật anonymous pull trên ACR"],a:1,
+ e:"Managed identity + role `AcrPull` là cách khuyến nghị. ACR không có SAS token; anonymous pull làm registry công khai."},
+{id:5,d:1,q:"Thay đổi nào trên Azure Container Apps sẽ tạo ra một revision mới?",
+ o:["Cập nhật giá trị của một secret","Đổi image tag của container","Đổi cấu hình ingress","Bật/tắt Dapr"],a:1,
+ e:"Image, biến môi trường, CPU/memory, scale rule là **revision-scope** → tạo revision mới. Secret value, ingress, Dapr, registry credential là **application-scope** → áp dụng cho mọi revision, không tạo revision mới."},
+{id:6,d:1,q:"Bạn muốn chạy song song v1 nhận 90% traffic và v2 nhận 10% trên Container Apps. Cần làm gì?",
+ o:["Deploy hai container app riêng biệt và đặt Front Door phía trước","Chuyển sang multiple revision mode rồi cấu hình traffic weight","Dùng deployment slot rồi swap","Cài ingress controller trên AKS"],a:1,
+ e:"Traffic splitting chỉ khả dụng khi revision mode = multiple. Ở single revision mode, revision mới nhất luôn nhận 100% traffic. Container Apps không có deployment slot (đó là tính năng của App Service)."},
+{id:7,d:1,q:"Worker cần scale từ 0 đến 30 replica theo số message trong Service Bus queue, mỗi replica xử lý khoảng 20 message. Cấu hình nào đúng?",
+ o:["HTTP scale rule với concurrentRequests=20","CPU scale rule ngưỡng 70%","Custom scale rule type `azure-servicebus`, metadata `messageCount=20`, min 0 / max 30","Horizontal Pod Autoscaler trên AKS"],a:2,
+ e:"KEDA scaler `azure-servicebus` là đúng loại. `messageCount` là số message mục tiêu **trên mỗi replica**. Lưu ý rule cpu/memory không cho phép scale về 0."},
+{id:8,d:1,q:"Pod ở trạng thái `CrashLoopBackOff`. Lệnh nào giúp xem lỗi khiến container chết?",
+ o:["`kubectl get pods -o wide`","`kubectl logs <pod> --previous`","`kubectl top pod`","`kubectl describe node`"],a:1,
+ e:"`--previous` đọc log của lần chạy container trước khi crash — đúng chỗ chứa stack trace. `kubectl describe pod` bổ sung thông tin event (exit code, OOMKilled)."},
+{id:9,d:1,q:"Container bị kill với lý do `OOMKilled` khi xử lý batch embedding lớn. Trường nào trong manifest liên quan trực tiếp?",
+ o:["`resources.requests.cpu`","`resources.limits.memory`","`readinessProbe.initialDelaySeconds`","`spec.replicas`"],a:1,
+ e:"Vượt `limits.memory` thì kernel kill container. `requests` chỉ dùng cho scheduling. Cách xử lý: tăng limit hoặc giảm kích thước batch."},
+{id:10,d:1,q:"Bạn muốn pod chưa nạp xong model thì không nhận traffic từ Service, nhưng cũng không bị restart.",
+ o:["`livenessProbe`","`readinessProbe`","Tăng `terminationGracePeriodSeconds`","`initContainer`"],a:1,
+ e:"Readiness quyết định pod có được đưa vào endpoint của Service hay không. Liveness fail sẽ **restart** container — sai yêu cầu."},
+{id:11,d:1,q:"Ứng dụng chạy ở 4 region, cần pull image từ registry gần nhất nhưng chỉ dùng một tên registry duy nhất. Chọn gì?",
+ o:["Basic SKU + 4 registry riêng","Standard SKU + webhook đồng bộ","Premium SKU với geo-replication","Import image thủ công vào từng registry"],a:2,
+ e:"Geo-replication chỉ có ở Premium: một tên registry, dữ liệu nhân bản sang nhiều region, client tự route tới bản gần nhất."},
+{id:12,d:1,q:"Yêu cầu: chỉ truy cập ACR được từ trong VNet, chặn hoàn toàn public endpoint. Cần SKU nào?",
+ o:["Basic","Standard","Premium","SKU nào cũng được"],a:2,
+ e:"Private Link / private endpoint và firewall rule của ACR chỉ khả dụng ở Premium (cùng nhóm với geo-replication, content trust, CMK, repository-scoped token)."},
+{id:13,d:1,q:"Container App đặt `min-replicas=0` nhưng không bao giờ scale về 0. Nguyên nhân khả dĩ nhất?",
+ o:["Ingress đang bật external","Có scale rule loại cpu hoặc memory","Chưa cấu hình max-replicas","Chưa bật Dapr"],a:1,
+ e:"Scale rule dựa trên CPU/memory không hỗ trợ scale-to-zero, nên app luôn giữ ít nhất 1 replica. Chỉ HTTP/TCP/KEDA event scaler mới cho phép về 0."},
+{id:14,d:1,q:"Một service backend chỉ được gọi bởi các app khác trong cùng Container Apps environment, không được lộ ra internet.",
+ o:["Ingress external + IP restriction","Ingress internal","Tắt ingress hoàn toàn","Đặt sau Application Gateway"],a:1,
+ e:"Ingress internal cấp DNS nội bộ trong environment (gọi bằng tên app) mà không tạo endpoint public. Tắt hẳn ingress thì app khác **không gọi HTTP được**, chỉ hợp với worker."},
+{id:15,d:1,q:"Bạn cần sao chép image `docker.io/library/redis:7` vào ACR mà không pull về máy rồi push lên.",
+ o:["`az acr build`","`az acr import`","`az acr task run`","`docker tag` + `docker push`"],a:1,
+ e:"`az acr import` sao chép trực tiếp giữa registry, không cần Docker và không tốn băng thông của máy local."},
+{id:16,d:1,q:"Tác vụ reindex toàn bộ vector chạy 40 phút, mỗi đêm một lần. Cách chạy phù hợp nhất trên Container Apps?",
+ o:["Container app với min-replicas=1 và vòng lặp sleep","Container Apps Job với trigger Schedule","Azure Function trên Consumption plan","DaemonSet trên AKS"],a:1,
+ e:"Container Apps Job sinh ra để chạy tác vụ hữu hạn theo lịch hoặc theo event, kết thúc là dừng — không tốn tiền khi rảnh. Consumption plan của Functions bị giới hạn timeout 10 phút."},
+{id:17,d:1,q:"Cú pháp nào đúng để app setting của App Service trỏ tới secret trong Key Vault?",
+ o:["`@AzureKeyVault(https://kv.vault.azure.net/secrets/api-key)`","`@Microsoft.KeyVault(SecretUri=https://kv.vault.azure.net/secrets/api-key/)`","`${KeyVault:api-key}`","`keyvaultref:api-key`"],a:1,
+ e:"Cú pháp là `@Microsoft.KeyVault(SecretUri=...)` hoặc `@Microsoft.KeyVault(VaultName=...;SecretName=...)`. Còn `keyvaultref:` là cú pháp của Container Apps secret — dễ nhầm."},
+{id:18,d:1,q:"Pod báo `ImagePullBackOff` sau khi deploy lên AKS. Nguyên nhân nào KHÔNG hợp lý?",
+ o:["Tag image không tồn tại trong registry","Kubelet identity chưa có role `AcrPull`","Container vượt quá `limits.memory`","Sai tên registry trong manifest"],a:2,
+ e:"Vượt memory limit gây `OOMKilled` ở giai đoạn chạy, không phải lỗi kéo image. Ba nguyên nhân còn lại đều gây ImagePullBackOff."},
+{id:19,d:1,q:"Sau khi `kubectl apply` bản mới, ứng dụng lỗi. Lệnh nào quay lại bản trước nhanh nhất?",
+ o:["`kubectl delete deploy` rồi apply lại file cũ","`kubectl rollout undo deploy/rag-api`","`kubectl scale deploy/rag-api --replicas=0`","`kubectl drain node`"],a:1,
+ e:"`kubectl rollout undo` khôi phục revision trước của Deployment mà không mất downtime. Dùng `kubectl rollout status` để theo dõi."},
+{id:20,d:1,q:"Chọn TẤT CẢ các thay đổi tạo revision mới trên Container Apps.",
+ o:["Đổi image tag","Thêm biến môi trường","Đổi giá trị secret","Đổi CPU/memory của container"],a:[0,1,3],
+ e:"Image, env var, tài nguyên container, scale rule đều là revision-scope. Giá trị secret là application-scope: cập nhật xong phải restart revision để container đọc giá trị mới, nhưng không sinh revision mới."},
+{id:101,d:1,q:"Production yêu cầu deploy phải hoàn toàn tái lập được, không bị ảnh hưởng nếu ai đó push đè lên cùng một tag. Tham chiếu image thế nào?",
+ o:["Theo tag `:latest`","Theo tag semver `:1.2.0`","Theo digest `@sha256:...`","Theo tên repository"],a:2,
+ e:"Tag có thể bị ghi đè, digest thì bất biến vì là hash của nội dung image. Production nên pin theo digest; tag semver chỉ giảm rủi ro chứ không loại bỏ."},
+{id:102,d:1,q:"Muốn kích hoạt pipeline deploy mỗi khi có image mới được push lên ACR. Cơ chế nào?",
+ o:["ACR webhook","ACR Task base image trigger","Azure Policy","Diagnostic setting"],a:0,
+ e:"Webhook của ACR gửi HTTP POST tới endpoint bạn chỉ định khi có sự kiện push/delete. Base image trigger là để **rebuild** image, không phải để deploy."},
+{id:103,d:1,q:"Yêu cầu: chỉ image đã được ký số mới được tin cậy và deploy. Cần SKU ACR nào?",
+ o:["Basic","Standard","Premium","Bất kỳ SKU nào"],a:2,
+ e:"Content trust (Docker Notary, ký image) là tính năng Premium, cùng nhóm với geo-replication, private link, CMK và repository-scoped token."},
+{id:104,d:1,q:"Bạn muốn chạy build → unit test → chỉ push nếu test pass, toàn bộ trên ACR. Dùng gì?",
+ o:["Nhiều lệnh `az acr build` liên tiếp","Multi-step ACR Task định nghĩa bằng file YAML","ACR webhook","Container Apps Job"],a:1,
+ e:"Multi-step task cho phép khai báo các step `build`, `cmd`, `push` trong YAML, có phụ thuộc và chạy song song. Nếu step `cmd` chạy test thất bại thì step `push` không chạy."},
+{id:105,d:1,q:"Team CI/CD chỉ được phép push vào duy nhất repository `ai/rag-api`, không được động vào repo khác trong cùng registry.",
+ o:["Bật admin user và chia sẻ mật khẩu","Tạo repository-scoped token (Premium)","Gán role AcrPush ở cấp registry","Tạo registry riêng cho mỗi repo"],a:1,
+ e:"Repository-scoped token (Premium) giới hạn quyền tới từng repository và từng hành động (content/read, content/write). Role `AcrPush` gán ở cấp registry là quá rộng."},
+{id:106,d:1,q:"Bạn muốn deploy bản mới lên App Service, kiểm thử trên URL riêng rồi mới đưa vào production không downtime.",
+ o:["Deploy trực tiếp rồi restart","Dùng deployment slot rồi swap","Tạo web app thứ hai và đổi DNS","Bật Always On"],a:1,
+ e:"Slot có hostname riêng để test, swap thực hiện warm-up rồi đổi vai trò nên gần như không downtime. App setting có thể đánh dấu là **slot setting** để không bị swap theo."},
+{id:107,d:1,q:"Một instance của App Service bị treo, vẫn nhận request và trả lỗi. Cấu hình nào giúp platform tự loại nó khỏi load balancer?",
+ o:["Always On","Health check với đường dẫn `/healthz`","Auto-heal theo lịch","ARR affinity"],a:1,
+ e:"Health check gọi định kỳ path bạn khai báo; instance trả lỗi liên tục sẽ bị loại khỏi rotation và có thể được thay thế."},
+{id:108,d:1,q:"Bạn cần chạy OpenTelemetry Collector cạnh ứng dụng trên Linux App Service mà không sửa image ứng dụng.",
+ o:["Sidecar container","Deployment slot","WebJob","Init container"],a:0,
+ e:"Linux App Service hỗ trợ sidecar container chạy song song container chính trong cùng app, phù hợp cho agent thu thập telemetry hoặc proxy."},
+{id:109,d:1,q:"Trong Container Apps, tham chiếu tới một secret đã khai báo ở cấp app trong biến môi trường viết thế nào?",
+ o:["`@Microsoft.KeyVault(SecretUri=...)`","`secretref:<tên secret>`","`$SECRET_NAME`","`valueFrom.secretKeyRef`"],a:1,
+ e:"Container Apps dùng `secretref:`. `@Microsoft.KeyVault(...)` là của App Service, còn `secretKeyRef` là của Kubernetes — ba cú pháp rất hay bị nhầm."},
+{id:110,d:1,q:"Container App cần lấy secret trực tiếp từ Key Vault thay vì lưu bản sao trong app. Khai báo nào đúng?",
+ o:["`keyvaultref:<secret-uri>,identityref:<identity>`","`@Microsoft.KeyVault(VaultName=...)`","Chỉ cần gán managed identity là tự lấy được","Phải mount Key Vault như volume"],a:0,
+ e:"Container Apps hỗ trợ secret kiểu Key Vault reference với cú pháp `keyvaultref:<uri>,identityref:<managed identity>`; platform sẽ tự đồng bộ và xoay theo giá trị mới."},
+{id:111,d:1,q:"Service của bạn dùng gRPC. Cần cấu hình gì trên ingress của Container Apps?",
+ o:["Bật session affinity","Đặt transport là HTTP/2","Chuyển sang TCP ingress","Tắt ingress"],a:1,
+ e:"gRPC chạy trên HTTP/2, nên ingress phải đặt `--transport http2` (hoặc `auto`). Với HTTP/1.1 mặc định thì gRPC không hoạt động."},
+{id:112,d:1,q:"Hai container app trong cùng một environment gọi nhau bằng cách nào là đơn giản nhất?",
+ o:["Qua địa chỉ IP public","Qua tên app trong DNS nội bộ của environment","Qua Service Bus","Qua Application Gateway"],a:1,
+ e:"Environment cung cấp DNS nội bộ; app có ingress internal được gọi bằng chính tên app (hoặc FQDN nội bộ) mà không ra internet."},
+{id:113,d:1,q:"Cần xử lý một loạt job embedding: mỗi message trong queue sinh ra một lần chạy, chạy xong thì dừng, tối đa 10 job song song.",
+ o:["Container app với HTTP scale rule","Container Apps Job với trigger Event và parallelism","AKS DaemonSet","App Service WebJob"],a:1,
+ e:"Event-driven job của Container Apps tạo một execution cho mỗi lô message, có `parallelism` và `replicaCompletionCount`. Container app thường trực không phù hợp cho tác vụ có điểm kết thúc."},
+{id:114,d:1,q:"Bạn muốn biết vì sao Container App không scale lên dù có tải. Xem log nào?",
+ o:["`az containerapp logs show` (log console của app)","`az containerapp logs show --type system`","`kubectl get events`","Application Insights AppTraces"],a:1,
+ e:"System log ghi sự kiện của platform: provisioning revision, quyết định scaling, lỗi kéo image. Console log chỉ có stdout/stderr của ứng dụng."},
+{id:115,d:1,q:"Lưu lượng tăng đều đặn mỗi ngày 8h–18h. Muốn giữ sẵn 5 replica trong khung giờ đó, ngoài giờ về 0.",
+ o:["Scale rule cpu","KEDA cron scaler","Tăng min-replicas lên 5 cả ngày","HTTP scale rule với concurrency thấp"],a:1,
+ e:"Cron scaler của KEDA đặt số replica mong muốn theo lịch (`start`, `end`, `desiredReplicas`), kết hợp được với các rule khác — rule nào cho số lớn hơn thì thắng."},
+{id:116,d:1,q:"API phục vụ người dùng cuối bị chậm ở request đầu tiên sau thời gian rảnh. Sửa gì trên Container Apps?",
+ o:["Đặt `min-replicas` ít nhất bằng 1","Tăng `max-replicas`","Bật Dapr","Chuyển sang ingress internal"],a:0,
+ e:"Scale-to-zero gây cold start. Đặt min-replicas ≥ 1 giữ sẵn instance nóng; đổi lại là luôn phải trả tiền cho replica đó."},
+{id:117,d:1,q:"Trong AKS, dữ liệu cấu hình không nhạy cảm (endpoint, số TopK) nên đưa vào đâu?",
+ o:["Secret","ConfigMap","PersistentVolume","Hard-code trong image"],a:1,
+ e:"ConfigMap cho cấu hình thường, Secret cho dữ liệu nhạy cảm. Hard-code trong image khiến mỗi lần đổi cấu hình phải build lại."},
+{id:118,d:1,q:"Bạn không muốn lưu secret trong Kubernetes Secret vì nó chỉ được mã hoá base64. Giải pháp trên AKS?",
+ o:["Đặt secret vào ConfigMap","Secrets Store CSI driver mount secret từ Azure Key Vault","Ghi secret vào PersistentVolume","Truyền secret qua argument dòng lệnh"],a:1,
+ e:"Secrets Store CSI driver với Key Vault provider mount secret thành file trong pod (và có thể đồng bộ thành K8s Secret), kết hợp workload identity để không cần credential."},
+{id:119,d:1,q:"Pod trên AKS cần gọi Cosmos DB bằng Entra ID mà không lưu bất kỳ credential nào. Dùng gì?",
+ o:["Service account token thủ công","Microsoft Entra Workload Identity","Kubernetes Secret chứa key","Node-managed identity gán cho toàn cluster"],a:1,
+ e:"Workload Identity liên kết Kubernetes service account với ứng dụng Entra ID qua OIDC federation; pod nhận token trực tiếp. Đây là cách thay thế cho pod-managed identity đã ngừng phát triển."},
+{id:120,d:1,q:"Trên AKS, bạn cần scale deployment theo độ dài của Service Bus queue chứ không theo CPU.",
+ o:["HPA mặc định là đủ","Cài KEDA lên cluster và tạo ScaledObject","Dùng Cluster Autoscaler","Dùng VPA"],a:1,
+ e:"HPA gốc chỉ dùng metric CPU/memory (hoặc custom metric qua adapter). KEDA cung cấp scaler cho Service Bus, Event Hubs, Redis… và cho phép scale về 0."},
+{id:121,d:1,q:"Bạn muốn test nhanh một service `ClusterIP` từ máy local mà không tạo LoadBalancer.",
+ o:["`kubectl port-forward svc/rag-api 8080:80`","`kubectl expose`","`kubectl proxy --address 0.0.0.0`","Đổi service sang NodePort vĩnh viễn"],a:0,
+ e:"`kubectl port-forward` tạo tunnel tạm thời từ máy local vào service/pod, không thay đổi cấu hình cluster."},
+{id:122,d:1,q:"Workload nào phù hợp với StatefulSet thay vì Deployment?",
+ o:["API stateless phía sau load balancer","Job xử lý batch một lần","Cụm database tự quản lý cần tên và volume ổn định cho từng pod","Agent thu thập log trên mọi node"],a:2,
+ e:"StatefulSet cho identity mạng ổn định (pod-0, pod-1) và PersistentVolumeClaim riêng theo pod. Agent trên mọi node là DaemonSet; job batch là Job."},
+{id:123,d:1,q:"Sau khi apply, pod chạy nhưng service trả 503. Bước chẩn đoán hợp lý đầu tiên?",
+ o:["Xoá và tạo lại cluster","Kiểm tra `selector` của Service có khớp `labels` của pod không, và readinessProbe đã pass chưa","Tăng số replica","Đổi service sang LoadBalancer"],a:1,
+ e:"Service định tuyến theo label selector; lệch label thì endpoint rỗng. Readiness chưa pass thì pod cũng không nằm trong endpoint. Kiểm tra bằng `kubectl get endpoints`."},
+{id:124,d:1,q:"Nhóm câu lệnh nào giúp xác minh kết nối end-to-end từ trong cluster tới một service?",
+ o:["`kubectl top pod`","`kubectl run tmp --rm -it --image=curlimages/curl -- curl http://rag-api/healthz`","`kubectl cordon node`","`kubectl config view`"],a:1,
+ e:"Chạy một pod tạm rồi curl tới tên service kiểm tra được cả DNS nội bộ, selector của service lẫn khả năng phản hồi của ứng dụng."},
+{id:125,d:1,q:"Chọn TẤT CẢ những cách hợp lệ để App Service / Container Apps xác thực với ACR mà không dùng mật khẩu.",
+ o:["System-assigned managed identity với role AcrPull","User-assigned managed identity với role AcrPull","Admin username/password của registry","Anonymous pull"],a:[0,1],
+ e:"Cả hai loại managed identity đều dùng được. Admin user là username/password (nên tắt), còn anonymous pull biến registry thành công khai."},
+/* ---------- 2. Data services & Vector (25–30%) — 58 câu ---------- */
+{id:21,d:2,q:"Cách đọc nào rẻ nhất về RU trong Azure Cosmos DB for NoSQL khi bạn biết cả `id` lẫn partition key?",
+ o:["`query_items` với `SELECT * FROM c WHERE c.id=@id`","`read_item` (point read)","Đọc qua change feed","`read_all_items` rồi lọc phía client"],a:1,
+ e:"Point read tốn khoảng 1 RU cho item 1 KB, rẻ hơn hẳn query tương đương (query phải qua engine truy vấn và trả metadata nhiều hơn)."},
+{id:22,d:2,q:"Workload đọc nhiều, chấp nhận trễ vài giây. Đổi gì để giảm RU nhanh nhất?",
+ o:["Hạ consistency từ Strong xuống Session","Nâng consistency từ Session lên Strong","Tăng RU/s đã cấp phát","Bật multi-region write"],a:0,
+ e:"Strong và Bounded staleness tính **2× RU** cho thao tác đọc; Session, Consistent prefix, Eventual chỉ tính 1×. Có thể hạ mức consistency ở từng request, nhưng không thể nâng cao hơn mức của account."},
+{id:23,d:2,q:"Document chứa trường `embedding` là mảng 1536 số. Chi phí RU khi ghi rất cao. Sửa gì?",
+ o:["Giảm số chiều embedding xuống 2","Thêm `/embedding/*` vào `excludedPaths` của indexing policy","Đổi partition key sang `/id`","Bật autoscale throughput"],a:1,
+ e:"Mặc định Cosmos index mọi property, kể cả từng phần tử mảng → 1536 mục index cho mỗi document. Loại trường embedding khỏi index thường (vẫn giữ vectorIndexes riêng) giảm write RU rất mạnh."},
+{id:24,d:2,q:"50 triệu vector 1536 chiều trong Cosmos DB for NoSQL, ưu tiên độ trễ thấp. Loại vector index nào?",
+ o:["`flat`","`quantizedFlat`","`diskANN`","Không cần index, brute force là đủ"],a:2,
+ e:"`diskANN` là ANN dựa trên graph, cho độ trễ thấp nhất ở quy mô lớn. `flat` chỉ hỗ trợ tối đa 505 chiều và quét toàn bộ."},
+{id:25,d:2,q:"Truy vấn nào thực sự tận dụng được vector index của Cosmos DB?",
+ o:["`SELECT c.id, VectorDistance(c.e,@v) FROM c`","`SELECT TOP 5 c.id FROM c WHERE VectorDistance(c.e,@v) < 0.3`","`SELECT TOP 5 c.id, VectorDistance(c.e,@v) AS s FROM c ORDER BY VectorDistance(c.e,@v)`","`SELECT TOP 5 c.id FROM c ORDER BY c.createdAt DESC`"],a:2,
+ e:"Vector index chỉ được dùng khi có `ORDER BY VectorDistance(...)` kèm `TOP`. Đặt VectorDistance trong `WHERE` khiến engine tính khoảng cách cho mọi document (brute force, RU cao)."},
+{id:26,d:2,q:"Cần sinh embedding cho mọi document mới hoặc vừa được cập nhật trong Cosmos DB. Giải pháp ít code nhất?",
+ o:["Timer Function quét lại toàn bộ container mỗi 5 phút","Azure Function với Cosmos DB trigger (change feed) và lease container","Event Grid system topic trên Cosmos DB","Container App polling bằng query `WHERE _ts > lastRun`"],a:1,
+ e:"Cosmos DB trigger chính là Change Feed Processor được host sẵn: tự chia partition, tự checkpoint qua lease container. Quét toàn bộ tốn RU và không phát hiện kịp thời."},
+{id:27,d:2,q:"Hai xử lý downstream độc lập (một sinh embedding, một gửi thông báo) cùng đọc change feed của một container. Cần cấu hình gì?",
+ o:["Dùng chung một lease container để tiết kiệm","Mỗi xử lý dùng lease container riêng hoặc lease prefix riêng","Bật multi-region write","Chuyển sang chế độ all versions and deletes"],a:1,
+ e:"Các consumer dùng chung lease sẽ chia nhau partition và mỗi thay đổi chỉ đến được một bên. Lease riêng (hoặc `LeasePrefix` khác nhau) tạo hai consumer group độc lập."},
+{id:28,d:2,q:"Change feed ở chế độ mặc định (latest version) KHÔNG phát hiện được điều gì?",
+ o:["Item mới được insert","Item được update","Item bị **delete**","Item được upsert"],a:2,
+ e:"Latest version mode không phát ra sự kiện xoá. Muốn bắt delete thì dùng chế độ **all versions and deletes**, hoặc áp dụng soft-delete (đánh dấu `deleted=true`) kèm TTL."},
+{id:29,d:2,q:"`CREATE EXTENSION vector;` báo lỗi trên Azure Database for PostgreSQL flexible server. Nguyên nhân phổ biến nhất?",
+ o:["Sai compute tier","Chưa thêm `vector` vào server parameter `azure.extensions`","pgvector không được hỗ trợ trên Azure","Thiếu quyền superuser nên vĩnh viễn không chạy được"],a:1,
+ e:"Azure yêu cầu allowlist extension qua server parameter `azure.extensions` (cần restart với một số extension) trước khi `CREATE EXTENSION` hoạt động."},
+{id:30,d:2,q:"Index đã tạo là `USING hnsw (embedding vector_cosine_ops)`. Truy vấn nào dùng được index này?",
+ o:["`ORDER BY embedding <-> $1`","`ORDER BY embedding <=> $1`","`WHERE embedding = $1`","`ORDER BY embedding <#> $1`"],a:1,
+ e:"`<=>` là cosine distance, khớp với opclass `vector_cosine_ops`. `<->` (L2) cần `vector_l2_ops`, `<#>` (inner product) cần `vector_ip_ops`. Lệch toán tử → planner bỏ qua index và chuyển sang Seq Scan."},
+{id:31,d:2,q:"Truy vấn RAG có filter `WHERE tenant_id = $1` rất chọn lọc, kết quả trả về ít và recall kém. Cách khắc phục hợp lý?",
+ o:["Giảm `hnsw.ef_search` xuống 10","Tăng `hnsw.ef_search`, hoặc dùng partial index / partition theo tenant","Bỏ index vector đi","Đổi sang toán tử `<->`"],a:1,
+ e:"ANN index duyệt theo đồ thị rồi mới lọc, filter chọn lọc cao dễ cắt mất kết quả. Tăng `ef_search` (duyệt rộng hơn) hoặc tạo index riêng cho từng nhóm dữ liệu giải quyết được."},
+{id:32,d:2,q:"Azure Functions mở kết nối PostgreSQL mới cho mỗi lần chạy, server báo hết connection slot. Sửa gì?",
+ o:["Nâng vCPU của server","Bật PgBouncer tích hợp (port 6432) hoặc dùng connection pool phía app","Chuyển sang Burstable tier","Tắt SSL để giảm overhead"],a:1,
+ e:"Mỗi kết nối Postgres là một process tốn RAM. Serverless sinh rất nhiều kết nối ngắn → cần connection pooling; flexible server có PgBouncer built-in ở port 6432."},
+{id:33,d:2,q:"Cần cache câu trả lời LLM trong 1 giờ, đồng thời xoá ngay khi tài liệu nguồn thay đổi. Kết hợp nào đúng?",
+ o:["`SET key value EX 3600` và `UNLINK key` khi nhận sự kiện thay đổi","`SET key value` không TTL, dựa hoàn toàn vào eviction","`FLUSHDB` mỗi giờ","Đặt eviction policy `noeviction`"],a:0,
+ e:"TTL lo phần hết hạn tự nhiên; invalidation theo sự kiện (change feed / Event Grid → Function) lo phần dữ liệu đổi. `UNLINK` xoá bất đồng bộ nên không block Redis như `DEL` với key lớn."},
+{id:34,d:2,q:"Partition key nào tệ nhất cho container lưu chunk tài liệu của nhiều khách hàng?",
+ o:["`/tenantId`","`/documentId`","`/status`","`/userId`"],a:2,
+ e:"`/status` có cardinality rất thấp (vài giá trị) → tất cả document dồn vào ít logical partition, gây hot partition và chạm trần 20 GB / 10.000 RU/s."},
+{id:35,d:2,q:"Container Cosmos DB đã tạo xong, giờ bạn muốn đổi `distanceFunction` của vector embedding policy từ cosine sang dotproduct.",
+ o:["Dùng `az cosmosdb sql container update`","Sửa trong portal, có hiệu lực sau khi reindex","Không sửa được — phải tạo container mới và migrate dữ liệu","Chỉ cần đổi trong câu query"],a:2,
+ e:"Vector embedding policy (path, dataType, dimensions, distanceFunction) là bất biến sau khi tạo container. Indexing policy thì sửa được, nhưng embedding policy thì không."},
+{id:36,d:2,q:"Bạn đổi model embedding từ `text-embedding-3-small` (1536 chiều) sang bản 3072 chiều nhưng giữ nguyên container. Điều gì xảy ra?",
+ o:["Cosmos tự động điều chỉnh số chiều","Ghi thất bại hoặc kết quả tìm kiếm sai vì `dimensions` trong policy không khớp","Truy vấn chậm hơn nhưng vẫn đúng","Chỉ ảnh hưởng chi phí lưu trữ"],a:1,
+ e:"Số chiều khai báo trong vector embedding policy phải khớp chính xác với model. Không khớp thì vector không được index đúng — và policy lại không sửa được, nên phải tạo container mới."},
+{id:37,d:2,q:"Trong RediSearch, truy vấn KNN nào đúng cú pháp?",
+ o:["`FT.SEARCH idx \"@embedding KNN 5 $vec\"`","`FT.SEARCH idx \"(@tenant:{a})=>[KNN 5 @embedding $vec AS score]\" ... DIALECT 2`","`FT.SEARCH idx \"KNN(@embedding, $vec, 5)\"`","`FT.VECTOR idx 5 $vec`"],a:1,
+ e:"Cú pháp KNN của RediSearch là `<pre-filter>=>[KNN k @field $vec AS score]`, bắt buộc `DIALECT 2`, và vector được truyền dưới dạng bytes (float32)."},
+{id:38,d:2,q:"Chi phí RAM cho index HNSW quá lớn. Giải pháp giảm bộ nhớ mà ít ảnh hưởng chất lượng nhất?",
+ o:["Chuyển sang `halfvec` (float16) hoặc dùng DiskANN","Giảm số chiều xuống 64","Xoá index và quét tuần tự","Tăng `ef_construction` lên 1000"],a:0,
+ e:"`halfvec` giảm khoảng 50% dung lượng với sai lệch rất nhỏ; DiskANN đặt index trên đĩa nên RAM thấp. Tăng `ef_construction` chỉ làm index **to và chậm build hơn**."},
+{id:39,d:2,q:"Điều gì đúng về index IVFFlat của pgvector?",
+ o:["Nên tạo index trước rồi mới nạp dữ liệu","Phải nạp dữ liệu đại diện trước khi tạo index, vì index dựa trên phân cụm","Không cần tham số nào","Luôn cho recall cao hơn HNSW"],a:1,
+ e:"IVFFlat phân cụm dữ liệu thành `lists` centroid; tạo index trên bảng rỗng sẽ cho phân cụm vô nghĩa và recall rất tệ. HNSW thì tạo lúc nào cũng được."},
+{id:40,d:2,q:"Tier nào của Azure Database for PostgreSQL phù hợp nhất cho workload vector dùng HNSW quy mô lớn?",
+ o:["Burstable","General Purpose","Memory Optimized","Tier nào cũng như nhau"],a:2,
+ e:"HNSW cho hiệu năng tốt khi index nằm gọn trong RAM. Memory Optimized cho tỉ lệ RAM/vCPU cao nhất. Nếu không đủ ngân sách RAM thì chuyển sang DiskANN."},
+{id:41,d:2,q:"Header nào cho biết chi phí RU thực tế của một thao tác Cosmos DB?",
+ o:["`x-ms-resource-usage`","`x-ms-request-charge`","`x-ms-consistency-level`","`x-ms-session-token`"],a:1,
+ e:"`x-ms-request-charge` trả về số RU đã tiêu tốn. Đây là cách chuẩn để đo trước/sau khi tối ưu indexing policy hay truy vấn."},
+{id:42,d:2,q:"Truy vấn có `ORDER BY c.tenantId ASC, c.createdAt DESC` báo lỗi thiếu index. Cần thêm gì?",
+ o:["Vector index","Composite index cho cặp (tenantId ASC, createdAt DESC)","Spatial index","Tăng RU/s"],a:1,
+ e:"Cosmos DB yêu cầu composite index cho `ORDER BY` trên nhiều property, và thứ tự/chiều sắp xếp phải khớp với định nghĩa index."},
+{id:43,d:2,q:"Bạn cần kết hợp tìm kiếm từ khoá và tìm kiếm ngữ nghĩa rồi trộn thứ hạng. Kỹ thuật nào?",
+ o:["Chỉ tăng `TOP N`","Reciprocal Rank Fusion (RRF) kết hợp full-text score và vector distance","Chỉ dùng cosine similarity","Tăng số chiều embedding"],a:1,
+ e:"Hybrid search: chạy song song BM25/full-text và vector search rồi hợp nhất bằng RRF. Cosmos DB NoSQL có `FullTextScore` và `RRF()`; PostgreSQL làm được bằng `tsvector` + công thức RRF thủ công."},
+{id:44,d:2,q:"Nạp 10 triệu document vào Cosmos DB nhanh nhất và tốn ít RU nhất. Kết hợp nào hợp lý?",
+ o:["Ghi từng item bằng `create_item` trong vòng lặp tuần tự","Bật bulk mode, tạm đặt `indexingMode: none` khi nạp rồi bật lại sau","Đặt consistency Strong để đảm bảo an toàn","Tắt autoscale"],a:1,
+ e:"Bulk executor gộp nhiều thao tác theo partition; tắt indexing trong lúc nạp loại bỏ chi phí index cho mỗi lần ghi, sau đó bật lại để Cosmos reindex nền."},
+{id:45,d:2,q:"Eviction policy nào phù hợp khi Redis được dùng thuần làm cache và bộ nhớ có thể đầy?",
+ o:["`noeviction`","`allkeys-lru`","`volatile-random`","Không cần cấu hình"],a:1,
+ e:"`allkeys-lru` loại bỏ key ít dùng nhất khi đầy — hành vi đúng của một cache. `noeviction` sẽ khiến lệnh ghi báo lỗi khi hết RAM (chỉ hợp khi Redis dùng làm queue/state store)."},
+{id:46,d:2,q:"Extension `azure_ai` trên Azure Database for PostgreSQL cho phép làm gì?",
+ o:["Tạo index vector nhanh hơn","Gọi Azure OpenAI ngay trong câu lệnh SQL, ví dụ `azure_openai.create_embeddings()`","Nén dữ liệu vector","Tự động sharding bảng"],a:1,
+ e:"`azure_ai` tích hợp Azure AI Services/Azure OpenAI vào SQL, cho phép sinh embedding trực tiếp bằng `UPDATE ... SET embedding = azure_openai.create_embeddings(...)`."},
+{id:47,d:2,q:"Ứng dụng đọc lặp lại cùng một tập item và muốn giảm RU xuống 0 cho những lần đọc trúng cache của Cosmos DB. Cần gì?",
+ o:["Bật autoscale","Dùng integrated cache thông qua dedicated gateway","Hạ consistency xuống Eventual","Thêm composite index"],a:1,
+ e:"Integrated cache (yêu cầu dedicated gateway) trả kết quả point read và query từ cache mà không tính RU, phù hợp workload đọc lặp lại nhiều."},
+{id:48,d:2,q:"Chọn TẤT CẢ những việc giúp giảm chi phí compute của pgvector.",
+ o:["Dùng `halfvec` thay `vector`","Chuẩn hoá vector rồi dùng inner product","Index mọi cột trong bảng","Giảm số chiều embedding khi model hỗ trợ"],a:[0,1,3],
+ e:"Index tràn lan làm chậm ghi và tốn dung lượng, không giúp gì cho vector search. Ba lựa chọn còn lại đều giảm khối lượng tính toán trên mỗi phép so sánh."},
+{id:201,d:2,q:"Workload dev/test chạy rời rạc, có lúc cả ngày không dùng. Chế độ throughput nào tiết kiệm nhất cho Cosmos DB?",
+ o:["Manual (standard) provisioned","Autoscale","Serverless","Reserved capacity"],a:2,
+ e:"Serverless tính tiền theo RU thực tiêu thụ, phù hợp workload rời rạc. Autoscale vẫn tính tối thiểu 10% max RU/s mỗi giờ; manual tính đủ RU đã cấp phát."},
+{id:202,d:2,q:"Ứng dụng nhận nhiều lỗi HTTP 429 từ Cosmos DB khi nạp dữ liệu. Cách xử lý đúng nhất?",
+ o:["Bỏ qua và retry ngay lập tức không chờ","Để SDK retry theo `x-ms-retry-after-ms`, tăng số lần retry và cân nhắc nâng RU/s hoặc dùng bulk mode","Đổi sang consistency Strong","Tắt indexing vĩnh viễn"],a:1,
+ e:"429 là throttling. SDK tự chờ theo `x-ms-retry-after-ms`; retry ngay không chờ chỉ làm nặng thêm. Song song đó cần giảm RU tiêu thụ hoặc tăng throughput."},
+{id:203,d:2,q:"Container Cosmos DB lưu kết quả tạm, cần tự xoá sau 24 giờ. Cấu hình gì?",
+ o:["Change feed","TTL ở cấp container (và có thể override theo item)","Stored procedure chạy định kỳ","Indexing policy none"],a:1,
+ e:"TTL của Cosmos DB xoá item hết hạn nền bằng RU dư. Đặt `DefaultTimeToLive` ở container và có thể ghi đè bằng thuộc tính `ttl` trên từng item."},
+{id:204,d:2,q:"Với consistency Session, một người dùng ghi rồi đọc lại ngay qua **instance khác** của ứng dụng nhưng không thấy dữ liệu mới. Cách khắc phục?",
+ o:["Chuyển toàn account sang Strong","Truyền session token giữa các instance trong cùng phiên người dùng","Tăng RU/s","Bật multi-region write"],a:1,
+ e:"Đảm bảo read-your-own-writes của Session gắn với session token của client. Chia sẻ token (qua cookie/cache) giữa các instance là cách xử lý đúng mà không cần tăng chi phí lên Strong."},
+{id:205,d:2,q:"Truy vấn RAG hiện quét mọi partition dù chỉ cần dữ liệu của một khách hàng. Sửa gì?",
+ o:["Tăng RU/s","Thêm điều kiện partition key vào `WHERE` và truyền `partition_key` cho SDK","Đổi consistency","Bật autoscale"],a:1,
+ e:"Chỉ định partition key giúp truy vấn chỉ chạm đúng một physical partition, giảm RU rất nhiều so với fan-out cross-partition."},
+{id:206,d:2,q:"Một khách hàng lớn chiếm 80% dữ liệu, logical partition của họ sắp chạm 20 GB. Giải pháp?",
+ o:["Tăng RU/s cho container","Dùng synthetic partition key, ví dụ `tenantId_yyyyMM`","Chuyển sang autoscale","Bật TTL"],a:1,
+ e:"Giới hạn 20 GB là cứng cho mỗi logical partition. Ghép thêm thành phần (tháng, hash bucket) vào partition key để chia nhỏ dữ liệu của tenant lớn."},
+{id:207,d:2,q:"Mức độ song song tối đa khi xử lý change feed bị giới hạn bởi yếu tố nào?",
+ o:["Số instance của ứng dụng","Số physical partition của container","Số RU/s","Kích thước lease container"],a:1,
+ e:"Mỗi physical partition được gán cho đúng một consumer tại một thời điểm. Chạy nhiều instance hơn số partition thì instance thừa sẽ nằm chờ."},
+{id:208,d:2,q:"Bạn triển khai change feed processor lần đầu và muốn xử lý cả dữ liệu đã có sẵn từ trước.",
+ o:["Đặt `start_from_beginning = True`","Xoá rồi tạo lại container","Bật all versions and deletes mode","Không làm được, change feed chỉ đọc từ hiện tại"],a:0,
+ e:"Mặc định processor chỉ đọc thay đổi mới kể từ lúc khởi động. `start_from_beginning` (hoặc `StartTime`) cho phép đọc lại từ đầu; lease container lưu checkpoint để không xử lý lặp."},
+{id:209,d:2,q:"So với `diskANN`, index `quantizedFlat` của Cosmos DB có đặc điểm gì?",
+ o:["Chính xác tuyệt đối và không giới hạn số chiều","Nén vector rồi quét toàn bộ tập nén: nhanh hơn flat nhưng vẫn kém diskANN ở quy mô rất lớn","Chỉ dùng được với dữ liệu dưới 505 chiều","Là index duy nhất hỗ trợ metadata filter"],a:1,
+ e:"`quantizedFlat` lượng tử hoá vector để giảm dung lượng và tăng tốc quét, nhưng vẫn là quét toàn bộ. `diskANN` dùng đồ thị nên co giãn tốt hơn nhiều."},
+{id:210,d:2,q:"Bạn muốn giảm dung lượng lưu embedding trong Cosmos DB, chấp nhận sai số nhỏ. Cấu hình nào trong vector embedding policy?",
+ o:["Đổi `distanceFunction` sang euclidean","Đặt `dataType` là `int8` hoặc `uint8` với embedding đã lượng tử hoá","Tăng `dimensions`","Chuyển index sang flat"],a:1,
+ e:"Vector embedding policy hỗ trợ `float32`, `int8`, `uint8`. Kiểu số nguyên 8-bit giảm mạnh dung lượng, đổi lại độ chính xác thấp hơn."},
+{id:211,d:2,q:"Người dùng tìm bằng mã sản phẩm chính xác thì kết quả vector search kém, nhưng tìm bằng câu hỏi tự nhiên lại tốt. Hướng xử lý?",
+ o:["Tăng số chiều embedding","Kết hợp full-text search và vector search rồi trộn thứ hạng (hybrid + RRF)","Đổi distanceFunction sang dotproduct","Tăng TOP N lên 100"],a:1,
+ e:"Embedding kém với chuỗi định danh/từ khoá hiếm. Hybrid search bổ sung BM25/full-text và hợp nhất bằng RRF là cách chuẩn để xử lý cả hai loại truy vấn."},
+{id:212,d:2,q:"Tổ chức yêu cầu tắt hoàn toàn key-based auth cho Cosmos DB. Ứng dụng phải làm gì?",
+ o:["Dùng connection string với read-only key","Dùng Entra ID + managed identity kèm role dữ liệu như Cosmos DB Built-in Data Contributor","Dùng SAS token","Chuyển sang serverless"],a:1,
+ e:"RBAC data plane của Cosmos DB cấp quyền đọc/ghi dữ liệu cho principal Entra ID. Lưu ý role data plane khác hoàn toàn role control plane (quản lý tài nguyên)."},
+{id:213,d:2,q:"`EXPLAIN (ANALYZE)` cho thấy `Seq Scan` trên bảng có index HNSW. Nguyên nhân nào KHÔNG hợp lý?",
+ o:["Toán tử trong `ORDER BY` không khớp opclass của index","Truy vấn thiếu `LIMIT` nên planner chọn quét tuần tự","Bảng quá nhỏ nên planner cho rằng seq scan rẻ hơn","Chưa `CREATE EXTENSION azure_ai`"],a:3,
+ e:"`azure_ai` chỉ dùng để gọi Azure OpenAI từ SQL, không liên quan đến việc dùng index vector. Ba nguyên nhân còn lại đều thường gặp."},
+{id:214,d:2,q:"Build index HNSW trên 5 triệu vector rất chậm. Tham số nào nên tăng trước tiên?",
+ o:["`work_mem`","`maintenance_work_mem` và `max_parallel_maintenance_workers`","`shared_buffers`","`hnsw.ef_search`"],a:1,
+ e:"Việc tạo index dùng `maintenance_work_mem`; tăng nó cùng số worker song song rút ngắn thời gian build đáng kể. `ef_search` chỉ ảnh hưởng lúc truy vấn."},
+{id:215,d:2,q:"95% truy vấn RAG luôn có điều kiện `lang = 'vi'`. Cách tối ưu index vector cho trường hợp này?",
+ o:["Tạo partial index: `CREATE INDEX ... USING hnsw (...) WHERE lang = 'vi'`","Tạo thêm index B-tree trên `embedding`","Bỏ điều kiện lang khỏi truy vấn","Tăng `lists` của ivfflat"],a:0,
+ e:"Partial index chỉ chứa các dòng thoả điều kiện nên nhỏ hơn, nhanh hơn và tránh việc filter cắt mất kết quả của ANN search."},
+{id:216,d:2,q:"Metadata lưu trong cột `jsonb` và thường được lọc bằng `metadata @> '{\"dept\":\"finance\"}'`. Index phù hợp?",
+ o:["B-tree trên `metadata`","GIN index (ví dụ `jsonb_path_ops`)","HNSW","Không index được jsonb"],a:1,
+ e:"GIN là loại index dành cho jsonb, hỗ trợ toán tử chứa `@>`. B-tree chỉ hữu ích khi so sánh nguyên vẹn cả giá trị."},
+{id:217,d:2,q:"Model embedding trả về 3072 chiều nhưng `CREATE INDEX ... USING hnsw (embedding vector_cosine_ops)` báo vượt giới hạn. Xử lý thế nào?",
+ o:["Bỏ index đi","Dùng `halfvec` (giới hạn chiều cao hơn) hoặc giảm số chiều embedding khi model hỗ trợ","Đổi sang toán tử `<->`","Tăng `maintenance_work_mem`"],a:1,
+ e:"Index HNSW của pgvector giới hạn 2000 chiều với kiểu `vector`, nhưng tới 4000 chiều với `halfvec`. Nhiều model (text-embedding-3-*) cũng cho phép rút gọn số chiều khi gọi API."},
+{id:218,d:2,q:"Tải đọc RAG đang ảnh hưởng tới workload ghi trên cùng PostgreSQL server. Giải pháp tốt nhất?",
+ o:["Tăng `work_mem`","Tạo read replica và trỏ truy vấn tìm kiếm sang đó","Tắt HNSW index","Chuyển sang Burstable tier"],a:1,
+ e:"Read replica tách tải đọc khỏi primary. Lưu ý replica là bất đồng bộ nên có độ trễ nhỏ — chấp nhận được với semantic search."},
+{id:219,d:2,q:"Toán tử `<#>` trong pgvector trả về giá trị gì?",
+ o:["Khoảng cách cosine","Khoảng cách L2","Inner product **mang dấu âm** (để nhỏ hơn nghĩa là gần hơn)","Khoảng cách Hamming"],a:2,
+ e:"pgvector luôn sắp xếp tăng dần, nên inner product được trả về dưới dạng số âm. Nếu vector đã chuẩn hoá thì kết quả tương đương cosine nhưng rẻ hơn về tính toán."},
+{id:220,d:2,q:"Với index IVFFlat, tăng `ivfflat.probes` gây ra điều gì?",
+ o:["Recall cao hơn nhưng truy vấn chậm hơn","Recall thấp hơn nhưng nhanh hơn","Index nhỏ hơn","Không ảnh hưởng gì tới truy vấn"],a:0,
+ e:"`probes` là số cụm được duyệt khi truy vấn. Duyệt nhiều cụm hơn thì tìm được kết quả tốt hơn nhưng tốn thời gian hơn — tương tự `hnsw.ef_search`."},
+{id:221,d:2,q:"Ứng dụng dùng token Entra ID làm password để kết nối PostgreSQL. Sau khoảng một giờ, các kết nối mới bắt đầu thất bại. Vì sao?",
+ o:["Firewall chặn","Access token hết hạn — cần lấy token mới cho mỗi kết nối","Sai `sslmode`","Hết connection slot"],a:1,
+ e:"Access token có thời hạn ngắn (khoảng 1 giờ). Code phải gọi `get_token()` lại khi mở kết nối mới, hoặc dùng thư viện tự làm mới token."},
+{id:222,d:2,q:"Nạp 20 triệu dòng vào PostgreSQL nhanh nhất bằng cách nào?",
+ o:["`INSERT` từng dòng trong vòng lặp","`COPY` (hoặc `copy_from`) theo lô, tạo index sau khi nạp xong","Tạo HNSW index trước rồi mới nạp","Bật autocommit cho từng dòng"],a:1,
+ e:"`COPY` nhanh hơn INSERT nhiều lần. Tạo index sau khi nạp giúp tránh chi phí cập nhật index cho mỗi dòng."},
+{id:223,d:2,q:"Chọn kiểu dữ liệu nào là hợp lý nhất cho cột lưu định danh tài liệu dạng UUID?",
+ o:["`text`","`varchar(36)`","`uuid`","`bytea`"],a:2,
+ e:"Kiểu `uuid` lưu 16 byte, so sánh và index nhanh hơn hẳn chuỗi 36 ký tự. Với chuỗi tự do thì `text` và `varchar(n)` hiệu năng như nhau trong PostgreSQL."},
+{id:224,d:2,q:"Semantic cache trong hệ thống RAG nghĩa là gì?",
+ o:["Cache kết quả theo khớp chuỗi tuyệt đối của câu hỏi","Cache câu trả lời và tái sử dụng khi câu hỏi mới **tương đồng về ngữ nghĩa** với câu đã hỏi","Cache toàn bộ tài liệu nguồn","Cache kết nối tới Azure OpenAI"],a:1,
+ e:"Semantic cache so khớp bằng vector similarity giữa câu hỏi mới và các câu đã cache, nhờ đó bắt được cả cách diễn đạt khác nhau và giảm chi phí gọi LLM."},
+{id:225,d:2,q:"Khi cache hết hạn đồng loạt, hàng nghìn request cùng lúc gọi LLM để rebuild (cache stampede). Cách giảm thiểu?",
+ o:["Đặt TTL ngắn hơn","Dùng khoá phân tán `SET key value NX EX 30` và thêm jitter ngẫu nhiên vào TTL","Tắt eviction","Tăng số replica Redis"],a:1,
+ e:"`SET NX` cho phép đúng một tiến trình rebuild, các tiến trình khác chờ hoặc trả bản cũ. Jitter làm TTL không hết hạn cùng thời điểm."},
+{id:226,d:2,q:"Dataset cache rất lớn nhưng phần lớn key ít được truy cập, cần giảm chi phí. Tier nào của Azure Managed Redis phù hợp?",
+ o:["Memory Optimized","Balanced","Compute Optimized","Flash Optimized"],a:3,
+ e:"Flash Optimized kết hợp RAM cho dữ liệu nóng và NVMe cho dữ liệu nguội, cho dung lượng lớn với chi phí thấp hơn — đúng mô hình truy cập lệch."},
+{id:227,d:2,q:"Khi nào nên dùng index `FLAT` thay vì `HNSW` trong RediSearch?",
+ o:["Khi tập vector nhỏ và cần kết quả chính xác tuyệt đối","Khi có hàng chục triệu vector","Khi cần scale ngang","Khi vector có hơn 4000 chiều"],a:0,
+ e:"FLAT là brute force: chính xác 100% nhưng chi phí tuyến tính theo số vector. HNSW là ANN, đánh đổi chút recall để lấy tốc độ ở quy mô lớn."},
+{id:228,d:2,q:"Điều nào ĐÚNG khi dùng Redis làm vector store trong kiến trúc RAG?",
+ o:["Redis nên là nguồn dữ liệu duy nhất vì nhanh nhất","Redis phù hợp làm tầng nóng/cache, dữ liệu gốc vẫn nên nằm ở kho bền vững như Cosmos DB hoặc PostgreSQL","Redis không hỗ trợ metadata filter","Redis chỉ hỗ trợ khoảng cách L2"],a:1,
+ e:"Index của Redis nằm trong RAM: cực nhanh nhưng đắt và không thích hợp làm nguồn sự thật. RediSearch có hỗ trợ tag/numeric filter và cả COSINE, L2, IP."},
+{id:229,d:2,q:"Bạn muốn đo hiệu quả cache Redis. Chỉ số nào cần xem?",
+ o:["`used_memory` và `connected_clients`","`keyspace_hits` và `keyspace_misses` từ `INFO stats`","Số lệnh `DEL` mỗi giây","`maxmemory-policy`"],a:1,
+ e:"Tỷ lệ hit = hits / (hits + misses). Tỷ lệ thấp nghĩa là key sinh ra không được tái sử dụng — cần xem lại chiến lược đặt key hoặc TTL."},
+{id:230,d:2,q:"Chọn TẤT CẢ những cách hợp lệ để giảm RU tiêu thụ trong Cosmos DB.",
+ o:["Loại các trường không cần tìm kiếm khỏi indexing policy","Ưu tiên point read thay cho query khi biết id và partition key","Hạ consistency từ Strong xuống Session","Tăng số chiều của embedding"],a:[0,1,2],
+ e:"Tăng số chiều embedding làm document lớn hơn nên còn tốn thêm RU. Ba cách còn lại đều là kỹ thuật giảm RU tiêu chuẩn."},
+/* ---------- 3. Messaging & Functions (20–25%) — 48 câu ---------- */
+{id:49,d:3,q:"Consumer abandon một message của Service Bus 10 lần liên tiếp. Điều gì xảy ra?",
+ o:["Message bị xoá vĩnh viễn","Message chuyển vào dead-letter queue với lý do `MaxDeliveryCountExceeded`","Message quay lại queue mãi mãi","Message được forward sang topic"],a:1,
+ e:"`MaxDeliveryCount` mặc định là 10. Vượt ngưỡng, broker tự chuyển message sang DLQ (`<queue>/$deadletterqueue`) kèm `DeadLetterReason`."},
+{id:50,d:3,q:"Chế độ nhận nào đảm bảo không mất message nếu consumer crash giữa lúc xử lý?",
+ o:["`RECEIVE_AND_DELETE`","`PEEK_LOCK`","Bật prefetch","Bật duplicate detection"],a:1,
+ e:"Với PEEK_LOCK, message chỉ bị xoá khi gọi `complete_message()`. Crash trước đó → lock hết hạn → message hiển thị lại. RECEIVE_AND_DELETE là at-most-once, crash là mất."},
+{id:51,d:3,q:"Bạn tạo subscription và thêm SQL filter `lang = 'vi'`, nhưng subscription vẫn nhận mọi message. Vì sao?",
+ o:["SQL filter chỉ hoạt động ở Premium tier","Rule mặc định `$Default` (TrueFilter) chưa bị xoá","Filter phải đặt ở topic chứ không phải subscription","Thiếu bật sessions"],a:1,
+ e:"Subscription mới luôn có rule `$Default` nhận tất cả. Nhiều rule hoạt động theo kiểu OR, nên phải xoá `$Default` thì filter riêng mới có tác dụng."},
+{id:52,d:3,q:"Chỉ cần định tuyến theo giá trị bằng chính xác của `Subject`, ưu tiên hiệu năng cao nhất. Loại filter nào?",
+ o:["SQL filter","Correlation filter","Boolean TrueFilter","Advanced filter"],a:1,
+ e:"Correlation filter so khớp bằng trên các thuộc tính hệ thống (CorrelationId, Subject, MessageId, ContentType…) và custom property, chi phí xử lý thấp hơn SQL filter."},
+{id:53,d:3,q:"Yêu cầu: message của cùng một khách hàng phải được xử lý đúng thứ tự, khách hàng khác nhau có thể xử lý song song.",
+ o:["Bật duplicate detection","Dùng sessions với `session_id = customerId`","Đặt `max_concurrent_calls = 1`","Dùng scheduled message"],a:1,
+ e:"Session khoá tất cả message cùng `SessionId` vào một receiver, đảm bảo FIFO trong phạm vi session, trong khi các session khác vẫn chạy song song. Đặt concurrency = 1 thì mất hết throughput."},
+{id:54,d:3,q:"Handler của Event Grid trả về HTTP 400. Event Grid xử lý thế nào?",
+ o:["Retry theo exponential backoff trong 24 giờ","Không retry — chuyển thẳng sang dead-letter nếu đã cấu hình","Retry đúng 5 lần rồi bỏ","Coi như thành công"],a:1,
+ e:"Các mã như 400, 413, 401, 403, 404 được coi là lỗi cấu hình/lỗi vĩnh viễn nên không retry. Chỉ 408, 429 và 5xx mới được retry."},
+{id:55,d:3,q:"Event subscription không cấu hình dead-letter. Event giao thất bại hết số lần retry sẽ ra sao?",
+ o:["Lưu tạm 7 ngày trong Event Grid","Bị bỏ vĩnh viễn","Trả ngược về publisher","Tự chuyển sang Service Bus"],a:1,
+ e:"Không có dead-letter endpoint (một blob container) thì event bị drop, không có cách khôi phục. Đây là lý do luôn phải cấu hình dead-letter cho subscription quan trọng."},
+{id:56,d:3,q:"Chỉ muốn nhận event có `data.sizeBytes` lớn hơn 1.000.000. Dùng gì?",
+ o:["Subject filter với `--subject-begins-with`","Event type filter","Advanced filter với toán tử `NumberGreaterThan`","SQL filter"],a:2,
+ e:"Advanced filter cho phép so sánh trên bất kỳ field nào trong payload JSON (`NumberGreaterThan`, `NumberInRange`, `StringIn`, `BoolEquals`…). SQL filter là khái niệm của Service Bus, không phải Event Grid."},
+{id:57,d:3,q:"Function sinh embedding chạy khoảng 12 phút, thường bị dừng giữa chừng trên Consumption plan. Cách xử lý tốt nhất?",
+ o:["Tăng memory cho function app","Chuyển sang Premium/Flex plan, hoặc tách thành Durable Functions / Container Apps Job","Bật Always On","Giảm mức log"],a:1,
+ e:"Consumption plan giới hạn `functionTimeout` tối đa 10 phút. Premium không giới hạn (mặc định 30 phút); hoặc chia nhỏ công việc bằng fan-out/fan-in của Durable Functions."},
+{id:58,d:3,q:"Cấu hình Function truy cập Service Bus bằng managed identity. App setting nào đúng?",
+ o:["`ServiceBusConnection = Endpoint=sb://...;SharedAccessKey=...`","`ServiceBusConnection__fullyQualifiedNamespace = mysb.servicebus.windows.net`","`ServiceBusConnection__key = <primary key>`","`AzureWebJobsServiceBus = <SAS token>`"],a:1,
+ e:"Identity-based connection dùng hậu tố `__fullyQualifiedNamespace` (Service Bus/Event Hubs), `__accountName` (Storage), `__accountEndpoint` (Cosmos DB), kèm managed identity đã được gán role dữ liệu tương ứng."},
+{id:59,d:3,q:"Producer đôi khi gửi trùng cùng một message do retry mạng. Cách chặn trùng ở phía broker?",
+ o:["Bật sessions","Bật duplicate detection và đặt `message_id` ổn định","Tăng `MaxDeliveryCount`","Dùng RECEIVE_AND_DELETE"],a:1,
+ e:"Duplicate detection loại bỏ message có `MessageId` trùng trong khoảng `DuplicateDetectionHistoryTimeWindow`. Phải bật lúc tạo entity và producer phải đặt `message_id` mang tính định danh."},
+{id:60,d:3,q:"Cần ingest hàng triệu telemetry event mỗi giây và cho phép nhiều consumer đọc lại (replay) theo offset.",
+ o:["Service Bus queue","Event Grid custom topic","Event Hubs","Queue Storage"],a:2,
+ e:"Event Hubs là nền tảng streaming: partition, consumer group, giữ dữ liệu theo retention nên replay được. Service Bus/Event Grid không thiết kế cho throughput và replay kiểu đó."},
+{id:61,d:3,q:"Bạn đăng ký một webhook tự viết làm handler cho Event Grid. Bước bắt buộc nào phải xử lý?",
+ o:["Trả về `validationCode` khi nhận `SubscriptionValidationEvent`","Bật CORS trên webhook","Đăng ký webhook trong Key Vault","Gửi heartbeat mỗi 60 giây"],a:0,
+ e:"Đây là handshake chống lạm dụng: endpoint phải phản hồi `validationCode` trong 200 OK (hoặc gọi `validationUrl`). Handler kiểu Azure Function/Logic Apps được xác thực tự động."},
+{id:62,d:3,q:"Phát biểu nào ĐÚNG về trigger và binding của Azure Functions?",
+ o:["Một hàm có thể có nhiều trigger","Một hàm có đúng một trigger, nhưng có thể có nhiều input/output binding","Output binding là bắt buộc","Trigger và binding chỉ dùng được với C#"],a:1,
+ e:"Mỗi hàm có đúng một trigger (nguồn kích hoạt). Input/output binding là tuỳ chọn và có thể có nhiều."},
+{id:63,d:3,q:"Function App chạy 5 instance, có một Timer trigger 5 phút/lần. Bao nhiêu instance thực sự chạy timer đó?",
+ o:["Cả 5","Chỉ 1 — timer là singleton nhờ blob lease","Ngẫu nhiên","Phụ thuộc plan"],a:1,
+ e:"Timer trigger dùng blob lease trong `AzureWebJobsStorage` để đảm bảo chỉ một instance thực thi mỗi lần kích hoạt."},
+{id:64,d:3,q:"Pipeline: chia nhỏ tài liệu → sinh embedding song song cho từng chunk → gộp kết quả và ghi index. Pattern nào phù hợp?",
+ o:["Function chaining tuần tự","Fan-out/fan-in của Durable Functions","Timer trigger quét định kỳ","Event Grid domain"],a:1,
+ e:"Fan-out/fan-in chạy song song nhiều activity rồi chờ tất cả hoàn tất để tổng hợp — đúng mô hình embedding hàng loạt. Lưu ý orchestrator phải deterministic."},
+{id:65,d:3,q:"Xử lý một message mất tới 4 phút trong khi `LockDuration` là 30 giây. Giải pháp đúng?",
+ o:["Đặt `LockDuration = 10 phút`","Gọi `renew_message_lock()` định kỳ hoặc bật auto lock renewal","Chuyển sang RECEIVE_AND_DELETE","Tăng `MaxDeliveryCount`"],a:1,
+ e:"`LockDuration` tối đa là 5 phút, không đặt được 10 phút. Cách chuẩn là gia hạn lock trong lúc xử lý (`maxAutoLockRenewalDuration` trong host.json với Functions)."},
+{id:66,d:3,q:"Chọn TẤT CẢ nguyên nhân khiến message vào dead-letter queue của Service Bus.",
+ o:["Vượt `MaxDeliveryCount`","Message hết TTL khi entity bật dead-lettering on expiration","Ứng dụng gọi `dead_letter_message()`","Message có kích thước nhỏ hơn 1 KB"],a:[0,1,2],
+ e:"Ngoài ba nguyên nhân này còn có lỗi đánh giá filter ở subscription và lỗi vượt giới hạn header/forward. Kích thước nhỏ không liên quan gì."},
+{id:301,d:3,q:"Payload nghiệp vụ có thể lên tới 5 MB mỗi message. Tier Service Bus nào đáp ứng?",
+ o:["Basic","Standard","Premium","Queue Storage"],a:2,
+ e:"Standard giới hạn 256 KB mỗi message; Premium hỗ trợ tới 100 MB (mặc định 1 MB, có thể nâng). Với payload lớn, mẫu tốt hơn là claim-check: lưu blob và chỉ gửi đường dẫn."},
+{id:302,d:3,q:"Bạn muốn xem nội dung message trong queue để chẩn đoán mà không làm ảnh hưởng tới việc giao nhận.",
+ o:["`receive_messages()` rồi `abandon`","`peek_messages()`","`complete_message()`","Xoá queue rồi tạo lại"],a:1,
+ e:"`peek` đọc message mà không lấy lock và không tăng `DeliveryCount`. Nhận rồi abandon sẽ làm tăng delivery count và có thể đẩy message vào DLQ sớm."},
+{id:303,d:3,q:"Message đến sớm hơn dữ liệu phụ thuộc, cần gác lại xử lý sau nhưng không muốn nó chắn hàng đợi.",
+ o:["`abandon_message()`","`defer_message()` và lưu lại `sequence_number` để nhận lại sau","`dead_letter_message()`","Tăng `LockDuration`"],a:1,
+ e:"Deferral đưa message sang trạng thái chờ; sau này nhận lại bằng `receive_deferred_messages(sequence_number)`. Abandon chỉ trả lại queue và sẽ được giao lại ngay."},
+{id:304,d:3,q:"Cần gửi một message nhưng chỉ cho phép consumer nhận sau 2 giờ.",
+ o:["Sleep 2 giờ ở phía producer","`schedule_messages(msg, scheduled_time_utc)`","Đặt TTL 2 giờ","Dùng session"],a:1,
+ e:"Scheduled message nằm trong queue nhưng chỉ hiển thị khi tới thời điểm hẹn; có thể huỷ bằng `cancel_scheduled_messages` với sequence number."},
+{id:305,d:3,q:"Muốn message vào topic được tự động chuyển tiếp sang một queue xử lý mà không viết code trung gian.",
+ o:["Auto-forward (`ForwardTo`)","Dead-letter","Duplicate detection","Event Grid"],a:0,
+ e:"Auto-forward nối subscription/queue này sang entity khác trong cùng namespace, giảm số consumer phải tự viết. Nếu entity đích không tồn tại, message sẽ bị dead-letter."},
+{id:306,d:3,q:"Prefetch của Service Bus được đặt rất cao trong khi mỗi message mất vài phút để xử lý. Rủi ro là gì?",
+ o:["Message bị mất hoàn toàn","Lock của các message đã prefetch hết hạn khi tới lượt xử lý, dẫn tới giao lại và tăng delivery count","Throughput giảm về 0","Tự động chuyển sang RECEIVE_AND_DELETE"],a:1,
+ e:"Prefetch lấy sẵn message về client kèm lock. Nếu xử lý chậm, lock hết hạn trước khi tới lượt → message được giao lại, dễ tràn vào DLQ."},
+{id:307,d:3,q:"Message nằm trong dead-letter queue sẽ ra sao nếu không ai xử lý?",
+ o:["Tự xoá sau 14 ngày","Nằm lại vô thời hạn cho tới khi bị lấy ra","Tự động thử lại sau 24 giờ","Chuyển ngược về queue chính"],a:1,
+ e:"DLQ không áp TTL của queue chính, message nằm lại và tiếp tục chiếm quota dung lượng. Vì vậy cần alert trên chỉ số `DeadletteredMessages` và có quy trình xử lý."},
+{id:308,d:3,q:"Rule của subscription cần vừa lọc, vừa gắn thêm thuộc tính `routedBy` cho message đi qua.",
+ o:["Correlation filter","SQL filter kèm SQL action","Boolean filter","Advanced filter"],a:1,
+ e:"Chỉ SQL rule mới có phần **action** (`SET routedBy = 'vi-rule'`) để bổ sung/sửa property của message khi đi qua rule."},
+{id:309,d:3,q:"Function xử lý message của một queue đã bật sessions. Cần lưu ý gì?",
+ o:["Không dùng được Functions với session","Phải bật `isSessionsEnabled` cho trigger; mỗi session được xử lý tuần tự bởi một instance","Phải tắt hoàn toàn concurrency","Session chỉ hoạt động ở Premium plan"],a:1,
+ e:"Service Bus trigger có thuộc tính `is_sessions_enabled`. Khi bật, thứ tự trong từng session được đảm bảo, còn các session khác nhau vẫn chạy song song trên nhiều instance."},
+{id:310,d:3,q:"Bạn cần schema sự kiện theo chuẩn mở để hệ thống ngoài Azure cũng tiêu thụ được.",
+ o:["Event Grid schema","CloudEvents v1.0","AMQP raw","JSON tuỳ ý"],a:1,
+ e:"CloudEvents 1.0 là chuẩn của CNCF, được Event Grid hỗ trợ cho cả input lẫn output — lựa chọn đúng khi cần liên vận với hệ thống bên ngoài."},
+{id:311,d:3,q:"Nền tảng SaaS có 5.000 khách hàng, mỗi khách cần một topic riêng với quyền truy cập riêng nhưng chỉ quản lý qua một endpoint.",
+ o:["Tạo 5.000 custom topic riêng lẻ","Dùng Event Grid **domain**","Dùng một topic chung và lọc bằng subject","Dùng Event Hubs"],a:1,
+ e:"Event Grid domain quản lý hàng nghìn topic dưới một endpoint và một mô hình phân quyền chung — thiết kế cho kịch bản multi-tenant."},
+{id:312,d:3,q:"Consumer nằm sau firewall, không thể nhận HTTP push từ Event Grid. Giải pháp?",
+ o:["Không dùng được Event Grid","Event Grid namespace với **pull delivery** để consumer tự kéo event","Mở toàn bộ firewall","Chuyển sang Service Bus queue bắt buộc"],a:1,
+ e:"Event Grid namespace hỗ trợ pull delivery (HTTP receive/acknowledge) và MQTT, phù hợp khi endpoint không thể nhận kết nối đến từ ngoài."},
+{id:313,d:3,q:"Storage container nhận rất nhiều loại file, bạn chỉ muốn kích hoạt pipeline với file `.pdf` trong thư mục `incoming/`.",
+ o:["Lọc trong code của Function","Cấu hình `--subject-begins-with /blobServices/default/containers/incoming/` và `--subject-ends-with .pdf`","Tạo storage account riêng cho pdf","Dùng advanced filter trên `data.contentType`"],a:1,
+ e:"Lọc ở phía Event Grid tiết kiệm chi phí thực thi vì Function không bị gọi vô ích. Subject của Blob event chứa cả đường dẫn container lẫn tên file."},
+{id:314,d:3,q:"Throughput event rất cao và handler chịu được lô lớn. Cấu hình nào tăng hiệu quả giao?",
+ o:["Giảm `max-delivery-attempts`","Bật output batching (`--max-events-per-batch`, `--preferred-batch-size-in-kilobytes`)","Bật dead-letter","Tăng `event-ttl`"],a:1,
+ e:"Batched delivery gửi nhiều event trong một request HTTP, giảm overhead. Handler phải xử lý được mảng event và vẫn phải idempotent."},
+{id:315,d:3,q:"Event Grid giao event tới Service Bus queue. Cách xác thực nào được khuyến nghị?",
+ o:["SAS key nhúng trong endpoint","Managed identity của Event Grid topic kèm role dữ liệu tương ứng","Access key lưu trong app setting","Không cần xác thực"],a:1,
+ e:"Event Grid hỗ trợ delivery bằng managed identity tới Service Bus, Event Hubs và Storage — loại bỏ nhu cầu lưu trữ key."},
+{id:316,d:3,q:"Vì sao xử lý event của Event Grid phải idempotent?",
+ o:["Vì Event Grid đảm bảo exactly-once","Vì Event Grid đảm bảo **at-least-once** và không đảm bảo thứ tự nên event có thể tới trùng","Vì handler luôn chạy song song","Vì event có TTL"],a:1,
+ e:"At-least-once nghĩa là một event có thể được giao nhiều lần (retry sau timeout). Handler phải khử trùng bằng event `id` hoặc thiết kế thao tác lặp lại vô hại."},
+{id:317,d:3,q:"Blob trigger của Functions bị trễ vài phút khi container có hàng triệu blob. Cách khắc phục được khuyến nghị?",
+ o:["Tăng số instance","Dùng blob trigger dựa trên **Event Grid** thay vì polling log","Chuyển sang Timer trigger","Bật Always On"],a:1,
+ e:"Blob trigger cổ điển dựa trên quét log nên có độ trễ và kém hiệu quả với container lớn. Nguồn Event Grid cho blob trigger phản ứng gần như tức thì."},
+{id:318,d:3,q:"Trong Durable Functions, câu nào ĐÚNG về orchestrator?",
+ o:["Có thể gọi API bên ngoài trực tiếp","Phải deterministic: không dùng thời gian hiện tại, random hay I/O trực tiếp","Chạy song song nhiều instance cho cùng một orchestration","Không cần activity function"],a:1,
+ e:"Orchestrator được replay nhiều lần từ history, nên mọi thứ không tất định sẽ phá vỡ trạng thái. I/O phải nằm trong activity function."},
+{id:319,d:3,q:"Client gọi API sinh báo cáo mất 15 phút. Pattern Durable Functions phù hợp?",
+ o:["Function chaining","Async HTTP API: trả 202 kèm status endpoint để client poll","Monitor","Human interaction"],a:1,
+ e:"Pattern async HTTP API trả về ngay HTTP 202 với các URL `statusQueryGetUri`/`terminatePostUri`, tránh việc client phải giữ kết nối HTTP quá lâu."},
+{id:320,d:3,q:"Function xử lý Service Bus đang gọi Azure OpenAI và liên tục bị 429 vì chạy quá nhiều luồng. Chỉnh ở đâu?",
+ o:["`functionTimeout` trong host.json","`extensions.serviceBus.maxConcurrentCalls` trong host.json","`WEBSITE_RUN_FROM_PACKAGE`","`AzureWebJobsStorage`"],a:1,
+ e:"`maxConcurrentCalls` (và `maxConcurrentSessions`) giới hạn số message được xử lý đồng thời trên mỗi instance, giúp giữ tốc độ gọi dịch vụ downstream trong hạn mức."},
+{id:321,d:3,q:"Ý nghĩa của app setting `WEBSITE_RUN_FROM_PACKAGE=1`?",
+ o:["Bật chế độ debug","Chạy function app từ package chỉ đọc, khởi động nhanh và deploy nguyên tử","Tăng gấp đôi timeout","Bật deployment slot"],a:1,
+ e:"Ứng dụng chạy trực tiếp từ file package được mount read-only. Đây là mặc định khi zip deploy, giúp deploy nhất quán và giảm thời gian khởi động."},
+{id:322,d:3,q:"Vì sao Function App bắt buộc phải có `AzureWebJobsStorage`?",
+ o:["Để lưu log ứng dụng","Để lưu trạng thái trigger, lease của timer/blob và metadata của runtime","Để lưu mã nguồn","Để lưu secret của Key Vault"],a:1,
+ e:"Runtime dùng storage account này cho lease (đảm bảo timer singleton), blob receipt của blob trigger, hub của Durable Functions và các metadata nội bộ khác."},
+{id:323,d:3,q:"API serverless sẽ được đặt sau Azure API Management và không được gọi trực tiếp từ internet. Auth level nào của HTTP trigger?",
+ o:["`anonymous` và mở public","`function` — APIM đính kèm function key khi gọi","`admin` với master key phát cho mọi client","Không cấu hình được"],a:1,
+ e:"APIM giữ function key trong named value và thêm vào request; client bên ngoài chỉ biết endpoint của APIM. Master key (`admin`) không nên phát ra ngoài."},
+{id:324,d:3,q:"Bạn cần serverless nhưng vẫn phải tích hợp VNet và giảm cold start. Plan nào?",
+ o:["Consumption","Flex Consumption","Dedicated (App Service plan) với Always On","Basic"],a:1,
+ e:"Flex Consumption giữ mô hình trả theo lượt dùng nhưng có VNet integration và **always-ready instances** để giảm cold start. Premium cũng đáp ứng nhưng chi phí nền cao hơn."},
+{id:325,d:3,q:"Với Queue Storage trigger, message xử lý lỗi nhiều lần sẽ đi đâu?",
+ o:["Bị xoá","Vào poison queue `<tên-queue>-poison` sau khi vượt `maxDequeueCount`","Vào dead-letter queue của Service Bus","Quay lại vô hạn"],a:1,
+ e:"Queue Storage không có DLQ như Service Bus; runtime của Functions tự chuyển message lỗi sang queue có hậu tố `-poison` (mặc định sau 5 lần)."},
+{id:326,d:3,q:"Khi nào nên dùng SDK trực tiếp thay vì output binding của Functions?",
+ o:["Luôn luôn nên dùng SDK","Khi cần kiểm soát chi tiết: transaction, retry riêng, bulk, đọc request charge","Khi ghi ra Blob","Khi dùng Python"],a:1,
+ e:"Binding giúp code ngắn gọn cho các thao tác đơn giản. Khi cần điều khiển chi tiết (bulk mode của Cosmos, đọc `x-ms-request-charge`, xử lý lỗi riêng) thì dùng SDK."},
+{id:327,d:3,q:"Ba yêu cầu: (1) hàng đợi tin cậy có transaction, (2) phản ứng khi blob mới xuất hiện, (3) ingest telemetry hàng triệu event/giây có replay. Thứ tự dịch vụ đúng là?",
+ o:["Event Grid → Service Bus → Event Hubs","Service Bus → Event Grid → Event Hubs","Event Hubs → Service Bus → Event Grid","Service Bus → Event Hubs → Event Grid"],a:1,
+ e:"Service Bus cho messaging nghiệp vụ có transaction/DLQ; Event Grid cho phản ứng theo sự kiện rời rạc; Event Hubs cho streaming khối lượng lớn có retention và replay."},
+{id:328,d:3,q:"Function App đã bật managed identity nhưng vẫn lỗi 401 khi ghi vào Blob Storage bằng identity-based connection. Nguyên nhân khả dĩ nhất?",
+ o:["Thiếu app setting `__accountName`","Identity chưa được gán role dữ liệu như Storage Blob Data Contributor","Function App sai region","Thiếu `AzureWebJobsStorage`"],a:1,
+ e:"Managed identity chỉ là danh tính; phải gán thêm role **data plane** phù hợp. Vai trò quản trị như Contributor không tự cấp quyền đọc/ghi dữ liệu blob."},
+{id:329,d:3,q:"Bạn muốn một Event Grid subscription chỉ nhận event có `data.lang` là `vi` hoặc `en`. Toán tử nào?",
+ o:["`StringContains`","`StringIn` với danh sách giá trị","`NumberIn`","`BoolEquals`"],a:1,
+ e:"`StringIn` so khớp với tập giá trị (tối đa 5 giá trị cho toán tử dạng In). Mỗi subscription tối đa 25 advanced filter."},
+{id:330,d:3,q:"Chọn TẤT CẢ phát biểu đúng về Azure Functions.",
+ o:["Mỗi hàm chỉ có một trigger","Một hàm có thể có nhiều output binding","Timer trigger chạy trên mọi instance cùng lúc","Consumption plan có giới hạn timeout tối đa 10 phút"],a:[0,1,3],
+ e:"Timer trigger là singleton nhờ blob lease, chỉ một instance thực thi mỗi lần kích hoạt."},
+/* ---------- 4. Bảo mật & Giám sát (20–25%) — 49 câu ---------- */
+{id:67,d:4,q:"Ứng dụng chỉ cần **đọc** secret trong Key Vault đang bật RBAC. Gán role nào?",
+ o:["Key Vault Contributor","Key Vault Secrets User","Key Vault Secrets Officer","Reader"],a:1,
+ e:"Secrets User = đọc giá trị secret. Secrets Officer = quản lý (tạo/xoá). Key Vault Contributor chỉ quản lý **tài nguyên vault** chứ không cho đọc dữ liệu bên trong; Reader cũng không đọc được secret."},
+{id:68,d:4,q:"Kiến trúc đúng để tự động xoay khoá trước khi secret hết hạn?",
+ o:["Timer Function quét toàn bộ vault mỗi ngày","Event Grid bắt sự kiện `Microsoft.KeyVault.SecretNearExpiry` → Function tạo khoá mới → `set_secret()` phiên bản mới","Logic App polling API 5 phút/lần","Azure Policy tự xoay khoá"],a:1,
+ e:"Key Vault phát sự kiện `SecretNearExpiry` (mặc định 30 ngày trước hạn) qua Event Grid. Ứng dụng đọc secret **không kèm version** sẽ tự nhận giá trị mới."},
+{id:69,d:4,q:"Yêu cầu tuân thủ: secret bị xoá không được phép purge trước khi hết thời gian giữ. Bật gì?",
+ o:["Soft delete","Purge protection","Private endpoint","Firewall rule"],a:1,
+ e:"Soft delete (luôn bật) cho phép khôi phục nhưng vẫn có thể purge sớm nếu đủ quyền. Purge protection chặn hẳn việc purge cho tới hết retention period."},
+{id:70,d:4,q:"Cùng một key cấu hình cần giá trị khác nhau cho dev / staging / prod trong Azure App Configuration. Cơ chế chuẩn?",
+ o:["Tạo ba App Configuration store riêng","Dùng **label**","Đặt tiền tố khác nhau cho key","Dùng snapshot"],a:1,
+ e:"Label là cơ chế phiên bản hoá theo môi trường: cùng key, khác label, app chọn label khi load. Store riêng cũng làm được nhưng tốn kém và không phải cách khuyến nghị."},
+{id:71,d:4,q:"Bạn cập nhật 5 key cấu hình rồi muốn app nạp lại một lần duy nhất, tránh đọc trạng thái nửa vời. Kỹ thuật nào?",
+ o:["Restart toàn bộ app","Sentinel key: đổi nó sau cùng và chỉ theo dõi key này để refresh","Giảm refresh interval xuống 1 giây","Dùng feature flag thay cho key-value"],a:1,
+ e:"App Configuration provider theo dõi sentinel key; khi phát hiện đổi mới nạp lại toàn bộ cấu hình. Nhờ đó tránh trường hợp app đọc được 3/5 key mới."},
+{id:72,d:4,q:"Trace bị đứt giữa API và Function: hai bên hiện thành hai trace riêng. Kiểm tra gì trước tiên?",
+ o:["Retention của Log Analytics","Header `traceparent` (W3C Trace Context) có được truyền qua không","Region của Application Insights","Sampling rate"],a:1,
+ e:"Context propagation dựa trên header `traceparent`. Nếu proxy/API gateway loại bỏ header hoặc client không dùng propagator W3C thì span con sinh trace mới."},
+{id:73,d:4,q:"KQL nào cho P95 latency theo từng endpoint trong 24 giờ qua?",
+ o:["`AppRequests | summarize avg(DurationMs) by Name`","`AppRequests | where TimeGenerated > ago(24h) | summarize percentile(DurationMs, 95) by Name`","`AppDependencies | top 10 by DurationMs`","`AppTraces | count`"],a:1,
+ e:"`percentile(DurationMs, 95)` cho P95; `where TimeGenerated > ago(24h)` giới hạn thời gian; `by Name` nhóm theo endpoint. Trung bình (`avg`) che mất đuôi phân phối."},
+{id:74,d:4,q:"Lệnh gọi ra ngoài (Cosmos DB, Azure OpenAI, Redis) được ghi vào bảng nào của Application Insights workspace-based?",
+ o:["`AppRequests`","`AppDependencies`","`AppTraces`","`AppExceptions`"],a:1,
+ e:"Incoming request → `AppRequests`; outgoing/dependency call → `AppDependencies`; log → `AppTraces`; ngoại lệ → `AppExceptions`. Trường `OperationId` nối chúng thành một trace."},
+{id:75,d:4,q:"`DefaultAzureCredential` hoạt động thế nào khi code chạy trên Container Apps đã bật managed identity?",
+ o:["Luôn yêu cầu biến môi trường AZURE_CLIENT_SECRET","Thử lần lượt các nguồn và sẽ dùng managed identity của container app","Chỉ hoạt động khi chạy local với `az login`","Cần chỉ định tenant ID thủ công"],a:1,
+ e:"DefaultAzureCredential thử theo chuỗi: environment → workload identity → managed identity → Azure CLI/PowerShell/azd → interactive. Trên Azure nó lấy được token từ managed identity; ở local dùng `az login`."},
+{id:76,d:4,q:"Bạn cấu hình Key Vault reference trong app setting nhưng app đọc ra đúng chuỗi `@Microsoft.KeyVault(...)` thay vì giá trị. Nguyên nhân?",
+ o:["Cú pháp phải viết hoa toàn bộ","App chưa có managed identity hoặc identity chưa được cấp quyền đọc secret","Key Vault phải nằm cùng resource group","Phải dùng Premium App Service plan"],a:1,
+ e:"Khi platform không resolve được reference, nó trả về nguyên văn chuỗi. Điều kiện: app có identity, identity có role Key Vault Secrets User (hoặc access policy get), và URI đúng."},
+{id:77,d:4,q:"Chi phí ingest Application Insights tăng vọt vì hệ thống có lưu lượng rất lớn. Cách giảm hợp lý nhất mà vẫn giữ khả năng chẩn đoán?",
+ o:["Tắt hoàn toàn telemetry","Bật sampling và dùng Basic Logs cho bảng verbose, đặt retention hợp lý","Giảm số replica của app","Chuyển sang ghi log ra file trong container"],a:1,
+ e:"Sampling giữ tỷ lệ đại diện của trace; Basic Logs rẻ hơn cho log ít truy vấn; transformation trong DCR có thể lọc bớt trước khi ingest."},
+{id:78,d:4,q:"Muốn bật/tắt tính năng hybrid search cho 10% người dùng mà không deploy lại. Dùng gì?",
+ o:["Biến môi trường trong container","Feature flag của App Configuration với percentage filter","Key Vault secret","Thêm revision mới trên Container Apps"],a:1,
+ e:"Feature flag của App Configuration hỗ trợ filter theo phần trăm, thời gian, hoặc nhóm target — thay đổi có hiệu lực runtime, không cần deploy."},
+{id:79,d:4,q:"Bảng Log Analytics nào chứa stdout/stderr của ứng dụng chạy trên Azure Container Apps?",
+ o:["`ContainerLogV2`","`ContainerAppConsoleLogs_CL`","`AppTraces`","`KubePodInventory`"],a:1,
+ e:"`ContainerAppConsoleLogs_CL` là log ứng dụng của Container Apps; `ContainerAppSystemLogs_CL` là log hệ thống (scaling, provisioning). `ContainerLogV2` và `KubePodInventory` thuộc Container Insights của AKS."},
+{id:80,d:4,q:"Trong OpenTelemetry cho Python trên Azure, biến môi trường nào quyết định tên service hiển thị trong Application Map?",
+ o:["`APPINSIGHTS_ROLE`","`OTEL_SERVICE_NAME`","`AZURE_SERVICE_NAME`","`WEBSITE_SITE_NAME`"],a:1,
+ e:"`OTEL_SERVICE_NAME` (hoặc resource attribute `service.name`) được ánh xạ thành `AppRoleName` / cloud role name trong Application Insights, dùng để vẽ Application Map."},
+{id:81,d:4,q:"Cần cảnh báo ngay khi có message rơi vào dead-letter queue. Cách rẻ và nhanh nhất?",
+ o:["Log alert chạy KQL mỗi 5 phút","Metric alert trên chỉ số `DeadletteredMessages` của Service Bus","Function polling DLQ mỗi phút","Kiểm tra thủ công trong portal"],a:1,
+ e:"Metric alert dùng chỉ số dựng sẵn của platform: rẻ hơn, độ trễ thấp hơn log alert (vốn phải chờ dữ liệu ingest vào Log Analytics)."},
+{id:82,d:4,q:"Bạn có một `OperationId` từ báo cáo lỗi của người dùng và muốn xem toàn bộ hành trình request qua 4 service. Làm gì?",
+ o:["Lọc `AppRequests` theo `Name`","`union AppRequests, AppDependencies, AppTraces, AppExceptions | where OperationId == '<id>'` và sắp xếp theo thời gian","Xem Live Metrics","Bật thêm sampling"],a:1,
+ e:"`OperationId` chính là trace id dùng chung cho mọi telemetry của một request. `union` bốn bảng rồi order theo `TimeGenerated` sẽ tái dựng đầy đủ dòng thời gian."},
+{id:83,d:4,q:"Chọn TẤT CẢ điều kiện cần để Key Vault reference trong App Service hoạt động.",
+ o:["Web app có managed identity","Identity được cấp quyền đọc secret trên vault","URI secret đúng định dạng","Vault phải bật public network access cho mọi IP"],a:[0,1,2],
+ e:"Vault có thể dùng private endpoint kèm VNet integration của app; không bắt buộc mở public. Ba điều kiện còn lại là bắt buộc."},
+{id:84,d:4,q:"KQL nào vẽ biểu đồ số lỗi 429 theo thời gian, gom theo từng 5 phút?",
+ o:["`AppDependencies | where ResultCode == '429' | summarize count() by bin(TimeGenerated, 5m) | render timechart`","`AppDependencies | where ResultCode == '429' | take 100`","`AppDependencies | summarize count() by ResultCode`","`AppRequests | project ResultCode | render piechart`"],a:0,
+ e:"`bin(TimeGenerated, 5m)` chia trục thời gian thành khoảng 5 phút, `summarize count()` đếm theo khoảng, `render timechart` vẽ biểu đồ đường. 429 là dấu hiệu bị throttle (Cosmos DB, Azure OpenAI)."},
+{id:401,d:4,q:"Một secret bị xoá nhầm cách đây 2 ngày, vault bật soft delete. Làm gì?",
+ o:["Không khôi phục được","`az keyvault secret recover` trong thời gian retention","Tạo lại vault từ backup","Liên hệ hỗ trợ Microsoft"],a:1,
+ e:"Soft delete giữ đối tượng đã xoá 7–90 ngày (mặc định 90) và cho phép recover. Purge protection còn ngăn việc xoá vĩnh viễn sớm."},
+{id:402,d:4,q:"Ứng dụng gọi `get_secret()` trong mỗi HTTP request và bắt đầu nhận lỗi throttling từ Key Vault. Sửa gì?",
+ o:["Tạo thêm vault","Cache giá trị secret trong bộ nhớ và làm mới định kỳ","Đổi sang Premium tier","Tăng số instance ứng dụng"],a:1,
+ e:"Key Vault có hạn mức request theo vault (secret khoảng 2.000 request/10 giây). Secret hiếm khi đổi nên cache trong process là cách chuẩn; hoặc dùng Key Vault reference của App Service/App Configuration."},
+{id:403,d:4,q:"Yêu cầu: khoá mã hoá tuyệt đối không được rời khỏi Key Vault, nhưng ứng dụng vẫn phải mã hoá/giải mã dữ liệu.",
+ o:["Lưu khoá dưới dạng secret rồi tải về","Dùng Key Vault **key** và thao tác qua `CryptographyClient` (wrap/unwrap, encrypt/decrypt)","Lưu khoá trong App Configuration","Hard-code khoá trong biến môi trường"],a:1,
+ e:"Với đối tượng loại key, thao tác mã hoá được thực hiện phía dịch vụ; ứng dụng chỉ gửi dữ liệu và nhận kết quả, private key không bao giờ xuất ra."},
+{id:404,d:4,q:"Quy định yêu cầu HSM đơn tenant, đạt FIPS 140-2 Level 3. Chọn gì?",
+ o:["Key Vault Standard","Key Vault Premium","Azure Managed HSM","Azure App Configuration"],a:2,
+ e:"Key Vault Premium dùng HSM chia sẻ (Level 2/3 tuỳ thành phần). Khi cần HSM riêng biệt hoàn toàn, đáp án là Managed HSM."},
+{id:405,d:4,q:"Chứng chỉ TLS hết hạn gây gián đoạn dịch vụ. Cách phòng ngừa trong Key Vault?",
+ o:["Đặt nhắc lịch thủ công","Dùng certificate object với policy tự động gia hạn từ CA tích hợp và cảnh báo qua Event Grid","Lưu chứng chỉ dưới dạng secret","Tắt kiểm tra hết hạn"],a:1,
+ e:"Đối tượng certificate của Key Vault có lifetime action (auto-renew ở mốc % thời hạn) và phát sự kiện `CertificateNearExpiry` qua Event Grid."},
+{id:406,d:4,q:"Cần khoá Key Vault chỉ cho truy cập từ VNet, nhưng vẫn cho phép các dịch vụ tin cậy của Azure (như App Service backup) hoạt động.",
+ o:["`--default-action Deny` kèm `--bypass AzureServices` và private endpoint","Mở public cho toàn bộ IP","Xoá network rule","Chuyển sang Managed HSM"],a:0,
+ e:"Firewall của Key Vault có tuỳ chọn bypass cho trusted Microsoft services; kết hợp private endpoint cho lưu lượng nội bộ."},
+{id:407,d:4,q:"Kiểm toán yêu cầu biết ai đã đọc secret nào và lúc nào. Bật gì?",
+ o:["Metrics của Key Vault","Diagnostic setting gửi log `AuditEvent` sang Log Analytics","Activity log của subscription là đủ","Application Insights"],a:1,
+ e:"`AuditEvent` ghi lại thao tác data plane (get/set/delete secret). Activity log chỉ ghi thao tác control plane (tạo/xoá vault)."},
+{id:408,d:4,q:"Ba container app khác nhau cần cùng một bộ quyền tới Cosmos DB và Key Vault, và quyền phải tồn tại độc lập với vòng đời từng app. Dùng identity nào?",
+ o:["System-assigned cho mỗi app","Một user-assigned managed identity dùng chung","Service principal với client secret","Access key chia sẻ"],a:1,
+ e:"User-assigned identity là tài nguyên độc lập, gán cho nhiều dịch vụ, quyền cấp một lần. System-assigned bị xoá cùng tài nguyên và phải gán quyền riêng cho từng app."},
+{id:409,d:4,q:"Tài nguyên có nhiều user-assigned identity. Code cần chỉ định dùng identity nào?",
+ o:["`DefaultAzureCredential()` tự chọn đúng","`ManagedIdentityCredential(client_id=...)` hoặc đặt `AZURE_CLIENT_ID`","Không cần chỉ định","Phải chuyển sang system-assigned"],a:1,
+ e:"Khi có nhiều identity, IMDS không thể tự đoán; phải nêu rõ client id qua tham số hoặc biến môi trường `AZURE_CLIENT_ID`."},
+{id:410,d:4,q:"Bạn gán role **Contributor** trên tài khoản Cosmos DB cho managed identity của ứng dụng, nhưng ứng dụng vẫn không đọc được document. Vì sao?",
+ o:["Cần thêm role dữ liệu (data plane) như Cosmos DB Built-in Data Reader/Contributor","Cần khởi động lại tài khoản Cosmos","Contributor chưa nhân bản xong","Phải bật multi-region"],a:0,
+ e:"Cosmos DB tách bạch RBAC control plane và data plane. Contributor chỉ quản lý tài nguyên; đọc/ghi document cần role dữ liệu gán bằng `az cosmosdb sql role assignment create`."},
+{id:411,d:4,q:"App Configuration provider cần đọc cả key-value lẫn Key Vault reference. Cần cấp những quyền nào?",
+ o:["Chỉ App Configuration Data Reader","Chỉ Key Vault Secrets User","Cả App Configuration Data Reader **và** Key Vault Secrets User","Không cần quyền nếu dùng managed identity"],a:2,
+ e:"App Configuration chỉ lưu **tham chiếu** tới secret; chính ứng dụng (hoặc provider) phải tự gọi Key Vault để resolve, nên cần quyền trên cả hai dịch vụ."},
+{id:412,d:4,q:"Bạn muốn mỗi lần deploy dùng đúng một tập cấu hình bất biến, tái lập được kể cả khi ai đó sửa key sau đó.",
+ o:["Label","Snapshot của App Configuration","Feature flag","Key Vault reference"],a:1,
+ e:"Snapshot đóng băng một tập key-value tại thời điểm tạo; ứng dụng load theo snapshot sẽ luôn nhận đúng bộ cấu hình đó."},
+{id:413,d:4,q:"Muốn bật tính năng mới cho đúng nhóm người dùng nội bộ trước, rồi mở rộng dần.",
+ o:["Percentage filter","Targeting filter với danh sách user/group","Time window filter","Tạo label mới"],a:1,
+ e:"Targeting filter chỉ định user, group và tỷ lệ mở rộng cho phần còn lại — đúng mô hình rollout theo nhóm. Percentage filter là ngẫu nhiên theo tỷ lệ."},
+{id:414,d:4,q:"Ghi nhận một ngoại lệ vào span của OpenTelemetry đúng cách là?",
+ o:["`print(e)`","`span.record_exception(e)` kèm `span.set_status(StatusCode.ERROR)`","`span.set_attribute('error', True)` là đủ","Không cần vì SDK tự bắt hết"],a:1,
+ e:"`record_exception` thêm event chứa stack trace vào span, còn `set_status` đánh dấu span là lỗi để hiển thị đúng trong Failures blade."},
+{id:415,d:4,q:"Chi phí telemetry quá cao nhưng vẫn cần giữ tỷ lệ mẫu đại diện của trace. Cấu hình nào?",
+ o:["Giảm số replica","Đặt tỷ lệ sampling khi cấu hình Azure Monitor exporter (ví dụ 5%)","Tắt Application Insights","Đổi region"],a:1,
+ e:"Sampling giữ một phần trace nhưng đảm bảo tính nhất quán của cả trace (các span cùng trace được giữ/bỏ cùng nhau) — cách giảm chi phí phổ biến nhất."},
+{id:416,d:4,q:"Bạn muốn tách cấu hình xuất telemetry ra khỏi ứng dụng và gộp/xử lý trước khi gửi lên Azure Monitor trong cụm AKS.",
+ o:["Cấu hình lại từng ứng dụng","Triển khai OpenTelemetry Collector (daemonset/sidecar) làm điểm thu gom","Dùng kubectl logs","Bật Container Insights là đủ"],a:1,
+ e:"Collector nhận telemetry qua OTLP, có thể lọc/gộp/định tuyến rồi mới export. Ứng dụng chỉ cần biết endpoint của collector."},
+{id:417,d:4,q:"Cần xem lưu lượng và lỗi **theo thời gian thực** ngay khi vừa deploy bản mới.",
+ o:["Log Analytics query","Live Metrics của Application Insights","Metric alert","Workbook hằng ngày"],a:1,
+ e:"Live Metrics hiển thị theo giây, không phải chờ độ trễ ingest của Log Analytics (thường vài phút) — hợp cho theo dõi lúc deploy."},
+{id:418,d:4,q:"KQL nào ghép request với các dependency của cùng một thao tác?",
+ o:["`AppRequests | join kind=inner AppDependencies on OperationId`","`AppRequests | union AppDependencies`","`AppRequests | lookup AppDependencies`","`AppRequests | mv-expand AppDependencies`"],a:0,
+ e:"`join ... on OperationId` ghép hai bảng theo cùng trace. `union` chỉ nối dòng chứ không ghép cột theo khoá."},
+{id:419,d:4,q:"Đếm số người dùng duy nhất bị ảnh hưởng bởi một lỗi trong 6 giờ qua. Hàm KQL nào?",
+ o:["`count()`","`dcount(UserId)`","`sum(UserId)`","`take 100`"],a:1,
+ e:"`dcount()` đếm số giá trị phân biệt (xấp xỉ, hiệu năng cao). Dùng `dcount_if()` khi cần thêm điều kiện, `count_distinct()` khi cần chính xác tuyệt đối."},
+{id:420,d:4,q:"Trong KQL, vì sao nên ưu tiên `has` hơn `contains` khi lọc log?",
+ o:["`has` hỗ trợ regex","`has` khớp theo token nên tận dụng index và nhanh hơn nhiều","`contains` không phân biệt hoa thường","Không có khác biệt"],a:1,
+ e:"`has` tìm theo từ (term) và dùng được index của Log Analytics; `contains` là tìm chuỗi con nên phải quét — chậm hơn hẳn trên tập dữ liệu lớn."},
+{id:421,d:4,q:"Custom dimension được gửi kèm dependency (ví dụ số token). Trích ra trong KQL thế nào?",
+ o:["`project Properties.tokens`","`extend tokens = toint(Properties['gen_ai.usage.input_tokens'])`","`summarize Properties`","`parse Properties`"],a:1,
+ e:"`Properties` là cột kiểu dynamic; truy cập bằng cú pháp chỉ mục rồi ép kiểu (`toint`, `todouble`, `tostring`) trước khi tính toán."},
+{id:422,d:4,q:"Khi nào metric alert phù hợp hơn log alert?",
+ o:["Khi cần logic truy vấn phức tạp trên nhiều bảng","Khi theo dõi chỉ số dựng sẵn của platform và cần độ trễ thấp, chi phí thấp","Khi cần trích custom dimension","Khi cần join dữ liệu"],a:1,
+ e:"Metric alert đánh giá trên metric pipeline gần thời gian thực và rẻ hơn. Log alert linh hoạt hơn nhưng phải chờ dữ liệu ingest và tính phí theo truy vấn."},
+{id:423,d:4,q:"Log verbose chiếm phần lớn chi phí Log Analytics nhưng thỉnh thoảng vẫn cần điều tra. Cách giảm chi phí phù hợp?",
+ o:["Xoá workspace mỗi tuần","Chuyển bảng đó sang Basic Logs / Auxiliary và đặt retention hợp lý, kết hợp transformation (DCR) để lọc trước khi ingest","Tắt toàn bộ log","Chuyển toàn bộ sang metric"],a:1,
+ e:"Basic Logs rẻ hơn nhiều cho dữ liệu ít truy vấn (đổi lại giới hạn tính năng truy vấn). Transformation trong Data Collection Rule loại bỏ dòng không cần trước khi tính phí ingest."},
+{id:424,d:4,q:"Bạn cần xem sự kiện scaling và lỗi provisioning của một Container App. Bảng nào?",
+ o:["`ContainerAppConsoleLogs_CL`","`ContainerAppSystemLogs_CL`","`AppTraces`","`ContainerLogV2`"],a:1,
+ e:"System log ghi sự kiện platform của Container Apps; console log chỉ chứa stdout/stderr của ứng dụng; `ContainerLogV2` thuộc Container Insights của AKS."},
+{id:425,d:4,q:"Trong AKS đã bật Container Insights, log stdout của container nằm ở bảng nào?",
+ o:["`ContainerLogV2`","`AppTraces`","`KubeEvents`","`Perf`"],a:0,
+ e:"`ContainerLogV2` là bảng log container hiện hành. `KubeEvents` chứa event của cluster, `Perf` chứa số liệu tài nguyên."},
+{id:426,d:4,q:"Trace của một request bị lỗi lại không xuất hiện trong Application Insights dù ứng dụng có ghi nhận. Nguyên nhân thường gặp?",
+ o:["Sai region","Sampling đã loại bỏ trace đó","Thiếu managed identity","Log Analytics hết dung lượng"],a:1,
+ e:"Sampling (adaptive hoặc fixed-rate) bỏ bớt telemetry để giảm chi phí. Muốn chắc chắn giữ lỗi thì loại `Exception` khỏi sampling hoặc nâng tỷ lệ."},
+{id:427,d:4,q:"Ứng dụng cũ ghi vào bảng `requests`/`dependencies`, ứng dụng mới ghi vào `AppRequests`/`AppDependencies`. Vì sao?",
+ o:["Hai loại telemetry khác nhau","Tên bảng khác nhau giữa Application Insights classic và workspace-based (cùng dữ liệu, khác schema/tên)","Một bên là metric, một bên là log","Do khác region"],a:1,
+ e:"Resource classic dùng tên `requests`, `dependencies`, `traces`, `exceptions`; workspace-based dùng `AppRequests`, `AppDependencies`, `AppTraces`, `AppExceptions`."},
+{id:428,d:4,q:"Application Map hiển thị tất cả service dưới cùng một node. Nguyên nhân?",
+ o:["Chưa bật sampling","Các service dùng chung tên role (chưa đặt `OTEL_SERVICE_NAME` / `service.name` riêng)","Chưa cấu hình dead-letter","Sai KQL"],a:1,
+ e:"Application Map nhóm theo `AppRoleName`. Nếu mọi service để mặc định giống nhau thì bản đồ gộp làm một; đặt tên riêng cho từng service để tách node."},
+{id:429,d:4,q:"Bạn muốn ngăn hoàn toàn việc dùng access key của App Configuration, chỉ cho phép Entra ID.",
+ o:["Xoá key trong portal","Tắt access key authentication trên store và gán role dữ liệu cho managed identity","Đổi sang tier Free","Bật private endpoint là đủ"],a:1,
+ e:"App Configuration cho phép tắt hẳn xác thực bằng access key; sau đó mọi truy cập phải qua Entra ID với role như App Configuration Data Reader/Owner."},
+{id:430,d:4,q:"KQL nào liệt kê 5 dependency chậm nhất theo P99 trong 1 giờ qua?",
+ o:["`AppDependencies | where TimeGenerated > ago(1h) | summarize p99 = percentile(DurationMs, 99) by Target, Name | top 5 by p99`","`AppDependencies | take 5`","`AppRequests | summarize count() by Name`","`AppExceptions | top 5 by TimeGenerated`"],a:0,
+ e:"Lọc thời gian → gộp theo target/name với `percentile(DurationMs, 99)` → `top 5 by`. Đây là truy vấn chuẩn để tìm nút thắt của dịch vụ downstream."},
+{id:431,d:4,q:"Chọn TẤT CẢ những điều đúng về `DefaultAzureCredential`.",
+ o:["Thử lần lượt nhiều nguồn credential theo thứ tự cố định","Dùng được managed identity khi chạy trên Azure","Dùng được `az login` khi chạy trên máy dev","Luôn cần client secret trong biến môi trường"],a:[0,1,2],
+ e:"Chuỗi thử gồm environment → workload identity → managed identity → Azure CLI/PowerShell/azd → interactive. Client secret chỉ là một trong các nguồn, không bắt buộc."},
+];
+
+/* Sắp xếp thứ tự (build list) — steps liệt kê sẵn theo đúng trình tự */
+const ORDER = [
+{id:501,d:1,q:"Bạn cần deploy image từ Azure Container Registry lên Azure App Service sao cho App Service kéo image bằng managed identity. Sắp xếp các hành động theo đúng thứ tự.",
+ steps:[
+   "Bật system-assigned managed identity cho web app",
+   "Gán role `AcrPull` cho principal của web app trên phạm vi registry",
+   "Đặt `acrUseManagedIdentityCreds` = true cho cấu hình web app",
+   "Cấu hình web app trỏ tới image `myacr.azurecr.io/ai/rag-api:1.0.0`",
+   "Thêm app setting `WEBSITES_PORT` khớp cổng container lắng nghe",
+ ],
+ e:"Phải có identity trước thì mới gán được role; có role rồi mới bật chế độ dùng identity để kéo image; sau đó mới trỏ image và khai báo cổng. Đảo thứ tự hai bước đầu sẽ khiến việc gán role thất bại vì chưa có principal."},
+{id:502,d:2,q:"Sắp xếp các bước để triển khai semantic search trên Azure Cosmos DB for NoSQL.",
+ steps:[
+   "Bật feature 'Vector Search for NoSQL API' ở cấp account",
+   "Tạo container kèm vector embedding policy (path, dataType, dimensions, distanceFunction)",
+   "Khai báo `vectorIndexes` với type `diskANN` trong indexing policy và loại `/embedding/*` khỏi includedPaths",
+   "Sinh embedding cho từng chunk rồi upsert document",
+   "Truy vấn bằng `SELECT TOP k ... ORDER BY VectorDistance(c.embedding, @v)`",
+ ],
+ e:"Feature phải bật trước khi tạo container có embedding policy — và policy này **không sửa được** sau khi container đã tạo, nên phải khai báo đầy đủ ngay từ đầu."},
+{id:503,d:2,q:"Sắp xếp các bước để chuẩn bị RAG bằng pgvector trên Azure Database for PostgreSQL flexible server.",
+ steps:[
+   "Thêm `vector` vào server parameter `azure.extensions`",
+   "Chạy `CREATE EXTENSION vector;` trong database",
+   "Tạo bảng `doc_chunks` với cột `embedding vector(1536)` và cột metadata",
+   "Nạp dữ liệu và embedding vào bảng",
+   "Tạo index `USING hnsw (embedding vector_cosine_ops)`",
+   "Chạy `VACUUM ANALYZE` rồi kiểm chứng bằng `EXPLAIN (ANALYZE)`",
+ ],
+ e:"Extension phải được allowlist ở cấp server trước. Tạo index sau khi nạp dữ liệu nhanh hơn nhiều so với nạp vào bảng đã có index."},
+{id:504,d:1,q:"Sắp xếp các bước để phát hành canary 10% trên Azure Container Apps.",
+ steps:[
+   "Chuyển container app sang chế độ multiple revision",
+   "Deploy image mới kèm `--revision-suffix v2` để tạo revision mới",
+   "Đặt traffic weight: revision cũ 90%, revision mới 10%",
+   "Theo dõi lỗi và độ trễ của revision mới trong Application Insights",
+   "Chuyển 100% traffic sang revision mới",
+   "Deactivate revision cũ",
+ ],
+ e:"Traffic splitting chỉ hoạt động ở multiple revision mode nên đó phải là bước đầu. Chỉ deactivate revision cũ sau khi bản mới đã nhận toàn bộ traffic và ổn định."},
+{id:505,d:4,q:"Sắp xếp các bước để tự động xoay secret bằng Key Vault và Event Grid.",
+ steps:[
+   "Đặt thuộc tính `expires` cho secret trong Key Vault",
+   "Tạo event subscription trên vault cho loại sự kiện `Microsoft.KeyVault.SecretNearExpiry`",
+   "Trỏ subscription tới một Azure Function",
+   "Function gọi API dịch vụ nguồn để tạo khoá mới",
+   "Function ghi giá trị mới bằng `set_secret()` tạo version mới",
+   "Ứng dụng đọc secret không kèm version và nhận giá trị mới sau khi cache hết hạn",
+ ],
+ e:"Sự kiện `SecretNearExpiry` chỉ phát ra khi secret có ngày hết hạn, nên bước đặt `expires` phải làm trước. Ứng dụng phải đọc theo URI không có version thì mới tự nhận giá trị mới."},
+{id:506,d:3,q:"Sắp xếp các bước cấu hình Event Grid cho pipeline xử lý tài liệu có khả năng khôi phục khi giao thất bại.",
+ steps:[
+   "Tạo blob container dùng làm nơi chứa dead-letter",
+   "Tạo event subscription trỏ tới Azure Function xử lý",
+   "Thêm filter `--subject-ends-with .pdf` để bỏ qua các loại file khác",
+   "Cấu hình `--deadletter-endpoint` trỏ tới blob container đã tạo",
+   "Đặt `--max-delivery-attempts` và `--event-ttl` phù hợp",
+   "Kiểm thử bằng cách để handler trả về 500 và xác nhận event xuất hiện trong dead-letter",
+ ],
+ e:"Container dead-letter phải tồn tại trước khi được tham chiếu. Nếu bỏ qua bước dead-letter, event thất bại sẽ bị mất vĩnh viễn."},
+{id:507,d:2,q:"Sắp xếp các bước xây dựng pipeline sinh embedding tự động từ change feed của Cosmos DB.",
+ steps:[
+   "Tạo lease container với partition key `/id`",
+   "Tạo Azure Function với Cosmos DB trigger trỏ tới container nguồn và lease container",
+   "Trong hàm, gọi Azure OpenAI để sinh embedding cho từng document nhận được",
+   "Upsert document kèm embedding (thao tác phải idempotent)",
+   "Scale số instance để tận dụng số physical partition của container nguồn",
+ ],
+ e:"Change feed giao **at-least-once** nên bước ghi phải idempotent. Mức song song tối đa bị chặn bởi số physical partition, không phải số instance."},
+{id:508,d:1,q:"Sắp xếp các bước deploy ứng dụng lên AKS bằng manifest.",
+ steps:[
+   "Tạo cluster với `--attach-acr` để kubelet có quyền `AcrPull`",
+   "Chạy `az aks get-credentials` để lấy kubeconfig",
+   "Áp dụng manifest Deployment và Service bằng `kubectl apply -f`",
+   "Kiểm tra `kubectl rollout status deploy/rag-api`",
+   "Xác minh endpoint bằng pod tạm: `kubectl run tmp --rm -it --image=curlimages/curl -- curl http://rag-api/healthz`",
+ ],
+ e:"Không có kubeconfig thì `kubectl` không kết nối được cluster. Kiểm tra rollout trước rồi mới kiểm tra kết nối end-to-end."},
+{id:509,d:4,q:"Sắp xếp các bước bật distributed tracing bằng OpenTelemetry cho một service Python.",
+ steps:[
+   "Tạo Application Insights resource (workspace-based)",
+   "Đặt app setting `APPLICATIONINSIGHTS_CONNECTION_STRING` cho ứng dụng",
+   "Cài gói `azure-monitor-opentelemetry` và đặt `OTEL_SERVICE_NAME`",
+   "Gọi `configure_azure_monitor()` khi ứng dụng khởi động",
+   "Thêm span thủ công cho các bước embed / vector_search / llm_call",
+   "Kiểm chứng bằng KQL trên `AppRequests` và `AppDependencies` theo `OperationId`",
+ ],
+ e:"`configure_azure_monitor()` phải chạy sớm trong vòng đời ứng dụng để instrument các thư viện. `OTEL_SERVICE_NAME` quyết định `AppRoleName` hiển thị trên Application Map."},
+{id:510,d:3,q:"Sắp xếp các bước xử lý message lỗi đã nằm trong dead-letter queue của Service Bus.",
+ steps:[
+   "Tạo receiver trỏ tới sub-queue dead-letter",
+   "Đọc `dead_letter_reason` và `dead_letter_error_description` để xác định nguyên nhân",
+   "Sửa lỗi ở phía consumer hoặc chuẩn hoá lại dữ liệu message",
+   "Gửi bản sao message vào queue chính để xử lý lại",
+   "Gọi `complete_message()` trên message trong DLQ để loại nó khỏi hàng đợi",
+ ],
+ e:"Message trong DLQ không tự hết hạn nên phải complete sau khi đã resubmit, nếu không nó sẽ tồn tại mãi và chiếm quota."},
+];
+
+/* Điền vào code (code completion) — {{n}} trong code ứng với blanks[n] */
+const FILL = [
+{id:601,d:1,q:"Hoàn thiện scale rule để Container App scale theo độ dài queue của Azure Service Bus, mỗi replica xử lý 20 message.",
+ code:"properties:\n  template:\n    scale:\n      minReplicas: {{0}}\n      maxReplicas: 30\n      rules:\n        - name: sb-queue\n          custom:\n            type: {{1}}\n            metadata:\n              queueName: docs-to-embed\n              namespace: mysb\n              messageCount: \"{{2}}\"\n            auth:\n              - secretRef: sb-conn\n                triggerParameter: connection",
+ blanks:[
+   {o:["0","1","5"],a:0},   // 0
+   {o:["azure-queue","azure-servicebus","azure-eventhub","cpu"],a:1},   // 1
+   {o:["20","30","1"],a:0},   // 2
+ ],
+ e:"`minReplicas: 0` cho phép scale-to-zero (chỉ được với HTTP/TCP/KEDA event scaler). Scaler cho Service Bus là `azure-servicebus`; `azure-queue` là của Queue Storage. `messageCount` là số message mục tiêu **trên mỗi replica**."},
+{id:602,d:2,q:"Hoàn thiện truy vấn semantic search có lọc theo tenant trong Cosmos DB for NoSQL.",
+ code:"SELECT {{0}} c.id, c.chunk,\n       VectorDistance(c.embedding, @queryVector) AS score\nFROM   c\nWHERE  c.tenantId = @tenant\n{{1}} VectorDistance(c.embedding, @queryVector)",
+ blanks:[
+   {o:["TOP 5","DISTINCT","VALUE"],a:0},   // 0
+   {o:["GROUP BY","ORDER BY","HAVING"],a:1},   // 1
+ ],
+ e:"Không có `ORDER BY VectorDistance(...)` thì vector index không được dùng; `TOP N` bắt buộc để giới hạn kết quả. Đặt filter tenant trong `WHERE` giúp pre-filter và giảm RU."},
+{id:603,d:2,q:"Hoàn thiện indexing policy cho container lưu embedding 1536 chiều với 50 triệu document.",
+ code:"{\n  \"indexingMode\": \"consistent\",\n  \"includedPaths\": [ { \"path\": \"/*\" } ],\n  \"excludedPaths\": [ { \"path\": \"{{0}}\" } ],\n  \"vectorIndexes\": [ { \"path\": \"/embedding\", \"type\": \"{{1}}\" } ]\n}",
+ blanks:[
+   {o:["/tenantId/?","/embedding/*","/id/?"],a:1},   // 0
+   {o:["flat","quantizedFlat","diskANN"],a:2},   // 1
+ ],
+ e:"Loại `/embedding/*` khỏi index thường để tránh 1536 mục index cho mỗi document. `diskANN` phù hợp nhất ở quy mô lớn; `flat` chỉ tới 505 chiều."},
+{id:604,d:2,q:"Hoàn thiện câu lệnh tạo index và truy vấn cosine similarity bằng pgvector.",
+ code:"CREATE INDEX idx_chunks ON doc_chunks\nUSING {{0}} (embedding {{1}})\nWITH (m = 16, ef_construction = 64);\n\nSELECT id, chunk\nFROM   doc_chunks\nWHERE  tenant_id = $2\nORDER BY embedding {{2}} $1\nLIMIT 5;",
+ blanks:[
+   {o:["hnsw","ivfflat","gin","btree"],a:0},   // 0
+   {o:["vector_l2_ops","vector_cosine_ops","vector_ip_ops"],a:1},   // 1
+   {o:["<->","<=>","<#>"],a:1},   // 2
+ ],
+ e:"Tham số `m` và `ef_construction` là của HNSW. Toán tử trong `ORDER BY` phải khớp opclass: `<=>` ↔ `vector_cosine_ops`, nếu lệch thì planner bỏ qua index."},
+{id:605,d:3,q:"Hoàn thiện Azure Function (Python v2) xử lý message từ Service Bus.",
+ code:"app = func.FunctionApp()\n\n@app.{{0}}(arg_name=\"msg\",\n           queue_name=\"docs-to-embed\",\n           connection=\"SERVICEBUS_CONN\")\ndef embed_worker(msg: func.{{1}}):\n    doc = json.loads(msg.get_body().decode())\n    upsert_vector(doc)",
+ blanks:[
+   {o:["service_bus_queue_trigger","service_bus_topic_trigger","queue_trigger"],a:0},   // 0
+   {o:["HttpRequest","ServiceBusMessage","QueueMessage"],a:1},   // 1
+ ],
+ e:"`queue_trigger` là của Queue Storage, không phải Service Bus. Tham số `connection` trỏ tới tên app setting (hoặc tiền tố của identity-based connection)."},
+{id:606,d:3,q:"Hoàn thiện app setting để Function truy cập Service Bus bằng managed identity thay vì connection string.",
+ code:"SERVICEBUS_CONN{{0}} = mysb.servicebus.windows.net\n# role cần gán cho managed identity: {{1}}",
+ blanks:[
+   {o:["__fullyQualifiedNamespace","__accountEndpoint","__accountName","__connectionString"],a:0},   // 0
+   {o:["Contributor","Azure Service Bus Data Receiver","Reader"],a:1},   // 1
+ ],
+ e:"Hậu tố theo dịch vụ: `__fullyQualifiedNamespace` (Service Bus/Event Hubs), `__accountName` (Storage), `__accountEndpoint` (Cosmos DB). Vai trò quản trị không cấp quyền dữ liệu."},
+{id:607,d:4,q:"Hoàn thiện app setting của App Service để lấy giá trị từ Azure Key Vault.",
+ code:"AZURE_OPENAI_KEY = {{0}}(SecretUri=https://mykv.vault.azure.net/secrets/aoai-key/)\n\n# Điều kiện: web app có managed identity và identity được gán role {{1}}",
+ blanks:[
+   {o:["@AzureKeyVault","@Microsoft.KeyVault","keyvaultref:"],a:1},   // 0
+   {o:["Key Vault Contributor","Key Vault Secrets User","Key Vault Crypto User"],a:1},   // 1
+ ],
+ e:"`keyvaultref:` là cú pháp của Container Apps. Key Vault Contributor chỉ quản lý tài nguyên vault chứ không đọc được secret."},
+{id:608,d:4,q:"Hoàn thiện truy vấn KQL tìm P95 độ trễ theo endpoint trong 24 giờ và vẽ biểu đồ theo thời gian.",
+ code:"{{0}}\n| where TimeGenerated > {{1}}\n| summarize p95 = {{2}}(DurationMs, 95) by bin(TimeGenerated, 15m), Name\n| render timechart",
+ blanks:[
+   {o:["AppRequests","AppDependencies","AppTraces"],a:0},   // 0
+   {o:["ago(24h)","now()","startofweek(now())"],a:0},   // 1
+   {o:["avg","percentile","max"],a:1},   // 2
+ ],
+ e:"Request đến ứng dụng nằm ở `AppRequests`; `AppDependencies` là lệnh gọi ra ngoài. `percentile(DurationMs, 95)` cho P95."},
+{id:609,d:2,q:"Hoàn thiện định nghĩa vector index và truy vấn KNN trong RediSearch.",
+ code:"VectorField(\"$.embedding\", \"{{0}}\", {\n    \"TYPE\": \"FLOAT32\", \"DIM\": 1536,\n    \"DISTANCE_METRIC\": \"{{1}}\"\n}, as_name=\"embedding\")\n\nQuery(\"(@tenant:{tenant_a})=>[{{2}} 5 @embedding $vec AS score]\").dialect(2)",
+ blanks:[
+   {o:["HNSW","IVF","DISKANN"],a:0},   // 0
+   {o:["COSINE","JACCARD","MANHATTAN"],a:0},   // 1
+   {o:["TOPK","KNN","ANN"],a:1},   // 2
+ ],
+ e:"RediSearch hỗ trợ `FLAT` và `HNSW`; metric hợp lệ là `COSINE`, `L2`, `IP`. Cú pháp truy vấn là `=>[KNN k @field $vec AS score]` và bắt buộc `DIALECT 2`."},
+{id:610,d:1,q:"Hoàn thiện phần manifest Kubernetes để pod chưa sẵn sàng không nhận traffic và không bị kill vì thiếu RAM.",
+ code:"resources:\n  requests: { cpu: \"250m\", memory: \"512Mi\" }\n  limits:   { cpu: \"1\", {{0}}: \"2Gi\" }\n{{1}}:\n  httpGet: { path: /healthz, port: 8000 }\n  initialDelaySeconds: 15",
+ blanks:[
+   {o:["memory","storage","ephemeral-storage"],a:0},   // 0
+   {o:["livenessProbe","readinessProbe","startupProbe"],a:1},   // 1
+ ],
+ e:"Vượt `limits.memory` gây `OOMKilled`. Readiness quyết định pod có nằm trong endpoint của Service hay không; liveness fail sẽ restart container."},
+{id:611,d:1,q:"Hoàn thiện lệnh tạo ACR Task tự rebuild khi có commit hoặc khi base image được cập nhật.",
+ code:"az acr task create \\\n  --registry myacr --name rag-api-task \\\n  --image ai/rag-api:{{.Run.ID}} \\\n  --context https://github.com/org/repo.git#main \\\n  --file Dockerfile --git-access-token $PAT \\\n  --{{0}} true",
+ blanks:[
+   {o:["base-image-trigger-enabled","schedule-enabled","content-trust-enabled"],a:0},   // 0
+ ],
+ e:"Base image update trigger theo dõi image cha (ví dụ `python:3.12-slim`) và tự chạy lại task khi image đó có bản mới — cơ chế vá lỗi bảo mật OS tự động."},
+{id:612,d:4,q:"Hoàn thiện đoạn code bật OpenTelemetry và tạo span thủ công cho bước truy hồi vector.",
+ code:"os.environ[\"{{0}}\"] = \"rag-api\"\n{{1}}(connection_string=os.environ[\"APPLICATIONINSIGHTS_CONNECTION_STRING\"])\n\ntracer = trace.get_tracer(__name__)\nwith tracer.start_as_current_span(\"rag.vector_search\") as span:\n    docs = search(vec)\n    span.{{2}}(\"rag.docs_returned\", len(docs))",
+ blanks:[
+   {o:["OTEL_SERVICE_NAME","AZURE_SERVICE_NAME","APPINSIGHTS_ROLE"],a:0},   // 0
+   {o:["configure_azure_monitor","start_tracing","enable_otel"],a:0},   // 1
+   {o:["set_attribute","add_tag","log"],a:0},   // 2
+ ],
+ e:"`OTEL_SERVICE_NAME` ánh xạ thành `AppRoleName` trong Application Insights. `configure_azure_monitor()` là entry point của distro `azure-monitor-opentelemetry`."},
+];
+
+/* Có / Không (series) — cùng một mục tiêu, mỗi câu là một giải pháp khác nhau */
+const YESNO = [
+/* ----- series A ----- */
+{id:701,d:2,series:"A",
+ goal:"Mọi document mới hoặc vừa cập nhật trong Azure Cosmos DB for NoSQL phải được sinh embedding trong vòng vài giây, không bỏ sót bản ghi nào.",
+ solution:"Tạo một Azure Function với Timer trigger chạy mỗi 5 phút, truy vấn `SELECT * FROM c WHERE c._ts > @lastRun` rồi sinh embedding.",
+ a:false,
+ e:"Không đạt: độ trễ tới 5 phút (yêu cầu là vài giây) và truy vấn cross-partition tốn nhiều RU. Ngoài ra `_ts` có độ phân giải giây nên dễ bỏ sót bản ghi ở ranh giới."},
+{id:702,d:2,series:"A",
+ goal:"Mọi document mới hoặc vừa cập nhật trong Azure Cosmos DB for NoSQL phải được sinh embedding trong vòng vài giây, không bỏ sót bản ghi nào.",
+ solution:"Tạo Azure Function với Cosmos DB trigger trỏ tới container nguồn, kèm lease container riêng, và viết logic upsert idempotent.",
+ a:true,
+ e:"Đạt: Cosmos DB trigger chính là Change Feed Processor được host sẵn, phản ứng gần thời gian thực, tự checkpoint qua lease container nên không bỏ sót."},
+{id:703,d:2,series:"A",
+ goal:"Mọi document mới hoặc vừa cập nhật trong Azure Cosmos DB for NoSQL phải được sinh embedding trong vòng vài giây, không bỏ sót bản ghi nào.",
+ solution:"Tạo Event Grid system topic trên tài khoản Cosmos DB để nhận sự kiện mỗi khi document thay đổi.",
+ a:false,
+ e:"Không đạt: Cosmos DB không phát sự kiện thay đổi từng document qua Event Grid system topic. Cơ chế đúng cho việc này là change feed."},
+/* ----- series B ----- */
+{id:704,d:3,series:"B",
+ goal:"Message lỗi trong hàng đợi Service Bus không được chặn việc xử lý các message khác, và phải giữ lại được để điều tra sau.",
+ solution:"Nhận message ở chế độ `RECEIVE_AND_DELETE` và ghi log lỗi ra Application Insights.",
+ a:false,
+ e:"Không đạt: RECEIVE_AND_DELETE xoá message ngay khi nhận, nên nội dung message lỗi không còn để điều tra hay xử lý lại."},
+{id:705,d:3,series:"B",
+ goal:"Message lỗi trong hàng đợi Service Bus không được chặn việc xử lý các message khác, và phải giữ lại được để điều tra sau.",
+ solution:"Nhận message ở chế độ `PEEK_LOCK`; khi gặp lỗi nghiệp vụ không thể phục hồi thì gọi `dead_letter_message()` kèm reason và description.",
+ a:true,
+ e:"Đạt: message được chuyển sang dead-letter queue nên không cản trở message khác, đồng thời vẫn giữ nguyên nội dung và lý do lỗi để phân tích."},
+{id:706,d:3,series:"B",
+ goal:"Message lỗi trong hàng đợi Service Bus không được chặn việc xử lý các message khác, và phải giữ lại được để điều tra sau.",
+ solution:"Tăng `MaxDeliveryCount` của queue lên 100 để message lỗi được thử lại nhiều lần hơn.",
+ a:false,
+ e:"Không đạt: message hỏng sẽ liên tục quay lại và chiếm tài nguyên xử lý trong thời gian dài; đây là cách làm vấn đề nặng thêm chứ không cách ly được lỗi."},
+/* ----- series C ----- */
+{id:707,d:4,series:"C",
+ goal:"Ứng dụng chạy trên Azure Container Apps không được lưu trữ bất kỳ khoá hay connection string nào, nhưng vẫn phải đọc được secret trong Key Vault và ghi dữ liệu vào Cosmos DB.",
+ solution:"Bật managed identity cho container app, gán role `Key Vault Secrets User` trên vault và role `Cosmos DB Built-in Data Contributor` trên tài khoản Cosmos DB.",
+ a:true,
+ e:"Đạt: cả hai dịch vụ đều được truy cập bằng token Entra ID của managed identity, không có khoá nào được lưu ở phía ứng dụng."},
+{id:708,d:4,series:"C",
+ goal:"Ứng dụng chạy trên Azure Container Apps không được lưu trữ bất kỳ khoá hay connection string nào, nhưng vẫn phải đọc được secret trong Key Vault và ghi dữ liệu vào Cosmos DB.",
+ solution:"Lưu connection string của Cosmos DB trong Azure App Configuration và đọc nó lúc khởi động ứng dụng.",
+ a:false,
+ e:"Không đạt: connection string vẫn tồn tại, chỉ là đổi chỗ lưu. App Configuration còn không dành cho dữ liệu bí mật — secret phải nằm ở Key Vault."},
+{id:709,d:4,series:"C",
+ goal:"Ứng dụng chạy trên Azure Container Apps không được lưu trữ bất kỳ khoá hay connection string nào, nhưng vẫn phải đọc được secret trong Key Vault và ghi dữ liệu vào Cosmos DB.",
+ solution:"Gán role `Contributor` trên tài khoản Cosmos DB cho managed identity của container app.",
+ a:false,
+ e:"Không đạt: `Contributor` là role control plane, cho phép quản lý tài nguyên nhưng **không** cho phép đọc/ghi dữ liệu. Cần role data plane của Cosmos DB."},
+/* ----- series D ----- */
+{id:710,d:1,series:"D",
+ goal:"Worker xử lý embedding phải giảm về 0 replica khi hàng đợi rỗng và tự tăng lên khi có message tồn đọng.",
+ solution:"Đặt `minReplicas: 0` và thêm scale rule loại `azure-servicebus` với `messageCount: 20`.",
+ a:true,
+ e:"Đạt: KEDA scaler cho Service Bus hỗ trợ scale-to-zero và tăng replica theo số message tồn đọng."},
+{id:711,d:1,series:"D",
+ goal:"Worker xử lý embedding phải giảm về 0 replica khi hàng đợi rỗng và tự tăng lên khi có message tồn đọng.",
+ solution:"Đặt `minReplicas: 0` và thêm scale rule dựa trên CPU với ngưỡng 70%.",
+ a:false,
+ e:"Không đạt: rule cpu/memory không hỗ trợ scale-to-zero nên app luôn giữ ít nhất 1 replica; ngoài ra CPU không phản ánh lượng công việc đang chờ trong hàng đợi."},
+{id:712,d:1,series:"D",
+ goal:"Worker xử lý embedding phải giảm về 0 replica khi hàng đợi rỗng và tự tăng lên khi có message tồn đọng.",
+ solution:"Đặt `minReplicas: 0` và thêm HTTP scale rule với `concurrentRequests: 20`.",
+ a:false,
+ e:"Không đạt: worker không nhận request HTTP nên rule này không bao giờ kích hoạt; app sẽ nằm ở 0 replica và message tồn đọng mãi."},
+];
+
+/* Case study — bối cảnh dài, sau đó là chuỗi câu hỏi bám theo bối cảnh */
+const CASES = [
+{id:"case1",title:"Case study 1 — Contoso Legal: trợ lý tra cứu hợp đồng",
+ sections:[
+   {h:"Bối cảnh",
+    md:"Contoso Legal xây dựng trợ lý AI cho phép luật sư đặt câu hỏi bằng ngôn ngữ tự nhiên trên kho hợp đồng. Hệ thống phục vụ **400 công ty khách hàng** (tenant), tổng cộng khoảng **60 triệu đoạn văn bản (chunk)**, mỗi chunk có embedding 1536 chiều sinh bằng `text-embedding-3-small`.\n\nKiến trúc hiện tại: hợp đồng được upload lên Blob Storage, một Azure Function chia nhỏ tài liệu, đẩy message vào Azure Service Bus, một worker trên Azure Container Apps sinh embedding và ghi vào Azure Cosmos DB for NoSQL. API hỏi–đáp cũng chạy trên Container Apps."},
+   {h:"Yêu cầu kỹ thuật",
+    md:"- Dữ liệu của một tenant **tuyệt đối không được** xuất hiện trong kết quả của tenant khác.\n- Độ trễ truy hồi p95 dưới 300 ms.\n- Chi phí ghi phải tối ưu: mỗi ngày nạp thêm khoảng 2 triệu chunk.\n- Worker sinh embedding phải không tốn tiền khi không có tài liệu mới.\n- Không được lưu khoá hoặc connection string trong cấu hình ứng dụng."},
+   {h:"Vấn đề đang gặp",
+    md:"- Chi phí RU khi nạp dữ liệu cao bất thường.\n- Một khách hàng lớn chiếm 30% dữ liệu và logical partition của họ sắp chạm giới hạn dung lượng.\n- Đôi khi một tài liệu bị sinh embedding hai lần."},
+ ],
+ questions:[
+   {id:801,d:2,q:"Chọn partition key phù hợp nhất cho container lưu chunk, xét cả yêu cầu cách ly tenant lẫn vấn đề khách hàng lớn.",
+    o:["`/documentType`","`/tenantId`","Synthetic key dạng `/tenantId_yyyyMM`","`/id`"],a:2,
+    e:"`/tenantId` thuần khiến tenant lớn chạm trần 20 GB cho một logical partition. Ghép thêm thành phần thời gian chia nhỏ dữ liệu mà vẫn giữ được truy vấn theo tenant (chỉ định vài partition key thay vì fan-out toàn bộ)."},
+   {id:802,d:2,q:"Nguyên nhân khả dĩ nhất khiến chi phí RU khi nạp dữ liệu cao bất thường là gì?",
+    o:["Consistency đang để Eventual","Indexing policy vẫn index toàn bộ, kể cả mảng `embedding` 1536 phần tử","Container dùng autoscale","Số chiều embedding quá nhỏ"],a:1,
+    e:"Mỗi document sinh ra 1536 mục index nếu không loại `/embedding/*` khỏi `excludedPaths`. Đây là nguyên nhân số một khiến write RU tăng vọt trong workload vector."},
+   {id:803,d:2,q:"Cấu hình vector index nào đáp ứng tốt nhất yêu cầu p95 dưới 300 ms ở quy mô 60 triệu vector?",
+    o:["`flat`","`quantizedFlat`","`diskANN`","Không dùng index, quét tuần tự"],a:2,
+    e:"`diskANN` là ANN dựa trên đồ thị, giữ độ trễ thấp khi số vector rất lớn. `flat` bị giới hạn 505 chiều và quét toàn bộ."},
+   {id:804,d:2,q:"Cách nào bảo đảm kết quả truy hồi không bao giờ lẫn dữ liệu giữa các tenant, đồng thời tối ưu RU?",
+    o:["Lọc kết quả ở phía client sau khi nhận về","Đưa điều kiện `WHERE c.tenantId = @tenant` vào truy vấn và truyền partition key cho SDK","Tạo một container riêng cho mỗi tenant","Tăng `TOP N` rồi loại bỏ kết quả sai"],a:1,
+    e:"Pre-filter trong `WHERE` kết hợp chỉ định partition key giới hạn truy vấn trong đúng phạm vi dữ liệu của tenant. Lọc phía client vừa rò rỉ dữ liệu qua đường truyền, vừa tốn RU vô ích."},
+   {id:805,d:2,q:"Vì sao thỉnh thoảng một tài liệu bị sinh embedding hai lần, và cách xử lý đúng là gì?",
+    o:["Do change feed đảm bảo exactly-once nhưng lease container bị lỗi; cần tạo lại lease","Do change feed và Service Bus đều là at-least-once; phải làm cho thao tác ghi trở nên idempotent (upsert theo id ổn định)","Do consistency ở mức Eventual; cần chuyển sang Strong","Do worker scale quá nhiều replica; cần đặt max-replicas = 1"],a:1,
+    e:"Cả change feed lẫn Service Bus đều giao at-least-once. Giải pháp chuẩn là thiết kế idempotent (upsert theo khoá xác định) chứ không phải giảm song song hay đổi consistency."},
+ ]},
+{id:"case2",title:"Case study 2 — Fabrikam Support: copilot cho bộ phận hỗ trợ",
+ sections:[
+   {h:"Bối cảnh",
+    md:"Fabrikam đã có hệ thống ticket chạy trên **Azure Database for PostgreSQL flexible server** với hơn 200 bảng quan hệ. Nhóm phát triển muốn bổ sung tính năng gợi ý giải pháp: khi nhân viên mở một ticket, hệ thống tìm các ticket cũ tương tự về ngữ nghĩa **và** phải join với bảng khách hàng, hợp đồng dịch vụ để lọc theo mức SLA.\n\nAPI gợi ý chạy trên Azure Functions ở Flex Consumption plan. Số ticket lịch sử là 8 triệu, embedding 3072 chiều."},
+   {h:"Yêu cầu kỹ thuật",
+    md:"- Không được tách dữ liệu vector sang hệ thống khác, vì cần join trực tiếp với dữ liệu quan hệ.\n- Truy vấn gợi ý phải dưới 200 ms.\n- Tải đọc của tính năng mới không được ảnh hưởng tới hệ thống ticket đang chạy.\n- Ngân sách RAM hạn chế."},
+   {h:"Vấn đề đang gặp",
+    md:"- Lệnh `CREATE EXTENSION vector;` báo lỗi.\n- Sau khi bật tính năng, server thường xuyên báo hết connection slot.\n- Câu lệnh tạo index HNSW báo lỗi vượt giới hạn số chiều."},
+ ],
+ questions:[
+   {id:806,d:2,q:"Vì sao `CREATE EXTENSION vector;` thất bại và cách khắc phục?",
+    o:["pgvector không hỗ trợ trên Azure; phải tự cài","Phải thêm `vector` vào server parameter `azure.extensions` rồi mới chạy lại lệnh","Phải nâng lên tier Memory Optimized","Phải chạy lệnh với vai trò superuser của hệ điều hành"],a:1,
+    e:"Azure yêu cầu allowlist extension ở cấp server qua `azure.extensions` (một số extension cần restart) trước khi database có thể tạo extension đó."},
+   {id:807,d:2,q:"Index HNSW báo lỗi vượt giới hạn số chiều với `vector(3072)`. Cách xử lý phù hợp nhất với ràng buộc RAM hạn chế?",
+    o:["Bỏ index và chấp nhận quét tuần tự","Dùng `halfvec(3072)` hoặc giảm số chiều embedding khi gọi model","Chuyển sang IVFFlat với `lists = 1`","Chia bảng thành 3 bảng con theo nhóm chiều"],a:1,
+    e:"Index HNSW giới hạn 2000 chiều với kiểu `vector` nhưng tới 4000 chiều với `halfvec` — đồng thời `halfvec` giảm khoảng một nửa bộ nhớ. Nhiều model embedding cũng cho phép rút gọn số chiều."},
+   {id:808,d:2,q:"Nguyên nhân server hết connection slot và giải pháp đúng?",
+    o:["Do Flex Consumption tạo nhiều instance mở kết nối ngắn; bật PgBouncer (port 6432) hoặc dùng connection pool phía ứng dụng","Do thiếu index; tạo thêm index sẽ giảm số kết nối","Do `work_mem` quá nhỏ","Do dùng SSL; nên tắt SSL"],a:0,
+    e:"Mỗi kết nối PostgreSQL là một process tốn RAM. Kiến trúc serverless sinh rất nhiều kết nối ngắn nên bắt buộc phải có tầng pooling."},
+   {id:809,d:2,q:"Làm sao để tải đọc của tính năng gợi ý không ảnh hưởng tới hệ thống ticket đang chạy?",
+    o:["Tăng `shared_buffers`","Tạo read replica và trỏ truy vấn tìm kiếm sang replica","Chuyển sang Burstable tier","Đặt `statement_timeout` thấp"],a:1,
+    e:"Read replica tách tải đọc khỏi primary. Độ trễ nhân bản bất đồng bộ là chấp nhận được với gợi ý ngữ nghĩa."},
+   {id:810,d:2,q:"Nhân viên phàn nàn rằng tìm theo mã lỗi chính xác (ví dụ `ERR-40915`) cho kết quả kém, dù tìm bằng câu mô tả thì tốt. Hướng xử lý đúng?",
+    o:["Tăng số chiều embedding","Kết hợp full-text search (`tsvector`) với vector search và trộn thứ hạng bằng RRF","Đổi toán tử sang `<->`","Tăng `LIMIT` lên 100"],a:1,
+    e:"Embedding kém với chuỗi định danh hiếm gặp. Hybrid search bổ sung nhánh tìm theo từ khoá và hợp nhất thứ hạng — đúng mô hình cho dữ liệu vừa có mã lỗi vừa có mô tả tự do."},
+ ]},
+{id:"case3",title:"Case study 3 — Northwind Ops: pipeline xử lý sự kiện và giám sát",
+ sections:[
+   {h:"Bối cảnh",
+    md:"Northwind vận hành pipeline xử lý ảnh sản phẩm: ảnh được upload lên Blob Storage, một Azure Function gọi model thị giác để trích xuất mô tả, đẩy kết quả vào Azure Service Bus, một worker trên Azure Container Apps sinh embedding và ghi vào vector store.\n\nWorker hiện chạy cố định 5 replica suốt ngày. Quá trình gọi model đôi khi mất tới 8 phút cho ảnh độ phân giải cao."},
+   {h:"Yêu cầu kỹ thuật",
+    md:"- Chỉ những file `.jpg` và `.png` trong thư mục `incoming/` mới kích hoạt pipeline.\n- Không được để mất sự kiện khi handler tạm thời lỗi.\n- Chi phí compute phải theo tải thực tế.\n- Đội vận hành phải lần được toàn bộ hành trình của một ảnh qua 3 service khi có sự cố.\n- Phải được cảnh báo ngay khi có message rơi vào dead-letter."},
+   {h:"Vấn đề đang gặp",
+    md:"- Function trích xuất mô tả thỉnh thoảng bị dừng giữa chừng.\n- Một số sự kiện upload không bao giờ được xử lý và không tìm thấy dấu vết.\n- Trên Application Map, cả ba service hiện thành một node duy nhất."},
+ ],
+ questions:[
+   {id:811,d:3,q:"Function trích xuất mô tả bị dừng giữa chừng khi xử lý ảnh lớn. Nguyên nhân và cách khắc phục hợp lý nhất?",
+    o:["Thiếu RAM; tăng memory là đủ","Vượt giới hạn timeout của Consumption plan (tối đa 10 phút); chuyển sang Flex/Premium plan hoặc tách thành Durable Functions / Container Apps Job","Sai binding; đổi sang HTTP trigger","Do sampling của Application Insights"],a:1,
+    e:"Xử lý 8 phút quá sát trần 10 phút của Consumption. Plan có timeout dài hơn, hoặc chia nhỏ công việc bằng fan-out/fan-in, là hướng đúng."},
+   {id:812,d:3,q:"Một số sự kiện upload không bao giờ được xử lý và không để lại dấu vết. Nguyên nhân khả dĩ nhất?",
+    o:["Event subscription không cấu hình dead-letter nên event thất bại bị bỏ vĩnh viễn sau khi hết retry/TTL","Blob Storage giới hạn số sự kiện","Service Bus đã xoá message","Container Apps scale về 0"],a:0,
+    e:"Không có dead-letter endpoint thì Event Grid drop event sau khi hết số lần retry hoặc hết TTL, không có cách khôi phục. Đây là lý do luôn phải cấu hình dead-letter blob."},
+   {id:813,d:3,q:"Cấu hình lọc nào đúng để chỉ xử lý `.jpg` và `.png` trong `incoming/`?",
+    o:["Lọc bằng `if` trong code của Function","`--subject-begins-with` cho đường dẫn container/thư mục, kết hợp hai event subscription với `--subject-ends-with .jpg` và `.png`","Advanced filter trên `data.contentLength`","Tạo storage account riêng cho từng định dạng"],a:1,
+    e:"Lọc ở phía Event Grid tránh việc gọi Function vô ích (và trả tiền cho lần gọi đó). `subject-ends-with` chỉ nhận một giá trị nên cần hai subscription, hoặc dùng advanced filter `StringIn` trên subject."},
+   {id:814,d:1,q:"Cách nào làm chi phí compute của worker bám theo tải thực tế?",
+    o:["Giữ 5 replica nhưng giảm CPU mỗi replica","Đặt `minReplicas: 0`, `maxReplicas: 30` với KEDA scale rule `azure-servicebus`","Chuyển worker sang AKS với HPA theo CPU","Chuyển worker sang App Service với Always On"],a:1,
+    e:"KEDA scaler theo độ dài queue cho phép scale-to-zero khi rảnh và tăng replica theo lượng công việc tồn đọng — đúng yêu cầu chi phí theo tải."},
+   {id:815,d:4,q:"Application Map hiện cả ba service thành một node và không lần được hành trình của một ảnh. Cần làm gì?",
+    o:["Tắt sampling hoàn toàn","Đặt `OTEL_SERVICE_NAME` riêng cho từng service và bảo đảm header `traceparent` được truyền qua các chặng, sau đó truy vấn theo `OperationId`","Chuyển sang Application Insights classic","Tăng retention của Log Analytics"],a:1,
+    e:"Application Map nhóm theo `AppRoleName`; để mặc định giống nhau thì gộp làm một node. Trace chỉ nối được khi context W3C `traceparent` được truyền xuyên suốt."},
+ ]},
+];
+
+/* ============================================================
+   Engine
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+const LS_WRONG   = "ai200.wrong.v1";
+const LS_HISTORY = "ai200.history.v1";
+const LS_THEME   = "ai200.theme.v1";
+
+/* Chuyển dữ liệu từ khoá cũ (bản dựng bằng build_quiz.py) sang khoá mới — chạy một lần */
+[["ai200q:wrong", LS_WRONG], ["ai200q:history", LS_HISTORY], ["ai200:theme", LS_THEME]]
+  .forEach(([old, cur]) => {
+    try {
+      const v = localStorage.getItem(old);
+      if (v !== null && localStorage.getItem(cur) === null) localStorage.setItem(cur, v);
+    } catch(e){}
+  });
+
+const DOMS = DOMAINS.map((_, i) => i + 1);
+const PASS = 700;
+const LETTERS = "ABCDEFGH";
+const KINDLABEL = {mc:"Trắc nghiệm", order:"Sắp xếp thứ tự", fill:"Điền vào code", yesno:"Có / Không", case:"Case study"};
+
+/* ---- utilities ---- */
+const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch(e){ return d; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
+const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const eqSet = (a, b) => a.size === b.size && [...a].every(x => b.has(x));
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* `code` và **đậm** trong dữ liệu câu hỏi được dựng thành thẻ HTML */
+const fmt = s => esc(s).replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+
+/* Markdown rút gọn cho phần bối cảnh của case study: đoạn văn + gạch đầu dòng */
+function fmtBlock(md){
+  const out = []; let ul = false;
+  md.split("\n").forEach(line => {
+    if (/^\s*-\s+/.test(line)){
+      if (!ul){ out.push("<ul>"); ul = true; }
+      out.push("<li>" + fmt(line.replace(/^\s*-\s+/,"")) + "</li>");
+    } else {
+      if (ul){ out.push("</ul>"); ul = false; }
+      if (line.trim()) out.push("<p>" + fmt(line) + "</p>");
+    }
+  });
+  if (ul) out.push("</ul>");
+  return out.join("");
+}
+
+/* ---- gộp 5 nguồn câu hỏi thành một danh sách phẳng ---- */
+const ALL = [];
+QUESTIONS.forEach(q => ALL.push({id:q.id, d:q.d, k:"mc",    q}));
+ORDER    .forEach(q => ALL.push({id:q.id, d:q.d, k:"order", q}));
+FILL     .forEach(q => ALL.push({id:q.id, d:q.d, k:"fill",  q}));
+YESNO    .forEach(q => ALL.push({id:q.id, d:q.d, k:"yesno", q}));
+CASES    .forEach(c => c.questions.forEach(q => ALL.push({id:q.id, d:q.d, k:"mc", q, cs:c})));
+
+const byKind = k => ALL.filter(x => k === "case" ? !!x.cs : (x.k === k && !x.cs));
+const MCQ = ALL.filter(x => x.k === "mc" && !x.cs);
+
+/* ---- state ---- */
+let S = null;
+
+function makeItems(srcs){
+  return srcs.map(src => {
+    const it = {src, marked:false, revealed:false};
+    if (src.k === "mc")    { it.order = shuffle(src.q.o.map((_,i)=>i)); it.picked = new Set(); }
+    if (src.k === "order") { it.pool  = shuffle(src.q.steps.map((_,i)=>i)); it.seq = []; }
+    if (src.k === "fill")  { it.sel   = src.q.blanks.map(()=>-1); }
+    if (src.k === "yesno") { it.yn    = null; }
+    return it;
+  });
+}
+
+const answered = it => {
+  const k = it.src.k;
+  if (k === "mc")    return it.picked.size > 0;
+  if (k === "order") return it.seq.length === it.src.q.steps.length;
+  if (k === "fill")  return it.sel.every(v => v >= 0);
+  if (k === "yesno") return it.yn !== null;
+  return false;
+};
+
+function isCorrect(it){
+  const q = it.src.q;
+  switch (it.src.k){
+    case "mc":    return eqSet(it.picked, new Set(Array.isArray(q.a) ? q.a : [q.a]));
+    case "order": return it.seq.length === q.steps.length && it.seq.every((v,i) => v === i);
+    case "fill":  return it.sel.every((v,i) => v === q.blanks[i].a);
+    case "yesno": return it.yn === q.a;
+  }
+  return false;
+}
+
+/* ---- trang chủ ---- */
+function renderHome(){
+  $("#nq").textContent = ALL.length;
+  const wrong = load(LS_WRONG, []);
+  const cnt = k => byKind(k).length;
+
+  const exam = [
+    {id:"full",   h:"🏁 Đề mô phỏng đầy đủ", p:"Trộn đủ các dạng như đề thật: trắc nghiệm, sắp xếp thứ tự, điền code, Có/Không và một case study. Hẹn giờ 120 phút.", t:"~40 câu · 120 phút"},
+    {id:"exam",   h:"🎯 Thi thử trắc nghiệm", p:"40 câu trắc nghiệm phân bổ theo trọng số 4 domain, chấm điểm cuối bài.", t:"40 câu · 120 phút"},
+    {id:"exam60", h:"🧪 Thi thử mở rộng",     p:"60 câu trắc nghiệm theo trọng số, phủ rộng hơn để soi điểm yếu còn sót.", t:"60 câu · 150 phút"},
+    {id:"quick",  h:"⚡ Thi nhanh",           p:"15 câu ngẫu nhiên trong 30 phút, dùng để hâm nóng.", t:"15 câu · 30 phút"},
+  ];
+  const kinds = [
+    {id:"k-order", h:"🧩 Sắp xếp thứ tự", p:"Dạng build list: chọn và sắp các bước theo đúng trình tự thực hiện.", t:cnt("order") + " câu"},
+    {id:"k-fill",  h:"⌨ Điền vào code",   p:"Dạng code completion: chọn giá trị đúng cho từng chỗ trống trong CLI, YAML, SQL, KQL, Python.", t:cnt("fill") + " câu"},
+    {id:"k-yesno", h:"✓✗ Có / Không",     p:"Cùng một mục tiêu, nhiều giải pháp khác nhau — mỗi giải pháp trả lời có đạt hay không.", t:cnt("yesno") + " câu"},
+    {id:"k-case",  h:"📋 Case study",     p:"Bối cảnh dài kèm yêu cầu kỹ thuật, sau đó là chuỗi câu hỏi bám theo bối cảnh đó.", t:CASES.length + " bộ · " + cnt("case") + " câu"},
+    {id:"all",     h:"📚 Làm toàn bộ",    p:"Toàn bộ ngân hàng theo thứ tự, hiện giải thích ngay sau mỗi câu.", t:ALL.length + " câu"},
+    {id:"wrong",   h:"🔁 Ôn câu đã sai",  p:wrong.length ? "Làm lại " + wrong.length + " câu bạn từng trả lời sai." : "Chưa có câu sai nào được ghi nhận.", t:wrong.length ? wrong.length + " câu" : "trống"},
+  ];
+  const doms = DOMS.map(d => ({
+    id: "d" + d,
+    h: "Domain " + d + " — " + DOMAIN_SHORT[d-1],
+    p: DOMAINS[d-1] + " (" + DOMAIN_WEIGHT[d-1] + ")",
+    t: ALL.filter(x => x.d === d).length + " câu · giải thích ngay"
+  }));
+
+  const html = arr => arr.map(m =>
+    `<div class="card" data-mode="${m.id}"><h3>${m.h}</h3><p>${m.p}</p><span class="tag">${m.t}</span></div>`).join("");
+  $("#modesExam").innerHTML   = html(exam);
+  $("#modesKind").innerHTML   = html(kinds);
+  $("#modesDomain").innerHTML = html(doms);
+  $$(".card").forEach(c => c.onclick = () => start(c.dataset.mode));
+
+  const hist = load(LS_HISTORY, []);
+  const best = hist.length ? Math.max(...hist.map(h => h.score)) : null;
+  $("#stats").innerHTML = [
+    ["Lượt làm bài",   hist.length],
+    ["Điểm cao nhất",  best === null ? "—" : best],
+    ["Điểm gần nhất",  hist.length ? hist[hist.length-1].score : "—"],
+    ["Câu đang sai",   wrong.length],
+  ].map(([s,b]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+}
+
+/* ---- bắt đầu một lượt làm bài ---- */
+function start(mode){
+  let list = [], minutes = 0, instant = true;
+  const pick = (arr, n) => shuffle([...arr]).slice(0, n);
+
+  if (mode === "full"){
+    // phân bổ theo trọng số 4 domain, rồi thêm mỗi dạng đặc biệt một ít
+    const plan = {1:6, 2:8, 3:6, 4:6};
+    DOMS.forEach(d => list.push(...pick(MCQ.filter(x => x.d === d), plan[d] || 0)));
+    list.push(...pick(byKind("order"), 3));
+    list.push(...pick(byKind("fill"), 4));
+    const series = shuffle([...new Set(YESNO.map(q => q.series))])[0];
+    list.push(...ALL.filter(x => x.k === "yesno" && x.q.series === series));
+    const cs = shuffle([...CASES])[0];
+    list = shuffle(list);
+    if (cs) list.push(...ALL.filter(x => x.cs && x.cs.id === cs.id));   // case study đặt ở cuối
+    minutes = 120; instant = false;
+  } else if (mode === "exam" || mode === "exam60"){
+    const plan = mode === "exam" ? {1:9, 2:11, 3:10, 4:10} : {1:13, 2:17, 3:15, 4:15};
+    DOMS.forEach(d => list.push(...pick(MCQ.filter(x => x.d === d), plan[d] || 0)));
+    list = shuffle(list);
+    minutes = mode === "exam" ? 120 : 150; instant = false;
+  } else if (mode === "quick"){
+    list = pick(MCQ, 15); minutes = 30; instant = false;
+  } else if (mode === "all"){
+    list = [...ALL].sort((a,b) => a.d - b.d || a.id - b.id);
+  } else if (mode === "wrong"){
+    const w = new Set(load(LS_WRONG, []));
+    list = ALL.filter(x => w.has(x.id));
+    if (!list.length){ alert("Chưa có câu sai nào được ghi nhận. Hãy làm một lượt thi thử trước."); return; }
+  } else if (mode.startsWith("k-")){
+    const k = mode.slice(2);
+    list = byKind(k);
+    if (k !== "case") list = shuffle([...list]);
+  } else {
+    list = ALL.filter(x => x.d === +mode.slice(1)).sort((a,b) => a.id - b.id);
+  }
+
+  S = {items:makeItems(list), i:0, mode, instant, endAt: minutes ? Date.now() + minutes*60000 : null, timer:null, caseOpen:true};
+  $("#home").hidden = true; $("#result").hidden = true; $("#quiz").hidden = false;
+  $("#submitBtn").hidden = false; $("#quitBtn").hidden = false;
+  if (S.endAt){ $("#timer").hidden = false; tick(); S.timer = setInterval(tick, 1000); }
+  else $("#timer").hidden = true;
+  renderQuestion();
+}
+
+function tick(){
+  const left = S.endAt - Date.now();
+  if (left <= 0){ clearInterval(S.timer); finish(true); return; }
+  const m = Math.floor(left / 60000), s = Math.floor(left % 60000 / 1000);
+  $("#timer").textContent = String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+  $("#timer").classList.toggle("low", left < 5*60000);
+}
+
+/* ---- render câu hỏi ---- */
+function renderQuestion(){
+  const it = S.items[S.i], src = it.src, q = src.q;
+  $("#progbar").style.width = ((S.i+1) / S.items.length * 100) + "%";
+  $("#qidx").textContent = "Câu " + (S.i+1) + " / " + S.items.length;
+  $("#qdom").textContent = DOMAIN_SHORT[src.d - 1];
+  $("#qdom").className   = "pill d" + src.d;
+  $("#qkind").textContent = src.cs ? KINDLABEL.case : KINDLABEL[src.k];
+  $("#markBtn").textContent = it.marked ? "⚑ Bỏ đánh dấu" : "⚑ Đánh dấu";
+  $("#casePanel").innerHTML = src.cs ? casePanel(src.cs) : "";
+  if (src.cs){
+    $("#casePanel").querySelector(".casebar").onclick = () => { S.caseOpen = !S.caseOpen; renderQuestion(); };
+  }
+
+  const multi = src.k === "mc" && Array.isArray(q.a);
+  $("#qtext").innerHTML = fmt(src.k === "yesno" ? "Giải pháp dưới đây có đạt được mục tiêu không?" : q.q)
+    + (multi ? ' <span class="pill">chọn nhiều đáp án</span>' : "");
+  $("#hint").textContent = {
+    mc:    "Phím tắt: 1–4 chọn · ← → chuyển câu · Enter câu sau",
+    order: "Bấm vào bước ở cột trái để thêm, bấm ở cột phải để bỏ ra",
+    fill:  "Chọn giá trị cho từng chỗ trống trong đoạn code",
+    yesno: "Trả lời Có hoặc Không cho giải pháp này"
+  }[src.k] || "";
+
+  ({mc:renderMC, order:renderOrder, fill:renderFill, yesno:renderYesNo})[src.k](it);
+
+  if (it.revealed) showExpl(it);
+  else if (S.instant && needsCheck(it)) showCheck(it);
+  else $("#expl").hidden = true;
+
+  $("#prevBtn").disabled = S.i === 0;
+  $("#nextBtn").textContent = S.i === S.items.length - 1 ? "Kết thúc & chấm điểm" : "Câu sau →";
+  renderNav();
+}
+
+function casePanel(cs){
+  return `<div class="casebox">
+    <div class="casebar"><span class="who">${S.caseOpen ? "▾" : "▸"}</span> ${esc(cs.title)}
+      <span class="sp"></span><span style="font-size:12.5px;color:var(--muted)">${S.caseOpen ? "thu gọn" : "xem bối cảnh"}</span></div>
+    ${S.caseOpen ? '<div class="casebody">' + cs.sections.map(s => `<h5>${esc(s.h)}</h5>${fmtBlock(s.md)}`).join("") + "</div>" : ""}
+  </div>`;
+}
+
+function renderMC(it){
+  const q = it.src.q, correct = new Set(Array.isArray(q.a) ? q.a : [q.a]);
+  const multi = Array.isArray(q.a);
+  $("#body").innerHTML = '<div class="opts">' + it.order.map((orig, pos) => {
+    let cls = it.picked.has(orig) ? " sel" : "";
+    if (it.revealed) cls = " locked" + (correct.has(orig) ? " correct" : (it.picked.has(orig) ? " wrong" : ""));
+    return `<div class="opt${cls}" data-o="${orig}"><span class="k">${LETTERS[pos]}</span><span>${fmt(q.o[orig])}</span></div>`;
+  }).join("") + "</div>";
+  if (it.revealed) return;
+  $("#body").querySelectorAll(".opt").forEach(el => el.onclick = () => {
+    const o = +el.dataset.o;
+    if (multi){ it.picked.has(o) ? it.picked.delete(o) : it.picked.add(o); }
+    else { it.picked = new Set([o]); if (S.instant) reveal(it); }
+    renderQuestion();
+  });
+}
+
+function renderOrder(it){
+  const q = it.src.q;
+  const poolHtml = it.pool.length
+    ? it.pool.map(i => `<div class="step" data-add="${i}"><span>${fmt(q.steps[i])}</span></div>`).join("")
+    : '<div class="empty">(đã dùng hết)</div>';
+  const seqHtml = it.seq.length
+    ? it.seq.map((v, pos) => {
+        let cls = "";
+        if (it.revealed) cls = (v === pos ? " ok" : " no");
+        return `<div class="step${cls}${it.revealed ? " locked" : ""}" data-rm="${pos}"><span class="n">${pos+1}</span><span>${fmt(q.steps[v])}</span></div>`;
+      }).join("")
+    : '<div class="empty">Bấm các bước bên trái để xếp vào đây theo thứ tự</div>';
+  $("#body").innerHTML = `<div class="build">
+      <div class="buildcol"><h4>Các bước có sẵn</h4>${poolHtml}</div>
+      <div class="buildcol"><h4>Trình tự của bạn</h4>${seqHtml}</div>
+    </div>`;
+  if (it.revealed) return;
+  $("#body").querySelectorAll("[data-add]").forEach(el => el.onclick = () => {
+    const i = +el.dataset.add;
+    it.pool = it.pool.filter(x => x !== i); it.seq.push(i); renderQuestion();
+  });
+  $("#body").querySelectorAll("[data-rm]").forEach(el => el.onclick = () => {
+    const pos = +el.dataset.rm;
+    it.pool.push(it.seq[pos]); it.seq.splice(pos, 1); renderQuestion();
+  });
+}
+
+function renderFill(it){
+  const q = it.src.q;
+  const html = esc(q.code).replace(/\{\{(\d)\}\}/g, (m, n) => {
+    const bi = +n, b = q.blanks[bi];
+    let cls = "";
+    if (it.revealed) cls = (it.sel[bi] === b.a ? ' class="ok"' : ' class="no"');
+    const opts = ['<option value="-1">— chọn —</option>'].concat(
+      b.o.map((t, i) => `<option value="${i}"${it.sel[bi] === i ? " selected" : ""}>${esc(t)}</option>`)).join("");
+    return `<select data-b="${bi}"${cls}${it.revealed ? " disabled" : ""}>${opts}</select>`;
+  });
+  $("#body").innerHTML = `<pre class="fillcode"><code>${html}</code></pre>`;
+  if (it.revealed) return;
+  $("#body").querySelectorAll("select").forEach(sel => sel.onchange = () => {
+    it.sel[+sel.dataset.b] = +sel.value;
+    if (S.instant && it.sel.every(v => v >= 0)) reveal(it);
+    renderQuestion();
+  });
+}
+
+function renderYesNo(it){
+  const q = it.src.q;
+  const cls = v => {
+    if (!it.revealed) return it.yn === v ? " sel" : "";
+    if (v === q.a) return " correct";
+    return it.yn === v ? " wrong" : "";
+  };
+  $("#body").innerHTML = `
+    <div class="goalbox"><h4>Mục tiêu</h4>${fmt(q.goal)}</div>
+    <div class="solbox"><h4>Giải pháp đề xuất</h4>${fmt(q.solution)}</div>
+    <div class="ynrow">
+      <button class="ynbtn${cls(true)}" data-v="1">Có — giải pháp đạt mục tiêu</button>
+      <button class="ynbtn${cls(false)}" data-v="0">Không — không đạt</button>
+    </div>`;
+  if (it.revealed) return;
+  $("#body").querySelectorAll(".ynbtn").forEach(b => b.onclick = () => {
+    it.yn = b.dataset.v === "1";
+    if (S.instant) reveal(it);
+    renderQuestion();
+  });
+}
+
+/* Dạng nhiều đáp án và sắp xếp thứ tự cần bấm "Kiểm tra" chứ không chấm ngay khi chọn */
+const needsCheck = it => !it.revealed && answered(it) &&
+  (it.src.k === "order" || (it.src.k === "mc" && Array.isArray(it.src.q.a)));
+
+function showCheck(it){
+  $("#expl").hidden = false;
+  $("#expl").innerHTML = '<button class="btn" id="checkBtn">Kiểm tra đáp án</button>';
+  $("#checkBtn").onclick = () => { reveal(it); renderQuestion(); };
+}
+
+function showExpl(it){
+  const q = it.src.q, ok = isCorrect(it);
+  let ansTxt = "";
+  if (it.src.k === "mc"){
+    const correct = new Set(Array.isArray(q.a) ? q.a : [q.a]);
+    ansTxt = "Đáp án: <b>" + [...correct].map(o => LETTERS[it.order.indexOf(o)]).sort().join(", ") + "</b>";
+  } else if (it.src.k === "order" && !ok){
+    ansTxt = 'Thứ tự đúng:<ol style="margin:6px 0 0 18px">' + q.steps.map(s => "<li>" + fmt(s) + "</li>").join("") + "</ol>";
+  } else if (it.src.k === "fill" && !ok){
+    ansTxt = "Đáp án: " + q.blanks.map((b, i) => `<b>${i+1}. ${esc(b.o[b.a])}</b>`).join(" · ");
+  } else if (it.src.k === "yesno"){
+    ansTxt = "Đáp án: <b>" + (q.a ? "Có" : "Không") + "</b>";
+  }
+  $("#expl").hidden = false;
+  $("#expl").innerHTML =
+    `<div style="margin-bottom:7px">${ok ? '<b style="color:var(--ok)">✓ Chính xác</b>' : '<b style="color:var(--bad)">✕ Chưa đúng</b>'}${ansTxt ? " · " + ansTxt : ""}</div>` + fmt(q.e);
+}
+
+/* Chốt đáp án của một câu và ghi nhớ câu sai để ôn lại */
+function reveal(it){
+  it.revealed = true;
+  const w = new Set(load(LS_WRONG, []));
+  isCorrect(it) ? w.delete(it.src.id) : w.add(it.src.id);
+  save(LS_WRONG, [...w]);
+}
+
+function renderNav(){
+  $("#navgrid").innerHTML = S.items.map((it, k) => {
+    let c = it.revealed ? (isCorrect(it) ? "ok" : "no") : (answered(it) ? "done" : "");
+    if (it.marked) c += " mark";
+    if (k === S.i) c += " cur";
+    return `<button class="${c}" data-k="${k}">${k+1}</button>`;
+  }).join("");
+  $("#navgrid").querySelectorAll("button").forEach(b => b.onclick = () => {
+    S.i = +b.dataset.k; renderQuestion(); window.scrollTo({top:0});
+  });
+}
+
+/* ---- chấm điểm ---- */
+function finish(timeUp){
+  if (S.timer) clearInterval(S.timer);
+  S.items.forEach(it => { if (!it.revealed) reveal(it); });
+
+  const total = S.items.length;
+  const right = S.items.filter(isCorrect).length;
+  const score = Math.round(right / total * 1000);
+  const passed = score >= PASS;
+
+  const per = {}, perKind = {};
+  S.items.forEach(it => {
+    const d = it.src.d, k = it.src.cs ? "case" : it.src.k;
+    (per[d] = per[d] || {n:0, ok:0}).n++;
+    (perKind[k] = perKind[k] || {n:0, ok:0}).n++;
+    if (isCorrect(it)){ per[d].ok++; perKind[k].ok++; }
+  });
+
+  const hist = load(LS_HISTORY, []);
+  hist.push({score, right, total, mode:S.mode});
+  save(LS_HISTORY, hist.slice(-30));
+
+  const reviews = S.items.map((it, k) => {
+    const ok = isCorrect(it), q = it.src.q;
+    let yours = "", corr = "";
+    if (it.src.k === "mc"){
+      const L = o => LETTERS[it.order.indexOf(o)];
+      yours = it.picked.size ? [...it.picked].map(L).sort().join(", ") : "(bỏ trống)";
+      corr  = [...(Array.isArray(q.a) ? q.a : [q.a])].map(L).sort().join(", ");
+    } else if (it.src.k === "order"){
+      yours = it.seq.length ? it.seq.map(v => v+1).join(" → ") : "(bỏ trống)";
+      corr  = q.steps.map((_, i) => i+1).join(" → ") + " (theo thứ tự liệt kê trong phần giải thích)";
+    } else if (it.src.k === "fill"){
+      yours = it.sel.map((v, i) => v < 0 ? "—" : q.blanks[i].o[v]).join(" · ");
+      corr  = q.blanks.map(b => b.o[b.a]).join(" · ");
+    } else if (it.src.k === "yesno"){
+      yours = it.yn === null ? "(bỏ trống)" : (it.yn ? "Có" : "Không");
+      corr  = q.a ? "Có" : "Không";
+    }
+    const title = it.src.k === "yesno" ? fmt(q.solution) : fmt(q.q);
+    const body = it.src.k === "mc"
+      ? '<div class="row" style="margin-top:7px">' + it.order.map((o, p) => `${LETTERS[p]}. ${fmt(q.o[o])}`).join("<br>") + "</div>"
+      : (it.src.k === "order"
+          ? '<div class="row" style="margin-top:7px">Thứ tự đúng:<ol style="margin:5px 0 0 18px">' + q.steps.map(s => "<li>" + fmt(s) + "</li>").join("") + "</ol></div>"
+          : "");
+    return {ok, html:
+      `<div class="rev">
+        <div class="q">${k+1}. <span class="pill">${KINDLABEL[it.src.k]}</span> ${title}</div>
+        <div class="row">Bạn trả lời: <b class="${ok ? "yes" : "no"}">${esc(yours)}</b> · Đúng: <b class="yes">${esc(corr)}</b></div>
+        ${body}
+        <div class="row" style="margin-top:9px;color:var(--muted)">${fmt(q.e)}</div>
+      </div>`};
+  });
+  const wrongs = reviews.filter(r => !r.ok);
+
+  $("#quiz").hidden = true; $("#submitBtn").hidden = true;
+  $("#quitBtn").hidden = true; $("#timer").hidden = true;
+  const R = $("#result"); R.hidden = false;
+  const barColor = p => p >= 80 ? "var(--ok)" : p >= 60 ? "var(--warn)" : "var(--bad)";
+  R.innerHTML = `
+    <div class="score">
+      ${timeUp ? '<div style="color:var(--bad);font-weight:650;margin-bottom:8px">⏱ Hết giờ — bài được nộp tự động</div>' : ""}
+      <div class="big ${passed ? "pass" : "fail"}">${score}</div>
+      <div style="color:var(--muted)">điểm quy đổi (thang 1000 · đạt từ ${PASS})</div>
+      <div class="verdict ${passed ? "pass" : "fail"}">${passed ? "✓ ĐẠT" : "✕ CHƯA ĐẠT"} — đúng ${right}/${total} câu</div>
+    </div>
+
+    <h3 style="margin-top:28px">Kết quả theo domain</h3>
+    <table><thead><tr><th>Domain</th><th>Đúng</th><th style="width:170px">Tỷ lệ</th><th>Nhận xét</th></tr></thead><tbody>
+      ${DOMS.filter(d => per[d]).map(d => { const p = per[d], pct = Math.round(p.ok / p.n * 100);
+        return `<tr><td>${d}. ${DOMAINS[d-1]}</td><td>${p.ok}/${p.n}</td>
+        <td><div class="mini"><div style="width:${pct}%;background:${barColor(pct)}"></div></div></td>
+        <td>${pct >= 80 ? "Vững" : pct >= 60 ? "Cần ôn thêm" : "Yếu — học lại tài liệu"}</td></tr>`;}).join("")}
+    </tbody></table>
+
+    ${Object.keys(perKind).length > 1 ? `<h3>Kết quả theo dạng câu hỏi</h3>
+    <table><thead><tr><th>Dạng</th><th>Đúng</th><th style="width:170px">Tỷ lệ</th></tr></thead><tbody>
+      ${Object.entries(perKind).map(([k, p]) => { const pct = Math.round(p.ok / p.n * 100);
+        return `<tr><td>${KINDLABEL[k]}</td><td>${p.ok}/${p.n}</td>
+        <td><div class="mini"><div style="width:${pct}%;background:${barColor(pct)}"></div></div></td></tr>`;}).join("")}
+    </tbody></table>` : ""}
+
+    <div class="bar" style="margin-bottom:18px">
+      <button class="btn primary" id="againBtn">Làm lại chế độ này</button>
+      <button class="btn" id="wrongBtn"${wrongs.length ? "" : " disabled"}>Ôn ${wrongs.length} câu sai</button>
+      <button class="btn" id="homeBtn">Về trang chủ</button>
+      <div class="sp"></div>
+      <button class="btn" id="toggleAll">Xem tất cả câu</button>
+    </div>
+
+    <h3>${wrongs.length ? "Các câu trả lời sai" : "Bạn trả lời đúng toàn bộ 🎉"}</h3>
+    <div>${wrongs.map(r => r.html).join("")}</div>
+    <div id="revAll" hidden><h3>Toàn bộ câu hỏi</h3>${reviews.map(r => r.html).join("")}</div>`;
+
+  $("#againBtn").onclick = () => start(S.mode);
+  $("#wrongBtn").onclick = () => start("wrong");
+  $("#homeBtn").onclick  = home;
+  $("#toggleAll").onclick = () => {
+    const a = $("#revAll");
+    a.hidden = !a.hidden;
+    $("#toggleAll").textContent = a.hidden ? "Xem tất cả câu" : "Ẩn bớt";
+  };
+  window.scrollTo({top:0});
+}
+
+function home(){
+  if (S && S.timer) clearInterval(S.timer);
+  S = null;
+  $("#quiz").hidden = true; $("#result").hidden = true; $("#home").hidden = false;
+  $("#submitBtn").hidden = true; $("#quitBtn").hidden = true; $("#timer").hidden = true;
+  renderHome(); window.scrollTo({top:0});
+}
+
+/* ---- theme ---- */
+(function(){
+  const saved = localStorage.getItem(LS_THEME);
+  if (saved) document.documentElement.dataset.theme = saved.replace(/"/g, "");
+  $("#themeBtn").onclick = () => {
+    const cur = document.documentElement.dataset.theme
+      || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem(LS_THEME, next);
+  };
+})();
+
+/* ---- wiring ---- */
+$("#nextBtn").onclick = () => {
+  if (S.i === S.items.length - 1){ finish(false); return; }
+  S.i++; renderQuestion(); window.scrollTo({top:0});
+};
+$("#prevBtn").onclick = () => { if (S.i > 0){ S.i--; renderQuestion(); window.scrollTo({top:0}); } };
+$("#markBtn").onclick = () => { S.items[S.i].marked = !S.items[S.i].marked; renderQuestion(); };
+$("#submitBtn").onclick = () => {
+  const n = S.items.filter(it => !answered(it)).length;
+  if (n && !confirm("Còn " + n + " câu chưa trả lời. Nộp bài luôn?")) return;
+  finish(false);
+};
+$("#quitBtn").onclick = () => { if (confirm("Thoát và huỷ lượt làm bài này?")) home(); };
+
+document.addEventListener("keydown", e => {
+  if ($("#quiz").hidden) return;
+  if (e.target.tagName === "SELECT") return;
+  const it = S.items[S.i];
+  if (e.key >= "1" && e.key <= "8" && it.src.k === "mc"){
+    const el = $("#body").querySelectorAll(".opt")[+e.key - 1];
+    if (el) el.click();
+  }
+  if (it.src.k === "yesno"){
+    if (e.key.toLowerCase() === "y") $("#body").querySelector('[data-v="1"]').click();
+    if (e.key.toLowerCase() === "n") $("#body").querySelector('[data-v="0"]').click();
+  }
+  if (e.key === "ArrowRight" || e.key === "Enter") $("#nextBtn").click();
+  if (e.key === "ArrowLeft") $("#prevBtn").click();
+  if (e.key.toLowerCase() === "m") $("#markBtn").click();
+});
+
+renderHome();
+</script>
+</body>
+</html>
