@@ -512,7 +512,8 @@ print(container.client_connection.last_response_headers["x-ms-request-charge"])<
 <p>Tối ưu khác: bật <strong>Integrated cache</strong> (chỉ với dedicated gateway) cho point read/query lặp lại → <strong>0 RU</strong> khi cache hit.</p>
 <h3 id="02-data-services/a3-vector-search-trong-cosmos-db-for-nosql">A3. Vector search trong Cosmos DB for NoSQL</h3>
 <p>Các bước bắt buộc:</p>
-<ol><li>Bật feature <strong>"Vector Search for NoSQL API"</strong> ở cấp account (Features).</li><li>Định nghĩa <strong>container vector embedding policy</strong> khi tạo container (không sửa được sau).</li><li>Thêm <strong>vector index</strong> trong indexing policy.</li><li>Query bằng hàm <strong><code>VectorDistance()</code></strong>.</li></ol>
+<ol><li>Bật feature <strong>"Vector Search for NoSQL API"</strong> ở cấp account (Features).</li><li>Định nghĩa <strong>container vector embedding policy</strong> <em>khi tạo container</em>.</li><li>Thêm <strong>vector index</strong> trong indexing policy (cũng chỉ khai báo được lúc tạo container).</li><li>Query bằng hàm <strong><code>VectorDistance()</code></strong>.</li></ol>
+<blockquote><p><strong>Bất biến — bẫy thi thường gặp:</strong> vector embedding policy và vector index <strong>không sửa được sau khi container đã tạo</strong>, và vector search <strong>không bật được trên container có sẵn</strong> → phải tạo container mới rồi copy dữ liệu sang. Các index khác (included/excluded path, composite) thì vẫn sửa được bình thường.</p></blockquote>
 <pre><button class="copybtn">copy</button><code>vector_embedding_policy = {
     "vectorEmbeddings": [
         {
@@ -538,6 +539,7 @@ container = db.create_container_if_not_exists(
 )</code></pre>
 <p><strong>Kiểu vector index:</strong></p>
 <div class="tablewrap"><table><thead><tr><th>Type</th><th>Đặc điểm</th></tr></thead><tbody><tr><td><code>flat</code></td><td>Lưu trong index thường, chính xác tuyệt đối, <strong>≤ 505 chiều</strong>, dataset nhỏ</td></tr><tr><td><code>quantizedFlat</code></td><td>Nén (quantize) rồi brute-force, nhanh hơn flat, ≤ 4096 chiều</td></tr><tr><td><code>diskANN</code></td><td>ANN dựa trên graph, <strong>độ trễ thấp nhất ở quy mô lớn</strong>, ≤ 4096 chiều — mặc định nên chọn</td></tr></tbody></table></div>
+<p><code>quantizedFlat</code> và <code>diskANN</code> cần <strong>ít nhất 1.000 vector</strong> được index để phép quantization đủ chính xác — dataset nhỏ hơn thì <code>flat</code> (brute-force, recall 100%) lại là lựa chọn đúng.</p>
 <p><strong>Truy vấn semantic search + metadata filter (đúng chuẩn RAG):</strong></p>
 <pre><button class="copybtn">copy</button><code>SELECT TOP 5
        c.id, c.title, c.chunk,
@@ -546,7 +548,7 @@ FROM   c
 WHERE  c.tenantId = @tenant AND c.lang = 'vi'
 ORDER BY VectorDistance(c.embedding, @queryVector)</code></pre>
 <p>Quy tắc quan trọng:</p>
-<ul><li>Phải có <strong><code>ORDER BY VectorDistance(...)</code></strong> thì vector index mới được dùng. Nếu chỉ để trong <code>SELECT</code>/<code>WHERE</code> → brute force, RU cao.</li><li>Không đặt <code>VectorDistance</code> trong <code>WHERE</code> kèm ngưỡng nếu muốn dùng index; hãy <code>ORDER BY</code> + <code>TOP N</code> rồi lọc theo score ở phía client.</li><li><code>TOP N</code> bắt buộc để giới hạn kết quả.</li><li>Đặt filter metadata (<code>tenantId</code>, <code>lang</code>, <code>docType</code>) vào <code>WHERE</code> → <strong>pre-filter</strong>, giảm RU đáng kể.</li><li>Có <code>VectorDistance(v1, v2, false, {'distanceFunction':'cosine','dataType':'float32'})</code> để override khi cần.</li><li><strong>Full-text &amp; hybrid search</strong>: Cosmos DB NoSQL còn có <code>FullTextScore</code> và <strong><code>RRF()</code></strong> (Reciprocal Rank Fusion) để kết hợp BM25 + vector — dùng khi câu hỏi yêu cầu "kết hợp keyword và semantic".</li></ul>
+<ul><li>Phải có <strong><code>ORDER BY VectorDistance(...)</code></strong> thì vector index mới được dùng. Nếu chỉ để trong <code>SELECT</code>/<code>WHERE</code> → brute force, RU cao.</li><li>Không đặt <code>VectorDistance</code> trong <code>WHERE</code> kèm ngưỡng nếu muốn dùng index; hãy <code>ORDER BY</code> + <code>TOP N</code> rồi lọc theo score ở phía client.</li><li><code>TOP N</code> bắt buộc để giới hạn kết quả.</li><li>Đặt filter metadata (<code>tenantId</code>, <code>lang</code>, <code>docType</code>) vào <code>WHERE</code> → <strong>pre-filter</strong>, giảm RU đáng kể.</li><li>Có <code>VectorDistance(v1, v2, false, {'distanceFunction':'cosine','dataType':'float32'})</code> để override khi cần.</li><li><strong>Full-text &amp; hybrid search</strong>: Cosmos DB NoSQL còn có <code>FullTextScore</code> (BM25) và <strong><code>RRF()</code></strong> (Reciprocal Rank Fusion) để kết hợp keyword + semantic — xem A3b ngay dưới.</li></ul>
 <p>Pipeline RAG điển hình với Cosmos:</p>
 <pre><button class="copybtn">copy</button><code>q_vec = aoai.embeddings.create(model="text-embedding-3-small", input=question).data[0].embedding
 results = container.query_items(
@@ -560,6 +562,40 @@ context = "\n\n".join(r["chunk"] for r in results)
 answer = aoai.chat.completions.create(model="gpt-4o", messages=[
     {"role": "system", "content": f"Chỉ trả lời dựa trên ngữ cảnh:\n{context}"},
     {"role": "user", "content": question}])</code></pre>
+<h3 id="02-data-services/a3b-full-text-va-hybrid-search">A3b. Full-text search và hybrid search (RRF)</h3>
+<p>Chỉ vector search thôi thì trượt các truy vấn có <strong>mã sản phẩm, tên riêng, thuật ngữ hiếm</strong> — đó là lúc cần hybrid: chạy BM25 và vector rồi hợp nhất thứ hạng bằng <strong>Reciprocal Rank Fusion</strong>. Cosmos DB làm việc này <em>trong một câu query</em>, không cần merge ở phía ứng dụng.</p>
+<p>Container phải được tạo với <strong>đủ 4 thứ</strong>: vector policy, full text policy, vector index, full text index.</p>
+<pre><button class="copybtn">copy</button><code>full_text_policy = {
+    "defaultLanguage": "en-US",
+    "fullTextPaths": [{"path": "/chunk", "language": "en-US"}],
+}
+
+indexing_policy = {
+    "indexingMode": "consistent",
+    "automatic": True,
+    "includedPaths": [{"path": "/*"}],
+    "excludedPaths": [{"path": "/embedding/*"}, {"path": "/\"_etag\"/?"}],
+    "fullTextIndexes": [{"path": "/chunk"}],
+    "vectorIndexes":   [{"path": "/embedding", "type": "diskANN"}],
+}</code></pre>
+<p><strong>Truy vấn hybrid</strong> — <code>ORDER BY RANK RRF(...)</code>:</p>
+<pre><button class="copybtn">copy</button><code>-- k kết quả liên quan nhất, hợp nhất vector + BM25
+SELECT TOP 10 c.id, c.chunk
+FROM   c
+ORDER BY RANK RRF(
+           VectorDistance(c.embedding, @queryVector),
+           FullTextScore(c.chunk, "pump", "seal", "leak"))
+
+-- Weighted RRF: mảng trọng số là tham số CUỐI CÙNG.
+-- [2, 1] = coi vector quan trọng gấp đôi BM25 (thứ tự trùng thứ tự hàm ở trên)
+SELECT TOP 10 c.id, c.chunk
+FROM   c
+ORDER BY RANK RRF(
+           VectorDistance(c.embedding, @queryVector),
+           FullTextScore(c.chunk, "pump", "seal"),
+           [2, 1])</code></pre>
+<p>Điểm hay bị hỏi:</p>
+<ul><li><code>FullTextScore(path, "term1", "term2", …)</code> — các từ khoá là <strong>tham số rời</strong>, không phải một mảng.</li><li>Chỉ dùng <strong>full-text search thuần</strong> thì xếp hạng bằng <code>ORDER BY RANK FullTextScore(...)</code>; lọc có/không chứa từ khoá thì dùng <code>FullTextContains</code> / <code>FullTextContainsAll</code> / <code>FullTextContainsAny</code> trong <code>WHERE</code>.</li><li><code>ORDER BY RANK</code> là mệnh đề xếp hạng riêng — <strong>không trộn chung với <code>ORDER BY</code> thường</strong>.</li><li>Thiếu full text index thì query hybrid không chạy; thiếu vector index thì rơi về brute-force, RU tăng vọt.</li><li>Vẫn nên pre-filter tenant/ngôn ngữ bằng <code>WHERE</code> để giảm RU.</li></ul>
 <h3 id="02-data-services/a4-change-feed">A4. Change feed</h3>
 <p>Change feed = <strong>log các thay đổi theo thứ tự</strong>, trong từng logical partition, <strong>bền vững</strong>. Ứng dụng AI: item mới → sinh embedding → cập nhật index / gửi message.</p>
 <p>Hai chế độ:</p>
@@ -675,8 +711,16 @@ SET embedding = azure_openai.create_embeddings('text-embedding-3-small', chunk):
 WHERE embedding IS NULL;</code></pre>
 <hr>
 <h2 id="02-data-services/phan-c-azure-managed-redis">Phần C. Azure Managed Redis</h2>
-<blockquote><p>Azure Managed Redis là thế hệ mới thay cho Azure Cache for Redis (dựa trên Redis Enterprise), có sẵn các module <strong>RediSearch, RedisJSON, RedisBloom, RedisTimeSeries</strong> → nhờ đó làm được <strong>vector index</strong>.</p></blockquote>
-<p>Tiers: <strong>Memory Optimized</strong> (nhiều RAM/vCPU — hợp cache lớn), <strong>Balanced</strong>, <strong>Compute Optimized</strong> (nhiều vCPU — hợp search/vector nặng), <strong>Flash Optimized</strong> (RAM + NVMe, dữ liệu rất lớn, chi phí thấp).</p>
+<blockquote><p>Azure Managed Redis là thế hệ mới thay cho Azure Cache for Redis (dựa trên Redis Enterprise), có các module <strong>RediSearch, RedisJSON, RedisBloom, RedisTimeSeries</strong> → nhờ đó làm được <strong>vector index</strong>. Module là <em>managed module</em>: phải <strong>bật lúc tạo cache</strong>, không thêm được sau.</p></blockquote>
+<p><strong>Bốn tier</strong> — khác nhau ở tỉ lệ memory:vCPU:</p>
+<div class="tablewrap"><table><thead><tr><th>Tier</th><th>Memory : vCPU</th><th>Dùng khi</th></tr></thead><tbody>
+<tr><td><strong>Memory Optimized</strong></td><td>8 : 1</td><td>Cache lớn, cần nhiều RAM nhưng throughput vừa phải</td></tr>
+<tr><td><strong>Balanced</strong></td><td>4 : 1</td><td>Mặc định cho workload thường</td></tr>
+<tr><td><strong>Compute Optimized</strong></td><td>2 : 1</td><td>Throughput cao nhất — hợp search/vector nặng</td></tr>
+<tr><td><strong>Flash Optimized</strong></td><td>RAM + NVMe</td><td>Dataset rất lớn, phần lớn key ít truy cập → chi phí thấp</td></tr>
+</tbody></table></div>
+<blockquote><p><strong>Bẫy thi:</strong> <strong>Flash Optimized KHÔNG hỗ trợ RediSearch/vector search</strong> (cũng không hỗ trợ RedisBloom và RedisTimeSeries). Đề mô tả "dataset lớn, key nguội, <em>và</em> cần similarity search" thì Flash Optimized là đáp án sai — phải chọn tier khác.</p></blockquote>
+<blockquote><p><strong>Cập nhật vòng đời:</strong> Azure Cache for Redis bị khai tử — tier <strong>Enterprise / Enterprise Flash ngừng 31/3/2027</strong>, tier <strong>Basic / Standard / Premium ngừng 30/9/2028</strong>. Microsoft khuyến nghị chuyển sang Azure Managed Redis; đề mới vì vậy hỏi theo tên <em>Azure Managed Redis</em>.</p></blockquote>
 <h3 id="02-data-services/c1-caching-expiration-invalidation">C1. Caching, expiration, invalidation</h3>
 <pre><button class="copybtn">copy</button><code>import redis, json, hashlib
 r = redis.Redis(host="mycache.region.redis.azure.net", port=10000, ssl=True,
