@@ -504,7 +504,7 @@ const QUESTIONS = [
  e:"Standard miễn phí nhưng chỉ offline (one-time). Premium hỗ trợ cả online (continuous) migration và nhanh hơn."},
 {id:147,d:1,t:"Migration",n:"s16-2",q:"In Data Migration Assistant, you must find features that are partially supported or unsupported on the target and would therefore block the migration. Which assessment option should you select?",
  o:["Check database compatibility","Check feature parity","Migration scope: schema only","Data-tier application export"],a:0,
- e:"'Check database compatibility' liệt kê tính năng bị hỗ trợ một phần hoặc không hỗ trợ (có thể chặn migration). 'Check feature parity' gợi ý các tính năng tương đương ở Azure."},
+ e:"'Check database compatibility' liệt kê tính năng bị hỗ trợ một phần hoặc không hỗ trợ (có thể chặn migration). 'Check feature parity' gợi ý các tính năng tương đương ở Azure. **Cập nhật quan trọng:** Data Migration Assistant đã bị khai tử ngày 16/07/2025 và tài liệu đã bị archive — câu này chỉ còn giá trị lịch sử. Hiện tại assess bằng Azure Migrate, SQL Server migration in Azure Arc, hoặc VS Code + extension MSSQL."},
 {id:148,d:1,t:"Migration",n:"s18",q:"After migrating a database to Azure SQL Database, one critical stored procedure runs three times slower under compatibility level 160 than it did at level 130. Business requires a fix now, without changing the whole database's compatibility level. What should you do first?",
  o:["Force the last known good plan for that query","Set the compatibility level of the database back to 130","Drop and recreate every index on the affected tables","Move the database to Business Critical"],a:0,
  e:"Đúng quy trình: force last known good plan cho query bị regression, sau đó điều tra parameter sniffing và recompile procedure. Hạ compatibility level cả database làm mất mọi cải tiến optimizer khác."},
@@ -1447,7 +1447,7 @@ const ORDER = [
    "Create and run the migration project so DMS restores the full backup and applies log backups continuously",
    "Cut over the application during a short maintenance window and complete the migration",
  ],
- e:"Assess trước để biết có blocker nào; target và DMS phải tồn tại trước khi tạo project. DMS không tự backup — nó dùng full + log backup bạn cung cấp (và không dùng differential). Cutover là bước cuối cùng."},
+ e:"Assess trước để biết có blocker nào; target và DMS phải tồn tại trước khi tạo project. DMS không tự backup — nó dùng full + log backup bạn cung cấp (và không dùng differential). Cutover là bước cuối cùng. **Cập nhật quan trọng:** bước assess bằng Data Migration Assistant chỉ còn giá trị lịch sử — DMA đã bị khai tử ngày 16/07/2025; thay bằng Azure Migrate hoặc SQL Server migration in Azure Arc. Thứ tự các bước thì không đổi."},
 {id:603,d:2,t:"TDE",q:"You must protect an Azure SQL database with TDE using a customer-managed key (BYOK). Put the steps in order.",
  steps:[
    "Create a key vault with soft delete and purge protection enabled",

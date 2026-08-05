@@ -8,15 +8,19 @@
 :root{
   --bg:#f6f7f9; --card:#fff; --fg:#1a1d21; --muted:#646b74; --line:#e2e5ea;
   --accent:#0b6bcb; --accent-soft:#e7f0fb; --mark:#ffe9a8; --code:#f2f4f7;
+  --warn:#b45309; --warn-bg:#fdf4e3;
 }
 @media (prefers-color-scheme:dark){
   :root{ --bg:#14171a; --card:#1c2025; --fg:#e6e8ea; --muted:#98a0aa; --line:#2c323a;
-         --accent:#5aa9ff; --accent-soft:#16283d; --mark:#5c4a12; --code:#232830; }
+         --accent:#5aa9ff; --accent-soft:#16283d; --mark:#5c4a12; --code:#232830;
+         --warn:#f0a83c; --warn-bg:#2b2313; }
 }
 :root[data-theme=light]{ --bg:#f6f7f9; --card:#fff; --fg:#1a1d21; --muted:#646b74; --line:#e2e5ea;
-  --accent:#0b6bcb; --accent-soft:#e7f0fb; --mark:#ffe9a8; --code:#f2f4f7; }
+  --accent:#0b6bcb; --accent-soft:#e7f0fb; --mark:#ffe9a8; --code:#f2f4f7;
+  --warn:#b45309; --warn-bg:#fdf4e3; }
 :root[data-theme=dark]{ --bg:#14171a; --card:#1c2025; --fg:#e6e8ea; --muted:#98a0aa; --line:#2c323a;
-  --accent:#5aa9ff; --accent-soft:#16283d; --mark:#5c4a12; --code:#232830; }
+  --accent:#5aa9ff; --accent-soft:#16283d; --mark:#5c4a12; --code:#232830;
+  --warn:#f0a83c; --warn-bg:#2b2313; }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);
   font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
@@ -83,6 +87,10 @@ table.cmp th{background:var(--accent);color:#fff;text-align:left;padding:7px 10p
 table.cmp td{border:1px solid var(--line);padding:7px 10px;vertical-align:top;background:var(--card)}
 table.cmp tr:nth-child(even) td{background:var(--accent-soft)}
 .sic{color:var(--muted);font-size:.88em}
+/* cảnh báo: nội dung PDF gốc đã lỗi thời so với Microsoft Learn hiện tại */
+li.stale{list-style:none;margin:7px 0 9px;padding:8px 11px;font-size:13.5px;line-height:1.55;
+  color:var(--fg);background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:0 6px 6px 0}
+li.stale b{color:var(--warn)}
 :root[data-lang=en] .lang-vi{display:none}
 :root:not([data-lang=en]) .lang-en{display:none}
 .untr{opacity:.72;border-bottom:1px dotted var(--muted)}
@@ -642,7 +650,7 @@ WHERE OBJECT_NAME (object_id) = N'TableName';</span></pre></li>
 <ul><li><span class="lang-en">If so, use the Database Experimentation Assistant (DEA).</span><span class="lang-vi">Nếu có, dùng Database Experimentation Assistant (DEA).</span></li>
 <li><span class="lang-en">Capture the workload of a source SQL Server environment.</span><span class="lang-vi">Thu thập workload của môi trường SQL Server nguồn.</span></li>
 <li><span class="lang-en">Identity compatibility issues.</span><span class="lang-vi">Phát hiện các vấn đề tương thích.</span></li>
-</ul><li><span class="lang-en">Do you need to migrate open source databases, such as MySQL, PostgreSQL or MariaDB?</span><span class="lang-vi">Bạn cần migrate database mã nguồn mở như MySQL, PostgreSQL hay MariaDB?</span></li>
+</ul><li><span class="lang-en">Do you need to perform the migration itself, from SQL Server to Azure SQL Database or Managed Instance?</span><span class="lang-vi">Bạn cần thực hiện chính việc migrate, từ SQL Server sang Azure SQL Database hoặc Managed Instance?</span></li>
 <ul><li><span class="lang-en">If so, use the Azure Database Migration Service (DMS).</span><span class="lang-vi">Nếu vậy, dùng Azure Database Migration Service (DMS).</span></li>
 <li><span class="lang-en">Minimal downtime (especially if online using the Premium pricing tier). Good for large migrations.</span><span class="lang-vi">Downtime tối thiểu (đặc biệt nếu migrate online với hạng Premium). Phù hợp cho migration quy mô lớn.</span></li>
 <li><span class="lang-en">You need:</span><span class="lang-vi">Bạn cần:</span></li>
@@ -651,12 +659,19 @@ WHERE OBJECT_NAME (object_id) = N'TableName';</span></pre></li>
 <li><span class="lang-en">Create an Azure SQL Database instance, have a server-level firewall rule to allow DMS access, and have CONTROL DATABASE permission on the target database.</span><span class="lang-vi">Create an Azure SQL Database instance, have a server-level firewall rule to allow DMS access, and have CONTROL DATABASE permission on the target database.</span></li>
 <li><span class="lang-en">Have CONTROL SERVER permissions on the source.</span><span class="lang-vi">Có quyền CONTROL SERVER trên nguồn.</span></li>
 <li><span class="lang-en">Does not initiate any backups, and uses existing full and log backups (not differential).</span><span class="lang-vi">Nó không tự khởi tạo backup nào, mà dùng các bản full và log backup sẵn có (không dùng differential).</span></li>
-</ul></ul></ul></ul></section>
+</ul></ul></ul><li><span class="lang-en">Do you need to migrate an open source database (MySQL, PostgreSQL, MariaDB) to the matching Azure PaaS service? The target decides the tool:</span><span class="lang-vi">Bạn cần migrate một database mã nguồn mở (MySQL, PostgreSQL, MariaDB) sang dịch vụ Azure PaaS tương ứng? Đích đến quyết định công cụ nào được dùng:</span></li>
+<ul><li><span class="lang-en">MySQL to Azure Database for MySQL flexible server: use Azure Database Migration Service (DMS) – offline and online are both GA.</span><span class="lang-vi">MySQL sang Azure Database for MySQL flexible server: dùng Azure Database Migration Service (DMS) — cả offline và online đều đã GA.</span></li>
+<li><span class="lang-en">PostgreSQL to Azure Database for PostgreSQL flexible server: use the Migration service built into Azure Database for PostgreSQL, not DMS (DMS does not support offline PostgreSQL migrations).</span><span class="lang-vi">PostgreSQL sang Azure Database for PostgreSQL flexible server: dùng Migration service tích hợp sẵn trong Azure Database for PostgreSQL, không dùng DMS (DMS không hỗ trợ migrate PostgreSQL offline).</span></li>
+<li><span class="lang-en">MariaDB: Azure Database for MariaDB was retired on 19 September 2025, so the target is Azure Database for MySQL flexible server.</span><span class="lang-vi">MariaDB: Azure Database for MariaDB đã bị khai tử ngày 19/09/2025, nên đích đến là Azure Database for MySQL flexible server.</span></li>
+<li><span class="lang-en">Careful: MySQL appears twice. MySQL to Azure SQL (a different engine) uses SSMA to convert the schema; MySQL to Azure Database for MySQL (the same engine) uses DMS.</span><span class="lang-vi">Lưu ý: MySQL xuất hiện ở hai nhánh. MySQL sang Azure SQL (khác engine) thì dùng SSMA để convert schema; MySQL sang Azure Database for MySQL (cùng engine) thì dùng DMS.</span></li>
+<li class="stale"><span class="lang-en"><b>Corrected vs the source PDF (p.21).</b> The PDF asks &quot;migrate open source databases, such as MySQL, PostgreSQL or MariaDB? If so, use DMS&quot; and nests it under the SQL Server branch, so the DMS prerequisites above were attached to the wrong question. Per Microsoft Learn (Feb 2026): DMS does not support offline PostgreSQL migrations, and MariaDB is no longer a DMS scenario. The branch has been split by target above.</span><span class="lang-vi"><b>Đã sửa so với PDF gốc (tr.21).</b> PDF hỏi &quot;migrate open source databases, such as MySQL, PostgreSQL or MariaDB? If so, use DMS&quot; và lồng nó trong nhánh SQL Server, khiến các điều kiện DMS ở trên bị gắn sai câu hỏi. Theo Microsoft Learn (02/2026): DMS không hỗ trợ migrate PostgreSQL offline, và MariaDB không còn là scenario của DMS. Nhánh này đã được tách theo target ở trên.</span></li>
+</ul></ul></section>
 <section id="s16"><h3><span class="n">16, , 21.</span> <span class="lang-en">implement an online migration strategy</span><span class="lang-vi">triển khai chiến lược migration online</span><a class="anch" href="#s16" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">See topic 20.</span><span class="lang-vi">Xem mục 20.</span></li>
 </ul></section>
 <section id="s16-2"><h3><span class="n">16, , 21.</span> <span class="lang-en">implement an offline migration strategy</span><span class="lang-vi">triển khai chiến lược migration offline</span><a class="anch" href="#s16-2" title="Link tới mục này">#</a></h3>
-<ul><li><span class="lang-en">Migrating from SQL Server to Azure SQL Database - Prerequisites:</span><span class="lang-vi">Migrate từ SQL Server sang Azure SQL Database — điều kiện tiên quyết:</span></li>
+<ul><li class="stale"><span class="lang-en"><b>Data Migration Assistant (DMA) was retired on 16 July 2025</b> and its documentation is archived, so the &quot;Download the Data Migration Assistant&quot; and &quot;In Data Migration Assistant, +New / Assessment&quot; steps below no longer reflect a usable tool. For assessment today: Azure Migrate (whole estate at scale), SQL Server migration in Azure Arc, or VS Code with the MSSQL extension. The migration itself is still done with DMS, as described.</span><span class="lang-vi"><b>Data Migration Assistant (DMA) đã bị khai tử ngày 16/07/2025</b> và tài liệu đã bị archive, nên các bước &quot;Tải Data Migration Assistant&quot; và &quot;Trong Data Migration Assistant, +New / Assessment&quot; bên dưới không còn ứng với công cụ dùng được nữa. Để assess ở thời điểm hiện tại: Azure Migrate (quét cả estate ở quy mô lớn), SQL Server migration in Azure Arc, hoặc VS Code với extension MSSQL. Phần migrate thì vẫn dùng DMS như mô tả.</span></li>
+<li><span class="lang-en">Migrating from SQL Server to Azure SQL Database - Prerequisites:</span><span class="lang-vi">Migrate từ SQL Server sang Azure SQL Database — điều kiện tiên quyết:</span></li>
 <ul><li><span class="lang-en">Enable TCP/IP protocol on your SQL Server instance.</span><span class="lang-vi">Bật giao thức TCP/IP trên instance SQL Server của bạn.</span></li>
 <li><span class="lang-en">Download the Data Migration Assistant.</span><span class="lang-vi">Tải Data Migration Assistant.</span></li>
 <li><span class="lang-en">Create a Virtual Network for the Azure Database Migration Service using either ExpressRoute or VPN.</span><span class="lang-vi">Create a Virtual Network for the Azure Database Migration Service using either ExpressRoute or VPN.</span></li>
@@ -2085,6 +2100,7 @@ SELECT * FROM sys.resource_usage</span></pre></li>
 </ul><li><span class="lang-en">Guest operating system in Azure, other clouds, and on-prem</span><span class="lang-vi">Hệ điều hành khách trên Azure, trên cloud khác và on-prem</span></li>
 <ul><li><span class="lang-en">Azure Diagnostic extension for Azure VM, when enabled, submits logs and metrics</span><span class="lang-vi">Azure Diagnostic extension cho Azure VM, khi được bật, sẽ gửi log và metric</span></li>
 <li><span class="lang-en">Log Analytics agents can be installed into your Windows or Linux VMs, running in Azure, another cloud, or on-prem</span><span class="lang-vi">Log Analytics agent có thể cài vào VM Windows hoặc Linux, chạy trên Azure, cloud khác hoặc on-prem</span></li>
+<li class="stale"><span class="lang-en"><b>The Log Analytics agent (MMA) was retired on 31 August 2024.</b> It can no longer be installed from the Azure portal and gets no support; after 2 March 2026 its data upload can stop at any time without notice. <b>Azure Monitor Agent</b> is now the only supported agent, and it needs Data Collection Rules (DCRs) to say what to collect.</span><span class="lang-vi"><b>Log Analytics agent (MMA) đã bị khai tử ngày 31/08/2024.</b> Không còn cài được từ Azure portal và không được support; sau 02/03/2026 việc upload dữ liệu của nó có thể dừng bất cứ lúc nào mà không báo trước. <b>Azure Monitor Agent</b> giờ là agent duy nhất được hỗ trợ, và nó cần Data Collection Rule (DCR) để khai báo thu thập những gì.</span></li>
 <li><span class="lang-en">VM insights (preview) provides additional Azure Monitor functionality on Windows and Linux VMs</span><span class="lang-vi">VM insights (preview) bổ sung thêm chức năng Azure Monitor trên VM Windows và Linux</span></li>
 </ul><li><span class="lang-en">Other sources</span><span class="lang-vi">Các nguồn khác</span></li>
 <ul><li><span class="lang-en">In Application code, you can enable Application Insights to collect metrics and logs relating to the performance and operations of the app.</span><span class="lang-vi">Trong mã ứng dụng, bạn có thể bật Application Insights để thu thập metric và log về hiệu năng và hoạt động của app.</span></li>
@@ -2158,7 +2174,8 @@ SELECT * FROM sys.resource_usage</span></pre></li>
 <ul><li><span class="lang-en">https://docs.microsoft.com/en-us/azure/azure-sql/database/monitoring-with-dmvs</span><span class="lang-vi">https://docs.microsoft.com/en-us/azure/azure-sql/database/monitoring-with-dmvs</span></li>
 </ul></ul></section>
 <section id="s48"><h3><span class="n">48.</span> <span class="lang-en">Monitor by using SQL Insights</span><span class="lang-vi">Giám sát bằng SQL Insights</span><a class="anch" href="#s48" title="Link tới mục này">#</a></h3>
-<ul><li><span class="lang-en">SQL Insights uses DMVs to monitor health, diagnose problems, and tune performance.</span><span class="lang-vi">SQL Insights dùng DMV để theo dõi sức khỏe, chẩn đoán sự cố và tinh chỉnh hiệu năng.</span></li>
+<ul><li class="stale"><span class="lang-en"><b>Retired – kept for reference only.</b> Azure Monitor SQL Insights (preview) was retired on 31 December 2024 and is no longer available in the Azure portal. Do not build anything new on it. The Microsoft-recommended replacement for Azure SQL Database and Azure SQL Managed Instance is <b>database watcher</b> (topic 48a below); for SQL Server on Azure VMs, use VM insights with Data Collection Rules.</span><span class="lang-vi"><b>Đã khai tử – chỉ giữ để tham khảo.</b> Azure Monitor SQL Insights (preview) đã bị khai tử ngày 31/12/2024 và không còn xuất hiện trong Azure portal. Đừng xây gì mới trên nó. Giải pháp thay thế Microsoft khuyến nghị cho Azure SQL Database và Azure SQL Managed Instance là <b>database watcher</b> (mục 48a bên dưới); còn với SQL Server trên Azure VM thì dùng VM insights kèm Data Collection Rules.</span></li>
+<li><span class="lang-en">SQL Insights uses DMVs to monitor health, diagnose problems, and tune performance.</span><span class="lang-vi">SQL Insights dùng DMV để theo dõi sức khỏe, chẩn đoán sự cố và tinh chỉnh hiệu năng.</span></li>
 <ul><li><span class="lang-en">It supports:</span><span class="lang-vi">Nó hỗ trợ:</span></li>
 <ul><li><span class="lang-en">SQL Server 2012 or later,</span><span class="lang-vi">SQL Server 2012 trở lên,</span></li>
 <li><span class="lang-en">Azure SQL Database (but not with elastic pools, or Basic, S0, S1 or S2 service tiers),</span><span class="lang-vi">Azure SQL Database (nhưng không hỗ trợ elastic pool, cũng như tier Basic, S0, S1 hay S2),</span></li>
@@ -2766,7 +2783,8 @@ ON Qry.query_text_id = Txt.query_text_id ;</span></pre></li>
 <li><span class="lang-en">Includes a “root cause analysis” in a readable form. May also contain a recommendation.</span><span class="lang-vi">Bao gồm phần &quot;root cause analysis&quot; trình bày dễ đọc. Có thể kèm cả khuyến nghị.</span></li>
 </ul><li><span class="lang-en">Can be streamed to:</span><span class="lang-vi">Có thể stream tới:</span></li>
 <ul><li><span class="lang-en">Log Analytics workspace, can be used with Azure SQL Analytics (cloud-based only monitoring solution) to see insights in the Azure portal. The typical way to view insights.</span><span class="lang-vi">Log Analytics workspace — dùng cùng Azure SQL Analytics (giải pháp giám sát chỉ chạy trên cloud) để xem insight ngay trong Azure portal. Đây là cách xem thông dụng nhất.</span></li>
-<ul><li><span class="lang-en">To add Azure SQL Analytics, go to Home in the Azure portal, click “+Create a resource”, and search for “Azure SQL analytics”</span><span class="lang-vi">Để thêm Azure SQL Analytics, vào Home trong Azure portal, bấm &quot;+Create a resource&quot; và tìm &quot;Azure SQL analytics&quot;</span></li>
+<ul><li class="stale"><span class="lang-en"><b>No longer &quot;the typical way&quot;.</b> Azure SQL Analytics (preview) is a legacy Azure Monitor solution: its documentation is archived, Microsoft states it is no longer in active development, and in the portal it now sits under <b>Legacy solutions</b> in the Log Analytics workspace. Prefer <b>database watcher</b> (topic 48a) for estate-level Azure SQL monitoring.</span><span class="lang-vi"><b>Không còn là &quot;cách thông dụng nhất&quot;.</b> Azure SQL Analytics (preview) giờ là solution cũ của Azure Monitor: tài liệu đã bị archive, Microsoft ghi rõ nó không còn được phát triển tiếp, và trong portal nó nằm dưới mục <b>Legacy solutions</b> của Log Analytics workspace. Nên dùng <b>database watcher</b> (mục 48a) để giám sát Azure SQL ở quy mô estate.</span></li>
+<li><span class="lang-en">To add Azure SQL Analytics, go to Home in the Azure portal, click “+Create a resource”, and search for “Azure SQL analytics”</span><span class="lang-vi">Để thêm Azure SQL Analytics, vào Home trong Azure portal, bấm &quot;+Create a resource&quot; và tìm &quot;Azure SQL analytics&quot;</span></li>
 <li><span class="lang-en">Can query using the Kusto Query Language.</span><span class="lang-vi">Truy vấn được bằng Kusto Query Language.</span></li>
 </ul><li><span class="lang-en">Azure Event Hubs, for custom monitoring and alerting</span><span class="lang-vi">Azure Event Hubs, phục vụ giám sát và cảnh báo tùy chỉnh</span></li>
 <ul><li><span class="lang-en">Stored in Avro format, a binary JSON format</span><span class="lang-vi">Lưu ở định dạng Avro — một dạng JSON nhị phân</span></li>
