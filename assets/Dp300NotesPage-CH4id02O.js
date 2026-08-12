@@ -1,4 +1,4 @@
-import{_ as G}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-BbnQocwy.js";import{d as F,Q as H,j as c,s as Y,x as K,c as W,a as e,P as S,b as u,g as E,w as N,t as M,r as j,o as X,h as $}from"./index-p15DqVjt.js";import{u as J}from"./useStudyClock-DmiowNYf.js";const Z=`<h2 class="dom" id="dom1">1 · Plan and implement data platform resources</h2>
+import{_ as G}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-O3hwZUdz.js";import{d as F,Q as H,j as c,s as Y,x as K,c as W,a as e,P as S,b as u,g as E,w as N,t as M,r as j,o as X,h as $}from"./index-fGggpZ7O.js";import{u as J}from"./useStudyClock-CsLY8Ss3.js";const Z=`<h2 class="dom" id="dom1">1 · Plan and implement data platform resources</h2>
 <section id="s1"><h3><span class="n">1.</span> <span class="lang-en">deploy database offerings on selected platforms</span><span class="lang-vi">triển khai database trên các nền tảng được chọn</span><a class="anch" href="#s1" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">SQL Server Virtual Machine</span><span class="lang-vi">SQL Server Virtual Machine</span></li>
 <ul><li><span class="lang-en">Go to Azure SQL</span><span class="lang-vi">Vào Azure SQL</span></li>
@@ -434,10 +434,12 @@ import{_ as G}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-BbnQocwy.js
 <li><span class="lang-en">Different partitions can be compressed using different settings.</span><span class="lang-vi">Các partition khác nhau có thể nén với thiết lập khác nhau.</span></li>
 <li><span class="lang-en">Would compression be useful?</span><span class="lang-vi">Nén có đáng không?</span></li>
 <ul><li><span class="lang-en">The following storage procedure cannot be used in Azure SQL Database.</span><span class="lang-vi">Stored procedure sau KHÔNG dùng được trong Azure SQL Database.</span></li>
-<ul><li><code><span class="lang-en">EXEC sp_estimate_data_compression_savings</span><span class="lang-vi">EXEC sp_estimate_data_compression_savings</span></code></li>
-<ul><li><span class="lang-en">'SchemaName',</span><span class="lang-vi">'SchemaName',</span></li>
-<li><span class="lang-en">'TableName',</span><span class="lang-vi">'TableName',</span></li>
-<li><span class="lang-en">Index_ID – either zero for a Heap, 1 for a clustered Index, or &gt;1 for Non- clustered Index. NULL if a table, and not an index,</span><span class="lang-vi">Index_ID — bằng 0 nếu là Heap, 1 nếu là clustered index, lớn hơn 1 nếu là nonclustered index. NULL nếu là bảng chứ không phải index,</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXEC sp_estimate_data_compression_savings
+'SchemaName',
+'TableName',</span><span class="lang-vi">EXEC sp_estimate_data_compression_savings
+'SchemaName',
+'TableName',</span></pre></li>
+<ul><li><span class="lang-en">Index_ID – either zero for a Heap, 1 for a clustered Index, or &gt;1 for Non- clustered Index. NULL if a table, and not an index,</span><span class="lang-vi">Index_ID — bằng 0 nếu là Heap, 1 nếu là clustered index, lớn hơn 1 nếu là nonclustered index. NULL nếu là bảng chứ không phải index,</span></li>
 <ul><li><span class="lang-en">To get the index number, use:</span><span class="lang-vi">Để lấy số hiệu index, dùng:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">SELECT name, index_id
 FROM sys.indexes
@@ -461,11 +463,13 @@ WHERE OBJECT_NAME (object_id) = N'TableName';</span></pre></li>
 </ul><li><span class="lang-en">Select whether to run immediately or to create a script (to a file, clipboard, or new query window).</span><span class="lang-vi">Select whether to run immediately or to create a script (to a file, clipboard, or new query window).</span></li>
 <ul><li><span class="lang-en">If using this on a VM, you may also get &quot;Schedule – you could select: one time, recurring (Daily, Weekly or Monthly), when SQL Server Agent starts, or whenever the CPUs become idle.</span><span class="lang-vi">Nếu làm trên VM, bạn còn có thêm &quot;Schedule&quot; — chọn được: one time, recurring (Daily, Weekly hoặc Monthly), khi SQL Server Agent khởi động, hoặc khi CPU rảnh.</span></li>
 </ul></ul><li><span class="lang-en">In T-SQL - table</span><span class="lang-vi">Bằng T-SQL — với bảng</span></li>
-<ul><li><code><span class="lang-en">ALTER TABLE Schema.TableName</span><span class="lang-vi">ALTER TABLE Schema.TableName</span></code></li>
-<li><span class="lang-en">REBUILD PARTITION = 1 | ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span><span class="lang-vi">REBUILD PARTITION = 1 | ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER TABLE Schema.TableName
+REBUILD PARTITION = 1 | ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span><span class="lang-vi">ALTER TABLE Schema.TableName
+REBUILD PARTITION = 1 | ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span></pre></li>
 </ul><li><span class="lang-en">In T-SQL – index</span><span class="lang-vi">Bằng T-SQL — với index</span></li>
-<ul><li><code><span class="lang-en">ALTER INDEX IndexName ON Schema.TableName</span><span class="lang-vi">ALTER INDEX IndexName ON Schema.TableName</span></code></li>
-<li><span class="lang-en">REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span><span class="lang-vi">REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER INDEX IndexName ON Schema.TableName
+REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span><span class="lang-vi">ALTER INDEX IndexName ON Schema.TableName
+REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE | ROW | NONE);</span></pre></li>
 </ul></ul><li><span class="lang-en">For columnstore objects:</span><span class="lang-vi">Với đối tượng columnstore:</span></li>
 <ul><li><span class="lang-en">Initially used in data warehouses, but then expanded.</span><span class="lang-vi">Ban đầu dùng trong data warehouse, sau đó mở rộng ra.</span></li>
 <li><span class="lang-en">Columns are always compressed.</span><span class="lang-vi">Các cột luôn được nén.</span></li>
@@ -680,12 +684,12 @@ WHERE OBJECT_NAME (object_id) = N'TableName';</span></pre></li>
 <li><span class="lang-en">Afterwards, go to the destination server in SSMS, right-hand click on the word &quot;Databases&quot; (not a particular database), and select Tasks – Import Data-tier Application.</span><span class="lang-vi">Sau đó, vào server đích trong SSMS, chuột phải vào chữ &quot;Databases&quot; (không phải một database cụ thể) và chọn Tasks – Import Data-tier Application.</span></li>
 </ul></ul><li><span class="lang-en">Using the SQLPackage CLI utility, which also creates a bacpac.</span><span class="lang-vi">Dùng tiện ích dòng lệnh SQLPackage, cũng tạo ra bacpac.</span></li>
 <ul><li><span class="lang-en">Open a Command Prompt, and run:</span><span class="lang-vi">Mở Command Prompt và chạy:</span></li>
-<ul><li><code><span class="lang-en">cd C:\\Program Files\\Microsoft SQL Server\\160\\DAC\\bin</span><span class="lang-vi">cd C:\\Program Files\\Microsoft SQL Server\\160\\DAC\\bin</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">cd C:\\Program Files\\Microsoft SQL Server\\160\\DAC\\bin</span><span class="lang-vi">cd C:\\Program Files\\Microsoft SQL Server\\160\\DAC\\bin</span></pre></li>
 <ul><li><span class="lang-en">The number might need to be changed, depending on your view of SQL Server</span><span class="lang-vi">Con số có thể cần đổi, tùy phiên bản SQL Server của bạn</span></li>
-</ul><li><code><span class="lang-en">sqlpackage.exe /a:Export /SourceServerName:servername.database.windows.net /SourceDatabaseName:dbname /SourceUser:username /SourcePassword:password /TargetFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span><span class="lang-vi">sqlpackage.exe /a:Export /SourceServerName:servername.database.windows.net /SourceDatabaseName:dbname /SourceUser:username /SourcePassword:password /TargetFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span></code></li>
+</ul><li class="cb"><pre class="code"><span class="lang-en">sqlpackage.exe /a:Export /SourceServerName:servername.database.windows.net /SourceDatabaseName:dbname /SourceUser:username /SourcePassword:password /TargetFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span><span class="lang-vi">sqlpackage.exe /a:Export /SourceServerName:servername.database.windows.net /SourceDatabaseName:dbname /SourceUser:username /SourcePassword:password /TargetFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span></pre></li>
 <ul><li><span class="lang-en">Details need to be filled in.</span><span class="lang-vi">Cần điền thông tin cụ thể vào.</span></li>
 </ul></ul><li><span class="lang-en">Then to upload it, assuming you are still in the Command Prompt, run:</span><span class="lang-vi">Rồi để tải lên, vẫn trong Command Prompt, chạy:</span></li>
-<ul><li><code><span class="lang-en">sqlpackage.exe /a:Import /TargetServerName:ManagedInstancename.appname.database.windows.n et /TargetDatabaseName:dbname /TargetUser:username /TargetPassword:password /SourceFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span><span class="lang-vi">sqlpackage.exe /a:Import /TargetServerName:ManagedInstancename.appname.database.windows.n et /TargetDatabaseName:dbname /TargetUser:username /TargetPassword:password /SourceFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">sqlpackage.exe /a:Import /TargetServerName:ManagedInstancename.appname.database.windows.n et /TargetDatabaseName:dbname /TargetUser:username /TargetPassword:password /SourceFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span><span class="lang-vi">sqlpackage.exe /a:Import /TargetServerName:ManagedInstancename.appname.database.windows.n et /TargetDatabaseName:dbname /TargetUser:username /TargetPassword:password /SourceFile:C:\\Users\\user\\Desktop\\backup150.bacpac</span></pre></li>
 </ul></ul><li><span class="lang-en">Using the Azure Portal</span><span class="lang-vi">Dùng Azure Portal</span></li>
 <ul><li><span class="lang-en">Not supported for exporting from or importing into MI.</span><span class="lang-vi">Không hỗ trợ export từ MI hay import vào MI.</span></li>
 <li><span class="lang-en">Uses Bacpac.</span><span class="lang-vi">Dùng Bacpac.</span></li>
@@ -829,7 +833,7 @@ GO</span></pre></li>
 </ul></ul><li><span class="lang-en">Database users cannot be created using the Azure Portal.</span><span class="lang-vi">Không thể tạo database user bằng Azure Portal.</span></li>
 <li><span class="lang-en">However, you can create logins from Azure AD users, groups or apps.</span><span class="lang-vi">Tuy nhiên bạn có thể tạo login từ user, group hoặc app của Azure AD.</span></li>
 <ul><ul><ul><ul><ul><li><span class="lang-en">Syntax for Azure SQL Managed Instance</span><span class="lang-vi">Cú pháp cho Azure SQL Managed Instance</span></li>
-</ul></ul></ul><li><code><span class="lang-en">CREATE LOGIN login_name [FROM EXTERNAL PROVIDER] { WITH &lt;option_list&gt; [,..]}</span><span class="lang-vi">CREATE LOGIN login_name [FROM EXTERNAL PROVIDER] { WITH &lt;option_list&gt; [,..]}</span></code></li>
+</ul></ul></ul><li class="cb"><pre class="code"><span class="lang-en">CREATE LOGIN login_name [FROM EXTERNAL PROVIDER] { WITH &lt;option_list&gt; [,..]}</span><span class="lang-vi">CREATE LOGIN login_name [FROM EXTERNAL PROVIDER] { WITH &lt;option_list&gt; [,..]}</span></pre></li>
 </ul><li><span class="lang-en">The parameters are:</span><span class="lang-vi">Các tham số gồm:</span></li>
 <ul><li><span class="lang-en">login_name is an existing Azure AD UserPrincipalName of the user, DisplayName group or app when used with the “FROM EXTERNAL PROVIDER” indicates Azure AD Authentication.</span><span class="lang-vi">login_name là UserPrincipalName sẵn có của user, hoặc DisplayName của group/app; khi dùng kèm &quot;FROM EXTERNAL PROVIDER&quot; thì nghĩa là xác thực bằng Azure AD.</span></li>
 <li><span class="lang-en">&lt;option_list&gt; ::=</span><span class="lang-vi">&lt;option_list&gt; ::=</span></li>
@@ -838,16 +842,24 @@ GO</span></pre></li>
 <li><span class="lang-en">| DEFAULT_DATABASE = database</span><span class="lang-vi">| DEFAULT_DATABASE = database</span></li>
 <li><span class="lang-en">| DEFAULT_LANGUAGE = language</span><span class="lang-vi">| DEFAULT_LANGUAGE = language</span></li>
 </ul></ul></ul><li><span class="lang-en">Create user:</span><span class="lang-vi">Create user:</span></li>
-<ul><li><code><span class="lang-en">CREATE USER user_name</span><span class="lang-vi">CREATE USER user_name</span></code></li>
-<ul><li><span class="lang-en">[ { FOR | FROM } LOGIN login_name ]</span><span class="lang-vi">[ { FOR | FROM } LOGIN login_name ]</span></li>
-<li><span class="lang-en">| FROM EXTERNAL PROVIDER</span><span class="lang-vi">| FROM EXTERNAL PROVIDER</span></li>
-<li><span class="lang-en">[ WITH &lt;limited_options_list&gt; [ ,... ] ]</span><span class="lang-vi">[ WITH &lt;limited_options_list&gt; [ ,... ] ]</span></li>
-</ul><li><span class="lang-en">[;]</span><span class="lang-vi">[;]</span></li>
-<li><span class="lang-en">&lt;limited_options_list&gt; ::=</span><span class="lang-vi">&lt;limited_options_list&gt; ::=</span></li>
-<ul><li><span class="lang-en">DEFAULT_SCHEMA = schema_name</span><span class="lang-vi">DEFAULT_SCHEMA = schema_name</span></li>
-<li><span class="lang-en">| DEFAULT_LANGUAGE = { NONE | lcid | language name | language alias }</span><span class="lang-vi">| DEFAULT_LANGUAGE = { NONE | lcid | language name | language alias }</span></li>
-<li><span class="lang-en">| ALLOW_ENCRYPTED_VALUE_MODIFICATIONS = [ ON | OFF ] ]</span><span class="lang-vi">| ALLOW_ENCRYPTED_VALUE_MODIFICATIONS = [ ON | OFF ] ]</span></li>
-</ul></ul><li><span class="lang-en">Both SQL Server Administrators and Microsoft Entra ID Administrators for SQL Server can create:</span><span class="lang-vi">Cả SQL Server Administrator lẫn Microsoft Entra ID Administrator for SQL Server đều tạo được:</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE USER user_name
+[ { FOR | FROM } LOGIN login_name ]
+| FROM EXTERNAL PROVIDER
+[ WITH &lt;limited_options_list&gt; [ ,... ] ]
+[;]
+&lt;limited_options_list&gt; ::=
+DEFAULT_SCHEMA = schema_name
+| DEFAULT_LANGUAGE = { NONE | lcid | language name | language alias }
+| ALLOW_ENCRYPTED_VALUE_MODIFICATIONS = [ ON | OFF ] ]</span><span class="lang-vi">CREATE USER user_name
+[ { FOR | FROM } LOGIN login_name ]
+| FROM EXTERNAL PROVIDER
+[ WITH &lt;limited_options_list&gt; [ ,... ] ]
+[;]
+&lt;limited_options_list&gt; ::=
+DEFAULT_SCHEMA = schema_name
+| DEFAULT_LANGUAGE = { NONE | lcid | language name | language alias }
+| ALLOW_ENCRYPTED_VALUE_MODIFICATIONS = [ ON | OFF ] ]</span></pre></li>
+</ul><li><span class="lang-en">Both SQL Server Administrators and Microsoft Entra ID Administrators for SQL Server can create:</span><span class="lang-vi">Cả SQL Server Administrator lẫn Microsoft Entra ID Administrator for SQL Server đều tạo được:</span></li>
 <ul><li><span class="lang-en">Users based on SQL Server Authentication logins.</span><span class="lang-vi">User dựa trên login SQL Server Authentication.</span></li>
 <li><span class="lang-en">Contained database users based on SQL Server Authentication (without logins)</span><span class="lang-vi">Contained database user dựa trên SQL Server Authentication (không cần login)</span></li>
 </ul><li><span class="lang-en">Microsoft Entra ID Administrators for SQL Server only can create:</span><span class="lang-vi">Chỉ riêng Microsoft Entra ID Administrator for SQL Server mới tạo được:</span></li>
@@ -977,15 +989,19 @@ REVOKE (the opposite of GRANT)</span></pre></li>
 </ul></ul></section>
 <section id="s29"><h3><span class="n">29.</span> <span class="lang-en">manage certificates</span><span class="lang-vi">quản lý certificate</span><a class="anch" href="#s29" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">To create a self-signed certificate:</span><span class="lang-vi">Để tạo một self-signed certificate:</span></li>
-<ul><li><code><span class="lang-en">CREATE CERTIFICATE CertificateName</span><span class="lang-vi">CREATE CERTIFICATE CertificateName</span></code></li>
-<ul><li><span class="lang-en">ENCRYPTION BY PASSWORD = ‘ComplicatedPassword’</span><span class="lang-vi">ENCRYPTION BY PASSWORD = 'ComplicatedPassword'</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE CERTIFICATE CertificateName
+ENCRYPTION BY PASSWORD = ‘ComplicatedPassword’
+WITH SUBJECT = ‘CertificateSubjectName’,
+EXPIRY_DATE = ‘20291231’;
+GO</span><span class="lang-vi">CREATE CERTIFICATE CertificateName
+ENCRYPTION BY PASSWORD = 'ComplicatedPassword'
+WITH SUBJECT = ‘CertificateSubjectName’,
+EXPIRY_DATE = '20291231';
+GO</span></pre></li>
 <ul><li><span class="lang-en">If this is not used, the private key is encrypted using the database master key.</span><span class="lang-vi">Nếu không dùng mệnh đề này, private key sẽ được mã hóa bằng database master key.</span></li>
-</ul><li><code><span class="lang-en">WITH SUBJECT = ‘CertificateSubjectName’,</span><span class="lang-vi">WITH SUBJECT = ‘CertificateSubjectName’,</span></code></li>
-<ul><li><span class="lang-en">This is a field in the certificate metadata.</span><span class="lang-vi">Đây là một trường trong metadata của certificate.</span></li>
-</ul><li><span class="lang-en">EXPIRY_DATE = ‘20291231’;</span><span class="lang-vi">EXPIRY_DATE = '20291231';</span></li>
-<ul><li><span class="lang-en">You can also have a START_DATE (in UTC). If not specified, START_DATE defaults to current date, and EXPIRY_DATE (UTC) is one year after START_DATE.</span><span class="lang-vi">Bạn cũng có thể đặt START_DATE (theo UTC). Nếu không chỉ định, START_DATE mặc định là ngày hiện tại, và EXPIRY_DATE (UTC) là một năm sau START_DATE.</span></li>
-</ul></ul><li><code><span class="lang-en">GO</span><span class="lang-vi">GO</span></code></li>
-</ul><li><span class="lang-en">By default, this certificate is stored in the master database.</span><span class="lang-vi">Mặc định certificate này được lưu trong database master.</span></li>
+<li><span class="lang-en">This is a field in the certificate metadata.</span><span class="lang-vi">Đây là một trường trong metadata của certificate.</span></li>
+<li><span class="lang-en">You can also have a START_DATE (in UTC). If not specified, START_DATE defaults to current date, and EXPIRY_DATE (UTC) is one year after START_DATE.</span><span class="lang-vi">Bạn cũng có thể đặt START_DATE (theo UTC). Nếu không chỉ định, START_DATE mặc định là ngày hiện tại, và EXPIRY_DATE (UTC) là một năm sau START_DATE.</span></li>
+</ul></ul><li><span class="lang-en">By default, this certificate is stored in the master database.</span><span class="lang-vi">Mặc định certificate này được lưu trong database master.</span></li>
 <ul><li><span class="lang-en">The Azure Key Vault can store customer-managed certificates (&quot;Bring your own Key – BYOK&quot;)</span><span class="lang-vi">Azure Key Vault có thể lưu certificate do khách hàng tự quản lý (&quot;Bring your own Key – BYOK&quot;)</span></li>
 </ul><li><span class="lang-en">To restore a previously-created certificate, you can also use CREATE CERTIFICATE with FILE = 'path'</span><span class="lang-vi">Để khôi phục một certificate đã tạo trước đó, bạn cũng có thể dùng CREATE CERTIFICATE với FILE = 'path'</span></li>
 <ul><li><span class="lang-en">Azure SQL Database does not support creating a certificate from a file or using private key files.</span><span class="lang-vi">Azure SQL Database không hỗ trợ tạo certificate từ file hay dùng file private key.</span></li>
@@ -1000,7 +1016,7 @@ WITH PRIVATE KEY (ENCRYPTION BY PASSWORD = ‘ComplicatedPassword’)</span></pr
 <ul><li><span class="lang-en">(Use “GO” after each statement).</span><span class="lang-vi">(Dùng &quot;GO&quot; sau mỗi câu lệnh).</span></li>
 <li><span class="lang-en">For MI and SQL Server in VMs:</span><span class="lang-vi">Với MI và SQL Server trên VM:</span></li>
 <ul><li><span class="lang-en">To create a login for a local Microsoft Entra ID account:</span><span class="lang-vi">Để tạo login cho một tài khoản Microsoft Entra ID cục bộ:</span></li>
-<ul><li><code><span class="lang-en">CREATE LOGIN [login_name] FROM EXTERNAL PROVIDER -- the last 3 words indicate Azure AD.</span><span class="lang-vi">CREATE LOGIN [login_name] FROM EXTERNAL PROVIDER -- the last 3 words indicate Azure AD.</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE LOGIN [login_name] FROM EXTERNAL PROVIDER -- the last 3 words indicate Azure AD.</span><span class="lang-vi">CREATE LOGIN [login_name] FROM EXTERNAL PROVIDER -- the last 3 words indicate Azure AD.</span></pre></li>
 </ul><li><span class="lang-en">To check</span><span class="lang-vi">Để kiểm tra</span></li>
 <ul><li><code><span class="lang-en">SELECT * FROM sys.server_principals;</span><span class="lang-vi">SELECT * FROM sys.server_principals;</span></code></li>
 </ul><li><span class="lang-en">To add members into a server role:</span><span class="lang-vi">Để thêm thành viên vào một server role:</span></li>
@@ -1074,13 +1090,13 @@ GRANT SELECT ON OBJECT::Customer(CustomerName) TO Phillip; -- This is a column.<
 </ul><li><span class="lang-en">OBJECT can be a database, schema or object</span><span class="lang-vi">OBJECT có thể là một database, schema hoặc object</span></li>
 <li><span class="lang-en">PRINCIPAL is a login, user or role.</span><span class="lang-vi">PRINCIPAL là một login, user hoặc role.</span></li>
 </ul><li><span class="lang-en">Check permissions using:</span><span class="lang-vi">Kiểm tra quyền bằng:</span></li>
-<ul><li><code><span class="lang-en">SELECT * FROM fn_builtin_permissions(default);</span><span class="lang-vi">SELECT * FROM fn_builtin_permissions(default);</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * FROM fn_builtin_permissions(default);</span><span class="lang-vi">SELECT * FROM fn_builtin_permissions(default);</span></pre></li>
 <ul><li><span class="lang-en">All permissions</span><span class="lang-vi">Toàn bộ quyền</span></li>
-</ul><li><code><span class="lang-en">SELECT * FROM fn_builtin_permissions('assembly’);</span><span class="lang-vi">SELECT * FROM fn_builtin_permissions('assembly’);</span></code></li>
+</ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * FROM fn_builtin_permissions('assembly’);</span><span class="lang-vi">SELECT * FROM fn_builtin_permissions('assembly’);</span></pre></li>
 <ul><li><span class="lang-en">Specific database.</span><span class="lang-vi">Một database cụ thể.</span></li>
-</ul><li><code><span class="lang-en">SELECT * FROM fn_my_permissions('Orders55', 'object’);</span><span class="lang-vi">SELECT * FROM fn_my_permissions('Orders55', 'object’);</span></code></li>
+</ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * FROM fn_my_permissions('Orders55', 'object’);</span><span class="lang-vi">SELECT * FROM fn_my_permissions('Orders55', 'object’);</span></pre></li>
 <ul><li><span class="lang-en">Specific object for a specific role.</span><span class="lang-vi">Một object cụ thể ứng với một role cụ thể.</span></li>
-</ul><li><code><span class="lang-en">SELECT * FROM sys.database_permissions WHERE major_id = OBJECT_ID('Yttrium');</span><span class="lang-vi">SELECT * FROM sys.database_permissions WHERE major_id = OBJECT_ID('Yttrium');</span></code></li>
+</ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * FROM sys.database_permissions WHERE major_id = OBJECT_ID('Yttrium');</span><span class="lang-vi">SELECT * FROM sys.database_permissions WHERE major_id = OBJECT_ID('Yttrium');</span></pre></li>
 <ul><li><span class="lang-en">Specific object.</span><span class="lang-vi">Một object cụ thể.</span></li>
 </ul></ul></ul></section>
 <section id="s29-4"><h3><span class="n">29.</span> <span class="lang-en">configure permissions by using custom roles</span><span class="lang-vi">cấu hình quyền bằng custom role</span><a class="anch" href="#s29-4" title="Link tới mục này">#</a></h3>
@@ -1109,7 +1125,7 @@ ALTER ROLE db_datareader ADD MEMBER database_principal</span></pre></li>
 </ul><li><span class="lang-en">To enable it in Azure SQL Database only, go to the Azure Portal, then the relevant database, then go to “Transparent data encryption” and set “Data encryption” to ON.</span><span class="lang-vi">Chỉ với Azure SQL Database: vào Azure Portal, chọn database tương ứng, vào &quot;Transparent data encryption&quot; và bật &quot;Data encryption&quot; thành ON.</span></li>
 <ul><li><span class="lang-en">You cannot do this in Azure SQL Managed Instance.</span><span class="lang-vi">Bạn không làm được việc này trong Azure SQL Managed Instance.</span></li>
 </ul><li><span class="lang-en">In T-SQL, you can use:</span><span class="lang-vi">Bằng T-SQL, bạn có thể dùng:</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE DatabaseName SET ENCRYPTION ON/OFF.</span><span class="lang-vi">ALTER DATABASE DatabaseName SET ENCRYPTION ON/OFF.</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE DatabaseName SET ENCRYPTION ON/OFF.</span><span class="lang-vi">ALTER DATABASE DatabaseName SET ENCRYPTION ON/OFF.</span></pre></li>
 <li><span class="lang-en">This can be used in Azure SQL Managed Instance.</span><span class="lang-vi">Cách này dùng được trong Azure SQL Managed Instance.</span></li>
 <li><span class="lang-en">However, you can’t switch the TDE protector to a key in Key Vault in T-SQL.</span><span class="lang-vi">Tuy nhiên bạn không thể đổi TDE protector sang một key trong Key Vault bằng T-SQL.</span></li>
 </ul><li><span class="lang-en">You can also use PowerShell.</span><span class="lang-vi">Bạn cũng có thể dùng PowerShell.</span></li>
@@ -1125,9 +1141,11 @@ ALTER ROLE db_datareader ADD MEMBER database_principal</span></pre></li>
 <ul><li><span class="lang-en">Also called cell-level or column-level encryption. Unlike TDE (whole database, transparent) and Always Encrypted (client-driven, needs a compatible driver), this encrypts individual column values using T-SQL functions, and the server itself can decrypt them whenever the key is open.</span><span class="lang-vi">Còn gọi là mã hóa cấp cell/cấp cột. Khác với TDE (toàn database, transparent) và Always Encrypted (do client thực hiện, cần driver hỗ trợ), cách này mã hóa từng giá trị cột bằng hàm T-SQL, và server có thể tự giải mã bất cứ khi nào key đang mở.</span></li>
 <li><span class="lang-en">Encryption hierarchy: Service Master Key (SMK, tied to the server) → Database Master Key (DMK) → certificate or asymmetric key → symmetric key → the data itself. Each layer encrypts the layer below it.</span><span class="lang-vi">Chuỗi mã hóa: Service Master Key (SMK, gắn với server) → Database Master Key (DMK) → certificate hoặc asymmetric key → symmetric key → dữ liệu. Mỗi tầng mã hóa tầng bên dưới.</span></li>
 <li><span class="lang-en">Typical setup:</span><span class="lang-vi">Thiết lập điển hình:</span></li>
-<ul><li><code><span class="lang-en">CREATE MASTER KEY ENCRYPTION BY PASSWORD = '...'</span><span class="lang-vi">CREATE MASTER KEY ENCRYPTION BY PASSWORD = '...'</span></code></li>
-<li><code><span class="lang-en">CREATE CERTIFICATE MyCert WITH SUBJECT = '...'</span><span class="lang-vi">CREATE CERTIFICATE MyCert WITH SUBJECT = '...'</span></code></li>
-<li><code><span class="lang-en">CREATE SYMMETRIC KEY MyKey WITH ALGORITHM = AES_256 ENCRYPTION BY CERTIFICATE MyCert</span><span class="lang-vi">CREATE SYMMETRIC KEY MyKey WITH ALGORITHM = AES_256 ENCRYPTION BY CERTIFICATE MyCert</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE MASTER KEY ENCRYPTION BY PASSWORD = '...'
+CREATE CERTIFICATE MyCert WITH SUBJECT = '...'
+CREATE SYMMETRIC KEY MyKey WITH ALGORITHM = AES_256 ENCRYPTION BY CERTIFICATE MyCert</span><span class="lang-vi">CREATE MASTER KEY ENCRYPTION BY PASSWORD = '...'
+CREATE CERTIFICATE MyCert WITH SUBJECT = '...'
+CREATE SYMMETRIC KEY MyKey WITH ALGORITHM = AES_256 ENCRYPTION BY CERTIFICATE MyCert</span></pre></li>
 <li><span class="lang-en">To write: <code>OPEN SYMMETRIC KEY MyKey DECRYPTION BY CERTIFICATE MyCert</code>, then <code>UPDATE ... SET Col = ENCRYPTBYKEY(KEY_GUID('MyKey'), @PlainValue)</code>.</span><span class="lang-vi">Để ghi: <code>OPEN SYMMETRIC KEY MyKey DECRYPTION BY CERTIFICATE MyCert</code>, rồi <code>UPDATE ... SET Col = ENCRYPTBYKEY(KEY_GUID('MyKey'), @PlainValue)</code>.</span></li>
 <li><span class="lang-en">To read: <code>SELECT DECRYPTBYKEY(Col)</code> while the same symmetric key is open in that session.</span><span class="lang-vi">Để đọc: <code>SELECT DECRYPTBYKEY(Col)</code> khi symmetric key đó vẫn đang mở trong session.</span></li>
 </ul><li><span class="lang-en">You can skip the symmetric key and call <code>ENCRYPTBYCERT</code>/<code>DECRYPTBYCERT</code> directly against a certificate's public/private key pair (asymmetric) — simpler to manage but noticeably slower, so it's normally reserved for small amounts of data.</span><span class="lang-vi">Có thể bỏ qua symmetric key và gọi trực tiếp <code>ENCRYPTBYCERT</code>/<code>DECRYPTBYCERT</code> trên cặp khóa công khai/riêng của certificate (bất đối xứng) — dễ quản lý hơn nhưng chậm hơn rõ rệt, nên thường chỉ dùng cho lượng dữ liệu nhỏ.</span></li>
@@ -1159,25 +1177,27 @@ ALTER ROLE db_datareader ADD MEMBER database_principal</span></pre></li>
 <ul><li><span class="lang-en">To check the current server-level IP firewall rules:</span><span class="lang-vi">Để xem các IP firewall rule cấp server hiện tại:</span></li>
 <ul><li><code><span class="lang-en">SELECT * FROM sys.firewall_rules</span><span class="lang-vi">SELECT * FROM sys.firewall_rules</span></code></li>
 </ul><li><span class="lang-en">To add a server-level IP firewall rule:</span><span class="lang-vi">Để thêm một IP firewall rule cấp server:</span></li>
-<ul><li><code><span class="lang-en">EXECUTE sp_set_firewall_rule @name = N'MyFirewallRule',</span><span class="lang-vi">EXECUTE sp_set_firewall_rule @name = N'MyFirewallRule',</span></code></li>
-<li><span class="lang-en">@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span><span class="lang-vi">@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE sp_set_firewall_rule @name = N'MyFirewallRule',
+@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span><span class="lang-vi">EXECUTE sp_set_firewall_rule @name = N'MyFirewallRule',
+@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span></pre></li>
 </ul><li><span class="lang-en">To delete a server-level IP firewall rule:</span><span class="lang-vi">Để xóa một IP firewall rule cấp server:</span></li>
-<ul><li><code><span class="lang-en">EXECUTE sp_delete_firewall_rule @name = N'MyFirewallRule'</span><span class="lang-vi">EXECUTE sp_delete_firewall_rule @name = N'MyFirewallRule'</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE sp_delete_firewall_rule @name = N'MyFirewallRule'</span><span class="lang-vi">EXECUTE sp_delete_firewall_rule @name = N'MyFirewallRule'</span></pre></li>
 </ul></ul><li><span class="lang-en">You can also manage using PowerShell, CLI (Command Line Interface) or REST API.</span><span class="lang-vi">Bạn cũng quản lý được bằng PowerShell, CLI (Command Line Interface) hoặc REST API.</span></li>
 <li><span class="lang-en">To set up a database firewall rule.</span><span class="lang-vi">Để thiết lập firewall rule cấp database.</span></li>
 <ul><li><span class="lang-en">It can only be done using T-SQL statements, and you need CONTROL DATABASE permission at the database level.</span><span class="lang-vi">Chỉ làm được bằng lệnh T-SQL, và bạn cần quyền CONTROL DATABASE ở cấp database.</span></li>
 <li><span class="lang-en">You need to have set up a server-level firewall rule first.</span><span class="lang-vi">Bạn phải thiết lập firewall rule cấp server trước đã.</span></li>
 <li><span class="lang-en">Run a query such as:</span><span class="lang-vi">Chạy câu lệnh kiểu như:</span></li>
-<ul><li><code><span class="lang-en">EXECUTE sp_set_database_firewall_rule N'Example DB Rule','0.0.0.4','0.0.0.4’;</span><span class="lang-vi">EXECUTE sp_set_database_firewall_rule N'Example DB Rule','0.0.0.4','0.0.0.4’;</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE sp_set_database_firewall_rule N'Example DB Rule','0.0.0.4','0.0.0.4’;</span><span class="lang-vi">EXECUTE sp_set_database_firewall_rule N'Example DB Rule','0.0.0.4','0.0.0.4’;</span></pre></li>
 </ul><li><span class="lang-en">This rule is stored in that individual database.</span><span class="lang-vi">Rule này được lưu trong chính database đó.</span></li>
 </ul><li><span class="lang-en">In T-SQL:</span><span class="lang-vi">Bằng T-SQL:</span></li>
 <ul><li><span class="lang-en">To check the current database-level IP firewall rules:</span><span class="lang-vi">Để xem các IP firewall rule cấp database hiện tại:</span></li>
 <ul><li><code><span class="lang-en">SELECT * FROM sys.database_firewall_rules</span><span class="lang-vi">SELECT * FROM sys.database_firewall_rules</span></code></li>
 </ul><li><span class="lang-en">To add a database-level IP firewall rule:</span><span class="lang-vi">Để thêm một IP firewall rule cấp database:</span></li>
-<ul><li><code><span class="lang-en">EXECUTE sp_set_database_firewall_rule @name = N'MyDatabaseFirewallRule',</span><span class="lang-vi">EXECUTE sp_set_database_firewall_rule @name = N'MyDatabaseFirewallRule',</span></code></li>
-<li><span class="lang-en">@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span><span class="lang-vi">@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE sp_set_database_firewall_rule @name = N'MyDatabaseFirewallRule',
+@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span><span class="lang-vi">EXECUTE sp_set_database_firewall_rule @name = N'MyDatabaseFirewallRule',
+@start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.200'</span></pre></li>
 </ul><li><span class="lang-en">To delete a database-level IP firewall rule:</span><span class="lang-vi">Để xóa một IP firewall rule cấp database:</span></li>
-<ul><li><code><span class="lang-en">EXECUTE sp_delete_database_firewall_rule @name = N'MyDatabaseFirewallRule'</span><span class="lang-vi">EXECUTE sp_delete_database_firewall_rule @name = N'MyDatabaseFirewallRule'</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE sp_delete_database_firewall_rule @name = N'MyDatabaseFirewallRule'</span><span class="lang-vi">EXECUTE sp_delete_database_firewall_rule @name = N'MyDatabaseFirewallRule'</span></pre></li>
 </ul></ul></ul></section>
 <section id="s33"><h3><span class="n">33.</span> <span class="lang-en">implement Always Encrypted</span><span class="lang-vi">triển khai Always Encrypted</span><a class="anch" href="#s33" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">You can encrypt sensitive data using Always Encrypted in Azure SQL Database and MI.</span><span class="lang-vi">Bạn có thể mã hóa dữ liệu nhạy cảm bằng Always Encrypted trong Azure SQL Database và MI.</span></li>
@@ -1214,31 +1234,44 @@ ALTER ROLE db_datareader ADD MEMBER database_principal</span></pre></li>
 <ul><li><span class="lang-en">If not, you can use either SSMS or PowerShell.</span><span class="lang-vi">Nếu không, bạn dùng SSMS hoặc PowerShell đều được.</span></li>
 <li><span class="lang-en">If so, then you can only use PowerShell.</span><span class="lang-vi">Nếu có, bạn chỉ dùng được PowerShell.</span></li>
 </ul></ul><li><span class="lang-en">For the Security Administrator</span><span class="lang-vi">Dành cho Security Administrator</span></li>
-<ul><li><code><span class="lang-en"># Create a column master key in Windows Certificate Store.</span><span class="lang-vi"># Create a column master key in Windows Certificate Store.</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">$storeLocation = &quot;CurrentUser&quot;
+<ul><li class="cb"><pre class="code"><span class="lang-en"># Create a column master key in Windows Certificate Store.
+$storeLocation = &quot;CurrentUser&quot;
 $certPath = &quot;Cert:&quot; + $storeLocation + &quot;\\My&quot;
-$cert = New-SelfSignedCertificate -Subject &quot;AlwaysEncryptedCert&quot; - CertStoreLocation $certPath -KeyExportPolicy Exportable -Type DocumentEncryptionCert -KeyUsage DataEncipherment -KeySpec KeyExchange</span><span class="lang-vi">$storeLocation = &quot;CurrentUser&quot;
-$certPath = &quot;Cert:&quot; + $storeLocation + &quot;\\My&quot;
-$cert = New-SelfSignedCertificate -Subject &quot;AlwaysEncryptedCert&quot; - CertStoreLocation $certPath -KeyExportPolicy Exportable -Type DocumentEncryptionCert -KeyUsage DataEncipherment -KeySpec KeyExchange</span></pre></li>
-</ul><li><code><span class="lang-en"># Import the SqlServer module</span><span class="lang-vi"># Import the SqlServer module</span></code></li>
-<ul><li><code><span class="lang-en">Import-Module &quot;SqlServer&quot;</span><span class="lang-vi">Import-Module &quot;SqlServer&quot;</span></code></li>
-</ul><li><code><span class="lang-en"># Create a SqlColumnMasterKeySettings object for your column master key.</span><span class="lang-vi"># Create a SqlColumnMasterKeySettings object for your column master key.</span></code></li>
-<ul><li><code><span class="lang-en">$cmkSettings = New-SqlCertificateStoreColumnMasterKeySettings - CertificateStoreLocation &quot;CurrentUser&quot; -Thumbprint $cert.Thumbprint</span><span class="lang-vi">$cmkSettings = New-SqlCertificateStoreColumnMasterKeySettings - CertificateStoreLocation &quot;CurrentUser&quot; -Thumbprint $cert.Thumbprint</span></code></li>
-</ul><li><code><span class="lang-en"># Generate a column encryption key, encrypt it with the column master key to produce an encrypted value of the column encryption key.</span><span class="lang-vi"># Generate a column encryption key, encrypt it with the column master key to produce an encrypted value of the column encryption key.</span></code></li>
-<ul><li><code><span class="lang-en">$encryptedValue = New-SqlColumnEncryptionKeyEncryptedValue - TargetColumnMasterKeySettings $cmkSettings</span><span class="lang-vi">$encryptedValue = New-SqlColumnEncryptionKeyEncryptedValue - TargetColumnMasterKeySettings $cmkSettings</span></code></li>
-</ul><li><code><span class="lang-en"># Share the location of the column master key and an encrypted value of the column encryption key with a DBA, via a CSV file on a share drive</span><span class="lang-vi"># Share the location of the column master key and an encrypted value of the column encryption key with a DBA, via a CSV file on a share drive</span></code></li>
-<ul><li><code><span class="lang-en">$keyDataFile = &quot;Z:\\keydata.txt&quot;</span><span class="lang-vi">$keyDataFile = &quot;Z:\\keydata.txt&quot;</span></code></li>
-<li><span class="lang-en">&quot;KeyStoreProviderName, KeyPath, EncryptedValue&quot; &gt; $keyDataFile</span><span class="lang-vi">&quot;KeyStoreProviderName, KeyPath, EncryptedValue&quot; &gt; $keyDataFile</span></li>
-<li><code><span class="lang-en">$cmkSettings.KeyStoreProviderName + &quot;, &quot; + $cmkSettings.KeyPath + &quot;, &quot; + $encryptedValue &gt;&gt; $keyDataFile</span><span class="lang-vi">$cmkSettings.KeyStoreProviderName + &quot;, &quot; + $cmkSettings.KeyPath + &quot;, &quot; + $encryptedValue &gt;&gt; $keyDataFile</span></code></li>
-</ul><li><code><span class="lang-en"># Read the key data back to verify</span><span class="lang-vi"># Read the key data back to verify</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">$keyData = Import-Csv $keyDataFile
+$cert = New-SelfSignedCertificate -Subject &quot;AlwaysEncryptedCert&quot; - CertStoreLocation $certPath -KeyExportPolicy Exportable -Type DocumentEncryptionCert -KeyUsage DataEncipherment -KeySpec KeyExchange
+# Import the SqlServer module
+Import-Module &quot;SqlServer&quot;
+# Create a SqlColumnMasterKeySettings object for your column master key.
+$cmkSettings = New-SqlCertificateStoreColumnMasterKeySettings - CertificateStoreLocation &quot;CurrentUser&quot; -Thumbprint $cert.Thumbprint
+# Generate a column encryption key, encrypt it with the column master key to produce an encrypted value of the column encryption key.
+$encryptedValue = New-SqlColumnEncryptionKeyEncryptedValue - TargetColumnMasterKeySettings $cmkSettings
+# Share the location of the column master key and an encrypted value of the column encryption key with a DBA, via a CSV file on a share drive
+$keyDataFile = &quot;Z:\\keydata.txt&quot;
+&quot;KeyStoreProviderName, KeyPath, EncryptedValue&quot; &gt; $keyDataFile
+$cmkSettings.KeyStoreProviderName + &quot;, &quot; + $cmkSettings.KeyPath + &quot;, &quot; + $encryptedValue &gt;&gt; $keyDataFile
+# Read the key data back to verify
+$keyData = Import-Csv $keyDataFile
 $keyData.KeyStoreProviderName
 $keyData.KeyPath
-$keyData.EncryptedValue</span><span class="lang-vi">$keyData = Import-Csv $keyDataFile
+$keyData.EncryptedValue</span><span class="lang-vi"># Create a column master key in Windows Certificate Store.
+$storeLocation = &quot;CurrentUser&quot;
+$certPath = &quot;Cert:&quot; + $storeLocation + &quot;\\My&quot;
+$cert = New-SelfSignedCertificate -Subject &quot;AlwaysEncryptedCert&quot; - CertStoreLocation $certPath -KeyExportPolicy Exportable -Type DocumentEncryptionCert -KeyUsage DataEncipherment -KeySpec KeyExchange
+# Import the SqlServer module
+Import-Module &quot;SqlServer&quot;
+# Create a SqlColumnMasterKeySettings object for your column master key.
+$cmkSettings = New-SqlCertificateStoreColumnMasterKeySettings - CertificateStoreLocation &quot;CurrentUser&quot; -Thumbprint $cert.Thumbprint
+# Generate a column encryption key, encrypt it with the column master key to produce an encrypted value of the column encryption key.
+$encryptedValue = New-SqlColumnEncryptionKeyEncryptedValue - TargetColumnMasterKeySettings $cmkSettings
+# Share the location of the column master key and an encrypted value of the column encryption key with a DBA, via a CSV file on a share drive
+$keyDataFile = &quot;Z:\\keydata.txt&quot;
+&quot;KeyStoreProviderName, KeyPath, EncryptedValue&quot; &gt; $keyDataFile
+$cmkSettings.KeyStoreProviderName + &quot;, &quot; + $cmkSettings.KeyPath + &quot;, &quot; + $encryptedValue &gt;&gt; $keyDataFile
+# Read the key data back to verify
+$keyData = Import-Csv $keyDataFile
 $keyData.KeyStoreProviderName
 $keyData.KeyPath
 $keyData.EncryptedValue</span></pre></li>
-</ul></ul><li><span class="lang-en">For the DBA</span><span class="lang-vi">Dành cho DBA</span></li>
+</ul><li><span class="lang-en">For the DBA</span><span class="lang-vi">Dành cho DBA</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en"># Obtain the location of the column master key and the encrypted value of the column encryption key from your Security Administrator, via a CSV file on a share drive.
 $keyDataFile = &quot;Z:\\keydata.txt&quot;
 $keyData = Import-Csv $keyDataFile
@@ -1332,8 +1365,9 @@ New-SqlColumnEncryptionKey -Name $cekName -InputObject $database -ColumnMasterKe
 </ul></ul><li><span class="lang-en">Click “Add” to save this rule.</span><span class="lang-vi">Bấm &quot;Add&quot; để lưu rule này.</span></li>
 <ul><li><span class="lang-en">You can also “Discard” changes and “Delete” the mask.</span><span class="lang-vi">Bạn cũng có thể &quot;Discard&quot; các thay đổi và &quot;Delete&quot; mask.</span></li>
 </ul><li><span class="lang-en">In T-SQL, this is done by using:</span><span class="lang-vi">Bằng T-SQL thì làm như sau:</span></li>
-<ul><li><code><span class="lang-en">ALTER TABLE Schema.Table ALTER COLUMN ColumnName</span><span class="lang-vi">ALTER TABLE Schema.Table ALTER COLUMN ColumnName</span></code></li>
-<li><span class="lang-en">ADD MASKED WITH (FUNCTION = 'partial(1, &quot;xxxxx&quot;, 1)') – or 'email()' or 'random(1, 1000)' or 'default()'</span><span class="lang-vi">ADD MASKED WITH (FUNCTION = 'partial(1, &quot;xxxxx&quot;, 1)') – or 'email()' or 'random(1, 1000)' or 'default()'</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER TABLE Schema.Table ALTER COLUMN ColumnName
+ADD MASKED WITH (FUNCTION = 'partial(1, &quot;xxxxx&quot;, 1)') – or 'email()' or 'random(1, 1000)' or 'default()'</span><span class="lang-vi">ALTER TABLE Schema.Table ALTER COLUMN ColumnName
+ADD MASKED WITH (FUNCTION = 'partial(1, &quot;xxxxx&quot;, 1)') – or 'email()' or 'random(1, 1000)' or 'default()'</span></pre></li>
 </ul></ul><li><span class="lang-en">You can select specific SQL users who were excluded from masking.</span><span class="lang-vi">Bạn có thể chỉ định những SQL user được loại trừ khỏi masking.</span></li>
 <ul><li><span class="lang-en">Multiple users are separated by semicolons.</span><span class="lang-vi">Nhiều user thì phân cách bằng dấu chấm phẩy.</span></li>
 <li><span class="lang-en">Note: Administrators are always excluded for Dynamic Data Masking – they can always read the data.</span><span class="lang-vi">Lưu ý: Administrator LUÔN được loại trừ khỏi Dynamic Data Masking — họ luôn đọc được dữ liệu thật.</span></li>
@@ -1406,7 +1440,7 @@ REVOKE UNMASK to MyUser;</span></pre></li>
 Set-AzSqlServer -ServerName sql-server-name -ResourceGroupName sql-server- group -SqlAdministratorPassword $SecureString -MinimalTlsVersion &quot;1.2&quot;</span><span class="lang-vi">$SecureString = ConvertTo-SecureString &quot;password&quot; -AsPlainText -Force
 Set-AzSqlServer -ServerName sql-server-name -ResourceGroupName sql-server- group -SqlAdministratorPassword $SecureString -MinimalTlsVersion &quot;1.2&quot;</span></pre></li>
 </ul><li><span class="lang-en">or Azure CLI:</span><span class="lang-vi">hoặc bằng Azure CLI:</span></li>
-<ul><li><code><span class="lang-en">az sql server update -n sql-server-name -g sql-server-group --set minimalTlsVersion=&quot;1.2&quot;</span><span class="lang-vi">az sql server update -n sql-server-name -g sql-server-group --set minimalTlsVersion=&quot;1.2&quot;</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">az sql server update -n sql-server-name -g sql-server-group --set minimalTlsVersion=&quot;1.2&quot;</span><span class="lang-vi">az sql server update -n sql-server-name -g sql-server-group --set minimalTlsVersion=&quot;1.2&quot;</span></pre></li>
 </ul></ul></ul></section>
 <section id="s36"><h3><span class="n">36.</span> <span class="lang-en">apply a data classification strategy</span><span class="lang-vi">áp dụng chiến lược phân loại dữ liệu</span><a class="anch" href="#s36" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">Sensitive data includes:</span><span class="lang-vi">Dữ liệu nhạy cảm bao gồm:</span></li>
@@ -1447,18 +1481,25 @@ Set-AzSqlServer -ServerName sql-server-name -ResourceGroupName sql-server- group
 </ul><li><span class="lang-en">You can also use T-SQL, REST API or PowerShell to manage classifications.</span><span class="lang-vi">Bạn cũng có thể quản lý phân loại bằng T-SQL, REST API hoặc PowerShell.</span></li>
 <li><span class="lang-en">In T-SQL:</span><span class="lang-vi">Bằng T-SQL:</span></li>
 <ul><li><span class="lang-en">To add a sensitivity classification:</span><span class="lang-vi">Để thêm một sensitivity classification:</span></li>
-<li><code><span class="lang-en">ADD SENSITIVITY CLASSIFICATION TO</span><span class="lang-vi">ADD SENSITIVITY CLASSIFICATION TO</span></code></li>
-<li><span class="lang-en">[schema.]table.column1[, schema.table.column2]… etc.</span><span class="lang-vi">[schema.]table.column1[, schema.table.column2]… v.v.</span></li>
-<li><code><span class="lang-en">WITH (</span><span class="lang-vi">WITH (</span></code></li>
-<li><span class="lang-en">LABEL='Highly Confidential’, -- you could also use LABEL_ID</span><span class="lang-vi">LABEL='Highly Confidential', -- cũng có thể dùng LABEL_ID</span></li>
-<li><span class="lang-en">INFORMATION_TYPE='Financial’, -- you could also INFORMATION_TYPE_ID</span><span class="lang-vi">INFORMATION_TYPE='Financial', -- cũng có thể dùng INFORMATION_TYPE_ID</span></li>
+<li class="cb"><pre class="code"><span class="lang-en">ADD SENSITIVITY CLASSIFICATION TO
+[schema.]table.column1[, schema.table.column2]… etc.
+WITH (
+LABEL='Highly Confidential’, -- you could also use LABEL_ID
+INFORMATION_TYPE='Financial’, -- you could also INFORMATION_TYPE_ID
+RANK=NONE, LOW, MEDIUM, HIGH or CRITICAL
+)</span><span class="lang-vi">ADD SENSITIVITY CLASSIFICATION TO
+[schema.]table.column1[, schema.table.column2]… v.v.
+WITH (
+LABEL='Highly Confidential', -- cũng có thể dùng LABEL_ID
+INFORMATION_TYPE='Financial', -- cũng có thể dùng INFORMATION_TYPE_ID
+RANK=NONE, LOW, MEDIUM, HIGH hoặc CRITICAL
+)</span></pre></li>
 <ul><li><span class="lang-en">Networking, Contact Info, Credentials, Credit Card, Banking, Other, Name, National IS, SSN, Health, Date of Birth</span><span class="lang-vi">Networking, Contact Info, Credentials, Credit Card, Banking, Other, Name, National ID, SSN, Health, Date of Birth</span></li>
-</ul><li><span class="lang-en">RANK=NONE, LOW, MEDIUM, HIGH or CRITICAL</span><span class="lang-vi">RANK=NONE, LOW, MEDIUM, HIGH hoặc CRITICAL</span></li>
-<li><code><span class="lang-en">)</span><span class="lang-vi">)</span></code></li>
+</ul>
 <li><span class="lang-en">To check sensitivity classifications:</span><span class="lang-vi">Để xem các sensitivity classification:</span></li>
 <ul><li><code><span class="lang-en">SELECT * FROM sys.sensitivity_classifications</span><span class="lang-vi">SELECT * FROM sys.sensitivity_classifications</span></code></li>
 </ul><li><span class="lang-en">To drop a sensitivity classification:</span><span class="lang-vi">Để xóa một sensitivity classification:</span></li>
-<ul><li><code><span class="lang-en">DROP SENSITIVITY CLASSIFICATION FROM [schema.]table.column1[, schema.table.column2 ]…</span><span class="lang-vi">DROP SENSITIVITY CLASSIFICATION FROM [schema.]table.column1[, schema.table.column2 ]…</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">DROP SENSITIVITY CLASSIFICATION FROM [schema.]table.column1[, schema.table.column2 ]…</span><span class="lang-vi">DROP SENSITIVITY CLASSIFICATION FROM [schema.]table.column1[, schema.table.column2 ]…</span></pre></li>
 </ul></ul></ul></section>
 <section id="s37"><h3><span class="n">37.</span> <span class="lang-en">configure server and database audits</span><span class="lang-vi">cấu hình audit ở cấp server và cấp database</span><a class="anch" href="#s37" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">You can use auditing to:</span><span class="lang-vi">Bạn dùng auditing để:</span></li>
@@ -1510,7 +1551,7 @@ Set-AzSqlServer -ServerName sql-server-name -ResourceGroupName sql-server- group
 <ul><li><span class="lang-en">Filter on specific dates,</span><span class="lang-vi">Lọc theo ngày cụ thể,</span></li>
 <li><span class="lang-en">Look at Server or Database audit policy.</span><span class="lang-vi">Xem chính sách audit cấp Server hay cấp Database.</span></li>
 </ul><li><span class="lang-en">You can use T-SQL:</span><span class="lang-vi">Bạn có thể dùng T-SQL:</span></li>
-<ul><li><code><span class="lang-en">SELECT * FROM sys.fn_get_audit_file (‘NameOfFile.sqlaudit',default,default);</span><span class="lang-vi">SELECT * FROM sys.fn_get_audit_file (‘NameOfFile.sqlaudit',default,default);</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * FROM sys.fn_get_audit_file (‘NameOfFile.sqlaudit',default,default);</span><span class="lang-vi">SELECT * FROM sys.fn_get_audit_file (‘NameOfFile.sqlaudit',default,default);</span></pre></li>
 </ul><li><span class="lang-en">You can use SSMS, going to File – Open – Merge Audit Files.</span><span class="lang-vi">Bạn có thể dùng SSMS: vào File – Open – Merge Audit Files.</span></li>
 <li><span class="lang-en">You should change your storage keys periodically.</span><span class="lang-vi">Bạn nên đổi storage key định kỳ.</span></li>
 <ul><li><span class="lang-en">In advanced properties, you can change to the secondary access storage key.</span><span class="lang-vi">Trong advanced properties, chuyển sang dùng secondary access storage key.</span></li>
@@ -1601,13 +1642,16 @@ FROM CHANGETABLE(CHANGES Schema.Table, @last_sync) AS CT</span></pre></li>
 <li><span class="lang-en">You need sysadmin to run it.</span><span class="lang-vi">Bạn cần quyền sysadmin để chạy lệnh này.</span></li>
 </ul></ul><li><span class="lang-en">Then you can enable it for a table:</span><span class="lang-vi">Sau đó bạn bật được cho từng bảng:</span></li>
 <ul><li><span class="lang-en">EXEC sys.sp_cdc_enable_table . Some of the arguments are:</span><span class="lang-vi">EXEC sys.sp_cdc_enable_table . Some of the arguments are:</span></li>
-<ul><li><span class="lang-en">@source_schema = N'HumanResources'</span><span class="lang-vi">@source_schema = N'HumanResources'</span></li>
-<li><code><span class="lang-en">, @source_name = N'Department'</span><span class="lang-vi">, @source_name = N'Department'</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">@source_schema = N'HumanResources'
+, @source_name = N'Department'
+, @role_name = N'cdc_admin'
+, @captured_column_list = N'DepartmentID, Name, GroupName'</span><span class="lang-vi">@source_schema = N'HumanResources'
+, @source_name = N'Department'
+, @role_name = N'cdc_admin'
+, @captured_column_list = N'DepartmentID, Name, GroupName'</span></pre></li>
 <ul><li><span class="lang-en">The name of the table.</span><span class="lang-vi">Tên của bảng.</span></li>
-</ul><li><code><span class="lang-en">, @role_name = N'cdc_admin'</span><span class="lang-vi">, @role_name = N'cdc_admin'</span></code></li>
-<ul><li><span class="lang-en">The database role used to gate access to change data. Could be a new role.</span><span class="lang-vi">Database role dùng để kiểm soát quyền truy cập dữ liệu thay đổi. Có thể là một role mới.</span></li>
-</ul><li><code><span class="lang-en">, @captured_column_list = N'DepartmentID, Name, GroupName'</span><span class="lang-vi">, @captured_column_list = N'DepartmentID, Name, GroupName'</span></code></li>
-<ul><li><span class="lang-en">Columns to be captured. Needs the primary key.</span><span class="lang-vi">Các cột sẽ được ghi nhận. Phải bao gồm primary key.</span></li>
+<li><span class="lang-en">The database role used to gate access to change data. Could be a new role.</span><span class="lang-vi">Database role dùng để kiểm soát quyền truy cập dữ liệu thay đổi. Có thể là một role mới.</span></li>
+<li><span class="lang-en">Columns to be captured. Needs the primary key.</span><span class="lang-vi">Các cột sẽ được ghi nhận. Phải bao gồm primary key.</span></li>
 <li><span class="lang-en">Cannot use encrypted columns.</span><span class="lang-vi">Không dùng được với cột đã mã hóa.</span></li>
 </ul><li><span class="lang-en">Returns 0 for Success, 1 for Failure.</span><span class="lang-vi">Trả về 0 nếu thành công, 1 nếu thất bại.</span></li>
 </ul></ul><li><span class="lang-en">You can query your configuration using:</span><span class="lang-vi">Bạn xem lại cấu hình bằng:</span></li>
@@ -1615,10 +1659,11 @@ FROM CHANGETABLE(CHANGES Schema.Table, @last_sync) AS CT</span></pre></li>
 </ul><li><span class="lang-en">You can view changed rows by using:</span><span class="lang-vi">Bạn xem các dòng đã thay đổi bằng:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">DECLARE @from_lsn binary(10), @to_lsn binary(10);
 SET @from_lsn = sys.fn_cdc_get_min_lsn('HR_Department');
-SET @to_lsn = sys.fn_cdc_get_max_lsn();</span><span class="lang-vi">DECLARE @from_lsn binary(10), @to_lsn binary(10);
+SET @to_lsn = sys.fn_cdc_get_max_lsn();
+SELECT * FROM cdc.fn_cdc_get_all_changes_HR_Department (@from_lsn, @to_lsn, N'all');</span><span class="lang-vi">DECLARE @from_lsn binary(10), @to_lsn binary(10);
 SET @from_lsn = sys.fn_cdc_get_min_lsn('HR_Department');
-SET @to_lsn = sys.fn_cdc_get_max_lsn();</span></pre></li>
-<li><span class="lang-en">SELECT * FROM cdc.fn_cdc_get_all_changes_HR_Department (@from_lsn, @to_lsn, N'all');</span><span class="lang-vi">SELECT * FROM cdc.fn_cdc_get_all_changes_HR_Department (@from_lsn, @to_lsn, N'all');</span></li>
+SET @to_lsn = sys.fn_cdc_get_max_lsn();
+SELECT * FROM cdc.fn_cdc_get_all_changes_HR_Department (@from_lsn, @to_lsn, N'all');</span></pre></li>
 <ul><li><span class="lang-en">_$operation = 1 (delete), 2 (insert), 3 or 4 (update)</span><span class="lang-vi">_$operation = 1 (delete), 2 (insert), 3 hoặc 4 (update)</span></li>
 </ul><li><span class="lang-en">Besides <code>fn_cdc_get_all_changes_...</code> (every intermediate change), each capture instance can also expose <code>cdc.fn_cdc_get_net_changes_&lt;instance&gt;</code>, which returns only the NET change per row — one row showing the final state, no matter how many times it was updated in the interval.</span><span class="lang-vi">Ngoài <code>fn_cdc_get_all_changes_...</code> (trả về mọi thay đổi trung gian), mỗi capture instance còn có thể có <code>cdc.fn_cdc_get_net_changes_&lt;instance&gt;</code> — chỉ trả về thay đổi RÒNG của từng dòng: một dòng thể hiện trạng thái cuối cùng, dù trong khoảng LSN đó dòng bị sửa bao nhiêu lần.</span></li>
 <ul><li><span class="lang-en">The net-changes function only exists if the capture instance was created with <code>@supports_net_changes = 1</code> in <code>sys.sp_cdc_enable_table</code>.</span><span class="lang-vi">Hàm net changes chỉ tồn tại nếu capture instance được tạo với <code>@supports_net_changes = 1</code> trong <code>sys.sp_cdc_enable_table</code>.</span></li>
@@ -1735,9 +1780,11 @@ SET @to_lsn = sys.fn_cdc_get_max_lsn();</span></pre></li>
 </ul><li><span class="lang-en">To create ledger tables in T-SQL:</span><span class="lang-vi">Để tạo ledger table bằng T-SQL:</span></li>
 <ul><li><span class="lang-en">You need to have the ENABLE LEDGER permission.</span><span class="lang-vi">Bạn cần có quyền ENABLE LEDGER.</span></li>
 <li><span class="lang-en">To create an updatable table in T-SQL, add at the end of the CREATE TABLE statement:</span><span class="lang-vi">Để tạo updatable table bằng T-SQL, thêm vào cuối lệnh CREATE TABLE:</span></li>
-<ul><li><code><span class="lang-en">WITH (SYSTEM_VERSIONING = ON</span><span class="lang-vi">WITH (SYSTEM_VERSIONING = ON</span></code></li>
-<ul><li><code><span class="lang-en">(HISTORY_TABLE = [Schema].[TableName]),</span><span class="lang-vi">(HISTORY_TABLE = [Schema].[TableName]),</span></code></li>
-</ul><li><span class="lang-en">LEDGER = ON);</span><span class="lang-vi">LEDGER = ON);</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">WITH (SYSTEM_VERSIONING = ON
+(HISTORY_TABLE = [Schema].[TableName]),
+LEDGER = ON);</span><span class="lang-vi">WITH (SYSTEM_VERSIONING = ON
+(HISTORY_TABLE = [Schema].[TableName]),
+LEDGER = ON);</span></pre></li>
 <li><span class="lang-en">Note – LEDGER = ON is optional for ledger databases.</span><span class="lang-vi">Lưu ý — LEDGER = ON là tùy chọn nếu đó vốn đã là ledger database.</span></li>
 </ul><li><span class="lang-en">To create an append-only ledger table in T-SQL, use:</span><span class="lang-vi">Để tạo append-only ledger table bằng T-SQL, dùng:</span></li>
 <ul><li><code><span class="lang-en">WITH (LEDGER = ON (APPEND_ONLY = ON));</span><span class="lang-vi">WITH (LEDGER = ON (APPEND_ONLY = ON));</span></code></li>
@@ -1753,14 +1800,16 @@ BEGIN TRY
 EXEC sys.sp_verify_database_ledger_from_digest_storage @digest_locations;
 SELECT 'Ledger verification succeeded.' AS Result;
 END TRY
-BEGIN CATCH</span><span class="lang-vi">DECLARE @digest_locations NVARCHAR(MAX) = (SELECT * FROM sys.database_ledger_digest_locations FOR JSON AUTO, INCLUDE_NULL_VALUES);SELECT @digest_locations as digest_locations;
+BEGIN CATCH
+THROW;
+END CATCH</span><span class="lang-vi">DECLARE @digest_locations NVARCHAR(MAX) = (SELECT * FROM sys.database_ledger_digest_locations FOR JSON AUTO, INCLUDE_NULL_VALUES);SELECT @digest_locations as digest_locations;
 BEGIN TRY
 EXEC sys.sp_verify_database_ledger_from_digest_storage @digest_locations;
 SELECT 'Ledger verification succeeded.' AS Result;
 END TRY
-BEGIN CATCH</span></pre></li>
-<li><span class="lang-en">THROW;</span><span class="lang-vi">THROW;</span></li>
-<li><code><span class="lang-en">END CATCH</span><span class="lang-vi">END CATCH</span></code></li>
+BEGIN CATCH
+THROW;
+END CATCH</span></pre></li>
 </ul><li><span class="lang-en">This script can be found in the Azure portal – [Name of database] – Security – Ledger – Verify database.</span><span class="lang-vi">Script này có sẵn trong Azure portal – [Tên database] – Security – Ledger – Verify database.</span></li>
 <li><span class="lang-en">If successful, you get a message. The output includes:</span><span class="lang-vi">Nếu thành công, bạn nhận được thông báo. Kết quả đầu ra gồm:</span></li>
 <ul><li><span class="lang-en">path – the digest locations,</span><span class="lang-vi">path — vị trí các digest,</span></li>
@@ -1791,7 +1840,9 @@ GO --Create schema must be the first statement in a batch
 CREATE SCHEMA Customers
 GO
 CREATE TABLE Customers.Customers
-(Customer nvarchar(10),</span><span class="lang-vi">-- Trong ví dụ này, ta sẽ tạo 3 tài khoản user:
+(Customer nvarchar(10),
+Status nvarchar(10),
+UserLead nvarchar(10))</span><span class="lang-vi">-- Trong ví dụ này, ta sẽ tạo 3 tài khoản user:
 CREATE USER BOSS WITHOUT LOGIN;
 CREATE USER User1 WITHOUT LOGIN;
 CREATE USER User2 WITHOUT LOGIN;
@@ -1800,9 +1851,9 @@ GO --Lệnh CREATE SCHEMA phải là câu lệnh đầu tiên trong một batch
 CREATE SCHEMA Customers
 GO
 CREATE TABLE Customers.Customers
-(Customer nvarchar(10),</span></pre></li>
-<li><span class="lang-en">Status nvarchar(10),</span><span class="lang-vi">Status nvarchar(10),</span></li>
-<li><span class="lang-en">UserLead nvarchar(10))</span><span class="lang-vi">UserLead nvarchar(10))</span></li>
+(Customer nvarchar(10),
+Status nvarchar(10),
+UserLead nvarchar(10))</span></pre></li>
 <li class="cb"><pre class="code"><span class="lang-en">INSERT INTO Customers.Customers VALUES
 ('John', 'A', 'User1'), ('Fred', 'B', 'User2'), ('Trevor', 'A', 'Boss') , ('Alfred', 'B', 'Boss')
 -- Function
@@ -1842,35 +1893,38 @@ GRANT SELECT ON Customers.Customers TO [Boss]
 GRANT SELECT ON Customers.Customers TO [User1]
 GRANT SELECT ON Customers.Customers TO [User2]
 GRANT INSERT ON Customers.Customers TO [Boss]</span></pre></li>
-</ul><li><code><span class="lang-en">-- Create the security policy</span><span class="lang-vi">-- Tạo security policy</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE SECURITY POLICY RLSPolicy
+</ul><ul><li class="cb"><pre class="code"><span class="lang-en">-- Create the security policy
+CREATE SECURITY POLICY RLSPolicy
 ADD FILTER PREDICATE RLS.rls_security(UserLead, Status)
 ON Customers.Customers,
 ADD BLOCK PREDICATE RLS.rls_security(UserLead, Status)
 ON Customers.Customers AFTER INSERT
 WITH (STATE = ON); -- To enable the policy
-GO</span><span class="lang-vi">CREATE SECURITY POLICY RLSPolicy
+GO</span><span class="lang-vi">-- Tạo security policy
+CREATE SECURITY POLICY RLSPolicy
 ADD FILTER PREDICATE RLS.rls_security(UserLead, Status)
 ON Customers.Customers,
 ADD BLOCK PREDICATE RLS.rls_security(UserLead, Status)
 ON Customers.Customers AFTER INSERT
 WITH (STATE = ON); -- To enable the policy
 GO</span></pre></li>
-</ul><li><code><span class="lang-en">-- Then you can test:</span><span class="lang-vi">-- Rồi bạn có thể kiểm thử:</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE AS USER = 'User1'
+</ul><ul><li class="cb"><pre class="code"><span class="lang-en">-- Then you can test:
+EXECUTE AS USER = 'User1'
 SELECT * FROM Customers.Customers
-REVERT</span><span class="lang-vi">EXECUTE AS USER = 'User1'
+REVERT</span><span class="lang-vi">-- Rồi bạn có thể kiểm thử:
+EXECUTE AS USER = 'User1'
 SELECT * FROM Customers.Customers
 REVERT</span></pre></li>
-</ul><li><code><span class="lang-en">-- Second test</span><span class="lang-vi">-- Kiểm thử lần hai</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE AS USER = 'Boss'
+</ul><ul><li class="cb"><pre class="code"><span class="lang-en">-- Second test
+EXECUTE AS USER = 'Boss'
 SELECT * FROM Customers.Customers
 INSERT INTO Customers.Customers
 VALUES ('Sally', 'A', 'User1')
 SELECT * FROM Customers.Customers
 INSERT INTO Customers.Customers
 VALUES ('Susan', 'B', 'User1')
-REVERT</span><span class="lang-vi">EXECUTE AS USER = 'Boss'
+REVERT</span><span class="lang-vi">-- Kiểm thử lần hai
+EXECUTE AS USER = 'Boss'
 SELECT * FROM Customers.Customers
 INSERT INTO Customers.Customers
 VALUES ('Sally', 'A', 'User1')
@@ -1878,28 +1932,31 @@ SELECT * FROM Customers.Customers
 INSERT INTO Customers.Customers
 VALUES ('Susan', 'B', 'User1')
 REVERT</span></pre></li>
-</ul><li><code><span class="lang-en">-- Turn off security policy</span><span class="lang-vi">-- Tắt security policy</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER SECURITY POLICY RLSPolicy
-WITH (STATE = OFF);</span><span class="lang-vi">ALTER SECURITY POLICY RLSPolicy
+</ul><ul><li class="cb"><pre class="code"><span class="lang-en">-- Turn off security policy
+ALTER SECURITY POLICY RLSPolicy
+WITH (STATE = OFF);</span><span class="lang-vi">-- Tắt security policy
+ALTER SECURITY POLICY RLSPolicy
 WITH (STATE = OFF);</span></pre></li>
-</ul><li><code><span class="lang-en">-- Do third test</span><span class="lang-vi">-- Kiểm thử lần ba</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">EXECUTE AS USER = 'User1'
+</ul><ul><li class="cb"><pre class="code"><span class="lang-en">-- Do third test
+EXECUTE AS USER = 'User1'
 SELECT * FROM Customers.Customers
 REVERT
 EXECUTE AS USER = 'Boss'
 SELECT * FROM Customers.Customers
 INSERT INTO Customers.Customers
 VALUES ('Susan', 'B', 'User1')
-SELECT * FROM Customers.Customers</span><span class="lang-vi">EXECUTE AS USER = 'User1'
+SELECT * FROM Customers.Customers
+REVERT</span><span class="lang-vi">-- Kiểm thử lần ba
+EXECUTE AS USER = 'User1'
 SELECT * FROM Customers.Customers
 REVERT
 EXECUTE AS USER = 'Boss'
 SELECT * FROM Customers.Customers
 INSERT INTO Customers.Customers
 VALUES ('Susan', 'B', 'User1')
-SELECT * FROM Customers.Customers</span></pre></li>
-<ul><li><code><span class="lang-en">REVERT</span><span class="lang-vi">REVERT</span></code></li>
-</ul></ul></ul></section>
+SELECT * FROM Customers.Customers
+REVERT</span></pre></li>
+</ul></ul></section>
 <section id="s43"><h3><span class="n">43.</span> <span class="lang-en">Configure Microsoft Defender for SQL</span><span class="lang-vi">Cấu hình Microsoft Defender for SQL</span><a class="anch" href="#s43" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">Advanced Threat Protection is for Azure SQL Database, Azure SQL Managed Instance, SQL Server on Azure VMs and more.</span><span class="lang-vi">Advanced Threat Protection áp dụng cho Azure SQL Database, Azure SQL Managed Instance, SQL Server trên Azure VM và nhiều nền tảng khác.</span></li>
 <li><span class="lang-en">It alerts customers to potential threats when they happen.</span><span class="lang-vi">Nó cảnh báo khách hàng về các mối đe dọa tiềm ẩn ngay khi chúng xảy ra.</span></li>
@@ -1951,7 +2008,7 @@ SELECT * FROM Customers.Customers</span></pre></li>
 </ul><li><span class="lang-en">Azure Monitor allows you to monitor resource metrics, such as processor, memory and I/O resources.</span><span class="lang-vi">Azure Monitor cho phép giám sát metric tài nguyên như processor, memory và I/O.</span></li>
 <ul><li><span class="lang-en">You may need more CPU or I/O resources if you have high DTU/processor percentage or high I/O percentage. Alternatively, your queries may need to be optimized.</span><span class="lang-vi">Bạn có thể cần thêm CPU hoặc I/O nếu tỉ lệ DTU/processor cao hoặc tỉ lệ I/O cao. Hoặc cũng có thể query của bạn cần được tối ưu.</span></li>
 </ul><li><span class="lang-en">You can also use T-SQL:</span><span class="lang-vi">Bạn cũng có thể dùng T-SQL:</span></li>
-<ul><li><code><span class="lang-en">SELECT * from sys.dm_db_resource_stats -- CPU, IO and memory</span><span class="lang-vi">SELECT * from sys.dm_db_resource_stats -- CPU, IO and memory</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * from sys.dm_db_resource_stats -- CPU, IO and memory</span><span class="lang-vi">SELECT * from sys.dm_db_resource_stats -- CPU, IO and memory</span></pre></li>
 <ul><li><span class="lang-en">You get a row for every 15 seconds for about the past hour.</span><span class="lang-vi">Bạn nhận được một dòng cho mỗi 15 giây, trong khoảng một giờ gần nhất.</span></li>
 </ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * FROM sys.dm_user_db_resource_governance -- storage
 SELECT * FROM sys.resource_usage</span><span class="lang-vi">SELECT * FROM sys.dm_user_db_resource_governance -- storage
@@ -2071,12 +2128,14 @@ GRANT VIEW DATABASE STATE TO [SQLInsightsUser];</span><span class="lang-vi">CREA
 GO
 GRANT VIEW DATABASE STATE TO [SQLInsightsUser];</span></pre></li>
 </ul><li><span class="lang-en">In Azure Managed Instance and SQL Server on a VM:</span><span class="lang-vi">Với Azure Managed Instance và SQL Server trên VM:</span></li>
-<ul><li><code><span class="lang-en">USE master</span><span class="lang-vi">USE master</span></code></li>
-<li><span class="lang-en">GOCREATE LOGIN [SQLInsightsUser] WITH PASSWORD = N'P@ssw0rdStr0ng';</span><span class="lang-vi">GOCREATE LOGIN [SQLInsightsUser] WITH PASSWORD = N'P@ssw0rdStr0ng';</span></li>
-<li class="cb"><pre class="code"><span class="lang-en">GO
+<ul><li class="cb"><pre class="code"><span class="lang-en">USE master
+GOCREATE LOGIN [SQLInsightsUser] WITH PASSWORD = N'P@ssw0rdStr0ng';
+GO
 GRANT VIEW SERVER STATE TO [SQLInsightsUser];
 GO
-GRANT VIEW ANY DEFINITION TO [SQLInsightsUser];</span><span class="lang-vi">GO
+GRANT VIEW ANY DEFINITION TO [SQLInsightsUser];</span><span class="lang-vi">USE master
+GOCREATE LOGIN [SQLInsightsUser] WITH PASSWORD = N'P@ssw0rdStr0ng';
+GO
 GRANT VIEW SERVER STATE TO [SQLInsightsUser];
 GO
 GRANT VIEW ANY DEFINITION TO [SQLInsightsUser];</span></pre></li>
@@ -2232,31 +2291,41 @@ SET QUERY_STORE (INTERVAL_LENGTH_MINUTES = 15);</span><span class="lang-vi">ALTE
 SET QUERY_STORE (INTERVAL_LENGTH_MINUTES = 15);</span></pre></li>
 </ul><li><span class="lang-en">You can choose from 1, 5, 10, 15, 30, 60 or 1440 minutes. A query will have a maximum of 1 row collected for this time period.</span><span class="lang-vi">Bạn chọn được 1, 5, 10, 15, 30, 60 hoặc 1440 phút. Trong mỗi khoảng đó, mỗi query chỉ có tối đa 1 dòng được ghi.</span></li>
 </ul><li><span class="lang-en">You can change multiple options in T-SQL:</span><span class="lang-vi">Bạn đổi được nhiều tùy chọn cùng lúc bằng T-SQL:</span></li>
-<li><code><span class="lang-en">ALTER DATABASE DatabaseName SET QUERY_STORE (</span><span class="lang-vi">ALTER DATABASE DatabaseName SET QUERY_STORE (</span></code></li>
-<li><span class="lang-en">MAX_STORAGE_SIZE_MB = 500,</span><span class="lang-vi">MAX_STORAGE_SIZE_MB = 500,</span></li>
-<ul><ul><ul><ul><li><span class="lang-en">The space allocated to the Query Store. The default is 100 Mb in SQL Server 2016/2017, and 1 Gb in SQL Server2019.</span><span class="lang-vi">Dung lượng cấp cho Query Store. Mặc định là 100 MB ở SQL Server 2016/2017, và 1 GB ở SQL Server 2019.</span></li>
+<li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE DatabaseName SET QUERY_STORE (
+MAX_STORAGE_SIZE_MB = 500,
+DATA_FLUSH_INTERVAL_SECONDS = 3000,
+SIZE_BASED_CLEANUP_MODE = AUTO,
+OPERATION_MODE = READ_WRITE,
+CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30),
+INTERVAL_LENGTH_MINUTES = 15,
+QUERY_CAPTURE_MODE = AUTO,
+MAX_PLANS_PER_QUERY = 1000,
+WAIT_STATS_CAPTURE_MODE = ON);</span><span class="lang-vi">ALTER DATABASE DatabaseName SET QUERY_STORE (
+MAX_STORAGE_SIZE_MB = 500,
+DATA_FLUSH_INTERVAL_SECONDS = 3000,
+SIZE_BASED_CLEANUP_MODE = AUTO,
+OPERATION_MODE = READ_WRITE,
+CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30),
+INTERVAL_LENGTH_MINUTES = 15,
+QUERY_CAPTURE_MODE = AUTO,
+MAX_PLANS_PER_QUERY = 1000,
+WAIT_STATS_CAPTURE_MODE = ON);</span></pre></li>
+<ul><li><span class="lang-en">The space allocated to the Query Store. The default is 100 Mb in SQL Server 2016/2017, and 1 Gb in SQL Server2019.</span><span class="lang-vi">Dung lượng cấp cho Query Store. Mặc định là 100 MB ở SQL Server 2016/2017, và 1 GB ở SQL Server 2019.</span></li>
 <li><span class="lang-en">If it reaches the limit, Query Store no longer collects new data and changes to read-only mode. This will reduce the performance accurate, because the Query Store will become stale.</span><span class="lang-vi">Nếu chạm giới hạn, Query Store ngừng thu thập dữ liệu mới và chuyển sang chế độ read-only. Điều này làm giảm độ chính xác vì dữ liệu Query Store trở nên lỗi thời.</span></li>
-</ul></ul><li><code><span class="lang-en">SELECT actual_state, actual_state_desc, readonly_reason FROM sys.database_query_store_options;</span><span class="lang-vi">SELECT actual_state, actual_state_desc, readonly_reason FROM sys.database_query_store_options;</span></code></li>
+<li class="cb"><pre class="code"><span class="lang-en">SELECT actual_state, actual_state_desc, readonly_reason FROM sys.database_query_store_options;</span><span class="lang-vi">SELECT actual_state, actual_state_desc, readonly_reason FROM sys.database_query_store_options;</span></pre></li>
 <li><span class="lang-en">readonly_reason would = 65536 if Query Store reached the MAX_STORAGE_SIZE_MB.</span><span class="lang-vi">readonly_reason sẽ bằng 65536 nếu Query Store đã chạm MAX_STORAGE_SIZE_MB.</span></li>
-<ul><ul><li><span class="lang-en">To prevent it from reaching the limit, increase the MAX_STORAGE_SIZE_MB. If you can't allocate extra space, then decrease the Data Flush time.</span><span class="lang-vi">Để tránh chạm giới hạn, hãy tăng MAX_STORAGE_SIZE_MB. Nếu không cấp thêm dung lượng được thì giảm Data Flush time.</span></li>
-</ul></ul></ul></ul><li><span class="lang-en">DATA_FLUSH_INTERVAL_SECONDS = 3000,</span><span class="lang-vi">DATA_FLUSH_INTERVAL_SECONDS = 3000,</span></li>
-<ul><ul><ul><ul><li><span class="lang-en">how long (in seconds) the data is retained in memory before being saved to disk.</span><span class="lang-vi">dữ liệu được giữ trong bộ nhớ bao lâu (tính bằng giây) trước khi ghi xuống đĩa.</span></li>
-</ul></ul></ul><li><span class="lang-en">Have a higher value if you don't have a large number of queries running being generated. However, if the SQL Server crashes or restarts, then anything new will not be saved.</span><span class="lang-vi">Đặt giá trị cao nếu bạn không có quá nhiều query chạy. Tuy nhiên nếu SQL Server crash hoặc khởi động lại thì phần mới chưa lưu sẽ mất.</span></li>
+<li><span class="lang-en">To prevent it from reaching the limit, increase the MAX_STORAGE_SIZE_MB. If you can't allocate extra space, then decrease the Data Flush time.</span><span class="lang-vi">Để tránh chạm giới hạn, hãy tăng MAX_STORAGE_SIZE_MB. Nếu không cấp thêm dung lượng được thì giảm Data Flush time.</span></li>
+<li><span class="lang-en">how long (in seconds) the data is retained in memory before being saved to disk.</span><span class="lang-vi">dữ liệu được giữ trong bộ nhớ bao lâu (tính bằng giây) trước khi ghi xuống đĩa.</span></li>
+<li><span class="lang-en">Have a higher value if you don't have a large number of queries running being generated. However, if the SQL Server crashes or restarts, then anything new will not be saved.</span><span class="lang-vi">Đặt giá trị cao nếu bạn không có quá nhiều query chạy. Tuy nhiên nếu SQL Server crash hoặc khởi động lại thì phần mới chưa lưu sẽ mất.</span></li>
 <li><span class="lang-en">Having a lower value may have a negative impact of performance, as it will save more often.</span><span class="lang-vi">Đặt giá trị thấp có thể ảnh hưởng xấu tới hiệu năng vì phải ghi xuống đĩa thường xuyên hơn.</span></li>
-</ul><li><span class="lang-en">SIZE_BASED_CLEANUP_MODE = AUTO,</span><span class="lang-vi">SIZE_BASED_CLEANUP_MODE = AUTO,</span></li>
-<ul><ul><ul><ul><li><span class="lang-en">whether automatic data cleanup occurs when size limit is reached.</span><span class="lang-vi">quyết định có tự dọn dẹp dữ liệu khi chạm giới hạn dung lượng hay không.</span></li>
-</ul></ul></ul><li><span class="lang-en">When Query Store data reaches about 90% of MAX_STORAGE_SIZE_MB, a clean-up begins. It will remove oldest/least expensive query data, and stops when size is about 80% of MAX_STORAGE_SIZE_MB.</span><span class="lang-vi">Khi dữ liệu Query Store đạt khoảng 90% MAX_STORAGE_SIZE_MB, quá trình dọn dẹp bắt đầu. Nó xóa dữ liệu query cũ nhất/ít tốn kém nhất và dừng khi dung lượng còn khoảng 80% MAX_STORAGE_SIZE_MB.</span></li>
+<li><span class="lang-en">whether automatic data cleanup occurs when size limit is reached.</span><span class="lang-vi">quyết định có tự dọn dẹp dữ liệu khi chạm giới hạn dung lượng hay không.</span></li>
+<li><span class="lang-en">When Query Store data reaches about 90% of MAX_STORAGE_SIZE_MB, a clean-up begins. It will remove oldest/least expensive query data, and stops when size is about 80% of MAX_STORAGE_SIZE_MB.</span><span class="lang-vi">Khi dữ liệu Query Store đạt khoảng 90% MAX_STORAGE_SIZE_MB, quá trình dọn dẹp bắt đầu. Nó xóa dữ liệu query cũ nhất/ít tốn kém nhất và dừng khi dung lượng còn khoảng 80% MAX_STORAGE_SIZE_MB.</span></li>
 <li><span class="lang-en">If you need it checking more quickly, reduce the DATA_FLUSH_INTERVAL_SECONDS period.</span><span class="lang-vi">Nếu cần kiểm tra nhanh hơn, hãy giảm khoảng DATA_FLUSH_INTERVAL_SECONDS.</span></li>
-</ul><li><span class="lang-en">OPERATION_MODE = READ_WRITE,</span><span class="lang-vi">OPERATION_MODE = READ_WRITE,</span></li>
-<li><span class="lang-en">CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30),</span><span class="lang-vi">CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30),</span></li>
-<ul><ul><ul><ul><li><span class="lang-en">how long data is retained in days.</span><span class="lang-vi">dữ liệu được giữ bao nhiêu ngày.</span></li>
-</ul></ul></ul><li><span class="lang-en">You can automatically delete Query data that you don't need.</span><span class="lang-vi">Bạn có thể tự động xóa dữ liệu Query Store không cần đến.</span></li>
-</ul><li><span class="lang-en">INTERVAL_LENGTH_MINUTES = 15,</span><span class="lang-vi">INTERVAL_LENGTH_MINUTES = 15,</span></li>
-<ul><ul><ul><ul><li><span class="lang-en">in this number of minutes, each query has a maximum of 1 row. Statistics are aggregated for each query during this time.</span><span class="lang-vi">trong khoảng số phút này, mỗi query có tối đa 1 dòng. Thống kê của mỗi query được gộp lại trong khoảng thời gian đó.</span></li>
-</ul></ul></ul></ul><li><span class="lang-en">QUERY_CAPTURE_MODE = AUTO,</span><span class="lang-vi">QUERY_CAPTURE_MODE = AUTO,</span></li>
-<ul><ul><ul><ul><li><span class="lang-en">capture &quot;All&quot; queries, None, Custom or Auto (ignore infrequent queries and queries with small compile/execution times). Default was &quot;All&quot;, but in SQL Server 2019 and Azure SQL is &quot;Auto&quot;.</span><span class="lang-vi">thu thập &quot;All&quot; query, None, Custom hoặc Auto (bỏ qua query hiếm gặp và query có thời gian compile/thực thi nhỏ). Mặc định trước đây là &quot;All&quot;, nhưng từ SQL Server 2019 và Azure SQL thì là &quot;Auto&quot;.</span></li>
-</ul></ul></ul></ul><li><span class="lang-en">MAX_PLANS_PER_QUERY = 1000,</span><span class="lang-vi">MAX_PLANS_PER_QUERY = 1000,</span></li>
-<li><span class="lang-en">WAIT_STATS_CAPTURE_MODE = ON);</span><span class="lang-vi">WAIT_STATS_CAPTURE_MODE = ON);</span></li>
+<li><span class="lang-en">how long data is retained in days.</span><span class="lang-vi">dữ liệu được giữ bao nhiêu ngày.</span></li>
+<li><span class="lang-en">You can automatically delete Query data that you don't need.</span><span class="lang-vi">Bạn có thể tự động xóa dữ liệu Query Store không cần đến.</span></li>
+<li><span class="lang-en">in this number of minutes, each query has a maximum of 1 row. Statistics are aggregated for each query during this time.</span><span class="lang-vi">trong khoảng số phút này, mỗi query có tối đa 1 dòng. Thống kê của mỗi query được gộp lại trong khoảng thời gian đó.</span></li>
+<li><span class="lang-en">capture &quot;All&quot; queries, None, Custom or Auto (ignore infrequent queries and queries with small compile/execution times). Default was &quot;All&quot;, but in SQL Server 2019 and Azure SQL is &quot;Auto&quot;.</span><span class="lang-vi">thu thập &quot;All&quot; query, None, Custom hoặc Auto (bỏ qua query hiếm gặp và query có thời gian compile/thực thi nhỏ). Mặc định trước đây là &quot;All&quot;, nhưng từ SQL Server 2019 và Azure SQL thì là &quot;Auto&quot;.</span></li>
+</ul>
 </ul><li><span class="lang-en">To clear:</span><span class="lang-vi">Để xóa sạch:</span></li>
 <ul><li><code><span class="lang-en">ALTER DATABASE DatabaseName SET QUERY_STORE CLEAR;</span><span class="lang-vi">ALTER DATABASE DatabaseName SET QUERY_STORE CLEAR;</span></code></li>
 <li><span class="lang-en">or click the &quot;Purge Query Data&quot; button in SSMS.</span><span class="lang-vi">hoặc bấm nút &quot;Purge Query Data&quot; trong SSMS.</span></li>
@@ -2274,27 +2343,34 @@ SET QUERY_STORE (INTERVAL_LENGTH_MINUTES = 15);</span></pre></li>
 </ul><li><span class="lang-en">Session 1</span><span class="lang-vi">Session 1</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">BEGIN TRANSACTION
 UPDATE [SalesLT].[Address]
-SET City = 'Toronto ON'</span><span class="lang-vi">BEGIN TRANSACTION
+SET City = 'Toronto ON'
+where City = 'Toronto'</span><span class="lang-vi">BEGIN TRANSACTION
 UPDATE [SalesLT].[Address]
-SET City = 'Toronto ON'</span></pre></li>
-<li><span class="lang-en">where City = 'Toronto'</span><span class="lang-vi">where City = 'Toronto'</span></li>
+SET City = 'Toronto ON'
+where City = 'Toronto'</span></pre></li>
 </ul><li><span class="lang-en">Session 2</span><span class="lang-vi">Session 2</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">BEGIN TRANSACTION
 UPDATE [SalesLT].[Address]
-SET City = 'Toronto'</span><span class="lang-vi">BEGIN TRANSACTION
+SET City = 'Toronto'
+where City in ('Toronto ON', 'Toronto')</span><span class="lang-vi">BEGIN TRANSACTION
 UPDATE [SalesLT].[Address]
-SET City = 'Toronto'</span></pre></li>
-<li><span class="lang-en">where City in ('Toronto ON', 'Toronto')</span><span class="lang-vi">where City in ('Toronto ON', 'Toronto')</span></li>
+SET City = 'Toronto'
+where City in ('Toronto ON', 'Toronto')</span></pre></li>
 </ul><li><span class="lang-en">To view locks:</span><span class="lang-vi">Để xem các lock:</span></li>
 <ul><li><code><span class="lang-en">SELECT * FROM sys.dm_tran_locks</span><span class="lang-vi">SELECT * FROM sys.dm_tran_locks</span></code></li>
 </ul><li><span class="lang-en">To view blocking:</span><span class="lang-vi">Để xem blocking:</span></li>
-<ul><li><code><span class="lang-en">SELECT session_id, blocking_session_id,</span><span class="lang-vi">SELECT session_id, blocking_session_id,</span></code></li>
-<li><span class="lang-en">start_time, status, command,</span><span class="lang-vi">start_time, status, command,</span></li>
-<li><span class="lang-en">DB_NAME(database_id) as [database],</span><span class="lang-vi">DB_NAME(database_id) as [database],</span></li>
-<li><span class="lang-en">wait_type, wait_resource, wait_time,</span><span class="lang-vi">wait_type, wait_resource, wait_time,</span></li>
-<li><span class="lang-en">open_transaction_count</span><span class="lang-vi">open_transaction_count</span></li>
-<li class="cb"><pre class="code"><span class="lang-en">FROM sys.dm_exec_requests
-WHERE blocking_session_id &gt; 0</span><span class="lang-vi">FROM sys.dm_exec_requests
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT session_id, blocking_session_id,
+start_time, status, command,
+DB_NAME(database_id) as [database],
+wait_type, wait_resource, wait_time,
+open_transaction_count
+FROM sys.dm_exec_requests
+WHERE blocking_session_id &gt; 0</span><span class="lang-vi">SELECT session_id, blocking_session_id,
+start_time, status, command,
+DB_NAME(database_id) as [database],
+wait_type, wait_resource, wait_time,
+open_transaction_count
+FROM sys.dm_exec_requests
 WHERE blocking_session_id &gt; 0</span></pre></li>
 </ul><li><span class="lang-en">For the session_id, look at the numbers in brackets at the top of SSMS.</span><span class="lang-vi">Để biết session_id, xem con số trong ngoặc ở phía trên cửa sổ SSMS.</span></li>
 <li><span class="lang-en">To reduce blocking, you can change the TRANSACTION ISOLATION LEVEL of a session:</span><span class="lang-vi">Để giảm blocking, bạn có thể đổi TRANSACTION ISOLATION LEVEL của session:</span></li>
@@ -2310,9 +2386,9 @@ WHERE blocking_session_id &gt; 0</span></pre></li>
 </ul><li><span class="lang-en">To see the current level, use</span><span class="lang-vi">Để xem mức hiện tại, dùng</span></li>
 <ul><li><code><span class="lang-en">DBCC USEROPTIONS</span><span class="lang-vi">DBCC USEROPTIONS</span></code></li>
 </ul><li><span class="lang-en">There are database options as well.</span><span class="lang-vi">Ngoài ra còn có các tùy chọn ở cấp database.</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE NameOfDatabase SET ALLOW_SNAPSHOT_ISOLATION ON</span><span class="lang-vi">ALTER DATABASE NameOfDatabase SET ALLOW_SNAPSHOT_ISOLATION ON</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE NameOfDatabase SET ALLOW_SNAPSHOT_ISOLATION ON</span><span class="lang-vi">ALTER DATABASE NameOfDatabase SET ALLOW_SNAPSHOT_ISOLATION ON</span></pre></li>
 <ul><li><span class="lang-en">DML statements start generating row versions – allows snapshots but doesn't enable it.</span><span class="lang-vi">Các câu lệnh DML bắt đầu sinh row version — cho phép dùng snapshot chứ chưa bật nó.</span></li>
-</ul><li><code><span class="lang-en">ALTER DATABASE NameOfDatabase SET READ_COMMITTED_SNAPSHOT ON</span><span class="lang-vi">ALTER DATABASE NameOfDatabase SET READ_COMMITTED_SNAPSHOT ON</span></code></li>
+</ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE NameOfDatabase SET READ_COMMITTED_SNAPSHOT ON</span><span class="lang-vi">ALTER DATABASE NameOfDatabase SET READ_COMMITTED_SNAPSHOT ON</span></pre></li>
 <ul><li><span class="lang-en">DML statements start generating row versions – means that TRANSACTION ISOLATION LEVEL READ COMMITTED does not block.</span><span class="lang-vi">Các câu lệnh DML bắt đầu sinh row version — nghĩa là TRANSACTION ISOLATION LEVEL READ COMMITTED sẽ không gây block.</span></li>
 </ul></ul><li><span class="lang-en">You can use Extended Events in MI and SQL Server on VM.</span><span class="lang-vi">Bạn dùng được Extended Events trên MI và SQL Server trên VM.</span></li>
 <ul><li><span class="lang-en">Lightweight tracing system, used for:</span><span class="lang-vi">Đây là hệ thống tracing nhẹ, dùng để:</span></li>
@@ -2380,37 +2456,48 @@ CROSS APPLY sys.dm_exec_query_plan_stats(plan_handle) AS qps;</span></pre></li>
 <ul><li><span class="lang-en">Lightweight profiling</span><span class="lang-vi">Lightweight profiling</span></li>
 <li><span class="lang-en">Add at the end of a query OPTION(USE HINT ('QUERY_PLAN_PROFILE') would add it to Extended Events</span><span class="lang-vi">Add at the end of a query OPTION(USE HINT ('QUERY_PLAN_PROFILE') would add it to Extended Events</span></li>
 </ul></ul><li><span class="lang-en">Find top N queries ranked by average CPU time using sys.dm_exec_query_stats</span><span class="lang-vi">Tìm top N query xếp theo thời gian CPU trung bình, dùng sys.dm_exec_query_stats</span></li>
-<ul><li><code><span class="lang-en">SELECT TOP 5 query_stats.query_hash AS &quot;Query Hash&quot;,</span><span class="lang-vi">SELECT TOP 5 query_stats.query_hash AS &quot;Query Hash&quot;,</span></code></li>
-<li><span class="lang-en">SUM(query_stats.total_worker_time) / SUM(query_stats.execution_count) AS &quot;Avg CPU Time&quot;,</span><span class="lang-vi">SUM(query_stats.total_worker_time) / SUM(query_stats.execution_count) AS &quot;Avg CPU Time&quot;,</span></li>
-<li><span class="lang-en">MIN(query_stats.statement_text) AS &quot;Statement Text&quot;</span><span class="lang-vi">MIN(query_stats.statement_text) AS &quot;Statement Text&quot;</span></li>
-<li class="cb"><pre class="code"><span class="lang-en">FROM
-(SELECT QS.*,</span><span class="lang-vi">FROM
-(SELECT QS.*,</span></pre></li>
-<ul><li><span class="lang-en">SUBSTRING(ST.text, (QS.statement_start_offset/2) + 1,</span><span class="lang-vi">SUBSTRING(ST.text, (QS.statement_start_offset/2) + 1,</span></li>
-<li class="cb"><pre class="code"><span class="lang-en">((CASE statement_end_offset
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT TOP 5 query_stats.query_hash AS &quot;Query Hash&quot;,
+SUM(query_stats.total_worker_time) / SUM(query_stats.execution_count) AS &quot;Avg CPU Time&quot;,
+MIN(query_stats.statement_text) AS &quot;Statement Text&quot;
+FROM
+(SELECT QS.*,
+SUBSTRING(ST.text, (QS.statement_start_offset/2) + 1,
+((CASE statement_end_offset
 WHEN -1 THEN DATALENGTH(ST.text)
-ELSE QS.statement_end_offset END</span><span class="lang-vi">((CASE statement_end_offset
-WHEN -1 THEN DATALENGTH(ST.text)
-ELSE QS.statement_end_offset END</span></pre></li>
-<ul><li><span class="lang-en">QS.statement_start_offset)/2) + 1) AS statement_text</span><span class="lang-vi">QS.statement_start_offset)/2) + 1) AS statement_text</span></li>
-</ul></ul><li class="cb"><pre class="code"><span class="lang-en">FROM sys.dm_exec_query_stats AS QS
+ELSE QS.statement_end_offset END
+QS.statement_start_offset)/2) + 1) AS statement_text
+FROM sys.dm_exec_query_stats AS QS
 CROSS APPLY sys.dm_exec_sql_text(QS.sql_handle) as ST) as query_stats
 GROUP BY query_stats.query_hash
-ORDER BY 2 DESC;</span><span class="lang-vi">FROM sys.dm_exec_query_stats AS QS
+ORDER BY 2 DESC;</span><span class="lang-vi">SELECT TOP 5 query_stats.query_hash AS &quot;Query Hash&quot;,
+SUM(query_stats.total_worker_time) / SUM(query_stats.execution_count) AS &quot;Avg CPU Time&quot;,
+MIN(query_stats.statement_text) AS &quot;Statement Text&quot;
+FROM
+(SELECT QS.*,
+SUBSTRING(ST.text, (QS.statement_start_offset/2) + 1,
+((CASE statement_end_offset
+WHEN -1 THEN DATALENGTH(ST.text)
+ELSE QS.statement_end_offset END
+QS.statement_start_offset)/2) + 1) AS statement_text
+FROM sys.dm_exec_query_stats AS QS
 CROSS APPLY sys.dm_exec_sql_text(QS.sql_handle) as ST) as query_stats
 GROUP BY query_stats.query_hash
 ORDER BY 2 DESC;</span></pre></li>
 </ul><li><span class="lang-en">Find which queries use the most cumulative CPU:</span><span class="lang-vi">Tìm query nào tiêu tốn nhiều CPU tích lũy nhất:</span></li>
-<ul><li><code><span class="lang-en">SELECT</span><span class="lang-vi">SELECT</span></code></li>
-<li><span class="lang-en">highest_cpu_queries.plan_handle,</span><span class="lang-vi">highest_cpu_queries.plan_handle,</span></li>
-<li><span class="lang-en">highest_cpu_queries.total_worker_time,</span><span class="lang-vi">highest_cpu_queries.total_worker_time,</span></li>
-<li><span class="lang-en">q.dbid, q.objectid, q.number, q.encrypted, q.[text]</span><span class="lang-vi">q.dbid, q.objectid, q.number, q.encrypted, q.[text]</span></li>
-<li class="cb"><pre class="code"><span class="lang-en">FROM
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT
+highest_cpu_queries.plan_handle,
+highest_cpu_queries.total_worker_time,
+q.dbid, q.objectid, q.number, q.encrypted, q.[text]
+FROM
 (SELECT TOP 50 qs.plan_handle, qs.total_worker_time
 FROM sys.dm_exec_query_stats qs
 ORDER BY qs.total_worker_time desc) AS highest_cpu_queries
 CROSS APPLY sys.dm_exec_sql_text(plan_handle) AS q
-ORDER BY highest_cpu_queries.total_worker_time DESC;</span><span class="lang-vi">FROM
+ORDER BY highest_cpu_queries.total_worker_time DESC;</span><span class="lang-vi">SELECT
+highest_cpu_queries.plan_handle,
+highest_cpu_queries.total_worker_time,
+q.dbid, q.objectid, q.number, q.encrypted, q.[text]
+FROM
 (SELECT TOP 50 qs.plan_handle, qs.total_worker_time
 FROM sys.dm_exec_query_stats qs
 ORDER BY qs.total_worker_time desc) AS highest_cpu_queries
@@ -2465,7 +2552,7 @@ SELECT @@SPID gives the current session.</span></pre></li>
 </ul><li><span class="lang-en">Too many indexes?</span><span class="lang-vi">Quá nhiều index?</span></li>
 <ul><li><span class="lang-en">If you INSERT, UPDATE, DELETE or MERGE, then all indexes need to be adjusted.</span><span class="lang-vi">Mỗi lần INSERT, UPDATE, DELETE hay MERGE, toàn bộ index đều phải được điều chỉnh.</span></li>
 </ul><li><span class="lang-en">Create in T-SQL:</span><span class="lang-vi">Create in T-SQL:</span></li>
-<ul><li><code><span class="lang-en">CREATE [UNIQUE] [NONCLUSTERED/CLUSTERED] INDEX [Name] ON Schema.Table (Columns) [INCLUDE (Columns)] [WHERE … - filtered index]</span><span class="lang-vi">CREATE [UNIQUE] [NONCLUSTERED/CLUSTERED] INDEX [Name] ON Schema.Table (Columns) [INCLUDE (Columns)] [WHERE … - filtered index]</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE [UNIQUE] [NONCLUSTERED/CLUSTERED] INDEX [Name] ON Schema.Table (Columns) [INCLUDE (Columns)] [WHERE … - filtered index]</span><span class="lang-vi">CREATE [UNIQUE] [NONCLUSTERED/CLUSTERED] INDEX [Name] ON Schema.Table (Columns) [INCLUDE (Columns)] [WHERE … - filtered index]</span></pre></li>
 </ul><li><span class="lang-en">Create in SSMS:</span><span class="lang-vi">Create in SSMS:</span></li>
 <ul><li><span class="lang-en">Right-hand click on Indexes in the relevant table and select &quot;New Index&quot; – &quot;[Non-]Clustered Index&quot;.</span><span class="lang-vi">Chuột phải vào Indexes trong bảng tương ứng và chọn &quot;New Index&quot; – &quot;[Non-]Clustered Index&quot;.</span></li>
 </ul></ul></section>
@@ -2479,25 +2566,16 @@ SELECT @@SPID gives the current session.</span></pre></li>
 CONVERT (varchar, getdate(), 126) AS runtime
 , mig.index_group_handle
 , mid.index_handle
-, CONVERT (decimal (28,1), migs.avg_total_user_cost * migs.avg_user_impact *</span><span class="lang-vi">SELECT
-CONVERT (varchar, getdate(), 126) AS runtime
-, mig.index_group_handle
-, mid.index_handle
-, CONVERT (decimal (28,1), migs.avg_total_user_cost * migs.avg_user_impact *</span></pre></li>
-<ul><li><code><span class="lang-en">(migs.user_seeks + migs.user_scans)) AS improvement_measure</span><span class="lang-vi">(migs.user_seeks + migs.user_scans)) AS improvement_measure</span></code></li>
-</ul><li><code><span class="lang-en">, 'CREATE INDEX missing_index_' + CONVERT (varchar, mig.index_group_handle) + '_' +</span><span class="lang-vi">, 'CREATE INDEX missing_index_' + CONVERT (varchar, mig.index_group_handle) + '_' +</span></code></li>
-<ul><li class="cb"><pre class="code"><span class="lang-en">CONVERT (varchar, mid.index_handle) + ' ON ' + mid.statement + '
+, CONVERT (decimal (28,1), migs.avg_total_user_cost * migs.avg_user_impact *
+(migs.user_seeks + migs.user_scans)) AS improvement_measure
+, 'CREATE INDEX missing_index_' + CONVERT (varchar, mig.index_group_handle) + '_' +
+CONVERT (varchar, mid.index_handle) + ' ON ' + mid.statement + '
 (' + ISNULL (mid.equality_columns,'')
 + CASE WHEN mid.equality_columns IS NOT NULL
 AND mid.inequality_columns IS NOT NULL
 THEN ',' ELSE '' END + ISNULL (mid.inequality_columns, '') + ')'
-+ ISNULL (' INCLUDE (' + mid.included_columns + ')', '') AS create_index_statement</span><span class="lang-vi">CONVERT (varchar, mid.index_handle) + ' ON ' + mid.statement + '
-(' + ISNULL (mid.equality_columns,'')
-+ CASE WHEN mid.equality_columns IS NOT NULL
-AND mid.inequality_columns IS NOT NULL
-THEN ',' ELSE '' END + ISNULL (mid.inequality_columns, '') + ')'
-+ ISNULL (' INCLUDE (' + mid.included_columns + ')', '') AS create_index_statement</span></pre></li>
-</ul><li class="cb"><pre class="code"><span class="lang-en">, migs.*
++ ISNULL (' INCLUDE (' + mid.included_columns + ')', '') AS create_index_statement
+, migs.*
 , mid.database_id
 , mid.[object_id]
 FROM sys.dm_db_missing_index_groups AS mig
@@ -2505,7 +2583,20 @@ INNER JOIN sys.dm_db_missing_index_group_stats AS migs
 ON migs.group_handle = mig.index_group_handle
 INNER JOIN sys.dm_db_missing_index_details AS mid
 ON mig.index_handle = mid.index_handle
-ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + migs.user_scans) DESC</span><span class="lang-vi">, migs.*
+ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + migs.user_scans) DESC</span><span class="lang-vi">SELECT
+CONVERT (varchar, getdate(), 126) AS runtime
+, mig.index_group_handle
+, mid.index_handle
+, CONVERT (decimal (28,1), migs.avg_total_user_cost * migs.avg_user_impact *
+(migs.user_seeks + migs.user_scans)) AS improvement_measure
+, 'CREATE INDEX missing_index_' + CONVERT (varchar, mig.index_group_handle) + '_' +
+CONVERT (varchar, mid.index_handle) + ' ON ' + mid.statement + '
+(' + ISNULL (mid.equality_columns,'')
++ CASE WHEN mid.equality_columns IS NOT NULL
+AND mid.inequality_columns IS NOT NULL
+THEN ',' ELSE '' END + ISNULL (mid.inequality_columns, '') + ')'
++ ISNULL (' INCLUDE (' + mid.included_columns + ')', '') AS create_index_statement
+, migs.*
 , mid.database_id
 , mid.[object_id]
 FROM sys.dm_db_missing_index_groups AS mig
@@ -2909,23 +3000,32 @@ GO</span></pre></li>
 <li><span class="lang-en">Click on the relevant resource pool.</span><span class="lang-vi">Bấm vào resource pool tương ứng.</span></li>
 <li><span class="lang-en">Go down to the &quot;Workload groups for resource pool&quot;, and enter a name, with any other values.</span><span class="lang-vi">Kéo xuống mục &quot;Workload groups for resource pool&quot; và nhập tên cùng các giá trị khác.</span></li>
 </ul><li><span class="lang-en">In T-SQL</span><span class="lang-vi">Bằng T-SQL</span></li>
-<ul><li><code><span class="lang-en">CREATE WORKLOAD GROUP myGroup -- or ALTER, if you wish to change it, or DROP to delete it.</span><span class="lang-vi">CREATE WORKLOAD GROUP myGroup -- or ALTER, if you wish to change it, or DROP to delete it.</span></code></li>
-<li><span class="lang-en">USING myPool; -- or [default];</span><span class="lang-vi">USING myPool; -- hoặc [default];</span></li>
-<li><code><span class="lang-en">GO</span><span class="lang-vi">GO</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE WORKLOAD GROUP myGroup -- or ALTER, if you wish to change it, or DROP to delete it.
+USING myPool; -- or [default];
+GO</span><span class="lang-vi">CREATE WORKLOAD GROUP myGroup -- or ALTER, if you wish to change it, or DROP to delete it.
+USING myPool; -- hoặc [default];
+GO</span></pre></li>
 </ul></ul><li><span class="lang-en">Create a classifier function in T-SQL:</span><span class="lang-vi">Create a classifier function in T-SQL:</span></li>
-<ul><li><code><span class="lang-en">CREATE FUNCTION fnClassifierTime()</span><span class="lang-vi">CREATE FUNCTION fnClassifierTime()</span></code></li>
-<li><span class="lang-en">RETURNS sysname</span><span class="lang-vi">RETURNS sysname</span></li>
-<li class="cb"><pre class="code"><span class="lang-en">WITH SCHEMABINDING
+<ul><li class="cb"><pre class="code"><span class="lang-en">CREATE FUNCTION fnClassifierTime()
+RETURNS sysname
+WITH SCHEMABINDING
 AS
-BEGIN</span><span class="lang-vi">WITH SCHEMABINDING
+BEGIN
+if DATEPART(HOUR,GETDATE())&lt;8 or DATEPART(HOUR,GETDATE())&gt;17
+BEGIN
+RETURN 'gOutsideOfficeHours';
+END
+RETURN 'gInsideOfficeHours';
+END</span><span class="lang-vi">CREATE FUNCTION fnClassifierTime()
+RETURNS sysname
+WITH SCHEMABINDING
 AS
-BEGIN</span></pre></li>
-<li><span class="lang-en">if DATEPART(HOUR,GETDATE())&lt;8 or DATEPART(HOUR,GETDATE())&gt;17</span><span class="lang-vi">if DATEPART(HOUR,GETDATE())&lt;8 or DATEPART(HOUR,GETDATE())&gt;17</span></li>
-<ul><li><code><span class="lang-en">BEGIN</span><span class="lang-vi">BEGIN</span></code></li>
-<ul><li><code><span class="lang-en">RETURN 'gOutsideOfficeHours';</span><span class="lang-vi">RETURN 'gOutsideOfficeHours';</span></code></li>
-</ul><li><code><span class="lang-en">END</span><span class="lang-vi">END</span></code></li>
-</ul><li class="cb"><pre class="code"><span class="lang-en">RETURN 'gInsideOfficeHours';
-END</span><span class="lang-vi">RETURN 'gInsideOfficeHours';
+BEGIN
+if DATEPART(HOUR,GETDATE())&lt;8 or DATEPART(HOUR,GETDATE())&gt;17
+BEGIN
+RETURN 'gOutsideOfficeHours';
+END
+RETURN 'gInsideOfficeHours';
 END</span></pre></li>
 </ul><li><span class="lang-en">Register this classified function:</span><span class="lang-vi">Đăng ký classifier function này:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">ALTER RESOURCE GOVERNOR with (CLASSIFIER_FUNCTION = dbo.fnClassifierTime);
@@ -2947,7 +3047,7 @@ GO</span></pre></li>
 <ul><li><span class="lang-en">Right-hand click on a database, and go to Properties and go to Options.</span><span class="lang-vi">Chuột phải vào database, vào Properties rồi vào Options.</span></li>
 <li><span class="lang-en">The settings in the topic are under &quot;Database Scoped Configurations&quot;.</span><span class="lang-vi">Các thiết lập trong mục này nằm dưới &quot;Database Scoped Configurations&quot;.</span></li>
 </ul><li><span class="lang-en">In T-SQL, you can use:</span><span class="lang-vi">Bằng T-SQL, bạn dùng:</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE SCOPED CONFIGURATION [FOR SECONDARY] SET … = ON/OFF; -- for secondary is geo-replicated secondary database(s) (they all have the same settings).</span><span class="lang-vi">ALTER DATABASE SCOPED CONFIGURATION [FOR SECONDARY] SET … = ON/OFF; -- for secondary is geo-replicated secondary database(s) (they all have the same settings).</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE SCOPED CONFIGURATION [FOR SECONDARY] SET … = ON/OFF; -- for secondary is geo-replicated secondary database(s) (they all have the same settings).</span><span class="lang-vi">ALTER DATABASE SCOPED CONFIGURATION [FOR SECONDARY] SET … = ON/OFF; -- for secondary is geo-replicated secondary database(s) (they all have the same settings).</span></pre></li>
 </ul><li><span class="lang-en">GLOBAL_TEMPORARY_TABLE_AUTO_DROP</span><span class="lang-vi">GLOBAL_TEMPORARY_TABLE_AUTO_DROP</span></li>
 <ul><li><span class="lang-en">Drop global temporary tables when not in use by any session.</span><span class="lang-vi">Drop global temporary tables when not in use by any session.</span></li>
 <ul><li><span class="lang-en">Set in individual databases in Azure SQL Database.</span><span class="lang-vi">Set in individual databases in Azure SQL Database.</span></li>
@@ -2998,13 +3098,17 @@ GO</span></pre></li>
 <ul><li><span class="lang-en">To look at current settings:</span><span class="lang-vi">Để xem thiết lập hiện tại:</span></li>
 <ul><li><code><span class="lang-en">SELECT * FROM sys.sysfiles</span><span class="lang-vi">SELECT * FROM sys.sysfiles</span></code></li>
 </ul><li><span class="lang-en">To adjust auto-growth setting:</span><span class="lang-vi">Để chỉnh thiết lập auto-growth:</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE MyDB</span><span class="lang-vi">ALTER DATABASE MyDB</span></code></li>
-<li><span class="lang-en">MODIFY FILE</span><span class="lang-vi">MODIFY FILE</span></li>
-<li><code><span class="lang-en">(NAME=NameFile,FILEGROWTH=40MB or 40%);</span><span class="lang-vi">(NAME=NameFile,FILEGROWTH=40MB hoặc 40%);</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE MyDB
+MODIFY FILE
+(NAME=NameFile,FILEGROWTH=40MB or 40%);</span><span class="lang-vi">ALTER DATABASE MyDB
+MODIFY FILE
+(NAME=NameFile,FILEGROWTH=40MB hoặc 40%);</span></pre></li>
 </ul><li><span class="lang-en">You can also autogrow files in a particular filegroup.</span><span class="lang-vi">Bạn cũng có thể cho tự tăng các file trong một filegroup cụ thể.</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE MyDB</span><span class="lang-vi">ALTER DATABASE MyDB</span></code></li>
-<li><span class="lang-en">MODIFY FILEGROUP FilegroupName</span><span class="lang-vi">MODIFY FILEGROUP FilegroupName</span></li>
-<li><span class="lang-en">AUTOGROW_ALL_FILES</span><span class="lang-vi">AUTOGROW_ALL_FILES</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE MyDB
+MODIFY FILEGROUP FilegroupName
+AUTOGROW_ALL_FILES</span><span class="lang-vi">ALTER DATABASE MyDB
+MODIFY FILEGROUP FilegroupName
+AUTOGROW_ALL_FILES</span></pre></li>
 <ul><li><span class="lang-en">If any file in a filegroup meets the autogrow threshold, all files in the filegroup will grow.</span><span class="lang-vi">Nếu bất kỳ file nào trong filegroup chạm ngưỡng autogrow thì mọi file trong filegroup đó đều được tăng.</span></li>
 </ul></ul></ul></section>
 <section id="s65-3"><h3><span class="n">65.</span> <span class="lang-en">report on database free space</span><span class="lang-vi">báo cáo dung lượng trống của database</span><a class="anch" href="#s65-3" title="Link tới mục này">#</a></h3>
@@ -3017,7 +3121,7 @@ FROM sys.database_files</span><span class="lang-vi">SELECT file_id, name, type_d
 FROM sys.database_files</span></pre></li>
 <li><span class="lang-en">A max_size of -1 means that it is unlimited.</span><span class="lang-vi">max_size bằng -1 nghĩa là không giới hạn.</span></li>
 </ul><li><span class="lang-en">To view the number of pages used as well as total free space for a particular database, you can use</span><span class="lang-vi">Để xem số page đã dùng cùng tổng dung lượng trống của một database, bạn dùng</span></li>
-<ul><li><code><span class="lang-en">SELECT allocated_extent_page_count, unallocated_extent_page_count FROM sys.dm_db_file_space_usage</span><span class="lang-vi">SELECT allocated_extent_page_count, unallocated_extent_page_count FROM sys.dm_db_file_space_usage</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT allocated_extent_page_count, unallocated_extent_page_count FROM sys.dm_db_file_space_usage</span><span class="lang-vi">SELECT allocated_extent_page_count, unallocated_extent_page_count FROM sys.dm_db_file_space_usage</span></pre></li>
 <ul><li><span class="lang-en">Returns space usage information for each data file in the database.</span><span class="lang-vi">Trả về thông tin sử dụng dung lượng cho từng data file trong database.</span></li>
 </ul></ul><li><span class="lang-en">You can also use:</span><span class="lang-vi">Bạn cũng có thể dùng:</span></li>
 <ul><li><code><span class="lang-en">DBCC SQLPERF (LOGSPACE)</span><span class="lang-vi">DBCC SQLPERF (LOGSPACE)</span></code></li>
@@ -3108,20 +3212,29 @@ FROM sys.database_files</span></pre></li>
 </ul><li><span class="lang-en">To do this in T-SQL:</span><span class="lang-vi">Làm bằng T-SQL:</span></li>
 <ul><ul><li class="cb"><pre class="code"><span class="lang-en">USE msdb ;
 GO
-EXEC sp_add_schedule</span><span class="lang-vi">USE msdb ;
+EXEC sp_add_schedule
+@schedule_name = N'ScheduleName' ,
+@freq_type = 4,
+@freq_interval = 1, -- Fairly complex
+@active_start_time = 012345 ;
 GO
-EXEC sp_add_schedule</span></pre></li>
-<li><span class="lang-en">@schedule_name = N'ScheduleName' ,</span><span class="lang-vi">@schedule_name = N'ScheduleName' ,</span></li>
-<li><span class="lang-en">@freq_type = 4,</span><span class="lang-vi">@freq_type = 4,</span></li>
-<ul><ul><ul><li><span class="lang-en">1 = Once, 4 = Daily, 8 = Weekly, 16 = Monthly (day of month), 32 = Monthly (Xth Sunday, for example), 64 = When SQL Agent service stats, 128 = When computer is idle.</span><span class="lang-vi">1 = Once, 4 = Daily, 8 = Weekly, 16 = Monthly (theo ngày trong tháng), 32 = Monthly (ví dụ Chủ nhật thứ X), 64 = khi service SQL Agent khởi động, 128 = khi máy tính rảnh.</span></li>
-</ul></ul></ul><li><span class="lang-en">@freq_interval = 1, -- Fairly complex</span><span class="lang-vi">@freq_interval = 1, -- khá phức tạp</span></li>
-<li><span class="lang-en">@active_start_time = 012345 ;</span><span class="lang-vi">@active_start_time = 012345 ;</span></li>
-<li class="cb"><pre class="code"><span class="lang-en">GO
-EXEC sp_attach_schedule</span><span class="lang-vi">GO
-EXEC sp_attach_schedule</span></pre></li>
-<li><span class="lang-en">@job_name = N'JobName',</span><span class="lang-vi">@job_name = N'JobName',</span></li>
-<li><span class="lang-en">@schedule_name = N'ScheduleName' ;</span><span class="lang-vi">@schedule_name = N'ScheduleName' ;</span></li>
-<li><code><span class="lang-en">GO</span><span class="lang-vi">GO</span></code></li>
+EXEC sp_attach_schedule
+@job_name = N'JobName',
+@schedule_name = N'ScheduleName' ;
+GO</span><span class="lang-vi">USE msdb ;
+GO
+EXEC sp_add_schedule
+@schedule_name = N'ScheduleName' ,
+@freq_type = 4,
+@freq_interval = 1, -- khá phức tạp
+@active_start_time = 012345 ;
+GO
+EXEC sp_attach_schedule
+@job_name = N'JobName',
+@schedule_name = N'ScheduleName' ;
+GO</span></pre></li>
+<ul><li><span class="lang-en">1 = Once, 4 = Daily, 8 = Weekly, 16 = Monthly (day of month), 32 = Monthly (Xth Sunday, for example), 64 = When SQL Agent service stats, 128 = When computer is idle.</span><span class="lang-vi">1 = Once, 4 = Daily, 8 = Weekly, 16 = Monthly (theo ngày trong tháng), 32 = Monthly (ví dụ Chủ nhật thứ X), 64 = khi service SQL Agent khởi động, 128 = khi máy tính rảnh.</span></li>
+</ul>
 </ul></ul><li><span class="lang-en">To view schedules:</span><span class="lang-vi">Để xem các lịch:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">USE msdb ;
 GO
@@ -3143,13 +3256,16 @@ from sysschedules</span></pre></li>
 </ul></ul><li><span class="lang-en">In T-SQL, use:</span><span class="lang-vi">Bằng T-SQL, dùng:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">USE msdb ;
 GO
-EXEC dbo.sp_add_operator</span><span class="lang-vi">USE msdb ;
+EXEC dbo.sp_add_operator
+@name = N'OperatorName',
+@enabled = 1, -- 1 = enabled, 0 = not enabled.
+@email_address = N'EmailAddress'</span><span class="lang-vi">USE msdb ;
 GO
-EXEC dbo.sp_add_operator</span></pre></li>
-<ul><li><span class="lang-en">@name = N'OperatorName',</span><span class="lang-vi">@name = N'OperatorName',</span></li>
-<li><span class="lang-en">@enabled = 1, -- 1 = enabled, 0 = not enabled.</span><span class="lang-vi">@enabled = 1, -- 1 = bật, 0 = tắt.</span></li>
-<li><span class="lang-en">@email_address = N'EmailAddress'</span><span class="lang-vi">@email_address = N'EmailAddress'</span></li>
-</ul><li><span class="lang-en">There are also pager arguments as well.</span><span class="lang-vi">Ngoài ra còn có các tham số dành cho pager.</span></li>
+EXEC dbo.sp_add_operator
+@name = N'OperatorName',
+@enabled = 1, -- 1 = bật, 0 = tắt.
+@email_address = N'EmailAddress'</span></pre></li>
+<li><span class="lang-en">There are also pager arguments as well.</span><span class="lang-vi">Ngoài ra còn có các tham số dành cho pager.</span></li>
 </ul><li><span class="lang-en">To configure notifications:</span><span class="lang-vi">Để cấu hình thông báo:</span></li>
 <ul><li><span class="lang-en">Go to SQL Server Agent (right-hand click it and Start if needed on a VM) – Jobs.</span><span class="lang-vi">Vào SQL Server Agent (trên VM, chuột phải và bấm Start nếu cần) – Jobs.</span></li>
 <li><span class="lang-en">Right-hand click a job and go to Properties.</span><span class="lang-vi">Chuột phải vào một job và vào Properties.</span></li>
@@ -3161,12 +3277,15 @@ EXEC dbo.sp_add_operator</span></pre></li>
 </ul></ul><li><span class="lang-en">In T-SQL, use:</span><span class="lang-vi">Bằng T-SQL, dùng:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">USE msdb ;
 GO
-EXEC dbo.sp_add_notification</span><span class="lang-vi">USE msdb ;
+EXEC dbo.sp_add_notification
+@alert_name = N'NameOfAlert',
+@operator_name = N'OperatorName',
+@notification_method = 1 ;</span><span class="lang-vi">USE msdb ;
 GO
-EXEC dbo.sp_add_notification</span></pre></li>
-<li><span class="lang-en">@alert_name = N'NameOfAlert',</span><span class="lang-vi">@alert_name = N'NameOfAlert',</span></li>
-<li><span class="lang-en">@operator_name = N'OperatorName',</span><span class="lang-vi">@operator_name = N'OperatorName',</span></li>
-<li><span class="lang-en">@notification_method = 1 ;</span><span class="lang-vi">@notification_method = 1 ;</span></li>
+EXEC dbo.sp_add_notification
+@alert_name = N'NameOfAlert',
+@operator_name = N'OperatorName',
+@notification_method = 1 ;</span></pre></li>
 <ul><li><span class="lang-en">1 = Email, 2 = Pager, 4 = Net Send.</span><span class="lang-vi">1 = Email, 2 = Pager, 4 = Net Send.</span></li>
 <li><span class="lang-en">Pager and Net Send have been deprecated.</span><span class="lang-vi">Pager và Net Send đã bị deprecate.</span></li>
 </ul></ul><li><span class="lang-en">To configure Database Mail, you need to:</span><span class="lang-vi">Để cấu hình Database Mail, bạn cần:</span></li>
@@ -3225,12 +3344,56 @@ EXEC dbo.sp_add_notification</span></pre></li>
 <ul><li><code><span class="lang-en">az bicep decompile --file myfile.json</span><span class="lang-vi">az bicep decompile --file myfile.json</span></code></li>
 </ul></ul></section>
 <section id="s71"><h3><span class="n">71.</span> <span class="lang-en">Automate deployment by using PowerShell</span><span class="lang-vi">Tự động hóa triển khai bằng PowerShell</span><a class="anch" href="#s71" title="Link tới mục này">#</a></h3>
-<ul><li><span class="lang-en">To create an SQL database using PowerShell, use: Write-host &quot;Creating resource group...&quot; $resourceGroup = New-AzResourceGroup -Name &quot;PowerShellResourceGroup&quot; -Location &quot;eastus&quot; $resourceGroup Write-host &quot;Creating SQL Database Server...&quot; $server = New-AzSqlServer -ResourceGroupName &quot;PowerShellResourceGroup&quot; \` -ServerName &quot;sqldatabase220714-5ps&quot; \` -Location &quot;eastus&quot; \` -SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential \` -ArgumentList &quot;phillipburton&quot;, $(ConvertTo-SecureString -String &quot;MyP@ssw0rd!&quot; -AsPlainText -Force)) $server Write-host &quot;Creating SQL Database...&quot; $database = New-AzSqlDatabase -ResourceGroupName &quot;PowerShellResourceGroup&quot; \` -ServerName &quot;sqldatabase220714-5ps&quot; \` -DatabaseName &quot;mydatabase&quot; \` -Edition Basic $database</span><span class="lang-vi">Để tạo một SQL database bằng PowerShell, dùng: Write-host &quot;Creating resource group...&quot; $resourceGroup = New-AzResourceGroup -Name &quot;PowerShellResourceGroup&quot; -Location &quot;eastus&quot; $resourceGroup Write-host &quot;Creating SQL Database Server...&quot; $server = New-AzSqlServer -ResourceGroupName &quot;PowerShellResourceGroup&quot; \` -ServerName &quot;sqldatabase220714-5ps&quot; \` -Location &quot;eastus&quot; \` -SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential \` -ArgumentList &quot;phillipburton&quot;, $(ConvertTo-SecureString -String &quot;MyP@ssw0rd!&quot; -AsPlainText -Force)) $server Write-host &quot;Creating SQL Database...&quot; $database = New-AzSqlDatabase -ResourceGroupName &quot;PowerShellResourceGroup&quot; \` -ServerName &quot;sqldatabase220714-5ps&quot; \` -DatabaseName &quot;mydatabase&quot; \` -Edition Basic $database</span></li>
+<ul><li><span class="lang-en">To create an SQL database using PowerShell, use:</span><span class="lang-vi">Để tạo một SQL database bằng PowerShell, dùng:</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">Write-host &quot;Creating resource group...&quot;
+$resourceGroup = New-AzResourceGroup -Name &quot;PowerShellResourceGroup&quot; -Location &quot;eastus&quot;
+$resourceGroup
+Write-host &quot;Creating SQL Database Server...&quot;
+$server = New-AzSqlServer -ResourceGroupName &quot;PowerShellResourceGroup&quot; \`
+-ServerName &quot;sqldatabase220714-5ps&quot; \`
+-Location &quot;eastus&quot; \`
+-SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential \`
+-ArgumentList &quot;phillipburton&quot;, $(ConvertTo-SecureString -String &quot;MyP@ssw0rd!&quot; -AsPlainText -Force))
+$server
+Write-host &quot;Creating SQL Database...&quot;
+$database = New-AzSqlDatabase -ResourceGroupName &quot;PowerShellResourceGroup&quot; \`
+-ServerName &quot;sqldatabase220714-5ps&quot; \`
+-DatabaseName &quot;mydatabase&quot; \`
+-Edition Basic
+$database</span><span class="lang-vi">Write-host &quot;Creating resource group...&quot;
+$resourceGroup = New-AzResourceGroup -Name &quot;PowerShellResourceGroup&quot; -Location &quot;eastus&quot;
+$resourceGroup
+Write-host &quot;Creating SQL Database Server...&quot;
+$server = New-AzSqlServer -ResourceGroupName &quot;PowerShellResourceGroup&quot; \`
+-ServerName &quot;sqldatabase220714-5ps&quot; \`
+-Location &quot;eastus&quot; \`
+-SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential \`
+-ArgumentList &quot;phillipburton&quot;, $(ConvertTo-SecureString -String &quot;MyP@ssw0rd!&quot; -AsPlainText -Force))
+$server
+Write-host &quot;Creating SQL Database...&quot;
+$database = New-AzSqlDatabase -ResourceGroupName &quot;PowerShellResourceGroup&quot; \`
+-ServerName &quot;sqldatabase220714-5ps&quot; \`
+-DatabaseName &quot;mydatabase&quot; \`
+-Edition Basic
+$database</span></pre></li>
+</ul>
 <li><span class="lang-en">For SQL MI, use New-AzSqlInstance</span><span class="lang-vi">Với SQL MI, dùng New-AzSqlInstance</span></li>
 <li><span class="lang-en">For Azure Virtual Machine, use New-AzVM</span><span class="lang-vi">Với Azure Virtual Machine, dùng New-AzVM</span></li>
 </ul></section>
 <section id="s72"><h3><span class="n">72.</span> <span class="lang-en">Automate deployment by using Azure CLI</span><span class="lang-vi">Tự động hóa triển khai bằng Azure CLI</span><a class="anch" href="#s72" title="Link tới mục này">#</a></h3>
-<ul><li><span class="lang-en">To create an SQL database using Azure CLI, use: echo &quot;Creating resource Group&quot; az group create --name &quot;CLIResourceGroup&quot; --location &quot;East US&quot; echo &quot;Creating Server&quot; az sql server create --name &quot;SQLDatabase220714-2&quot; --resource-group &quot;CLIResourceGroup&quot; -- location &quot;East US&quot; --admin-user &quot;phillipburton&quot; --admin-password &quot;MyP@ssw0rd!&quot; echo &quot;Creating SQL Database $database&quot; az sql db create --resource-group &quot;CLIResourceGroup&quot; --server &quot;SQLDatabase220714-2&quot; --name &quot;MyDatabase&quot; --edition Basic</span><span class="lang-vi">Để tạo một SQL database bằng Azure CLI, dùng: echo &quot;Creating resource Group&quot; az group create --name &quot;CLIResourceGroup&quot; --location &quot;East US&quot; echo &quot;Creating Server&quot; az sql server create --name &quot;SQLDatabase220714-2&quot; --resource-group &quot;CLIResourceGroup&quot; --location &quot;East US&quot; --admin-user &quot;phillipburton&quot; --admin-password &quot;MyP@ssw0rd!&quot; echo &quot;Creating SQL Database $database&quot; az sql db create --resource-group &quot;CLIResourceGroup&quot; --server &quot;SQLDatabase220714-2&quot; --name &quot;MyDatabase&quot; --edition Basic</span></li>
+<ul><li><span class="lang-en">To create an SQL database using Azure CLI, use:</span><span class="lang-vi">Để tạo một SQL database bằng Azure CLI, dùng:</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">echo &quot;Creating resource Group&quot;
+az group create --name &quot;CLIResourceGroup&quot; --location &quot;East US&quot;
+echo &quot;Creating Server&quot;
+az sql server create --name &quot;SQLDatabase220714-2&quot; --resource-group &quot;CLIResourceGroup&quot; -- location &quot;East US&quot; --admin-user &quot;phillipburton&quot; --admin-password &quot;MyP@ssw0rd!&quot;
+echo &quot;Creating SQL Database $database&quot;
+az sql db create --resource-group &quot;CLIResourceGroup&quot; --server &quot;SQLDatabase220714-2&quot; --name &quot;MyDatabase&quot; --edition Basic</span><span class="lang-vi">echo &quot;Creating resource Group&quot;
+az group create --name &quot;CLIResourceGroup&quot; --location &quot;East US&quot;
+echo &quot;Creating Server&quot;
+az sql server create --name &quot;SQLDatabase220714-2&quot; --resource-group &quot;CLIResourceGroup&quot; --location &quot;East US&quot; --admin-user &quot;phillipburton&quot; --admin-password &quot;MyP@ssw0rd!&quot;
+echo &quot;Creating SQL Database $database&quot;
+az sql db create --resource-group &quot;CLIResourceGroup&quot; --server &quot;SQLDatabase220714-2&quot; --name &quot;MyDatabase&quot; --edition Basic</span></pre></li>
+</ul>
 <li><span class="lang-en">For Azure Managed Instance, use az sql mi</span><span class="lang-vi">Với Azure Managed Instance, dùng az sql mi</span></li>
 <li><span class="lang-en">For Azure Virtual Machine, use az vm create</span><span class="lang-vi">Với Azure Virtual Machine, dùng az vm create</span></li>
 </ul></section>
@@ -3269,14 +3432,17 @@ CREATE DATABASE SCOPED CREDENTIAL RunJob WITH IDENTITY = 'JobU' SECRET = '&lt;an
 </ul><li><span class="lang-en">Define the target group in T-SQL (or PowerShell).</span><span class="lang-vi">Định nghĩa target group bằng T-SQL (hoặc PowerShell).</span></li>
 <ul><li><span class="lang-en">In the job database:</span><span class="lang-vi">Trong job database:</span></li>
 <li class="cb"><pre class="code"><span class="lang-en">EXEC jobs.sp_add_target_group 'GrpDatabase';
-EXEC jobs.sp_add_target_group_member</span><span class="lang-vi">EXEC jobs.sp_add_target_group 'GrpDatabase';
-EXEC jobs.sp_add_target_group_member</span></pre></li>
-<ul><li><span class="lang-en">@target_group_name = 'GrpDatabase',</span><span class="lang-vi">@target_group_name = 'GrpDatabase',</span></li>
-<li><span class="lang-en">@target_type = 'SqlDatabase'</span><span class="lang-vi">@target_type = 'SqlDatabase'</span></li>
+EXEC jobs.sp_add_target_group_member
+@target_group_name = 'GrpDatabase',
+@target_type = 'SqlDatabase'
+@server_name = 'DataBaseName.database.windows.net';</span><span class="lang-vi">EXEC jobs.sp_add_target_group 'GrpDatabase';
+EXEC jobs.sp_add_target_group_member
+@target_group_name = 'GrpDatabase',
+@target_type = 'SqlDatabase'
+@server_name = 'DataBaseName.database.windows.net';</span></pre></li>
 <ul><li><span class="lang-en">or 'SqlServer', -- or 'PoolGroup'</span><span class="lang-vi">hoặc 'SqlServer', -- hoặc 'PoolGroup'</span></li>
-<ul><ul><li><span class="lang-en">if wanting to exclude, @membership_type = 'Exclude'</span><span class="lang-vi">nếu muốn loại trừ thì dùng @membership_type = 'Exclude'</span></li>
+<li><span class="lang-en">if wanting to exclude, @membership_type = 'Exclude'</span><span class="lang-vi">nếu muốn loại trừ thì dùng @membership_type = 'Exclude'</span></li>
 <li><span class="lang-en">If targeting a server or pool, @refresh_credential_name = 'RefreshPassword',</span><span class="lang-vi">Nếu target là server hoặc pool thì dùng @refresh_credential_name = 'RefreshPassword',</span></li>
-</ul></ul></ul><li><span class="lang-en">@server_name = 'DataBaseName.database.windows.net';</span><span class="lang-vi">@server_name = 'DataBaseName.database.windows.net';</span></li>
 </ul><li><span class="lang-en">To view the recently created target group and target group members</span><span class="lang-vi">Để xem target group và các thành viên vừa tạo</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">SELECT * FROM jobs.target_groups WHERE target_group_name='GrpDatabase';
 SELECT * FROM jobs.target_group_members WHERE target_group_name='GrpDatabase';</span><span class="lang-vi">SELECT * FROM jobs.target_groups WHERE target_group_name='GrpDatabase';
@@ -3293,21 +3459,29 @@ CREATE LOGIN JobU WITH PASSWORD = '&lt;an6?%9++Vyd%Ut9'</span></pre></li>
 ALTER ROLE db_owner ADD MEMBER JobU</span><span class="lang-vi">CREATE USER JobU FROM LOGIN JobU
 ALTER ROLE db_owner ADD MEMBER JobU</span></pre></li>
 </ul></ul><li><span class="lang-en">Create a job in T-SQL (or PowerShell) in the Elastic Job database</span><span class="lang-vi">Create a job in T-SQL (or PowerShell) in the Elastic Job database</span></li>
-<ul><li><code><span class="lang-en">EXEC jobs.sp_add_job @job_name='My first job', @description='Look at objects'</span><span class="lang-vi">EXEC jobs.sp_add_job @job_name='My first job', @description='Look at objects'</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXEC jobs.sp_add_job @job_name='My first job', @description='Look at objects'</span><span class="lang-vi">EXEC jobs.sp_add_job @job_name='My first job', @description='Look at objects'</span></pre></li>
 </ul><li><span class="lang-en">Create job steps in T-SQL (or PowerShell).</span><span class="lang-vi">Create job steps in T-SQL (or PowerShell).</span></li>
-<ul><li><code><span class="lang-en">EXEC jobs.sp_add_jobstep @job_name='My first job',</span><span class="lang-vi">EXEC jobs.sp_add_jobstep @job_name='My first job',</span></code></li>
-</ul><li><span class="lang-en">@command='SELECT * FROM sys.objects',</span><span class="lang-vi">@command='SELECT * FROM sys.objects',</span></li>
-<li><span class="lang-en">@credential_name='RunJob',</span><span class="lang-vi">@credential_name='RunJob',</span></li>
-<li><span class="lang-en">@target_group_name='GrpDatabase'</span><span class="lang-vi">@target_group_name='GrpDatabase'</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">EXEC jobs.sp_add_jobstep @job_name='My first job',
+@command='SELECT * FROM sys.objects',
+@credential_name='RunJob',
+@target_group_name='GrpDatabase'</span><span class="lang-vi">EXEC jobs.sp_add_jobstep @job_name='My first job',
+@command='SELECT * FROM sys.objects',
+@credential_name='RunJob',
+@target_group_name='GrpDatabase'</span></pre></li>
+</ul>
 <li><span class="lang-en">Run/schedule the job in T-SQL.</span><span class="lang-vi">Chạy hoặc đặt lịch cho job bằng T-SQL.</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">EXEC jobs.sp_start_job 'My first job' -- run now
-EXEC jobs.sp_update_job</span><span class="lang-vi">EXEC jobs.sp_start_job 'My first job' -- run now
-EXEC jobs.sp_update_job</span></pre></li>
-<ul><li><span class="lang-en">@job_name='Sample T-SQL',</span><span class="lang-vi">@job_name='Sample T-SQL',</span></li>
-<li><span class="lang-en">@enabled=1,</span><span class="lang-vi">@enabled=1,</span></li>
-<li><span class="lang-en">@schedule_interval_type='Minutes' – Or Hours, Days, Weeks, Months or Once,</span><span class="lang-vi">@schedule_interval_type='Minutes' — hoặc Hours, Days, Weeks, Months, Once,</span></li>
-<li><span class="lang-en">@schedule_interval_count=1</span><span class="lang-vi">@schedule_interval_count=1</span></li>
-</ul></ul><li><span class="lang-en">Monitor job execution in the Portal or T-SQL (or PowerShell).</span><span class="lang-vi">Theo dõi việc thực thi job trong Portal hoặc bằng T-SQL (hoặc PowerShell).</span></li>
+EXEC jobs.sp_update_job
+@job_name='Sample T-SQL',
+@enabled=1,
+@schedule_interval_type='Minutes' – Or Hours, Days, Weeks, Months or Once,
+@schedule_interval_count=1</span><span class="lang-vi">EXEC jobs.sp_start_job 'My first job' -- run now
+EXEC jobs.sp_update_job
+@job_name='Sample T-SQL',
+@enabled=1,
+@schedule_interval_type='Minutes' — hoặc Hours, Days, Weeks, Months, Once,
+@schedule_interval_count=1</span></pre></li>
+</ul><li><span class="lang-en">Monitor job execution in the Portal or T-SQL (or PowerShell).</span><span class="lang-vi">Theo dõi việc thực thi job trong Portal hoặc bằng T-SQL (hoặc PowerShell).</span></li>
 <ul><li><code><span class="lang-en">select * from jobs.job_executions</span><span class="lang-vi">select * from jobs.job_executions</span></code></li>
 </ul></ul></section>
 <section id="s75"><h3><span class="n">75.</span> <span class="lang-en">configure multi-server automation</span><span class="lang-vi">cấu hình tự động hóa đa server</span><a class="anch" href="#s75" title="Link tới mục này">#</a></h3>
@@ -3672,11 +3846,11 @@ GO</span></pre></li>
 <ul><li><span class="lang-en">Forced failover risks possible data loss.</span><span class="lang-vi">Forced failover có nguy cơ mất dữ liệu.</span></li>
 </ul><li><span class="lang-en">All databases within a failover group are then fail-overed.</span><span class="lang-vi">Toàn bộ database trong failover group sẽ cùng được failover.</span></li>
 <li><span class="lang-en">You can also use the PowerShell cmdlet:</span><span class="lang-vi">Bạn cũng có thể dùng cmdlet PowerShell:</span></li>
-<ul><li><code><span class="lang-en">Invoke-AzSqlInstanceFailover -ResourceGroupName &quot;ResourceGroup01&quot; -Name &quot;ManagedInstance01&quot;</span><span class="lang-vi">Invoke-AzSqlInstanceFailover -ResourceGroupName &quot;ResourceGroup01&quot; -Name &quot;ManagedInstance01&quot;</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">Invoke-AzSqlInstanceFailover -ResourceGroupName &quot;ResourceGroup01&quot; -Name &quot;ManagedInstance01&quot;</span><span class="lang-vi">Invoke-AzSqlInstanceFailover -ResourceGroupName &quot;ResourceGroup01&quot; -Name &quot;ManagedInstance01&quot;</span></pre></li>
 <ul><li><span class="lang-en">This failovers an Azure SQL Managed Instance.</span><span class="lang-vi">Lệnh này failover một Azure SQL Managed Instance.</span></li>
-</ul><li><code><span class="lang-en">Invoke-AzSqlDatabaseFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -DatabaseName &quot;Database01&quot;</span><span class="lang-vi">Invoke-AzSqlDatabaseFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -DatabaseName &quot;Database01&quot;</span></code></li>
+</ul><li class="cb"><pre class="code"><span class="lang-en">Invoke-AzSqlDatabaseFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -DatabaseName &quot;Database01&quot;</span><span class="lang-vi">Invoke-AzSqlDatabaseFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -DatabaseName &quot;Database01&quot;</span></pre></li>
 <ul><li><span class="lang-en">This failovers a single database in an Azure SQL Database, which could be a single database in an elastic pool (without affecting the other databases in the same elastic pool).</span><span class="lang-vi">Lệnh này failover một database đơn lẻ trong Azure SQL Database — kể cả database nằm trong elastic pool (mà không ảnh hưởng các database khác trong cùng pool).</span></li>
-</ul><li><code><span class="lang-en">Invoke-AzSqlElasticPoolFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -ElasticPoolName &quot;ElasticPool01&quot;</span><span class="lang-vi">Invoke-AzSqlElasticPoolFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -ElasticPoolName &quot;ElasticPool01&quot;</span></code></li>
+</ul><li class="cb"><pre class="code"><span class="lang-en">Invoke-AzSqlElasticPoolFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -ElasticPoolName &quot;ElasticPool01&quot;</span><span class="lang-vi">Invoke-AzSqlElasticPoolFailover -ResourceGroupName &quot;ResourceGroup01&quot; - ServerName &quot;Server01&quot; -ElasticPoolName &quot;ElasticPool01&quot;</span></pre></li>
 <ul><li><span class="lang-en">This failovers all databases in an elastic pool.</span><span class="lang-vi">Lệnh này failover toàn bộ database trong một elastic pool.</span></li>
 </ul></ul></ul></ul></section>
 <section id="s82-3"><h3><span class="n">82.</span> <span class="lang-en">test HA by using failover – AVAILABILITY GROUP</span><span class="lang-vi">kiểm thử HA bằng failover – AVAILABILITY GROUP</span><a class="anch" href="#s82-3" title="Link tới mục này">#</a></h3>
@@ -3863,15 +4037,19 @@ GO</span></pre></li>
 </ul></ul><li><span class="lang-en">You need the BACKUP DATABASE and backup log PERMISSIONS.</span><span class="lang-vi">Bạn cần quyền BACKUP DATABASE và quyền backup log.</span></li>
 <ul><li><span class="lang-en">They are already granted in the sysadmin fixed server role, and the db_owner and db_backupoperator fixed database roles.</span><span class="lang-vi">Các quyền này đã được cấp sẵn cho fixed server role sysadmin, và các fixed database role db_owner và db_backupoperator.</span></li>
 </ul><li><span class="lang-en">Use the following command:</span><span class="lang-vi">Use the following command:</span></li>
-<ul><li><code><span class="lang-en">BACKUP LOG NameOfDatabase</span><span class="lang-vi">BACKUP LOG NameOfDatabase</span></code></li>
-<li><span class="lang-en">TO MyPreviouslyCreatedNamedBackupDevice</span><span class="lang-vi">TO MyPreviouslyCreatedNamedBackupDevice</span></li>
-<li><span class="lang-en">NORECOVERY, NO_TRUNCATE</span><span class="lang-vi">NORECOVERY, NO_TRUNCATE</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">BACKUP LOG NameOfDatabase
+TO MyPreviouslyCreatedNamedBackupDevice
+NORECOVERY, NO_TRUNCATE
+GO</span><span class="lang-vi">BACKUP LOG NameOfDatabase
+TO MyPreviouslyCreatedNamedBackupDevice
+NORECOVERY, NO_TRUNCATE
+GO</span></pre></li>
 <ul><li><span class="lang-en">NORECOVERY backups the tail of the log and leaves the database in the RESTORING state.</span><span class="lang-vi">NORECOVERY backup phần đuôi của log và để database ở trạng thái RESTORING.</span></li>
 <ul><li><span class="lang-en">Useful when failing over to a secondary database or when saving the tail before a RESTORE.</span><span class="lang-vi">Hữu ích khi failover sang database secondary, hoặc khi cần lưu phần đuôi log trước một lệnh RESTORE.</span></li>
 </ul><li><span class="lang-en">NO_TRUNCATE causes SQL Server to attempt to backup, regardless of the state of the database.</span><span class="lang-vi">NO_TRUNCATE buộc SQL Server cố thực hiện backup bất kể database đang ở trạng thái nào.</span></li>
 <ul><li><span class="lang-en">Useful if the database is damaged.</span><span class="lang-vi">Hữu ích khi database đã bị hỏng.</span></li>
 </ul><li><span class="lang-en">Suggest using NO_TRUNCATE and NORECOVERY together.</span><span class="lang-vi">Khuyến nghị dùng NO_TRUNCATE và NORECOVERY cùng nhau.</span></li>
-</ul><li><code><span class="lang-en">GO</span><span class="lang-vi">GO</span></code></li>
+</ul>
 </ul></ul></section>
 <section id="s88-2"><h3><span class="n">88.</span> <span class="lang-en">perform restore of user databases</span><span class="lang-vi">thực hiện restore các database người dùng</span><a class="anch" href="#s88-2" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">In SQL Server in an Azure VM, you can:</span><span class="lang-vi">Với SQL Server trên Azure VM, bạn có thể:</span></li>
@@ -3882,14 +4060,18 @@ GO</span></pre></li>
 <li><span class="lang-en">Restore a transaction log, or</span><span class="lang-vi">Restore a transaction log, or</span></li>
 </ul></ul><li><span class="lang-en">Use:</span><span class="lang-vi">Dùng:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">RESTORE DATABASE NameOfDatabase
-FROM MyPreviouslyCreatedNamedBackupDevice</span><span class="lang-vi">RESTORE DATABASE NameOfDatabase
-FROM MyPreviouslyCreatedNamedBackupDevice</span></pre></li>
-<li><span class="lang-en">[WITH RECOVERY | NORECOVERY]</span><span class="lang-vi">[WITH RECOVERY | NORECOVERY]</span></li>
-<li><span class="lang-en">[FILE = BackupSetFileNumber]</span><span class="lang-vi">[FILE = BackupSetFileNumber]</span></li>
+FROM MyPreviouslyCreatedNamedBackupDevice
+[WITH RECOVERY | NORECOVERY]
+[FILE = BackupSetFileNumber]
+[STOPAT = { 'datetime'| @datetime_var }
+| STOPATMARK or STOPBEFOREMARK = { MarkName | LSNNumber } [ AFTER 'datetime']</span><span class="lang-vi">RESTORE DATABASE NameOfDatabase
+FROM MyPreviouslyCreatedNamedBackupDevice
+[WITH RECOVERY | NORECOVERY]
+[FILE = BackupSetFileNumber]
+[STOPAT = { 'datetime'| @datetime_var }
+| STOPATMARK hoặc STOPBEFOREMARK = { MarkName | LSNNumber } [ AFTER 'datetime']</span></pre></li>
 <ul><li><span class="lang-en">NORECOVERY is useful when you are restoring a single file, but you need to restore more.</span><span class="lang-vi">NORECOVERY hữu ích khi bạn đang restore một file nhưng vẫn còn phải restore thêm nữa.</span></li>
 <li><span class="lang-en">Use RECOVERY when you have finished restoring, and you want the database to be online.</span><span class="lang-vi">Use RECOVERY when you have finished restoring, and you want the database to be online.</span></li>
-</ul><li><span class="lang-en">[STOPAT = { 'datetime'| @datetime_var }</span><span class="lang-vi">[STOPAT = { 'datetime'| @datetime_var }</span></li>
-<ul><li><span class="lang-en">| STOPATMARK or STOPBEFOREMARK = { MarkName | LSNNumber } [ AFTER 'datetime']</span><span class="lang-vi">| STOPATMARK hoặc STOPBEFOREMARK = { MarkName | LSNNumber } [ AFTER 'datetime']</span></li>
 </ul></ul><li><span class="lang-en">For example:</span><span class="lang-vi">Ví dụ:</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">RESTORE … WITH FILE = 6 NORECOVERY, STOPAT = 'Jun 19, 2024 12:00 PM';
 RESTORE … WITH FILE = 9 RECOVERY;
@@ -3905,26 +4087,33 @@ FROM URL = 'https:// … ' , 'https:// … ' (v.v.)</span></pre></li>
 </ul></ul></section>
 <section id="s88-3"><h3><span class="n">88.</span> <span class="lang-en">perform database backups with options</span><span class="lang-vi">thực hiện backup database kèm các tùy chọn</span><a class="anch" href="#s88-3" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">MIs have automatic backups. You can create full database COPY_ONLY backups, but not differential, log or file snapshot backups.</span><span class="lang-vi">MI có backup tự động. Bạn tạo được full database COPY_ONLY backup, nhưng không tạo được differential, log hay file snapshot backup.</span></li>
-<ul><li><code><span class="lang-en">BACKUP DATABASE NameOfDatabase</span><span class="lang-vi">BACKUP DATABASE NameOfDatabase</span></code></li>
-<li><span class="lang-en">TO URL = 'https:// … ' , 'https:// … ' (etc)</span><span class="lang-vi">TO URL = 'https:// … ' , 'https:// … ' (v.v.)</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">BACKUP DATABASE NameOfDatabase
+TO URL = 'https:// … ' , 'https:// … ' (etc)
+WITH COPY_ONLY
+[COMPRESSION | NO_COMPRESSION]
+[STATS = X]</span><span class="lang-vi">BACKUP DATABASE NameOfDatabase
+TO URL = 'https:// … ' , 'https:// … ' (v.v.)
+WITH COPY_ONLY
+[COMPRESSION | NO_COMPRESSION]
+[STATS = X]</span></pre></li>
 <ul><li><span class="lang-en">The URLs is for the Microsoft Azure storage service.</span><span class="lang-vi">Các URL này trỏ tới dịch vụ Microsoft Azure storage.</span></li>
 <li><span class="lang-en">Maximum backup stripe size (blob size) is 195 Gb.</span><span class="lang-vi">Kích thước tối đa của một backup stripe (blob) là 195 GB.</span></li>
 <ul><li><span class="lang-en">If you want more space, add additional files.</span><span class="lang-vi">Nếu cần thêm dung lượng thì thêm file.</span></li>
-</ul></ul><li><code><span class="lang-en">WITH COPY_ONLY</span><span class="lang-vi">WITH COPY_ONLY</span></code></li>
-<ul><li><span class="lang-en">Does not interfere with the normal sequence of backups.</span><span class="lang-vi">Không làm gián đoạn chuỗi backup thông thường.</span></li>
-</ul><li><span class="lang-en">[COMPRESSION | NO_COMPRESSION]</span><span class="lang-vi">[COMPRESSION | NO_COMPRESSION]</span></li>
-<ul><li><span class="lang-en">This overrides the server-level default. The default is no backup compression.</span><span class="lang-vi">Tùy chọn này ghi đè mặc định ở cấp server. Mặc định là không nén backup.</span></li>
-</ul><li><span class="lang-en">[STATS = X]</span><span class="lang-vi">[STATS = X]</span></li>
-<ul><li><span class="lang-en">Displays a message every X% percentage. The default is 10 per cent.</span><span class="lang-vi">Hiển thị thông báo sau mỗi X phần trăm. Mặc định là 10 phần trăm.</span></li>
+</ul><li><span class="lang-en">Does not interfere with the normal sequence of backups.</span><span class="lang-vi">Không làm gián đoạn chuỗi backup thông thường.</span></li>
+<li><span class="lang-en">This overrides the server-level default. The default is no backup compression.</span><span class="lang-vi">Tùy chọn này ghi đè mặc định ở cấp server. Mặc định là không nén backup.</span></li>
+<li><span class="lang-en">Displays a message every X% percentage. The default is 10 per cent.</span><span class="lang-vi">Hiển thị thông báo sau mỗi X phần trăm. Mặc định là 10 phần trăm.</span></li>
 </ul></ul><li><span class="lang-en">This is for VMs (and Mis if using COPY_ONLY). The syntax is:</span><span class="lang-vi">Phần này dành cho VM (và cho MI nếu dùng COPY_ONLY). Cú pháp:</span></li>
-<ul><li><code><span class="lang-en">BACKUP DATABASE NameOfDatabase</span><span class="lang-vi">BACKUP DATABASE NameOfDatabase</span></code></li>
-<li><span class="lang-en">[FILEGROUP = 'X', FILEGROUP = 'Y' …]</span><span class="lang-vi">[FILEGROUP = 'X', FILEGROUP = 'Y' …]</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">BACKUP DATABASE NameOfDatabase
+[FILEGROUP = 'X', FILEGROUP = 'Y' …]
+TO MyPreviouslyCreatedNamedBackupDevice
+[MIRROR TO AnotherBackupDevice]</span><span class="lang-vi">BACKUP DATABASE NameOfDatabase
+[FILEGROUP = 'X', FILEGROUP = 'Y' …]
+TO MyPreviouslyCreatedNamedBackupDevice
+[MIRROR TO AnotherBackupDevice]</span></pre></li>
 <ul><li><span class="lang-en">Useful for backing-up only part of a database.</span><span class="lang-vi">Hữu ích khi chỉ cần backup một phần của database.</span></li>
-</ul><li><span class="lang-en">TO MyPreviouslyCreatedNamedBackupDevice</span><span class="lang-vi">TO MyPreviouslyCreatedNamedBackupDevice</span></li>
-<ul><li><span class="lang-en">If backing up to disk, then use TO DISK = 'FileLocation'.</span><span class="lang-vi">Nếu backup ra đĩa thì dùng TO DISK = 'FileLocation'.</span></li>
+<li><span class="lang-en">If backing up to disk, then use TO DISK = 'FileLocation'.</span><span class="lang-vi">Nếu backup ra đĩa thì dùng TO DISK = 'FileLocation'.</span></li>
 <li><span class="lang-en">You can also use TO TAPE = or TO URL = 'https://…'</span><span class="lang-vi">Bạn cũng có thể dùng TO TAPE = hoặc TO URL = 'https://…'</span></li>
-</ul><li><span class="lang-en">[MIRROR TO AnotherBackupDevice]</span><span class="lang-vi">[MIRROR TO AnotherBackupDevice]</span></li>
-<ul><li><span class="lang-en">Only for the Enterprise edition of SQL Server.</span><span class="lang-vi">Chỉ có ở bản Enterprise của SQL Server.</span></li>
+<li><span class="lang-en">Only for the Enterprise edition of SQL Server.</span><span class="lang-vi">Chỉ có ở bản Enterprise của SQL Server.</span></li>
 <li><span class="lang-en">Must be the same time as the Primary Backup.</span><span class="lang-vi">Phải thực hiện cùng lúc với Primary Backup.</span></li>
 <li><span class="lang-en">You can have up to 3 secondaries.</span><span class="lang-vi">Bạn có tối đa 3 bản secondary.</span></li>
 </ul><li><span class="lang-en">[WITH</span><span class="lang-vi">[WITH</span></li>
@@ -4067,7 +4256,7 @@ FROM URL = 'https:// … ' , 'https:// … ' (v.v.)</span></pre></li>
 <ul><li><span class="lang-en">A secondary database need to be identical to the primary database.</span><span class="lang-vi">Database secondary phải giống hệt database primary.</span></li>
 <ul><li><span class="lang-en">Therefore, do a BACKUP and RESTORE, including tail-log backups.</span><span class="lang-vi">Vì vậy hãy thực hiện BACKUP rồi RESTORE, bao gồm cả tail-log backup.</span></li>
 </ul><li><span class="lang-en">Then join it – for example:</span><span class="lang-vi">Sau đó join nó vào — ví dụ:</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE Db1 SET HADR AVAILABILITY GROUP = MyAG;</span><span class="lang-vi">ALTER DATABASE Db1 SET HADR AVAILABILITY GROUP = MyAG;</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE Db1 SET HADR AVAILABILITY GROUP = MyAG;</span><span class="lang-vi">ALTER DATABASE Db1 SET HADR AVAILABILITY GROUP = MyAG;</span></pre></li>
 </ul></ul></section>
 <section id="s90-3"><h3><span class="n">90.</span> <span class="lang-en">integrate a database into an Always On Availability Group</span><span class="lang-vi">đưa một database vào Always On Availability Group</span><a class="anch" href="#s90-3" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">The database must exist on the server instance that hosts the primary replica.</span><span class="lang-vi">Database phải tồn tại trên instance đang giữ primary replica.</span></li>
@@ -4469,12 +4658,12 @@ sp_add_log_shipping_secondary_database</span></pre></li>
 </ul></ul><li><span class="lang-en">This applies to Azure SQL Database, not Azure SQL Managed Instance.</span><span class="lang-vi">Áp dụng cho Azure SQL Database, không áp dụng cho Azure SQL Managed Instance.</span></li>
 <ul><li><span class="lang-en">Display the allocated space:</span><span class="lang-vi">Hiển thị dung lượng đã cấp phát:</span></li>
 <ul><li><span class="lang-en">[Single database – In the master database]</span><span class="lang-vi">[Single database — chạy trong database master]</span></li>
-<ul><li><code><span class="lang-en">SELECT database_name, allocated_storage_in_megabytes FROM sys.resource_stats</span><span class="lang-vi">SELECT database_name, allocated_storage_in_megabytes FROM sys.resource_stats</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT database_name, allocated_storage_in_megabytes FROM sys.resource_stats</span><span class="lang-vi">SELECT database_name, allocated_storage_in_megabytes FROM sys.resource_stats</span></pre></li>
 </ul><li><span class="lang-en">[Elastic pool – In the master database]</span><span class="lang-vi">[Elastic pool — chạy trong database master]</span></li>
-<ul><li><code><span class="lang-en">SELECT elastic_pool_name, elastic_pool_storage_limit_mb, avg_allocated_storage_percent FROM sys.elastic_pool_resource_stats</span><span class="lang-vi">SELECT elastic_pool_name, elastic_pool_storage_limit_mb, avg_allocated_storage_percent FROM sys.elastic_pool_resource_stats</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT elastic_pool_name, elastic_pool_storage_limit_mb, avg_allocated_storage_percent FROM sys.elastic_pool_resource_stats</span><span class="lang-vi">SELECT elastic_pool_name, elastic_pool_storage_limit_mb, avg_allocated_storage_percent FROM sys.elastic_pool_resource_stats</span></pre></li>
 </ul></ul><li><span class="lang-en">Display maximum size:</span><span class="lang-vi">Hiển thị dung lượng tối đa:</span></li>
 <ul><li><span class="lang-en">[Go to the relevant database. If using Master, results be NULL]</span><span class="lang-vi">[Vào database tương ứng. Nếu chạy ở Master thì kết quả sẽ là NULL]</span></li>
-<li><code><span class="lang-en">SELECT DATABASEPROPERTYEX('DatabaseName', 'MaxSizeInBytes')</span><span class="lang-vi">SELECT DATABASEPROPERTYEX('DatabaseName', 'MaxSizeInBytes')</span></code></li>
+<li class="cb"><pre class="code"><span class="lang-en">SELECT DATABASEPROPERTYEX('DatabaseName', 'MaxSizeInBytes')</span><span class="lang-vi">SELECT DATABASEPROPERTYEX('DatabaseName', 'MaxSizeInBytes')</span></pre></li>
 </ul><li><span class="lang-en">To shrink a transaction log file</span><span class="lang-vi">Để shrink một file transaction log</span></li>
 <ul><li class="cb"><pre class="code"><span class="lang-en">SELECT file_id, size FROM sys.database_files WHERE type = 1 -- &quot;1&quot; = Log file. Size is in 8 Kb pages.
 DBCC SHRINKFILE (2); --Where &quot;2&quot; is the file_id.</span><span class="lang-vi">SELECT file_id, size FROM sys.database_files WHERE type = 1 -- &quot;1&quot; = Log file. Size is in 8 Kb pages.
@@ -4506,16 +4695,19 @@ WHERE type = 1</span></pre></li>
 <li><span class="lang-en">more I/O requests (with smaller data in each) are required.</span><span class="lang-vi">cần nhiều I/O request hơn (mà mỗi request lại mang ít dữ liệu hơn).</span></li>
 <li><span class="lang-en">Each page can be fragmented between 0% and 100%.</span><span class="lang-vi">Mỗi page có thể phân mảnh từ 0% tới 100%.</span></li>
 </ul><li><span class="lang-en">To assess fragmentation of database indexes:</span><span class="lang-vi">Để đánh giá mức phân mảnh của các index trong database:</span></li>
-<ul><li><span class="lang-en">SELECT db_name(database_id) as DBName, object_name(object_id) as ObjectName, avg_fragmentation_in_percent, page_count, *</span><span class="lang-vi">SELECT db_name(database_id) as DBName, object_name(object_id) as ObjectName, avg_fragmentation_in_percent, page_count, *</span></li>
-<li><code><span class="lang-en">FROM sys.dm_db_index_physical_stats(NULL,NULL,NULL,NULL,NULL)</span><span class="lang-vi">FROM sys.dm_db_index_physical_stats(NULL,NULL,NULL,NULL,NULL)</span></code></li>
-<ul><li><code><span class="lang-en">--The arguments are: database_id (use db_id to look it up), object_id (use object_id to look it up), index_id, partition_number and mode (the scan level).</span><span class="lang-vi">--Các đối số là: database_id (dùng db_id để tra), object_id (dùng object_id để tra), index_id, partition_number và mode (mức độ quét).</span></code></li>
-</ul><li><span class="lang-en">order by avg_fragmentation_in_percent * page_count desc</span><span class="lang-vi">order by avg_fragmentation_in_percent * page_count desc</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT db_name(database_id) as DBName, object_name(object_id) as ObjectName, avg_fragmentation_in_percent, page_count, *
+FROM sys.dm_db_index_physical_stats(NULL,NULL,NULL,NULL,NULL)
+--The arguments are: database_id (use db_id to look it up), object_id (use object_id to look it up), index_id, partition_number and mode (the scan level).
+order by avg_fragmentation_in_percent * page_count desc</span><span class="lang-vi">SELECT db_name(database_id) as DBName, object_name(object_id) as ObjectName, avg_fragmentation_in_percent, page_count, *
+FROM sys.dm_db_index_physical_stats(NULL,NULL,NULL,NULL,NULL)
+--Các đối số là: database_id (dùng db_id để tra), object_id (dùng object_id để tra), index_id, partition_number và mode (mức độ quét).
+order by avg_fragmentation_in_percent * page_count desc</span></pre></li>
 <li><span class="lang-en">You can also check it by right-hand clicking on the index in SSMS, going to Properties – Fragmentation.</span><span class="lang-vi">Bạn cũng kiểm tra được bằng cách chuột phải vào index trong SSMS, vào Properties – Fragmentation.</span></li>
 </ul><li><span class="lang-en">You can also use:</span><span class="lang-vi">Bạn cũng có thể dùng:</span></li>
 <ul><li><code><span class="lang-en">DBCC SHOWCONTIG</span><span class="lang-vi">DBCC SHOWCONTIG</span></code></li>
 <li><span class="lang-en">However, this has been deprecated.</span><span class="lang-vi">Tuy nhiên cách này đã bị deprecate.</span></li>
 </ul><li><span class="lang-en">To assess columnstore indexes, look at</span><span class="lang-vi">Để đánh giá columnstore index, hãy xem</span></li>
-<ul><li><code><span class="lang-en">SELECT deleted_rows, total_rows FROM sys.dm_db_colum_store_row_group_physical_stats</span><span class="lang-vi">SELECT deleted_rows, total_rows FROM sys.dm_db_colum_store_row_group_physical_stats</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT deleted_rows, total_rows FROM sys.dm_db_colum_store_row_group_physical_stats</span><span class="lang-vi">SELECT deleted_rows, total_rows FROM sys.dm_db_colum_store_row_group_physical_stats</span></pre></li>
 <ul><li><span class="lang-en">Where more than &gt;20% of rows have been deleted (due to DELETE or UPDATE), reorganize. This removes rows marked as deleted.</span><span class="lang-vi">Khi hơn 20% số dòng đã bị xóa (do DELETE hoặc UPDATE) thì nên reorganize. Thao tác này loại bỏ các dòng đã được đánh dấu xóa.</span></li>
 </ul></ul><li><span class="lang-en">Indexes can be reorganized or rebuilt</span><span class="lang-vi">Index có thể được reorganize hoặc rebuild</span></li>
 <li><code><span class="lang-en">ALTER INDEX [IndexName or ALL] ON Schema.Table …</span><span class="lang-vi">ALTER INDEX [IndexName or ALL] ON Schema.Table …</span></code></li>
@@ -4534,7 +4726,7 @@ WHERE type = 1</span></pre></li>
 <ul><li><span class="lang-en">Auto Create Statistics</span><span class="lang-vi">Auto Create Statistics</span></li>
 <ul><li><span class="lang-en">The database generates information about the contents of each column. Can be useful for deciding whether to use a scan or seek.</span><span class="lang-vi">Database sinh ra thông tin về nội dung của từng cột. Hữu ích khi quyết định nên dùng scan hay seek.</span></li>
 </ul><li><span class="lang-en">Auto Shrink</span><span class="lang-vi">Auto Shrink</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE CURRENT SET AUTO_SHRINK ON; -- will enable auto-shrink.</span><span class="lang-vi">ALTER DATABASE CURRENT SET AUTO_SHRINK ON; -- will enable auto-shrink.</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE CURRENT SET AUTO_SHRINK ON; -- will enable auto-shrink.</span><span class="lang-vi">ALTER DATABASE CURRENT SET AUTO_SHRINK ON; -- will enable auto-shrink.</span></pre></li>
 <li><span class="lang-en">Not recommended, as while it is less impactful to database performance, it is less effective.</span><span class="lang-vi">Không được khuyến nghị, vì tuy ít ảnh hưởng tới hiệu năng database hơn nhưng lại kém hiệu quả.</span></li>
 <li><span class="lang-en">Also, what happens when it needs to grow again?</span><span class="lang-vi">Hơn nữa, chuyện gì xảy ra khi database cần phình to trở lại?</span></li>
 </ul><li><span class="lang-en">See also topic 55.</span><span class="lang-vi">Xem thêm mục 55.</span></li>
@@ -4626,7 +4818,7 @@ WHERE type = 1</span></pre></li>
 </ul><li><span class="lang-en">Filegroups</span><span class="lang-vi">Filegroup</span></li>
 <ul><li><span class="lang-en">Contains multiple files for admin, data allocation or storage purposes. Not used in Azure SQL Database.</span><span class="lang-vi">Chứa nhiều file, phục vụ mục đích quản trị, phân bổ dữ liệu hoặc lưu trữ. Không dùng trong Azure SQL Database.</span></li>
 <li><span class="lang-en">By default, the &quot;default&quot; filegroup is the PRIMARY filegroup. However, you can change it.</span><span class="lang-vi">Mặc định, filegroup &quot;default&quot; chính là filegroup PRIMARY. Tuy nhiên bạn có thể đổi.</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE DatabaseName MODIFY FILEGROUP FileGroupName DEFAULT;</span><span class="lang-vi">ALTER DATABASE DatabaseName MODIFY FILEGROUP FileGroupName DEFAULT;</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE DatabaseName MODIFY FILEGROUP FileGroupName DEFAULT;</span><span class="lang-vi">ALTER DATABASE DatabaseName MODIFY FILEGROUP FileGroupName DEFAULT;</span></pre></li>
 </ul><li><span class="lang-en">The primary filegroup contains the primary file, system tables. The default filegroup (which may be the same) contains any other objects where you have not specified a filegroup.</span><span class="lang-vi">Filegroup primary chứa primary file và các bảng hệ thống. Filegroup default (có thể chính là nó) chứa mọi object khác mà bạn không chỉ định filegroup.</span></li>
 <li><span class="lang-en">Other filegroups are called &quot;User-defined&quot; filegroups.</span><span class="lang-vi">Các filegroup khác được gọi là filegroup &quot;User-defined&quot;.</span></li>
 <ul><li><span class="lang-en">There are other filegroups, called &quot;Memory Optimized Data&quot; and &quot;Filestream&quot;.</span><span class="lang-vi">Còn có các filegroup khác nữa, gọi là &quot;Memory Optimized Data&quot; và &quot;Filestream&quot;.</span></li>
@@ -4635,16 +4827,22 @@ WHERE type = 1</span></pre></li>
 <li><span class="lang-en">Transaction logs are not part of a filegroup.</span><span class="lang-vi">Transaction log không thuộc filegroup nào.</span></li>
 <li><span class="lang-en">If you use multiple data files, Microsoft recommends that you create a second file group for the other files and make that filegroup the default filegroup.</span><span class="lang-vi">Nếu dùng nhiều data file, Microsoft khuyến nghị tạo một filegroup thứ hai cho các file còn lại và đặt filegroup đó làm default.</span></li>
 </ul><li><span class="lang-en">You can create files and filegroups in T-SQL and in SSMS.</span><span class="lang-vi">Bạn tạo được file và filegroup bằng T-SQL và trong SSMS.</span></li>
-<ul><li><code><span class="lang-en">ALTER DATABASE [MyDatabase]</span><span class="lang-vi">ALTER DATABASE [MyDatabase]</span></code></li>
-<ul><li><code><span class="lang-en">ADD FILEGROUP [NewFileGroup]</span><span class="lang-vi">ADD FILEGROUP [NewFileGroup]</span></code></li>
-</ul><li class="cb"><pre class="code"><span class="lang-en">GO
-ALTER DATABASE [MyDatabase]</span><span class="lang-vi">GO
-ALTER DATABASE [MyDatabase]</span></pre></li>
-<ul><li><code><span class="lang-en">ADD FILE (NAME = N'NewData',</span><span class="lang-vi">ADD FILE (NAME = N'NewData',</span></code></li>
-<li><span class="lang-en">FILENAME = N'C:\\PathToData\\NewData.ndf' ,</span><span class="lang-vi">FILENAME = N'C:\\PathToData\\NewData.ndf' ,</span></li>
-<li><span class="lang-en">SIZE = 8192KB , FILEGROWTH = 65536KB )</span><span class="lang-vi">SIZE = 8192KB , FILEGROWTH = 65536KB )</span></li>
-<ul><ul><ul><li><span class="lang-en">or FILEGROWTH = 10%</span><span class="lang-vi">hoặc FILEGROWTH = 10%</span></li>
-</ul></ul></ul><li><span class="lang-en">TO FILEGROUP [NewFileGroup]</span><span class="lang-vi">TO FILEGROUP [NewFileGroup]</span></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">ALTER DATABASE [MyDatabase]
+ADD FILEGROUP [NewFileGroup]
+GO
+ALTER DATABASE [MyDatabase]
+ADD FILE (NAME = N'NewData',
+FILENAME = N'C:\\PathToData\\NewData.ndf' ,
+SIZE = 8192KB , FILEGROWTH = 65536KB )
+TO FILEGROUP [NewFileGroup]</span><span class="lang-vi">ALTER DATABASE [MyDatabase]
+ADD FILEGROUP [NewFileGroup]
+GO
+ALTER DATABASE [MyDatabase]
+ADD FILE (NAME = N'NewData',
+FILENAME = N'C:\\PathToData\\NewData.ndf' ,
+SIZE = 8192KB , FILEGROWTH = 65536KB )
+TO FILEGROUP [NewFileGroup]</span></pre></li>
+<ul><li><span class="lang-en">or FILEGROWTH = 10%</span><span class="lang-vi">hoặc FILEGROWTH = 10%</span></li>
 </ul></ul><li><span class="lang-en">For information on a table, use:</span><span class="lang-vi">Để xem thông tin về một bảng, dùng:</span></li>
 <ul><li><code><span class="lang-en">sp_help 'Schema.TableName'</span><span class="lang-vi">sp_help 'Schema.TableName'</span></code></li>
 </ul></ul></section>

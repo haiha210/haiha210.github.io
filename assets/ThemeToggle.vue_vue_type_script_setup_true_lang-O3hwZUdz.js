@@ -1,0 +1,1 @@
+import{d as n,Q as o,o as s,c as i,b as r}from"./index-fGggpZ7O.js";const l=n({__name:"ThemeToggle",setup(a){const t=o();return(g,e)=>(s(),i("button",{title:"Đổi giao diện sáng/tối",onClick:e[0]||(e[0]=m=>r(t).toggleTheme())},"◐"))}});export{l as _};
