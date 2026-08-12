@@ -1,4 +1,4 @@
-import{_ as G}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-C8Pku2QQ.js";import{d as F,Q as H,j as c,s as Y,x as K,c as W,a as e,P as S,b as u,g as E,w as N,t as M,r as j,o as X,h as $}from"./index-BR7tnlIF.js";import{u as J}from"./useStudyClock-DMCxc5PT.js";const Z=`<h2 class="dom" id="dom1">1 · Plan and implement data platform resources</h2>
+import{_ as G}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-BbnQocwy.js";import{d as F,Q as H,j as c,s as Y,x as K,c as W,a as e,P as S,b as u,g as E,w as N,t as M,r as j,o as X,h as $}from"./index-p15DqVjt.js";import{u as J}from"./useStudyClock-DmiowNYf.js";const Z=`<h2 class="dom" id="dom1">1 · Plan and implement data platform resources</h2>
 <section id="s1"><h3><span class="n">1.</span> <span class="lang-en">deploy database offerings on selected platforms</span><span class="lang-vi">triển khai database trên các nền tảng được chọn</span><a class="anch" href="#s1" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">SQL Server Virtual Machine</span><span class="lang-vi">SQL Server Virtual Machine</span></li>
 <ul><li><span class="lang-en">Go to Azure SQL</span><span class="lang-vi">Vào Azure SQL</span></li>
@@ -1577,14 +1577,17 @@ SELECT * from sys.change_tracking_tables -- this uses the current database. You 
 <li><span class="lang-en">VIEW CHANGE TRACKING permission for the relevant table.</span><span class="lang-vi">Quyền VIEW CHANGE TRACKING trên bảng tương ứng.</span></li>
 </ul></ul><li><span class="lang-en">To use it:</span><span class="lang-vi">Cách sử dụng:</span></li>
 <ul><li><span class="lang-en">To get the initial sync version</span><span class="lang-vi">Để lấy version đồng bộ ban đầu</span></li>
-<ul><li><span class="lang-en">declare @last_sync bigint;</span><span class="lang-vi">declare @last_sync bigint;</span></li>
-<li><code><span class="lang-en">SET @last_sync = CHANGE_TRACKING_CURRENT_VERSION();</span><span class="lang-vi">SET @last_sync = CHANGE_TRACKING_CURRENT_VERSION();</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">DECLARE @last_sync bigint;
+SET @last_sync = CHANGE_TRACKING_CURRENT_VERSION();</span><span class="lang-vi">DECLARE @last_sync bigint;
+SET @last_sync = CHANGE_TRACKING_CURRENT_VERSION();</span></pre></li>
 </ul><li><span class="lang-en">After changes have happened:</span><span class="lang-vi">Sau khi đã có thay đổi:</span></li>
-<ul><li><code><span class="lang-en">SELECT CT.ProductID, CT.SYS_CHANGE_OPERATION,</span><span class="lang-vi">SELECT CT.ProductID, CT.SYS_CHANGE_OPERATION,</span></code></li>
-<li><span class="lang-en">CT.SYS_CHANGE_COLUMNS, CT.SYS_CHANGE_CONTEXT</span><span class="lang-vi">CT.SYS_CHANGE_COLUMNS, CT.SYS_CHANGE_CONTEXT</span></li>
-<li><code><span class="lang-en">FROM CHANGETABLE(CHANGES Schema.Table, @last_sync) AS CT</span><span class="lang-vi">FROM CHANGETABLE(CHANGES Schema.Table, @last_sync) AS CT</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">SELECT CT.ProductID, CT.SYS_CHANGE_OPERATION,
+       CT.SYS_CHANGE_COLUMNS, CT.SYS_CHANGE_CONTEXT
+FROM CHANGETABLE(CHANGES Schema.Table, @last_sync) AS CT</span><span class="lang-vi">SELECT CT.ProductID, CT.SYS_CHANGE_OPERATION,
+       CT.SYS_CHANGE_COLUMNS, CT.SYS_CHANGE_CONTEXT
+FROM CHANGETABLE(CHANGES Schema.Table, @last_sync) AS CT</span></pre></li>
 </ul><li><span class="lang-en">Check that you don’t have to refresh the entire table:</span><span class="lang-vi">Kiểm tra xem bạn có phải làm mới toàn bộ bảng không:</span></li>
-<ul><li><code><span class="lang-en">IF (@last_sync &lt; CHANGE_TRACKING_MIN_VALID_VERSION( OBJECT_ID('Schema.Table'))</span><span class="lang-vi">IF (@last_sync &lt; CHANGE_TRACKING_MIN_VALID_VERSION( OBJECT_ID('Schema.Table'))</span></code></li>
+<ul><li class="cb"><pre class="code"><span class="lang-en">IF (@last_sync &lt; CHANGE_TRACKING_MIN_VALID_VERSION( OBJECT_ID('Schema.Table'))</span><span class="lang-vi">IF (@last_sync &lt; CHANGE_TRACKING_MIN_VALID_VERSION( OBJECT_ID('Schema.Table'))</span></pre></li>
 </ul></ul><li><span class="lang-en">Change Data Capture (CDC) is supported in Azure SQL Database, Azure SQL Managed Instance and SQL Server on VM.</span><span class="lang-vi">Change Data Capture (CDC) được hỗ trợ trong Azure SQL Database, Azure SQL Managed Instance và SQL Server trên VM.</span></li>
 <ul><li><span class="lang-en">CDC tracks historic data.</span><span class="lang-vi">CDC theo dõi cả dữ liệu lịch sử.</span></li>
 <li><span class="lang-en">Needs a minimum of 1 vCore or 100 DTUs or eDTUs.</span><span class="lang-vi">Cần tối thiểu 1 vCore hoặc 100 DTU/eDTU.</span></li>
