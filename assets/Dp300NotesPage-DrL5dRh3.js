@@ -1,4 +1,4 @@
-import{_ as G}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-D3G6Wllc.js";import{d as F,Q as H,j as c,E as Y,J as K,c as W,a as e,N as S,b as u,g as E,w as N,t as M,r as j,o as X,h as $}from"./index-BLOxYIxo.js";import{u as J}from"./useStudyClock-BxkZlMqc.js";const Z=`<h2 class="dom" id="dom1">1 · Plan and implement data platform resources</h2>
+import{_ as G}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-D5-e3Lab.js";import{d as F,Q as H,j as c,E as Y,J as K,c as W,a as e,N as S,b as u,g as E,w as N,t as M,r as j,o as X,h as $}from"./index-CGh5MdCc.js";import{u as J}from"./useStudyClock-aKB4Wned.js";const Z=`<h2 class="dom" id="dom1">1 · Plan and implement data platform resources</h2>
 <section id="s1"><h3><span class="n">1.</span> <span class="lang-en">deploy database offerings on selected platforms</span><span class="lang-vi">triển khai database trên các nền tảng được chọn</span><a class="anch" href="#s1" title="Link tới mục này">#</a></h3>
 <ul><li><span class="lang-en">SQL Server Virtual Machine</span><span class="lang-vi">SQL Server Virtual Machine</span></li>
 <ul><li><span class="lang-en">Go to Azure SQL</span><span class="lang-vi">Vào Azure SQL</span></li>
@@ -2748,7 +2748,7 @@ SELECT * FROM sys.dm_db_wait_stats (Azure SQL Database / MI)</span></pre></li>
 </ul><li><span class="lang-en">IO</span><span class="lang-vi">IO</span></li>
 <ul><li><span class="lang-en">PAGEIOLAATCH_* - data file I/O issues</span><span class="lang-vi">PAGEIOLATCH_* — vấn đề I/O của file data</span></li>
 <li><span class="lang-en">PAGELATCH_* - tempdb I/O issues</span><span class="lang-vi">PAGELATCH_* — vấn đề I/O của tempdb</span></li>
-<li><span class="lang-en">WRITE_LOG – transaction log I/O issues</span><span class="lang-vi">WRITE_LOG — vấn đề I/O của transaction log</span></li>
+<li><span class="lang-en">WRITELOG – transaction log I/O issues</span><span class="lang-vi">WRITELOG — vấn đề I/O của transaction log</span></li>
 </ul><li><span class="lang-en">Memory Grant Wait performance issues</span><span class="lang-vi">Vấn đề hiệu năng do chờ memory grant</span></li>
 <ul><li><span class="lang-en">RESOURCE_SEMAPHORE – waiting for memory to become available</span><span class="lang-vi">RESOURCE_SEMAPHORE — đang chờ có memory trống</span></li>
 </ul><li><span class="lang-en">Parallel</span><span class="lang-vi">Song song</span></li>
