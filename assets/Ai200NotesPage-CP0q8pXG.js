@@ -1,4 +1,4 @@
-import{_ as V}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-D6wJg7If.js";import{d as G,s as U,x as H,c as Q,a as r,h as v,g as k,w as B,O as N,b as $,j as i,z as f,y as W,K as g,r as j,o as Y}from"./index-Dv0GMX4F.js";import{u as X}from"./useStudyClock-BuN8CzX7.js";const J=`
+import{_ as V}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-YQVzQMoY.js";import{d as G,s as U,x as H,c as Q,a as r,h as v,g as k,w as B,O as N,b as $,j as i,z as f,y as W,K as g,r as j,o as Y}from"./index-LRZ8tVRd.js";import{u as X}from"./useStudyClock-qSVIKPh0.js";const J=`
 <section class="doc" id="README" data-title="Tổng quan kỳ thi">
 <h1 id="README/ai-200-developing-ai-cloud-solutions-on-azure-tai-lieu-on-th">AI-200: Developing AI Cloud Solutions on Azure — Tài liệu ôn thi (Tiếng Việt)</h1>
 <p>Chứng chỉ: <strong>Microsoft Certified: Azure AI Cloud Developer Associate</strong><br>Mã đề thi: <strong>AI-200</strong> · Cấp độ: Intermediate · Vai trò: Developer</p>
