@@ -1,7 +1,7 @@
-import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as O,g as _,w as f,P as F,A as Y,r as it,m as ht,o as s,H as W,h as X}from"./index-C6E142I_.js";import{_ as ot}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-D-q5_PfG.js";import{u as st}from"./useStudyClock-D4WPUQjn.js";const P=`<h2 class="dom" id="d1">Phạm vi 1 · Nền tảng dữ liệu &amp; di trú</h2>
+import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as N,E as z,f,g as k,w as O,O as F,A as Y,r as it,m as ht,o as s,G as W,h as j}from"./index-Dv0GMX4F.js";import{_ as ot}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-D6wJg7If.js";import{u as st}from"./useStudyClock-BuN8CzX7.js";const P=`<h2 class="dom" id="d1">Phạm vi 1 · Nền tảng dữ liệu &amp; di trú</h2>
 
 <section id="t101">
-<h3>Ba nền tảng Azure SQL — bảng gốc để suy ra mọi câu hỏi khác<a class="nl" href="/dp-300/notes#s-3">note 4–6</a></h3>
+<h3>Ba nền tảng Azure SQL — bảng gốc để suy ra mọi câu hỏi khác<a class="nl" href="/dp-300/notes#s-3">note 4–6</a><a class="ql" href="/dp-300/practice?topic=Azure%20SQL%20DB,Azure%20SQL%20MI,SQL%20on%20VM" title="Ôn 33 câu: Azure SQL DB, Azure SQL MI, SQL on VM">ôn 33 câu</a></h3>
 <p class="lead">Đọc đề tìm ba từ khoá: <b>quyền OS</b>, <b>tính năng cũ</b>, <b>ai quản backup/patch</b>. Trả lời được ba cái đó là chọn đúng nền tảng.</p>
 <div class="tw"><table class="cmp">
 <tr><th>Tiêu chí</th><th>Azure SQL Database (PaaS)</th><th>SQL Managed Instance (PaaS)</th><th>SQL Server trên Azure VM (IaaS)</th></tr>
@@ -20,7 +20,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t102">
-<h3>Mô hình mua và hình thái compute<a class="nl" href="/dp-300/notes#s9">note 9</a></h3>
+<h3>Mô hình mua và hình thái compute<a class="nl" href="/dp-300/notes#s9">note 9</a><a class="ql" href="/dp-300/practice?topic=Azure%20SQL%20DB,Resource" title="Ôn 18 câu: Azure SQL DB, Resource">ôn 18 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Lựa chọn</th><th>Chọn khi</th><th>Chi tiết ra đề</th></tr>
 <tr><td>DTU</td><td>Muốn một gói dựng sẵn gồm compute + storage + IO</td><td>Đơn giản nhưng cứng; đơn giá eDTU của pool = 1,5× đơn giá DTU single database; dùng Premium disk, cấp phát theo bước 250 GB tới 1 TB rồi 256 GB</td></tr>
@@ -34,7 +34,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t103">
-<h3>Service tier — chi tiết nhận dạng là độ trễ hoặc số replica<a class="nl" href="/dp-300/notes#s9">note 9–10</a></h3>
+<h3>Service tier — chi tiết nhận dạng là độ trễ hoặc số replica<a class="nl" href="/dp-300/notes#s9">note 9–10</a><a class="ql" href="/dp-300/practice?topic=Azure%20SQL%20DB,Azure%20SQL%20MI" title="Ôn 22 câu: Azure SQL DB, Azure SQL MI">ôn 22 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Tier</th><th>Dành cho</th><th>Con số phân biệt</th></tr>
 <tr><td>Basic / Standard (DTU)</td><td>Dev, test, workload ít truy cập</td><td>Basic, S0, S1, S2 có &lt; 1 vCore → KHÔNG dùng được Change Data Capture; Basic/S0/S1 nằm trên HDD</td></tr>
@@ -52,7 +52,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t104">
-<h3>SQL Server trên VM — best practice lưu trữ<a class="nl" href="/dp-300/notes#s11">note 11</a></h3>
+<h3>SQL Server trên VM — best practice lưu trữ<a class="nl" href="/dp-300/notes#s11">note 11</a><a class="ql" href="/dp-300/practice?topic=SQL%20on%20VM" title="Ôn 11 câu: SQL on VM">ôn 11 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Đối tượng</th><th>Đặt ở đâu</th><th>Disk caching</th></tr>
 <tr><td>File data</td><td>Premium P30–P40 (có hỗ trợ cache)</td><td><b>ReadOnly</b> — đọc từ cache nhanh hơn nhiều</td></tr>
@@ -71,7 +71,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t105">
-<h3>Dòng VM và SLA<a class="nl" href="/dp-300/notes#s11">note 11</a></h3>
+<h3>Dòng VM và SLA<a class="nl" href="/dp-300/notes#s11">note 11</a><a class="ql" href="/dp-300/practice?topic=SQL%20on%20VM,SLA" title="Ôn 15 câu: SQL on VM, SLA">ôn 15 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Dòng VM</th><th>Đặc điểm</th><th>Hợp với</th></tr>
 <tr><td>General purpose</td><td>Cân bằng CPU–memory</td><td>Dev/test, database nhỏ–vừa, web server lưu lượng thấp–vừa</td></tr>
@@ -93,7 +93,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t106">
-<h3>Chọn công cụ di trú — đọc đề tìm nguồn, đích, downtime<a class="nl" href="/dp-300/notes#s15">note 15–16</a></h3>
+<h3>Chọn công cụ di trú — đọc đề tìm nguồn, đích, downtime<a class="nl" href="/dp-300/notes#s15">note 15–16</a><a class="ql" href="/dp-300/practice?topic=Migration,MI%20copy%2Fmove" title="Ôn 22 câu: Migration, MI copy/move">ôn 22 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Nhu cầu</th><th>Công cụ</th><th>Cần nhớ</th></tr>
 <tr><td>Đánh giá cả data estate, lift-and-shift lên VM</td><td>Azure Migrate</td><td>Cho khuyến nghị đích, kích cỡ và ước tính chi phí hằng tháng</td></tr>
@@ -118,7 +118,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t107">
-<h3>Phân vùng và sharding<a class="nl" href="/dp-300/notes#s7">note 7–8</a></h3>
+<h3>Phân vùng và sharding<a class="nl" href="/dp-300/notes#s7">note 7–8</a><a class="ql" href="/dp-300/practice?topic=Partitioning" title="Ôn 8 câu: Partitioning">ôn 8 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Kỹ thuật</th><th>Chia theo</th><th>Cần nhớ</th></tr>
 <tr><td>Horizontal (sharding)</td><td>Dòng — mọi partition cùng schema</td><td>Nhân bản dữ liệu nhỏ và tĩnh vào mọi shard để tránh truy vấn xuyên partition</td></tr>
@@ -132,7 +132,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t108">
-<h3>Compression<a class="nl" href="/dp-300/notes#s13">note 13</a></h3>
+<h3>Compression<a class="nl" href="/dp-300/notes#s13">note 13</a><a class="ql" href="/dp-300/practice?topic=Compression" title="Ôn 7 câu: Compression">ôn 7 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Mức</th><th>Làm gì</th><th>Lợi nhất với</th></tr>
 <tr><td>Row</td><td>Bỏ byte thừa trong từng giá trị</td><td>Kiểu số (tinyint vốn đã 1 byte), datetime / datetime2 / datetimeoffset, char / nchar — tới 50% tiếng Anh, Đức, Hindi, Thổ; ~40% tiếng Việt; 15% tiếng Nhật. varchar/nvarchar gần như vô ích</td></tr>
@@ -147,12 +147,13 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>Đổi compression của clustered index</td><td>Phải drop clustered index (tốt nhất OFFLINE) rồi rebuild bảng</td></tr>
 <tr><td>Ước lượng</td><td><code>sp_estimate_data_compression_savings</code> — KHÔNG có trên Azure SQL Database. Index_ID: 0 = heap, 1 = clustered, &gt;1 = nonclustered</td></tr>
 <tr><td>T-SQL</td><td><code>ALTER TABLE … REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE|ROW|NONE)</code></td></tr>
+<tr><td>Lấy tham số cho sp_estimate</td><td><code>SELECT name, index_id FROM sys.indexes WHERE OBJECT_NAME(object_id) = N'TableName'</code> và <code>SELECT * FROM sys.partitions WHERE OBJECT_NAME(object_id) = N'TableName'</code></td></tr>
 <tr><td>Khác</td><td>Compression KHÔNG ảnh hưởng backup/restore. Có từ SQL Server 2016 SP1 ở mọi edition; trước đó chỉ Enterprise</td></tr>
 </table></div>
 </section>
 
 <section id="t109">
-<h3>SQL Data Sync — thành phần và điều kiện<a class="nl" href="/dp-300/notes#s20">note 20</a></h3>
+<h3>SQL Data Sync — thành phần và điều kiện<a class="nl" href="/dp-300/notes#s20">note 20</a><a class="ql" href="/dp-300/practice?topic=Data%20Sync" title="Ôn 7 câu: Data Sync">ôn 7 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Thành phần</th><th>Yêu cầu</th></tr>
 <tr><td>Hub database</td><td>PHẢI là Azure SQL Database</td></tr>
@@ -166,7 +167,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t110">
-<h3>Nơi chạy SQL ngoài các lựa chọn thông thường<a class="nl" href="/dp-300/notes#s6a">note 6a–6b</a></h3>
+<h3>Nơi chạy SQL ngoài các lựa chọn thông thường<a class="nl" href="/dp-300/notes#s6a">note 6a–6b</a><a class="ql" href="/dp-300/practice?topic=Azure%20Arc,Fabric" title="Ôn 13 câu: Azure Arc, Fabric">ôn 13 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Lựa chọn</th><th>Dùng khi</th><th>Điểm nhận dạng</th></tr>
 <tr><td>Azure Arc-enabled SQL Server</td><td>Instance SQL Server ngoài Azure: on-prem, đám mây khác</td><td>Kiểm kê, best-practices assessment, tìm database chưa backup/chưa mã hoá; Entra ID auth cho SQL Server 2022+; tích hợp Defender for Cloud và Purview; mô hình pay-as-you-go thay vì mua license</td></tr>
@@ -175,7 +176,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t111">
-<h3>Patch và kiểm định sau di trú<a class="nl" href="/dp-300/notes#s3">note 3, 18</a></h3>
+<h3>Patch và kiểm định sau di trú<a class="nl" href="/dp-300/notes#s3">note 3, 18</a><a class="ql" href="/dp-300/practice?topic=Patching,VM%20automation" title="Ôn 7 câu: Patching, VM automation">ôn 7 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Việc</th><th>PaaS (SQL DB / MI)</th><th>IaaS (VM)</th></tr>
 <tr><td>Patch engine</td><td>Có sẵn, luôn dùng Database Engine ổn định mới nhất</td><td>Bạn toàn quyền; hoặc bật <b>Automated Patching</b> (cần SQL Server 2008 R2+ và Windows Server 2008 R2+)</td></tr>
@@ -189,7 +190,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <h2 class="dom" id="d2">Phạm vi 2 · Môi trường bảo mật</h2>
 
 <section id="t201">
-<h3>Bảo vệ dữ liệu — chọn cơ chế bằng câu hỏi "ai KHÔNG được đọc plaintext?"<a class="nl" href="/dp-300/notes#s-sec2">note 30–42</a></h3>
+<h3>Bảo vệ dữ liệu — chọn cơ chế bằng câu hỏi "ai KHÔNG được đọc plaintext?"<a class="nl" href="/dp-300/notes#s-sec2">note 30–42</a><a class="ql" href="/dp-300/practice?topic=TDE,Always%20Encrypted,Dynamic%20Data%20Masking,RLS,Ledger,Object%20encryption" title="Ôn 41 câu: TDE, Always Encrypted, Dynamic Data Masking, RLS, Ledger, Object encryption">ôn 41 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Cơ chế</th><th>Bảo vệ cái gì</th><th>Sysadmin/DBA đọc được?</th><th>Ảnh hưởng truy vấn</th></tr>
 <tr><td>TDE</td><td>Cả database khi nằm yên: file data, log, backup</td><td><b>Có</b> — giải mã trong suốt</td><td>Không phải sửa câu lệnh nào</td></tr>
@@ -203,7 +204,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t202">
-<h3>TDE — đặt ở đâu, bật bằng gì<a class="nl" href="/dp-300/notes#s30">note 30</a></h3>
+<h3>TDE — đặt ở đâu, bật bằng gì<a class="nl" href="/dp-300/notes#s30">note 30</a><a class="ql" href="/dp-300/practice?topic=TDE,Key%20Vault" title="Ôn 9 câu: TDE, Key Vault">ôn 9 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th></th><th>Azure SQL Database</th><th>Managed Instance</th><th>SQL Server trên VM</th></tr>
 <tr><td>Phạm vi</td><td>Cấp server; database mới mặc định đã mã hoá (trừ database tạo bằng restore hoặc copy)</td><td>Cấp instance, kế thừa cho mọi database đã mã hoá</td><td>Bạn tự quản</td></tr>
@@ -224,7 +225,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t203">
-<h3>Always Encrypted và secure enclave<a class="nl" href="/dp-300/notes#s33">note 33–33a</a></h3>
+<h3>Always Encrypted và secure enclave<a class="nl" href="/dp-300/notes#s33">note 33–33a</a><a class="ql" href="/dp-300/practice?topic=Always%20Encrypted,Secure%20enclaves" title="Ôn 12 câu: Always Encrypted, Secure enclaves">ôn 12 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Chủ đề</th><th>Chi tiết</th></tr>
 <tr><td>Deterministic</td><td>Cho phép equality, JOIN, GROUP BY, DISTINCT, index. Chuỗi PHẢI dùng collation <code>_BIN2</code> (ví dụ Latin1_General_BIN2)</td></tr>
@@ -242,7 +243,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t204">
-<h3>Dynamic Data Masking — các kiểu mask<a class="nl" href="/dp-300/notes#s34">note 34</a></h3>
+<h3>Dynamic Data Masking — các kiểu mask<a class="nl" href="/dp-300/notes#s34">note 34</a><a class="ql" href="/dp-300/practice?topic=Dynamic%20Data%20Masking" title="Ôn 8 câu: Dynamic Data Masking">ôn 8 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Mask</th><th>Hiển thị</th><th>Hàm T-SQL</th></tr>
 <tr><td>Default</td><td>xxxx cho chuỗi, 0 cho số, 01-01-1900 cho ngày</td><td><code>default()</code></td></tr>
@@ -255,7 +256,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t205">
-<h3>Xác thực và principal — cùng một việc, hai nền tảng<a class="nl" href="/dp-300/notes#s23">note 23–29</a></h3>
+<h3>Xác thực và principal — cùng một việc, hai nền tảng<a class="nl" href="/dp-300/notes#s23">note 23–29</a><a class="ql" href="/dp-300/practice?topic=Authentication,Users%20%26%20logins" title="Ôn 15 câu: Authentication, Users & logins">ôn 15 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Chủ đề</th><th>Azure SQL Database</th><th>Managed Instance / SQL Server trên VM</th></tr>
 <tr><td>Principal cấp server</td><td>Login trong master ảo + 7 fixed server role <code>##MS_…##</code></td><td>Login thật + fixed server role cổ điển (sysadmin, serveradmin, securityadmin, dbcreator…)</td></tr>
@@ -264,6 +265,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>Danh tính Entra</td><td><code>CREATE USER … FROM EXTERNAL PROVIDER</code> — contained user ngay trong database</td><td><code>CREATE LOGIN … FROM EXTERNAL PROVIDER</code> rồi <code>CREATE USER … FROM LOGIN</code></td></tr>
 <tr><td>Certificate từ file</td><td>KHÔNG tạo được từ file, không dùng file private key</td><td><code>BACKUP CERTIFICATE … WITH PRIVATE KEY</code> ở nguồn, <code>CREATE CERTIFICATE … FROM FILE</code> ở đích</td></tr>
 <tr><td>Tạo login trong portal</td><td colspan="2">KHÔNG làm được ở cả hai — nhưng tạo được Entra admin</td></tr>
+<tr><td>Kiểm tra principal</td><td colspan="2"><code>SELECT * FROM sys.sql_logins</code> (login SQL) · <code>SELECT * FROM sys.server_principals</code> (login và server role) · <code>SELECT * FROM sys.database_principals</code> (user trong database)</td></tr>
 </table></div>
 <div class="tw"><table class="cmp">
 <tr><th>Chuỗi 4 bước chuyển sang Entra-only auth</th><th>Vì sao đúng thứ tự đó</th></tr>
@@ -286,7 +288,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t206">
-<h3>Server role — cổ điển và <code>##MS_…##</code><a class="nl" href="/dp-300/notes#s25">note 25</a></h3>
+<h3>Server role — cổ điển và <code>##MS_…##</code><a class="nl" href="/dp-300/notes#s25">note 25</a><a class="ql" href="/dp-300/practice?topic=Server%20roles" title="Ôn 5 câu: Server roles">ôn 5 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Fixed server role (MI &amp; VM)</th><th>Làm được gì</th></tr>
 <tr><td>sysadmin</td><td>Mọi thứ</td></tr>
@@ -302,7 +304,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <div class="tw"><table class="cmp">
 <tr><th>Role <code>##MS_…##</code> (Azure SQL Database, SQL Server 2022+)</th><th>Quyền tương ứng</th></tr>
 <tr><td>##MS_ServerStateReader##</td><td>VIEW SERVER STATE — đọc state DMV trên mọi database. Đúng role cho công cụ giám sát chỉ đọc</td></tr>
-<tr><td>##MS_ServerStateManager##</td><td>Như trên + ALTER SERVER STATE (DBCC FREEPROCCACHE, FREESYSTEMCACHE, SQLPERF)</td></tr>
+<tr><td>##MS_ServerStateManager##</td><td>Như trên, cộng ALTER SERVER STATE: <code>DBCC FREEPROCCACHE</code>, <code>DBCC FREESYSTEMCACHE ('ALL')</code>, <code>DBCC SQLPERF()</code></td></tr>
 <tr><td>##MS_DefinitionReader##</td><td>VIEW ANY DATABASE + VIEW ANY DEFINITION — đọc định nghĩa object, KHÔNG đọc state</td></tr>
 <tr><td>##MS_SecurityDefinitionReader##</td><td>Chỉ VIEW ANY SECURITY DEFINITION (tập con của DefinitionReader)</td></tr>
 <tr><td>##MS_DatabaseConnector##</td><td>CONNECT ANY DATABASE — vào mọi database không cần user. DENY CONNECT trong database thắng</td></tr>
@@ -313,7 +315,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t207">
-<h3>Database role và quy tắc phân quyền<a class="nl" href="/dp-300/notes#s27">note 25, 27, 29</a></h3>
+<h3>Database role và quy tắc phân quyền<a class="nl" href="/dp-300/notes#s27">note 25, 27, 29</a><a class="ql" href="/dp-300/practice?topic=Database%20roles,Permissions,Custom%20roles" title="Ôn 19 câu: Database roles, Permissions, Custom roles">ôn 19 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Fixed database role</th><th>Làm được gì</th></tr>
 <tr><td>db_owner</td><td>Mọi cấu hình và hầu hết bảo trì, kể cả DROP database. Vẫn bị chặn đọc nếu thêm db_denydatareader hoặc DENY</td></tr>
@@ -346,7 +348,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t208">
-<h3>Row-Level Security — chuỗi 5 bước<a class="nl" href="/dp-300/notes#s42">note 42</a></h3>
+<h3>Row-Level Security — chuỗi 5 bước<a class="nl" href="/dp-300/notes#s42">note 42</a><a class="ql" href="/dp-300/practice?topic=RLS" title="Ôn 8 câu: RLS">ôn 8 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Bước</th><th>Việc phải làm</th><th>Bẫy</th></tr>
 <tr><td>1 · Schema</td><td>Tạo schema riêng chứa object bảo mật</td><td>Để quyền của chúng tách khỏi quyền trên dữ liệu, đỡ công bảo trì</td></tr>
@@ -364,20 +366,22 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t209">
-<h3>Theo dõi thay đổi và audit — mỗi cơ chế cho lại gì<a class="nl" href="/dp-300/notes#s38">note 37–38, 41</a></h3>
+<h3>Theo dõi thay đổi và audit — mỗi cơ chế cho lại gì<a class="nl" href="/dp-300/notes#s38">note 37–38, 41</a><a class="ql" href="/dp-300/practice?topic=Change%20Tracking,CDC,Auditing" title="Ôn 18 câu: Change Tracking, CDC, Auditing">ôn 18 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Cơ chế</th><th>Nhận lại được gì</th><th>Điều kiện</th><th>Điểm hay ra đề</th></tr>
 <tr><td>Change Tracking</td><td>Dòng nào đổi, cột nào đổi — <b>không có giá trị cũ</b></td><td>Bảng phải có primary key; bật ở database rồi tới từng bảng</td><td>Đồng bộ, nhẹ; <code>CHANGETABLE(CHANGES …)</code>, <code>CHANGE_TRACKING_CURRENT_VERSION()</code>; retention mặc định 2 ngày, tối thiểu 1 phút, không có tối đa</td></tr>
 <tr><td>Change Data Capture</td><td>Mọi thay đổi trung gian, kèm giá trị trước và sau</td><td>Bất đồng bộ, đọc transaction log; cần db_owner; vCore mọi tier, DTU cần S3+</td><td><code>__$operation</code> 1/2/3/4; all_changes vs net_changes; retention mặc định 3 ngày</td></tr>
 <tr><td>Ledger</td><td>Bằng chứng mật mã dữ liệu chưa bị sửa lén</td><td>Ledger table updatable hoặc append-only</td><td>Block đóng sau <b>30 giây hoặc 100.000 giao dịch</b>; hash mới nhất = database digest</td></tr>
 <tr><td>SQL Audit</td><td>Ai làm gì, ghi ra file .xel (Append Blob)</td><td>SQL DB/MI: Storage, Log Analytics hoặc Event Hub. VM: file system hoặc Windows event log</td><td>SQL DB audit cấp database (và cấp server); MI và VM audit cấp server; mỗi bản ghi tối đa <b>4.000 ký tự</b></td></tr>
+<tr><td><b>Câu lệnh</b></td><td colspan="3">CT: <code>ALTER DATABASE … SET CHANGE_TRACKING = ON (CHANGE_RETENTION = 2 DAYS, AUTO_CLEANUP = ON)</code> rồi <code>ALTER TABLE … ENABLE CHANGE_TRACKING WITH (TRACK_COLUMNS_UPDATED = ON)</code>; kiểm tra ở <code>sys.change_tracking_databases</code> và <code>sys.change_tracking_tables</code>. CDC: <code>sys.sp_cdc_enable_db</code> rồi <code>sys.sp_cdc_enable_table</code>, xem lại bằng <code>sys.sp_cdc_help_change_data_capture</code>. Audit: <code>SELECT * FROM sys.fn_get_audit_file('NameOfFile.sqlaudit', default, default)</code></td></tr>
 </table></div>
 <div class="tw"><table class="cmp">
 <tr><th>CDC — chi tiết hay bị hỏi</th><th>Nội dung</th></tr>
-<tr><td>Ai chạy capture/cleanup</td><td>SQL Server &amp; MI: hai job của SQL Agent (<code>cdc.&lt;db&gt;_capture</code>, <code>_cleanup</code>), điều khiển bằng sp_cdc_start_job / stop_job / help_jobs. <b>Azure SQL Database</b>: scheduler có sẵn — capture quét mỗi <b>20 giây</b>, cleanup mỗi <b>giờ</b>, không đổi được</td></tr>
+<tr><td>Ai chạy capture/cleanup</td><td>SQL Server &amp; MI: hai job của SQL Agent (<code>cdc.&lt;db&gt;_capture</code>, <code>_cleanup</code>), điều khiển bằng <code>sys.sp_cdc_start_job</code> / <code>sys.sp_cdc_stop_job</code> / <code>sys.sp_cdc_help_jobs</code>. <b>Azure SQL Database</b>: scheduler có sẵn — capture quét mỗi <b>20 giây</b>, cleanup mỗi <b>giờ</b>, không đổi được</td></tr>
 <tr><td>Tạm dừng khi bulk load</td><td>Chỉ Azure SQL Database: <code>sys.sp_cdc_set_scheduler_job @jobType='both', @state='pause'</code> (cần db_owner)</td></tr>
 <tr><td>__$operation</td><td>1 = delete, 2 = insert, 3 = update (giá trị TRƯỚC, chỉ khi dùng <code>N'all update old'</code>), 4 = update (giá trị SAU)</td></tr>
 <tr><td>Cột metadata</td><td>__$start_lsn (LSN commit, dùng chung trong một transaction), __$seqval, __$operation, __$update_mask. Trong change table còn __$end_lsn (luôn NULL) và <b>__$command_id</b> — chính cột này dùng để sắp thứ tự, không phải __$seqval</td></tr>
+<tr><td>Hàm đọc thay đổi</td><td><code>cdc.fn_cdc_get_all_changes_&lt;capture_instance&gt;(@from_lsn, @to_lsn, N'all')</code> trả mọi thay đổi trung gian; <code>cdc.fn_cdc_get_net_changes_&lt;capture_instance&gt;</code> chỉ trả trạng thái cuối của mỗi dòng. Lấy biên LSN bằng <code>sys.fn_cdc_get_min_lsn('capture_instance')</code> và <code>sys.fn_cdc_get_max_lsn()</code></td></tr>
 <tr><td>net_changes</td><td>Chỉ tồn tại nếu tạo capture instance với <code>@supports_net_changes = 1</code>; bảng nguồn cần primary key hoặc unique index qua @index_name</td></tr>
 <tr><td>Giám sát</td><td><code>sys.dm_cdc_log_scan_sessions</code>, <code>sys.dm_cdc_errors</code>; cấu hình job ở <code>cdc.cdc_jobs</code> (schema cdc của chính database, KHÔNG phải msdb)</td></tr>
 <tr><td>Không dùng được với</td><td>Cột đã mã hoá; database serverless đang paused; bật CDC thì aggressive log truncation của ADR bị tắt</td></tr>
@@ -386,7 +390,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t210">
-<h3>Ledger — hai loại bảng<a class="nl" href="/dp-300/notes#s41">note 41</a></h3>
+<h3>Ledger — hai loại bảng<a class="nl" href="/dp-300/notes#s41">note 41</a><a class="ql" href="/dp-300/practice?topic=Ledger" title="Ôn 6 câu: Ledger">ôn 6 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th></th><th>Updatable ledger table</th><th>Append-only ledger table</th></tr>
 <tr><td>Cột GENERATED ALWAYS</td><td>4 cột: ledger_start/end_transaction_id, ledger_start/end_sequence_number</td><td>2 cột: ledger_start_transaction_id, _sequence_number</td></tr>
@@ -407,11 +411,11 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t211">
-<h3>Mạng và kết nối<a class="nl" href="/dp-300/notes#s32">note 32, 34a, 35</a></h3>
+<h3>Mạng và kết nối<a class="nl" href="/dp-300/notes#s32">note 32, 34a, 35</a><a class="ql" href="/dp-300/practice?topic=Firewall,Private%20Link,TLS" title="Ôn 15 câu: Firewall, Private Link, TLS">ôn 15 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Cơ chế</th><th>Phạm vi</th><th>Cấu hình bằng</th><th>Cần nhớ</th></tr>
-<tr><td>Firewall rule cấp server</td><td>Mọi database trên logical server — CHỈ Azure SQL Database, không có ở MI</td><td>Portal, <code>sp_set_firewall_rule</code>, PowerShell, CLI, REST</td><td>Rule lưu trong master; rule 0.0.0.0 = cho phép dịch vụ Azure; cần role SQL Server Contributor / SQL Security Manager / owner</td></tr>
-<tr><td>Firewall rule cấp database</td><td>Chỉ một database</td><td>CHỈ T-SQL: <code>sp_set_database_firewall_rule</code>, cần CONTROL DATABASE</td><td>Được kiểm <b>TRƯỚC</b> rule cấp server; lưu trong chính database đó; phải có rule cấp server trước đã</td></tr>
+<tr><td>Firewall rule cấp server</td><td>Mọi database trên logical server — CHỈ Azure SQL Database, không có ở MI</td><td>Portal, <code>sp_set_firewall_rule</code> / <code>sp_delete_firewall_rule</code> (xem ở <code>sys.firewall_rules</code>), PowerShell, CLI, REST</td><td>Rule lưu trong master; rule 0.0.0.0 = cho phép dịch vụ Azure; cần role SQL Server Contributor / SQL Security Manager / owner</td></tr>
+<tr><td>Firewall rule cấp database</td><td>Chỉ một database</td><td>CHỈ T-SQL: <code>sp_set_database_firewall_rule</code> / <code>sp_delete_database_firewall_rule</code> (xem ở <code>sys.database_firewall_rules</code>), cần CONTROL DATABASE</td><td>Được kiểm <b>TRƯỚC</b> rule cấp server; lưu trong chính database đó; phải có rule cấp server trước đã</td></tr>
 <tr><td>Private Link / private endpoint</td><td>Một IP riêng trong VNet, map tới đúng một resource</td><td>Portal, PowerShell, CLI</td><td>Endpoint phải cùng region với <b>VNet</b>, database có thể ở nơi khác; lưu lượng đi trên mạng Microsoft; phê duyệt khi trạng thái Pending</td></tr>
 <tr><td>Service endpoint</td><td>Mở một subnet hướng tới dịch vụ</td><td>Thiết lập của VNet</td><td>Vẫn đi tới dịch vụ qua <b>IP công cộng</b> — đó là khác biệt so với Private Link</td></tr>
 <tr><td>TLS</td><td>Dữ liệu khi truyền (TDE là khi nằm yên)</td><td>Networking → Connectivity → Minimum TLS version; <code>Set-AzSqlServer -MinimalTlsVersion</code>; <code>az sql server update</code></td><td>Đặt tối thiểu 1.2; một số driver ngoài Microsoft không tự thương lượng TLS</td></tr>
@@ -425,7 +429,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t212">
-<h3>Phân loại, đánh giá, phát hiện mối đe doạ<a class="nl" href="/dp-300/notes#s36">note 36, 39, 40, 43</a></h3>
+<h3>Phân loại, đánh giá, phát hiện mối đe doạ<a class="nl" href="/dp-300/notes#s36">note 36, 39, 40, 43</a><a class="ql" href="/dp-300/practice?topic=Classification,Vulnerability,Defender,Purview" title="Ôn 15 câu: Classification, Vulnerability, Defender, Purview">ôn 15 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Công cụ</th><th>Làm gì</th><th>Bật ở đâu</th><th>Cần nhớ</th></tr>
 <tr><td>Data Discovery &amp; Classification</td><td>Gắn cho cột một information type + sensitivity label</td><td>Database → Security → Data Discovery &amp; Classification</td><td>KHÔNG được để cả hai là [n/a]; label: Public, General, Confidential (± GDPR), Highly Confidential; sửa được: Owner, Contributor, SQL Security Manager — chỉ đọc: Reader, User Access Administrator</td></tr>
@@ -437,7 +441,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t213">
-<h3>Khác biệt bảo mật giữa ba nền tảng — chỗ đề thi hay gài<a class="nl" href="/dp-300/notes#s6">note 6</a></h3>
+<h3>Khác biệt bảo mật giữa ba nền tảng — chỗ đề thi hay gài<a class="nl" href="/dp-300/notes#s6">note 6</a><a class="ql" href="/dp-300/practice?topic=TDE,Auditing,Certificates" title="Ôn 16 câu: TDE, Auditing, Certificates">ôn 16 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Tính năng</th><th>Azure SQL Database</th><th>Managed Instance</th><th>SQL Server trên VM</th></tr>
 <tr><td>Fixed server role ##MS_…##</td><td>Có, gán trong master</td><td>Không — dùng GRANT VIEW SERVER STATE + role cổ điển</td><td>Chỉ SQL Server 2022+</td></tr>
@@ -454,7 +458,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <h2 class="dom" id="d3">Phạm vi 3 · Giám sát &amp; tinh chỉnh</h2>
 
 <section id="t301">
-<h3>Công cụ giám sát nào trả lời câu hỏi nào<a class="nl" href="/dp-300/notes#s-sec3">note 44–48a</a></h3>
+<h3>Công cụ giám sát nào trả lời câu hỏi nào<a class="nl" href="/dp-300/notes#s-sec3">note 44–48a</a><a class="ql" href="/dp-300/practice?topic=Metrics,Query%20Store,Database%20watcher,Intelligent%20Insights,Query%20Perf%20Insight,SQL%20Insights" title="Ôn 32 câu: Metrics, Query Store, Database watcher, Intelligent Insights, Query Perf Insight, SQL Insights">ôn 32 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Công cụ</th><th>Cho biết</th><th>Ở đâu / cần nhớ</th></tr>
 <tr><td>Metrics &amp; Metrics Explorer</td><td>Số liệu time-series gần thời gian thực — nền tảng của cảnh báo</td><td>Portal → Monitoring → Metrics; nhẹ; xem tối đa 30 ngày một lúc, lùi được tới 93 ngày</td></tr>
@@ -470,7 +474,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t302">
-<h3>DMV phải thuộc<a class="nl" href="/dp-300/notes#s60">note 53, 60</a></h3>
+<h3>DMV phải thuộc<a class="nl" href="/dp-300/notes#s60">note 53, 60</a><a class="ql" href="/dp-300/practice?topic=DMV" title="Ôn 7 câu: DMV">ôn 7 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>DMV / view</th><th>Trả lời câu hỏi</th></tr>
 <tr><td>sys.dm_exec_requests</td><td>Hiện đang chạy gì, và session nào đang chặn nó (<code>blocking_session_id &gt; 0</code>)</td></tr>
@@ -492,12 +496,16 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>sys.dm_db_index_physical_stats</td><td>Mức phân mảnh index (avg_fragmentation_in_percent)</td></tr>
 <tr><td>sys.dm_db_file_space_usage / sys.database_files / sp_spaceused</td><td>Dung lượng đã dùng, đã cấp phát, còn trống (max_size = -1 là không giới hạn)</td></tr>
 <tr><td>sys.dm_db_tuning_recommendations</td><td>Khuyến nghị của auto-tuning</td></tr>
+<tr><td>sys.dm_db_missing_index_groups + sys.dm_db_missing_index_group_stats</td><td>Join với missing_index_details để xếp hạng index thiếu theo <code>avg_total_user_cost × avg_user_impact × (user_seeks + user_scans)</code></td></tr>
+<tr><td>sys.dm_exec_connections</td><td>Các kết nối đang mở; <code>SELECT @@SPID</code> cho session hiện tại</td></tr>
+<tr><td>sys.dm_db_session_space_usage / sys.dm_db_task_space_usage</td><td>Số page tempdb mỗi session / mỗi task cấp phát và thu hồi — dùng khi nghi tempdb bị một session ăn hết</td></tr>
+<tr><td>sys.databases / sys.objects</td><td>Danh sách database (msdb, tempdb, model KHÔNG xuất hiện ở Azure SQL Database) và mọi object trong database</td></tr>
 <tr><td>SERVERPROPERTY('EngineEdition')</td><td><b>5</b> = Azure SQL Database, <b>8</b> = Managed Instance, &lt; 5 = on-prem/VM</td></tr>
 </table></div>
 </section>
 
 <section id="t303">
-<h3>Wait type → nguyên nhân<a class="nl" href="/dp-300/notes#s60">note 60</a></h3>
+<h3>Wait type → nguyên nhân<a class="nl" href="/dp-300/notes#s60">note 60</a><a class="ql" href="/dp-300/practice?topic=Wait%20stats" title="Ôn 5 câu: Wait stats">ôn 5 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Wait type</th><th>Nghĩa là</th></tr>
 <tr><td>LOG_RATE_GOVERNOR</td><td>Bị giới hạn tốc độ log — Azure SQL Database</td></tr>
@@ -515,7 +523,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t304">
-<h3>Diễn giải metric → hành động<a class="nl" href="/dp-300/notes#s46">note 46</a></h3>
+<h3>Diễn giải metric → hành động<a class="nl" href="/dp-300/notes#s46">note 46</a><a class="ql" href="/dp-300/practice?topic=Metrics,Baseline" title="Ôn 9 câu: Metrics, Baseline">ôn 9 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Metric</th><th>Khi cao (gần 100%)</th></tr>
 <tr><td>DTU %</td><td>Tương ứng CPU + memory + IO. Thấp thì hạ tier để tiết kiệm</td></tr>
@@ -529,7 +537,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t305">
-<h3>Query Store — cấu hình và giá trị mặc định<a class="nl" href="/dp-300/notes#s50">note 50, 57</a></h3>
+<h3>Query Store — cấu hình và giá trị mặc định<a class="nl" href="/dp-300/notes#s50">note 50, 57</a><a class="ql" href="/dp-300/practice?topic=Query%20Store" title="Ôn 15 câu: Query Store">ôn 15 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Tùy chọn</th><th>Nghĩa</th><th>Giá trị đáng nhớ</th></tr>
 <tr><td>OPERATION_MODE</td><td>READ_WRITE để thu thập</td><td><code>actual_state</code> = 2 là READ_WRITE, = 1 là READ_ONLY</td></tr>
@@ -555,7 +563,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t306">
-<h3>Blocking và isolation level<a class="nl" href="/dp-300/notes#s52">note 52</a></h3>
+<h3>Blocking và isolation level<a class="nl" href="/dp-300/notes#s52">note 52</a><a class="ql" href="/dp-300/practice?topic=Blocking,Extended%20Events" title="Ôn 15 câu: Blocking, Extended Events">ôn 15 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Isolation level</th><th>Dirty read</th><th>Blocking</th><th>Ghi chú</th></tr>
 <tr><td>READ UNCOMMITTED</td><td>Có</td><td>Không</td><td>Nhanh nhất, dữ liệu không tin được</td></tr>
@@ -568,7 +576,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t307">
-<h3>Index — khi nào hữu ích, chọn loại nào<a class="nl" href="/dp-300/notes#s54">note 54–55</a></h3>
+<h3>Index — khi nào hữu ích, chọn loại nào<a class="nl" href="/dp-300/notes#s54">note 54–55</a><a class="ql" href="/dp-300/practice?topic=Index,Index%20maintenance" title="Ôn 13 câu: Index, Index maintenance">ôn 13 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Điều kiện</th><th>Nội dung</th></tr>
 <tr><td>Bảng lớn</td><td>Bảng nhỏ SQL Server vẫn có thể chọn Scan</td></tr>
@@ -591,12 +599,13 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>REBUILD</td><td>Phân mảnh &gt; 30%. Offline nhanh hơn nhưng khóa index cả quá trình; online chỉ khóa ở đoạn cuối</td></tr>
 <tr><td>RESUMABLE</td><td><code>MAX_DURATION = 30 RESUMABLE = ON</code> — không dùng cùng "ALL"; PAUSE/ABORT/RESUME. Có từ SQL Server 2017 hoặc Azure SQL Database</td></tr>
 <tr><td>Columnstore</td><td>Reorganize khi &gt; 20% số dòng đã bị xóa (<code>sys.dm_db_column_store_row_group_physical_stats</code>)</td></tr>
+<tr><td>Đo phân mảnh</td><td><code>SELECT db_name(database_id), object_name(object_id), avg_fragmentation_in_percent, page_count FROM sys.dm_db_index_physical_stats(NULL,NULL,NULL,NULL,NULL)</code> — <code>DBCC SHOWCONTIG</code> làm được việc tương tự nhưng đã deprecated</td></tr>
 <tr><td>Công cụ</td><td>Azure SQL Database: Automatic tuning (Create/Drop index). MI: KHÔNG có. VM: Database Engine Tuning Advisor</td></tr>
 </table></div>
 </section>
 
 <section id="t308">
-<h3>Execution plan — join nào và dấu hiệu có vấn đề<a class="nl" href="/dp-300/notes#s57">note 56–57</a></h3>
+<h3>Execution plan — join nào và dấu hiệu có vấn đề<a class="nl" href="/dp-300/notes#s57">note 56–57</a><a class="ql" href="/dp-300/practice?topic=Execution%20plan" title="Ôn 7 câu: Execution plan">ôn 7 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Kiểu join</th><th>Dùng khi</th><th>Đặc điểm</th></tr>
 <tr><td>Nested Loops</td><td>Input1 nhỏ, Input2 lớn và có index trên cột join</td><td>Ít I/O và ít phép so sánh nhất; lấy 1 dòng ở input trên rồi tìm dòng khớp ở input dưới</td></tr>
@@ -620,7 +629,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t309">
-<h3>Hint và statistics<a class="nl" href="/dp-300/notes#s56">note 56, 59</a></h3>
+<h3>Hint và statistics<a class="nl" href="/dp-300/notes#s56">note 56, 59</a><a class="ql" href="/dp-300/practice?topic=Hints,Statistics" title="Ôn 11 câu: Hints, Statistics">ôn 11 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Hint</th><th>Tác dụng</th></tr>
 <tr><td>Join hint: LOOP / HASH / MERGE JOIN</td><td>Viết ngay trong câu join (INNER LOOP JOIN). LOOP KHÔNG dùng được với RIGHT hoặc FULL join</td></tr>
@@ -644,7 +653,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t310">
-<h3>DBCC — kiểm tra tính nhất quán<a class="nl" href="/dp-300/notes#s60-3">note 60</a></h3>
+<h3>DBCC — kiểm tra tính nhất quán<a class="nl" href="/dp-300/notes#s60-3">note 60</a><a class="ql" href="/dp-300/practice?topic=DBCC" title="Ôn 5 câu: DBCC">ôn 5 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Lệnh</th><th>Kiểm cái gì</th></tr>
 <tr><td>DBCC CHECKDB</td><td>Toàn bộ logic + vật lý; chạy luôn CHECKALLOC + CHECKTABLE (mọi bảng và indexed view) + CHECKCATALOG</td></tr>
@@ -673,14 +682,24 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t311">
-<h3>Auto-tuning, Resource Governor, database-scoped configuration<a class="nl" href="/dp-300/notes#s61">note 61–64</a></h3>
+<h3>Auto-tuning, Resource Governor, database-scoped configuration<a class="nl" href="/dp-300/notes#s61">note 61–64</a><a class="ql" href="/dp-300/practice?topic=Auto-tuning,Resource%20Governor,Scoped%20config,DB%20options,Autogrowth,Free%20space" title="Ôn 31 câu: Auto-tuning, Resource Governor, Scoped config, DB options, Autogrowth, Free space">ôn 31 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Kỹ thuật</th><th>Azure SQL Database</th><th>Managed Instance</th><th>SQL Server trên VM</th></tr>
 <tr><td>FORCE_LAST_GOOD_PLAN</td><td>Có, <b>bật mặc định</b></td><td>Có, bật mặc định</td><td>Có từ SQL Server 2017 nhưng <b>tắt mặc định</b> — bật bằng <code>ALTER DATABASE … SET AUTOMATIC_TUNING</code></td></tr>
-<tr><td>CREATE INDEX / DROP INDEX tự động</td><td><b>Có</b> (index chỉ được tạo khi CPU, data I/O, log I/O đều &lt; 80%)</td><td><b>KHÔNG có</b></td><td>Không (dùng Tuning Advisor)</td></tr>
+<tr><td>CREATE INDEX / DROP INDEX tự động</td><td><b>Có</b></td><td><b>KHÔNG có</b></td><td>Không (dùng Database Engine Tuning Advisor)</td></tr>
 <tr><td>Resource Governor</td><td>Được dùng nhưng bạn <b>KHÔNG cấu hình được</b></td><td>Cấu hình được</td><td>Cấu hình được</td></tr>
 </table></div>
-<p class="lead">Auto-tuning là vòng <b>Learn → Adapt → Verify</b>. FORCE_LAST_GOOD_PLAN kích hoạt khi lợi ích ước tính &gt; 10 giây hoặc plan mới lỗi nhiều hơn. Xem index tự tạo: <code>SELECT * FROM sys.indexes WHERE auto_created = 1</code>; index không cải thiện sẽ bị tự drop. T-SQL: <code>ALTER DATABASE … SET AUTOMATIC_TUNING (FORCE_LAST_GOOD_PLAN = ON, CREATE_INDEX = ON, DROP_INDEX = OFF)</code>.</p>
+<div class="tw"><table class="cmp">
+<tr><th>Auto-tuning</th><th>Nội dung</th></tr>
+<tr><td>Vòng lặp</td><td><b>Learn → Adapt → Verify</b> rồi lặp lại</td></tr>
+<tr><td>FORCE_LAST_GOOD_PLAN kích hoạt khi</td><td>Lợi ích ước tính <b>&gt; 10 giây</b>, hoặc plan mới nhiều lỗi hơn plan được khuyến nghị</td></tr>
+<tr><td><b>Điều kiện tự tạo index</b></td><td><b>CPU, data I/O và log I/O đều phải dưới 80%</b> — vượt ngưỡng đó Azure không tạo index dù khuyến nghị đã có</td></tr>
+<tr><td>Sau khi tạo index</td><td>Hiệu năng các query dùng index đó được xem lại; không cải thiện thì index bị <b>tự động drop</b></td></tr>
+<tr><td>Cấp áp dụng</td><td>Mỗi tuỳ chọn nhận <code>Inherit</code> / <code>ON</code> / <code>OFF</code>; mặc định ở cấp server là <b>OFF</b> cho cả Create Index lẫn Drop Index, và thiết lập ở database ghi đè server</td></tr>
+<tr><td>Bật bằng T-SQL</td><td><code>ALTER DATABASE … SET AUTOMATIC_TUNING = AUTO | INHERIT | CUSTOM</code><br><code>ALTER DATABASE … SET AUTOMATIC_TUNING (FORCE_LAST_GOOD_PLAN = ON, CREATE_INDEX = ON, DROP_INDEX = OFF)</code></td></tr>
+<tr><td>Xem khuyến nghị</td><td><code>SELECT * FROM sys.dm_db_tuning_recommendations</code></td></tr>
+<tr><td>Xem index do Azure tạo</td><td><code>SELECT * FROM sys.indexes WHERE auto_created = 1</code></td></tr>
+</table></div>
 <div class="tw"><table class="cmp">
 <tr><th>Resource Governor</th><th>Nội dung</th></tr>
 <tr><td>Ba khái niệm</td><td><b>Resource pool</b> (tài nguyên vật lý) → <b>workload group</b> (nhóm request giống nhau) → <b>classification</b> (tiêu chí phân loại, là một function WITH SCHEMABINDING)</td></tr>
@@ -710,12 +729,15 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>SINGLE_USER / RESTRICTED_USER / MULTI_USER</td><td>Một user; hoặc chỉ db_owner + dbcreator + sysadmin; hoặc mọi user có quyền</td></tr>
 <tr><td>RECOVERY FULL / BULK_LOGGED / SIMPLE</td><td>FULL dùng log backup; BULK_LOGGED ghi log tối thiểu cho thao tác bulk; SIMPLE chỉ complete backup</td></tr>
 <tr><td>COMPATIBILITY_LEVEL</td><td>100 = SQL 2008/R2 … 150 = SQL 2019. Azure SQL và SQL 2014+ không đặt thấp hơn 100</td></tr>
-<tr><td>AUTOGROW</td><td><code>MODIFY FILE (NAME=…, FILEGROWTH=40MB|40%)</code>; <code>MODIFY FILEGROUP … AUTOGROW_ALL_FILES</code> — một file chạm ngưỡng thì cả filegroup tăng</td></tr>
+<tr><td>AUTOGROW</td><td><code>MODIFY FILE (NAME=…, FILEGROWTH=40MB|40%)</code>; <code>MODIFY FILEGROUP … AUTOGROW_ALL_FILES</code> — một file chạm ngưỡng thì cả filegroup tăng. Xem thiết lập hiện tại ở <code>sys.sysfiles</code></td></tr>
+<tr><td>Xem dung lượng</td><td><code>EXEC sp_spaceused</code> · <code>SELECT file_id, name, size, max_size FROM sys.database_files</code> (max_size = -1 là không giới hạn) · <code>SELECT allocated_extent_page_count, unallocated_extent_page_count FROM sys.dm_db_file_space_usage</code> · <code>DBCC SQLPERF (LOGSPACE)</code> chỉ cho thống kê transaction log · <code>SELECT DATABASEPROPERTYEX('Tên', 'MaxSizeInBytes')</code> (chạy trong chính database, ở master sẽ ra NULL)</td></tr>
+<tr><td>Shrink</td><td><code>DBCC SHRINKFILE (2)</code> theo file_id, <code>DBCC SHRINKDATABASE(MyDatabase)</code> cho cả data lẫn log — ảnh hưởng hiệu năng, nên làm lúc ít người dùng</td></tr>
+<tr><td>Theo dõi tăng trưởng</td><td><code>SELECT database_name, start_time, storage_in_megabytes FROM sys.resource_stats</code> (single database) · <code>SELECT start_time, elastic_pool_name, elastic_pool_storage_limit_mb, avg_allocated_storage_percent FROM sys.elastic_pool_resource_stats</code> (elastic pool) — cả hai chạy trong master</td></tr>
 </table></div>
 </section>
 
 <section id="t312">
-<h3>Intelligent Query Processing — 7 tính năng<a class="nl" href="/dp-300/notes#s66">note 66</a></h3>
+<h3>Intelligent Query Processing — 7 tính năng<a class="nl" href="/dp-300/notes#s66">note 66</a><a class="ql" href="/dp-300/practice?topic=IQP" title="Ôn 6 câu: IQP">ôn 6 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Tính năng</th><th>Làm gì</th><th>Điều kiện</th></tr>
 <tr><td>Batch mode Adaptive Joins</td><td>Chọn Hash hay Nested Loops lúc chạy, sau khi quét input đầu tiên</td><td>Azure SQL / SQL 2017+, compatibility level 140; cần columnstore index hoặc batch mode on rowstore</td></tr>
@@ -732,7 +754,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <h2 class="dom" id="d4">Phạm vi 4 · Tự động hoá</h2>
 
 <section id="t401">
-<h3>Cơ chế tự động hoá nào có ở đâu — phần lớn câu hỏi nằm ở đây<a class="nl" href="/dp-300/notes#s-sec4">note 67–77</a></h3>
+<h3>Cơ chế tự động hoá nào có ở đâu — phần lớn câu hỏi nằm ở đây<a class="nl" href="/dp-300/notes#s-sec4">note 67–77</a><a class="ql" href="/dp-300/practice?topic=SQL%20Agent,Elastic%20Jobs,Multi-server" title="Ôn 32 câu: SQL Agent, Elastic Jobs, Multi-server">ôn 32 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Cơ chế</th><th>Azure SQL Database</th><th>Managed Instance</th><th>SQL Server trên VM</th></tr>
 <tr><td>SQL Server Agent</td><td><b>Không có</b></td><td>Luôn chạy sẵn, không phải bật</td><td>Có, đôi khi phải Start</td></tr>
@@ -747,7 +769,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t402">
-<h3>SQL Server Agent job — lịch và thông báo<a class="nl" href="/dp-300/notes#s67">note 67–68</a></h3>
+<h3>SQL Server Agent job — lịch và thông báo<a class="nl" href="/dp-300/notes#s67">note 67–68</a><a class="ql" href="/dp-300/practice?topic=SQL%20Agent,Notifications,Database%20Mail" title="Ôn 25 câu: SQL Agent, Notifications, Database Mail">ôn 25 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Kiểu lịch</th><th>@freq_type</th><th>Ghi chú</th></tr>
 <tr><td>Once</td><td>1</td><td></td></tr>
@@ -760,16 +782,16 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </table></div>
 <div class="tw"><table class="cmp">
 <tr><th>Thông báo</th><th>Chi tiết</th></tr>
-<tr><td>Operator</td><td>SQL Server Agent → Operators → New Operator; hoặc <code>sp_add_operator</code> (@enabled = 1 là bật). Pager đã deprecated</td></tr>
+<tr><td>Operator</td><td>SQL Server Agent → Operators → New Operator; hoặc <code>EXEC dbo.sp_add_operator @name, @enabled = 1, @email_address</code> (chạy trong msdb). Pager đã deprecated</td></tr>
 <tr><td>@notification_method</td><td><b>1 = Email, 2 = Pager, 4 = Net Send</b> (Pager và Net Send đã deprecated)</td></tr>
 <tr><td>Điều kiện gửi</td><td>Khi job thất bại, thành công, hoặc kết thúc (dù thế nào). Áp cho <b>toàn bộ job</b>, không phải từng bước</td></tr>
 <tr><td>Database Mail</td><td>Bật Database Mail → tạo account cho service account của SQL Agent → tạo profile và thêm user vào <code>DatabaseMailUserRole</code> trong msdb → đặt profile làm default của msdb</td></tr>
-<tr><td>Lịch bằng T-SQL</td><td><code>sp_add_schedule</code> rồi <code>sp_attach_schedule</code>; xem ở <code>msdb..sysschedules</code>; theo dõi ở Job Activity Monitor</td></tr>
+<tr><td>Lịch bằng T-SQL</td><td><code>sp_add_schedule</code> rồi <code>sp_attach_schedule</code>; gắn thông báo bằng <code>EXEC dbo.sp_add_notification @alert_name, @operator_name, @notification_method</code>; xem ở <code>msdb..sysschedules</code>; theo dõi ở Job Activity Monitor</td></tr>
 </table></div>
 </section>
 
 <section id="t403">
-<h3>Elastic Job — thay SQL Agent cho Azure SQL Database<a class="nl" href="/dp-300/notes#s74">note 74</a></h3>
+<h3>Elastic Job — thay SQL Agent cho Azure SQL Database<a class="nl" href="/dp-300/notes#s74">note 74</a><a class="ql" href="/dp-300/practice?topic=Elastic%20Jobs" title="Ôn 15 câu: Elastic Jobs">ôn 15 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Thành phần</th><th>Yêu cầu</th></tr>
 <tr><td>Elastic Job agent</td><td>Tài nguyên Azure thực thi job — <b>miễn phí</b></td></tr>
@@ -779,12 +801,12 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>Job step</td><td>Script T-SQL phải <b>idempotent</b> — chạy hai lần cho cùng kết quả</td></tr>
 <tr><td>Job history</td><td>Giữ <b>45 ngày</b> trong <code>jobs.job_executions</code></td></tr>
 <tr><td>Credential</td><td><code>CREATE MASTER KEY</code> + <code>CREATE DATABASE SCOPED CREDENTIAL</code> trong job database; ở mỗi database đích cần user tương ứng (thường thêm vào db_owner)</td></tr>
-<tr><td>Lệnh chính</td><td><code>jobs.sp_add_target_group</code>, <code>sp_add_target_group_member</code>, <code>sp_add_job</code>, <code>sp_add_jobstep</code>, <code>sp_start_job</code>, <code>sp_update_job</code> (@schedule_interval_type = Minutes/Hours/Days/Weeks/Months/Once)</td></tr>
+<tr><td>Lệnh chính</td><td><code>jobs.sp_add_target_group</code>, <code>jobs.sp_add_target_group_member</code>, <code>jobs.sp_add_job</code>, <code>jobs.sp_add_jobstep</code>, <code>jobs.sp_start_job</code>, <code>jobs.sp_update_job</code> (@schedule_interval_type = Minutes/Hours/Days/Weeks/Months/Once)</td></tr>
 </table></div>
 </section>
 
 <section id="t404">
-<h3>Triển khai tự động<a class="nl" href="/dp-300/notes#s70">note 70–72</a></h3>
+<h3>Triển khai tự động<a class="nl" href="/dp-300/notes#s70">note 70–72</a><a class="ql" href="/dp-300/practice?topic=ARM%2FBicep,PowerShell,Azure%20CLI,Deployment" title="Ôn 39 câu: ARM/Bicep, PowerShell, Azure CLI, Deployment">ôn 39 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Cách</th><th>Viết bằng</th><th>Lệnh tiêu biểu</th></tr>
 <tr><td>ARM template</td><td>JSON</td><td>Portal → "Deploy a custom template"; type: <code>Microsoft.Sql/servers</code>, <code>/servers/databases</code>, <code>/managedInstances</code>, <code>Microsoft.SqlVirtualMachine/sqlVirtualMachines</code></td></tr>
@@ -796,7 +818,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t405">
-<h3>Cảnh báo — SQL Agent alert và Azure Monitor alert rule<a class="nl" href="/dp-300/notes#s77">note 77</a></h3>
+<h3>Cảnh báo — SQL Agent alert và Azure Monitor alert rule<a class="nl" href="/dp-300/notes#s77">note 77</a><a class="ql" href="/dp-300/practice?topic=Alerts,Config%20changes" title="Ôn 14 câu: Alerts, Config changes">ôn 14 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Alert type (SQL Agent, chỉ VM)</th><th>Dựa trên</th></tr>
 <tr><td>SQL Server event</td><td>Error number hoặc mức severity</td></tr>
@@ -821,7 +843,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t406">
-<h3>Policy-based management và automated backup trên VM<a class="nl" href="/dp-300/notes#s75-4">note 75</a></h3>
+<h3>Policy-based management và automated backup trên VM<a class="nl" href="/dp-300/notes#s75-4">note 75</a><a class="ql" href="/dp-300/practice?topic=Policies,VM%20backup,Automation,Maintenance,Logic%20Apps" title="Ôn 23 câu: Policies, VM backup, Automation, Maintenance, Logic Apps">ôn 23 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Evaluation mode</th><th>Cơ chế</th></tr>
 <tr><td>On demand</td><td>Chạy khi bạn bấm Evaluate</td></tr>
@@ -844,7 +866,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <h2 class="dom" id="d5">Phạm vi 5 · HA/DR</h2>
 
 <section id="t501">
-<h3>Backup — ai làm và bạn được chạy gì<a class="nl" href="/dp-300/notes#s86">note 84–88</a></h3>
+<h3>Backup — ai làm và bạn được chạy gì<a class="nl" href="/dp-300/notes#s86">note 84–88</a><a class="ql" href="/dp-300/practice?topic=Backup,LTR,Cloud%20backup" title="Ôn 26 câu: Backup, LTR, Cloud backup">ôn 26 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th></th><th>Azure SQL Database</th><th>Managed Instance</th><th>SQL Server trên VM</th></tr>
 <tr><td>Lịch backup</td><td colspan="2">Tự động: <b>full hằng tuần, differential mỗi 12–24 giờ, log mỗi 5–10 phút</b></td><td>Bạn tự lập lịch</td></tr>
@@ -858,7 +880,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t502">
-<h3>Chọn giải pháp HA/DR theo RPO/RTO<a class="nl" href="/dp-300/notes#s79">note 79, 91</a></h3>
+<h3>Chọn giải pháp HA/DR theo RPO/RTO<a class="nl" href="/dp-300/notes#s79">note 79, 91</a><a class="ql" href="/dp-300/practice?topic=SLA%20%2F%20RPO%20%2F%20RTO,Failover%20group,Geo-replication,Hybrid%20HADR,FCI,Site%20Recovery" title="Ôn 39 câu: SLA / RPO / RTO, Failover group, Geo-replication, Hybrid HADR, FCI, Site Recovery">ôn 39 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Giải pháp</th><th>Nền tảng</th><th>RPO / RTO và điều cần nhớ</th></tr>
 <tr><td>Zone-redundant deployment</td><td>SQL DB, MI</td><td>Business Critical / Premium với replica ở nhiều availability zone → SLA <b>99,995%</b></td></tr>
@@ -875,7 +897,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t503">
-<h3>SLA và quorum<a class="nl" href="/dp-300/notes#s92">note 79, 92</a></h3>
+<h3>SLA và quorum<a class="nl" href="/dp-300/notes#s92">note 79, 92</a><a class="ql" href="/dp-300/practice?topic=SLA,SLA%20%2F%20RPO%20%2F%20RTO,Quorum" title="Ôn 14 câu: SLA, SLA / RPO / RTO, Quorum">ôn 14 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Cấu hình</th><th>SLA / quy tắc</th></tr>
 <tr><td>Azure SQL Database và MI, tier thông thường</td><td>99,99% (52 phút/năm)</td></tr>
@@ -886,10 +908,10 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>Quorum WSFC</td><td>Giữ số vote <b>lẻ</b>, tối thiểu 3 vote. Cluster 2 node chạy được không cần witness nhưng vẫn nên có</td></tr>
 </table></div>
 <div class="tw"><table class="cmp">
-<tr><th>Quorum witness</th><th>Yêu cầu</th><th>Dùng khi</th></tr>
-<tr><td>Cloud Witness</td><td>Windows Server 2016+; ~1 MB; <b>General Purpose + Standard storage</b> (không dùng Blob/Premium); <b>Locally redundant storage</b>; port 443. Cần tên storage account + primary access key</td><td><b>Khuyến nghị bất cứ khi nào có thể</b>, nhất là nhiều site / zone / region — trừ khi dùng failover cluster có shared storage</td></tr>
-<tr><td>Disk Witness</td><td>Đĩa cluster &lt; 1 GB trong Cluster Available Storage; không được là Cluster Shared Volume; chỉ dùng với Azure Shared Disk</td><td>Bền nhất, failover được giữa các node</td></tr>
-<tr><td>File share witness</td><td>File share trên một VM riêng cùng VNet, tách khỏi workload của cluster</td><td>Chỉ khi hai lựa chọn kia không dùng được</td></tr>
+<tr><th>Quorum witness</th><th>Yêu cầu / đặc điểm</th><th>Dùng khi</th></tr>
+<tr><td>Cloud Witness</td><td>Windows Server 2016 trở lên; tốn đúng <b>1 MB</b>; storage account phải là <b>General Purpose + Standard</b>, replication <b>Locally redundant</b> — <b>Blob storage account và Premium storage KHÔNG được hỗ trợ</b>; giao tiếp qua <b>port 443 (HTTPS)</b>. Cần tên storage account và primary access key, thêm <b>tên endpoint server</b> nếu dùng Azure sovereign cloud (ví dụ Azure Trung Quốc)</td><td><b>Khuyến nghị bất cứ khi nào có thể</b> — kể cả cluster on-premises hoặc lai, <b>không riêng cluster chạy trên Azure</b>; đặc biệt hợp với triển khai nhiều site / nhiều zone / nhiều region. Ngoại lệ: cluster đã có shared storage thì dùng disk witness</td></tr>
+<tr><td>Disk Witness</td><td>Một đĩa cluster <b>nhỏ hơn 1 GB</b> nằm trong nhóm Cluster Available Storage; <b>không được là Cluster Shared Volume</b>; trên Azure VM thì phải là <b>Azure Shared Disk</b></td><td>Khi cluster <b>đã có shared storage</b> phù hợp — đây là witness <b>bền nhất</b> và <b>failover được giữa các node</b></td></tr>
+<tr><td>File share witness</td><td>SMB file share trên một file server chạy Windows Server, đặt ở <b>một VM riêng trong cùng Virtual Network</b> và <b>tách khỏi workload của cluster</b> để các cluster khác cũng dùng được; mọi node phải truy cập được share</td><td><b>Chỉ khi</b> cloud witness và disk witness đều không dùng được</td></tr>
 </table></div>
 <div class="tw"><table class="cmp">
 <tr><th>Cấu hình quorum</th><th>Nghĩa</th></tr>
@@ -900,7 +922,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t504">
-<h3>Always On availability group<a class="nl" href="/dp-300/notes#s90">note 90, 82</a></h3>
+<h3>Always On availability group<a class="nl" href="/dp-300/notes#s90">note 90, 82</a><a class="ql" href="/dp-300/practice?topic=Availability%20Group,AG%20setup,AG%20listener" title="Ôn 20 câu: Availability Group, AG setup, AG listener">ôn 20 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Chủ đề</th><th>Chi tiết</th></tr>
 <tr><td>Số replica</td><td>1 primary + <b>1–8 secondary</b> (SQL Server <b>Standard chỉ 1</b> secondary); phải có ít nhất 2 failover partner</td></tr>
@@ -923,7 +945,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t505">
-<h3>Auto-failover group và geo-replication<a class="nl" href="/dp-300/notes#s91">note 91, 94</a></h3>
+<h3>Auto-failover group và geo-replication<a class="nl" href="/dp-300/notes#s91">note 91, 94</a><a class="ql" href="/dp-300/practice?topic=Failover%20group,Geo-replication" title="Ôn 21 câu: Failover group, Geo-replication">ôn 21 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Chủ đề</th><th>Active geo-replication</th><th>Auto-failover group</th></tr>
 <tr><td>Nền tảng</td><td>Chỉ Azure SQL Database</td><td>Azure SQL Database và MI (không có ở VM)</td></tr>
@@ -939,7 +961,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t506">
-<h3>BACKUP — các tùy chọn WITH<a class="nl" href="/dp-300/notes#s88-3">note 84, 88</a></h3>
+<h3>BACKUP — các tùy chọn WITH<a class="nl" href="/dp-300/notes#s88-3">note 84, 88</a><a class="ql" href="/dp-300/practice?topic=Backup,Log%20backup" title="Ôn 20 câu: Backup, Log backup">ôn 20 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Tùy chọn</th><th>Nghĩa</th><th>Mặc định</th></tr>
 <tr><td>COPY_ONLY</td><td>Tạo full backup nhưng KHÔNG được coi là full backup với differential/log sau này — không làm gián đoạn chuỗi backup</td><td>—</td></tr>
@@ -967,7 +989,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t507">
-<h3>RESTORE — các tùy chọn<a class="nl" href="/dp-300/notes#s85">note 85–88</a></h3>
+<h3>RESTORE — các tùy chọn<a class="nl" href="/dp-300/notes#s85">note 85–88</a><a class="ql" href="/dp-300/practice?topic=Restore,PITR,MI%20restore" title="Ôn 20 câu: Restore, PITR, MI restore">ôn 20 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Recovery state</th><th>Nghĩa</th></tr>
 <tr><td>WITH RECOVERY</td><td>Mặc định — đưa database online, đã restore xong. Chỉ chọn với full/bulk-logged nếu restore luôn cả file log</td></tr>
@@ -989,7 +1011,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t508">
-<h3>Transactional replication — ai được là gì<a class="nl" href="/dp-300/notes#s94">note 94</a></h3>
+<h3>Transactional replication — ai được là gì<a class="nl" href="/dp-300/notes#s94">note 94</a><a class="ql" href="/dp-300/practice?topic=Replication" title="Ôn 6 câu: Replication">ôn 6 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Vai trò</th><th>Được là</th><th>KHÔNG được là</th></tr>
 <tr><td>Publisher</td><td>Azure SQL MI hoặc instance SQL Server</td><td><b>KHÔNG được là Azure SQL Database</b> (với nó thì dùng Data Sync)</td></tr>
@@ -1010,7 +1032,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 </section>
 
 <section id="t509">
-<h3>Log shipping<a class="nl" href="/dp-300/notes#s94-2">note 94</a></h3>
+<h3>Log shipping<a class="nl" href="/dp-300/notes#s94-2">note 94</a><a class="ql" href="/dp-300/practice?topic=Log%20shipping" title="Ôn 7 câu: Log shipping">ôn 7 câu</a></h3>
 <div class="tw"><table class="cmp">
 <tr><th>Chủ đề</th><th>Chi tiết</th></tr>
 <tr><td>Quy trình</td><td>Primary backup transaction log → copy sang (các) secondary → restore trên secondary. Không đọc được secondary trong lúc restore</td></tr>
@@ -1136,7 +1158,7 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <h2 class="dom" id="dm">Mẹo nhớ · Luật, chuỗi, số neo</h2>
 
 <section id="t701">
-<h3>Luật ba bậc — giải được phần lớn câu hỏi “cái này chạy ở đâu”</h3>
+<h3>Luật ba bậc — giải được phần lớn câu hỏi “cái này chạy ở đâu”<a class="ql" href="/dp-300/practice?topic=Azure%20SQL%20DB,Azure%20SQL%20MI,SQL%20on%20VM" title="Ôn 33 câu: Azure SQL DB, Azure SQL MI, SQL on VM">ôn 33 câu</a></h3>
 <p class="lead">Đừng học ma trận nền tảng bằng cách nhớ từng ô. Nhớ một cái thang: <b>VM có tất → MI mất vài thứ → SQL Database mất nhiều hơn</b>. Tính năng nào <b>cần hệ điều hành</b> hoặc <b>cần SQL Server Agent</b> thì rơi rụng dần khi leo lên PaaS.</p>
 <div class="tw"><table class="cmp">
 <tr><th>Bậc</th><th>Câu chốt</th><th>Suy ra được ngay</th></tr>
@@ -1257,4 +1279,4 @@ import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as M,G as z,f as 
 <tr><td>Sát ngày thi</td><td>Chỉ đọc ba mục: <b>Con số hay bị hỏi</b>, <b>KHÔNG làm được</b>, <b>Cặp đối lập</b>. Ba mục này gần như là toàn bộ phần dễ mất điểm vì nhớ lẫn</td><td>~20 phút</td></tr>
 </table></div>
 </section>
-`,lt={class:"tables-dp"},gt={class:"layout"},ut={class:"sub"},bt={class:"search"},pt={key:0,class:"cnt"},mt={key:1,class:"cnt"},vt={key:2,class:"toc-nav"},yt={key:0},St=["href","onClick"],Et={class:"topbar"},At={key:0,class:"nohit"},_t=rt({__name:"Dp300TablesPage",setup(Ct){st("dp300","notes");const Q=ht(),C=p(),u=p(),y=p(matchMedia("(max-width:960px)").matches),B=(()=>{const n=new DOMParser().parseFromString(P,"text/html"),t=[];return n.body.childNodes.forEach(r=>{var d;if(r instanceof HTMLElement){if(r.tagName==="H2")t.push({id:r.id,title:r.textContent||"",items:[]});else if(r.tagName==="SECTION"&&t.length){const e=r.querySelector("h3");if(!e)return;const i=e.cloneNode(!0);(d=i.querySelector(".nl"))==null||d.remove(),t[t.length-1].items.push({id:r.id,title:(i.textContent||"").trim()})}}}),t})(),D=B.reduce((n,t)=>n+t.items.length,0),j=(P.match(/<table class="cmp"/g)||[]).length,R=p(""),m=p(null),T=p(0),L=p(0),w=Y(()=>m.value!==null),K=Y(()=>{var n;return((n=m.value)==null?void 0:n.size)??D}),H=n=>!m.value||m.value.has(n);let v=[],S=null,k=null,I;const N=n=>(n||"").toLowerCase();function J(n){var r;const t=n.cloneNode(!0);return(r=t.querySelector(".nl"))==null||r.remove(),t.textContent}function Z(){v=[...C.value.querySelectorAll("section")].map(n=>{const t=[...n.querySelectorAll("h3, p.lead")],r=[...n.querySelectorAll(".tw")].map(d=>({tw:d,rows:[...d.querySelectorAll("tr")].map(e=>({tr:e,text:N(e.textContent),head:!!e.querySelector("th")}))}));return{el:n,id:n.id,head:t.map(d=>N(d.querySelector(".nl")?J(d):d.textContent)).join(" "),heads:t,tbls:r,rows:r.flatMap(d=>d.rows)}}),L.value=v.reduce((n,t)=>n+t.rows.filter(r=>!r.head).length,0),T.value=L.value}function $(n){n.querySelectorAll("mark").forEach(t=>t.replaceWith(document.createTextNode(t.textContent||""))),n.normalize()}function G(n,t){const r=document.createTreeWalker(n,NodeFilter.SHOW_TEXT),d=[];let e;for(;e=r.nextNode();)N(e.nodeValue).includes(t)&&d.push(e);d.forEach(i=>{const b=document.createDocumentFragment(),c=i.nodeValue||"",E=c.toLowerCase();let h=0,g;for(;(g=E.indexOf(t,h))>-1;){b.appendChild(document.createTextNode(c.slice(h,g)));const q=document.createElement("mark");q.textContent=c.slice(g,g+t.length),b.appendChild(q),h=g+t.length}b.appendChild(document.createTextNode(c.slice(h))),i.replaceWith(b)})}function x(){const n=u.value.value.trim().toLowerCase();if(v.forEach(d=>{$(d.el),d.rows.forEach(e=>e.tr.classList.remove("hit"))}),!n){v.forEach(d=>{d.el.classList.remove("hidden"),d.tbls.forEach(e=>e.tw.classList.remove("hidden")),d.rows.forEach(e=>e.tr.classList.remove("hidden"))}),C.value.querySelectorAll("h2.dom").forEach(d=>d.classList.remove("hidden")),m.value=null,T.value=L.value;return}C.value.querySelectorAll("h2.dom").forEach(d=>d.classList.add("hidden"));const t=new Set;let r=0;v.forEach(d=>{const e=d.head.includes(n);let i=0;d.tbls.forEach(c=>{let E=0;c.rows.forEach(h=>{const g=e||h.text.includes(n);h.tr.classList.toggle("hidden",!(g||h.head)),g&&!h.head&&(E++,e||h.tr.classList.add("hit"))}),c.tw.classList.toggle("hidden",E===0),i+=E});const b=e||i>0;d.el.classList.toggle("hidden",!b),b&&(t.add(d.id),r+=i,d.heads.forEach(c=>G(c,n)),d.rows.forEach(c=>{c.tr.classList.contains("hidden")||G(c.tr,n)}))}),m.value=t,T.value=r}function tt(){clearTimeout(I),I=setTimeout(x,120)}function nt(){u.value.value="",x()}function U(n){n.key==="/"&&document.activeElement!==u.value&&(n.preventDefault(),u.value.focus()),n.key==="Escape"&&document.activeElement===u.value&&(nt(),u.value.blur())}function V(n){const t=document.getElementById(n);t&&(k==null||k.classList.remove("flash"),t.scrollIntoView({block:"start"}),t.offsetWidth,t.classList.add("flash"),k=t,R.value=n,matchMedia("(max-width:960px)").matches&&(y.value=!0))}function dt(n,t){n.preventDefault(),Q.replace({hash:`#${t}`}),V(t)}function et(n){var d,e;const t=(e=(d=n.target).closest)==null?void 0:e.call(d,"a");if(!t)return;const r=t.getAttribute("href")||"";r.startsWith("/")&&(n.preventDefault(),Q.push(r))}return at(()=>{Z(),typeof IntersectionObserver<"u"&&(S=new IntersectionObserver(n=>n.forEach(t=>{t.isIntersecting&&(R.value=t.target.id)}),{rootMargin:"0px 0px -75% 0px"}),v.forEach(n=>S.observe(n.el))),location.hash&&V(decodeURIComponent(location.hash.slice(1))),document.addEventListener("keydown",U)}),ct(()=>{document.removeEventListener("keydown",U),S==null||S.disconnect(),clearTimeout(I)}),(n,t)=>{const r=it("router-link");return s(),o("div",lt,[a("div",gt,[a("aside",null,[t[2]||(t[2]=a("h1",null,"DP-300 · Bảng ôn nhanh",-1)),a("div",ut,l(A(D))+" mục · "+l(A(j))+" bảng, tổng hợp từ tài liệu DP-300",1),a("div",bt,[a("input",{ref_key:"qEl",ref:u,type:"search",placeholder:"Tìm trong bảng… (/)",autocomplete:"off",onInput:tt},null,544)]),w.value?(s(),o("p",pt,l(K.value)+"/"+l(A(D))+" mục · "+l(T.value)+"/"+l(L.value)+" dòng ",1)):(s(),o("p",mt,"Gõ “/” để tìm — kết quả lọc tới từng dòng của bảng.")),y.value?O("",!0):(s(),o("nav",vt,[(s(!0),o(M,null,z(A(B),d=>(s(),o(M,{key:d.id},[d.items.some(e=>H(e.id))?(s(),o("h4",yt,l(d.title),1)):O("",!0),a("ol",null,[(s(!0),o(M,null,z(d.items,e=>(s(),o("li",{key:e.id,class:W({hidden:!H(e.id)})},[a("a",{href:"#"+e.id,class:W({on:R.value===e.id}),onClick:i=>dt(i,e.id)},l(e.title),11,St)],2))),128))])],64))),128))]))]),a("main",null,[a("div",Et,[_(r,{to:"/dp-300/notes"},{default:f(()=>[...t[3]||(t[3]=[X("← Tài liệu",-1)])]),_:1}),_(r,{to:"/dp-300/practice"},{default:f(()=>[...t[4]||(t[4]=[X("Luyện tập",-1)])]),_:1}),t[6]||(t[6]=a("span",{class:"spacer"},null,-1)),a("button",{onClick:t[0]||(t[0]=d=>y.value=!y.value)},l(y.value?"Mở mục lục":"Thu gọn mục lục"),1),_(ot),_(r,{to:"/",style:{"text-decoration":"none"}},{default:f(()=>[...t[5]||(t[5]=[a("button",null,"🏠",-1)])]),_:1})]),t[7]||(t[7]=a("p",{class:"intro"}," Toàn bộ kiến thức trong tài liệu, viết lại thành bảng so sánh để ôn nhanh. Mỗi mục có link “note” dẫn sang phần giải thích đầy đủ. Trang này không nằm trong tài liệu và không sửa gì ở đó. ",-1)),t[1]||(F(-1,!0),(t[1]=a("div",{ref_key:"contentEl",ref:C,innerHTML:A(P),onClick:et},null,8,["innerHTML"])).cacheIndex=1,F(1),t[1]),w.value&&K.value===0?(s(),o("div",At,"Không tìm thấy dòng nào khớp.")):O("",!0)])])])}}});export{_t as default};
+`,lt={class:"tables-dp"},gt={class:"layout"},ut={class:"sub"},bt={class:"search"},pt={key:0,class:"cnt"},mt={key:1,class:"cnt"},vt={key:2,class:"toc-nav"},St={key:0},yt=["href","onClick"],Et={class:"topbar"},At={key:0,class:"nohit"},kt=rt({__name:"Dp300TablesPage",setup(Ct){st("dp300","notes");const Q=ht(),C=p(),u=p(),S=p(matchMedia("(max-width:960px)").matches),B=(()=>{const n=new DOMParser().parseFromString(P,"text/html"),t=[];return n.body.childNodes.forEach(r=>{if(r instanceof HTMLElement){if(r.tagName==="H2")t.push({id:r.id,title:r.textContent||"",items:[]});else if(r.tagName==="SECTION"&&t.length){const d=r.querySelector("h3");if(!d)return;const e=d.cloneNode(!0);e.querySelectorAll(".nl, .ql").forEach(i=>i.remove()),t[t.length-1].items.push({id:r.id,title:(e.textContent||"").trim()})}}}),t})(),D=B.reduce((n,t)=>n+t.items.length,0),X=(P.match(/<table class="cmp"/g)||[]).length,R=p(""),m=p(null),L=p(0),T=p(0),w=Y(()=>m.value!==null),K=Y(()=>{var n;return((n=m.value)==null?void 0:n.size)??D}),H=n=>!m.value||m.value.has(n);let v=[],y=null,_=null,I;const M=n=>(n||"").toLowerCase();function J(n){const t=n.cloneNode(!0);return t.querySelectorAll(".nl, .ql").forEach(r=>r.remove()),t.textContent}function Z(){v=[...C.value.querySelectorAll("section")].map(n=>{const t=[...n.querySelectorAll("h3, p.lead")],r=[...n.querySelectorAll(".tw")].map(d=>({tw:d,rows:[...d.querySelectorAll("tr")].map(e=>({tr:e,text:M(e.textContent),head:!!e.querySelector("th")}))}));return{el:n,id:n.id,head:t.map(d=>M(d.querySelector(".nl, .ql")?J(d):d.textContent)).join(" "),heads:t,tbls:r,rows:r.flatMap(d=>d.rows)}}),T.value=v.reduce((n,t)=>n+t.rows.filter(r=>!r.head).length,0),L.value=T.value}function $(n){n.querySelectorAll("mark").forEach(t=>t.replaceWith(document.createTextNode(t.textContent||""))),n.normalize()}function G(n,t){const r=document.createTreeWalker(n,NodeFilter.SHOW_TEXT),d=[];let e;for(;e=r.nextNode();)M(e.nodeValue).includes(t)&&d.push(e);d.forEach(i=>{const b=document.createDocumentFragment(),c=i.nodeValue||"",E=c.toLowerCase();let h=0,g;for(;(g=E.indexOf(t,h))>-1;){b.appendChild(document.createTextNode(c.slice(h,g)));const q=document.createElement("mark");q.textContent=c.slice(g,g+t.length),b.appendChild(q),h=g+t.length}b.appendChild(document.createTextNode(c.slice(h))),i.replaceWith(b)})}function x(){const n=u.value.value.trim().toLowerCase();if(v.forEach(d=>{$(d.el),d.rows.forEach(e=>e.tr.classList.remove("hit"))}),!n){v.forEach(d=>{d.el.classList.remove("hidden"),d.tbls.forEach(e=>e.tw.classList.remove("hidden")),d.rows.forEach(e=>e.tr.classList.remove("hidden"))}),C.value.querySelectorAll("h2.dom").forEach(d=>d.classList.remove("hidden")),m.value=null,L.value=T.value;return}C.value.querySelectorAll("h2.dom").forEach(d=>d.classList.add("hidden"));const t=new Set;let r=0;v.forEach(d=>{const e=d.head.includes(n);let i=0;d.tbls.forEach(c=>{let E=0;c.rows.forEach(h=>{const g=e||h.text.includes(n);h.tr.classList.toggle("hidden",!(g||h.head)),g&&!h.head&&(E++,e||h.tr.classList.add("hit"))}),c.tw.classList.toggle("hidden",E===0),i+=E});const b=e||i>0;d.el.classList.toggle("hidden",!b),b&&(t.add(d.id),r+=i,d.heads.forEach(c=>G(c,n)),d.rows.forEach(c=>{c.tr.classList.contains("hidden")||G(c.tr,n)}))}),m.value=t,L.value=r}function tt(){clearTimeout(I),I=setTimeout(x,120)}function nt(){u.value.value="",x()}function U(n){n.key==="/"&&document.activeElement!==u.value&&(n.preventDefault(),u.value.focus()),n.key==="Escape"&&document.activeElement===u.value&&(nt(),u.value.blur())}function V(n){const t=document.getElementById(n);t&&(_==null||_.classList.remove("flash"),t.scrollIntoView({block:"start"}),t.offsetWidth,t.classList.add("flash"),_=t,R.value=n,matchMedia("(max-width:960px)").matches&&(S.value=!0))}function dt(n,t){n.preventDefault(),Q.replace({hash:`#${t}`}),V(t)}function et(n){var d,e;const t=(e=(d=n.target).closest)==null?void 0:e.call(d,"a");if(!t)return;const r=t.getAttribute("href")||"";r.startsWith("/")&&(n.preventDefault(),Q.push(r))}return at(()=>{Z(),typeof IntersectionObserver<"u"&&(y=new IntersectionObserver(n=>n.forEach(t=>{t.isIntersecting&&(R.value=t.target.id)}),{rootMargin:"0px 0px -75% 0px"}),v.forEach(n=>y.observe(n.el))),location.hash&&V(decodeURIComponent(location.hash.slice(1))),document.addEventListener("keydown",U)}),ct(()=>{document.removeEventListener("keydown",U),y==null||y.disconnect(),clearTimeout(I)}),(n,t)=>{const r=it("router-link");return s(),o("div",lt,[a("div",gt,[a("aside",null,[t[2]||(t[2]=a("h1",null,"DP-300 · Bảng ôn nhanh",-1)),a("div",ut,l(A(D))+" mục · "+l(A(X))+" bảng, tổng hợp từ tài liệu DP-300",1),a("div",bt,[a("input",{ref_key:"qEl",ref:u,type:"search",placeholder:"Tìm trong bảng… (/)",autocomplete:"off",onInput:tt},null,544)]),w.value?(s(),o("p",pt,l(K.value)+"/"+l(A(D))+" mục · "+l(L.value)+"/"+l(T.value)+" dòng ",1)):(s(),o("p",mt,"Gõ “/” để tìm — kết quả lọc tới từng dòng của bảng.")),S.value?f("",!0):(s(),o("nav",vt,[(s(!0),o(N,null,z(A(B),d=>(s(),o(N,{key:d.id},[d.items.some(e=>H(e.id))?(s(),o("h4",St,l(d.title),1)):f("",!0),a("ol",null,[(s(!0),o(N,null,z(d.items,e=>(s(),o("li",{key:e.id,class:W({hidden:!H(e.id)})},[a("a",{href:"#"+e.id,class:W({on:R.value===e.id}),onClick:i=>dt(i,e.id)},l(e.title),11,yt)],2))),128))])],64))),128))]))]),a("main",null,[a("div",Et,[k(r,{to:"/dp-300/notes"},{default:O(()=>[...t[3]||(t[3]=[j("← Tài liệu",-1)])]),_:1}),k(r,{to:"/dp-300/practice"},{default:O(()=>[...t[4]||(t[4]=[j("Luyện tập",-1)])]),_:1}),t[6]||(t[6]=a("span",{class:"spacer"},null,-1)),a("button",{onClick:t[0]||(t[0]=d=>S.value=!S.value)},l(S.value?"Mở mục lục":"Thu gọn mục lục"),1),k(ot),k(r,{to:"/",style:{"text-decoration":"none"}},{default:O(()=>[...t[5]||(t[5]=[a("button",null,"🏠",-1)])]),_:1})]),t[7]||(t[7]=a("p",{class:"intro"}," Toàn bộ kiến thức trong tài liệu, viết lại thành bảng so sánh để ôn nhanh. Mỗi mục có link “note” dẫn sang phần giải thích đầy đủ. Trang này không nằm trong tài liệu và không sửa gì ở đó. ",-1)),t[1]||(F(-1,!0),(t[1]=a("div",{ref_key:"contentEl",ref:C,innerHTML:A(P),onClick:et},null,8,["innerHTML"])).cacheIndex=1,F(1),t[1]),w.value&&K.value===0?(s(),o("div",At,"Không tìm thấy dòng nào khớp.")):f("",!0)])])])}}});export{kt as default};
