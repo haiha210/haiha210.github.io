@@ -1,4 +1,4 @@
-import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as N,E as z,f,g as k,w as O,O as F,A as Y,r as it,m as ht,o as s,G as W,h as j}from"./index-7FeyXGeK.js";import{_ as ot}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-qxMXoqxY.js";import{u as st}from"./useStudyClock-Df1f9Cvb.js";const P=`<h2 class="dom" id="d1">Phạm vi 1 · Nền tảng dữ liệu &amp; di trú</h2>
+import{d as rt,j as p,s as at,x as ct,c as o,a,t as l,b as A,F as N,E as z,f,g as k,w as O,O as F,A as Y,r as it,m as ht,o as s,G as W,h as j}from"./index-rP3T8t2A.js";import{_ as ot}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-B4S65P8Z.js";import{u as st}from"./useStudyClock-R6hLx7Zy.js";const P=`<h2 class="dom" id="d1">Phạm vi 1 · Nền tảng dữ liệu &amp; di trú</h2>
 
 <section id="t101">
 <h3>Ba nền tảng Azure SQL — bảng gốc để suy ra mọi câu hỏi khác<a class="nl" href="/dp-300/notes#s-3">note 4–6</a><a class="ql" target="_blank" rel="noopener" href="/dp-300/practice?topic=Azure%20SQL%20DB,Azure%20SQL%20MI,SQL%20on%20VM" title="Ôn 33 câu: Azure SQL DB, Azure SQL MI, SQL on VM (tab mới)">ôn 33 câu</a></h3>
