@@ -1,4 +1,4 @@
-import{_ as n}from"./NotesPage.vue_vue_type_script_setup_true_lang-DrQeK6-V.js";import{d as t,e as i,b as h,o as a}from"./index--7b6GHe8.js";import"./ThemeToggle.vue_vue_type_script_setup_true_lang-CBwaMoX-.js";import"./useStudyClock-Cg2RTYVq.js";const e=`<h2 class="dom">Domain 1 — Design Secure Architectures</h2>
+import{_ as n}from"./NotesPage.vue_vue_type_script_setup_true_lang-CkaPW5lu.js";import{d as t,e as i,b as h,o as a}from"./index-BcG7APcn.js";import"./ThemeToggle.vue_vue_type_script_setup_true_lang-D3HZfqms.js";import"./useStudyClock-pKQKYI-6.js";const e=`<h2 class="dom">Domain 1 — Design Secure Architectures</h2>
 
 <section id="a1-1">
 <h3>1.1 IAM — định danh và quyền<a class="anch" href="#a1-1">#</a></h3>
