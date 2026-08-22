@@ -1,4 +1,4 @@
-import{_ as V}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-zbjA7zzN.js";import{d as G,z as U,E as H,c as Q,a as i,i as v,g as k,w as B,Q as N,b as W,r,l as f,s as $,O as g,k as j,o as Y}from"./index-B7JdPi3D.js";import{u as X}from"./useStudyClock-DfrXaGhz.js";const J=`
+import{_ as V}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-BaoEx0m9.js";import{d as G,z as U,E as H,c as Q,a as i,i as v,g as k,w as B,Q as N,b as W,r,l as f,s as $,O as g,k as j,o as Y}from"./index-DwWQDSOc.js";import{u as X}from"./useStudyClock-ouSuAiV4.js";const J=`
 <section class="doc" id="README" data-title="Tổng quan kỳ thi">
 <h1 id="README/ai-200-developing-ai-cloud-solutions-on-azure-tai-lieu-on-th">AI-200: Developing AI Cloud Solutions on Azure — Tài liệu ôn thi (Tiếng Việt)</h1>
 <p>Chứng chỉ: <strong>Microsoft Certified: Azure AI Cloud Developer Associate</strong><br>Mã đề thi: <strong>AI-200</strong> · Cấp độ: Intermediate · Vai trò: Developer</p>
@@ -15,7 +15,7 @@ import{_ as V}from"./ThemeToggle.vue_vue_type_script_setup_true_lang-zbjA7zzN.js
 <div class="tablewrap"><table><thead><tr><th>#</th><th>Domain</th><th>Trọng số</th><th>Mục trong <code>notes.html</code></th></tr></thead><tbody><tr><td>1</td><td>Develop containerized solutions on Azure</td><td><strong>20–25%</strong></td><td><a href="notes.html#01-container" target="_blank" rel="noopener">Container trên Azure</a></td></tr><tr><td>2</td><td>Develop AI solutions by using Azure data management services</td><td><strong>25–30%</strong></td><td><a href="notes.html#02-data-services" target="_blank" rel="noopener">Data services &amp; Vector</a></td></tr><tr><td>3</td><td>Connect to and consume Azure services</td><td><strong>20–25%</strong></td><td><a href="notes.html#03-messaging-functions" target="_blank" rel="noopener">Messaging &amp; Functions</a></td></tr><tr><td>4</td><td>Secure, monitor, troubleshoot Azure solutions</td><td><strong>20–25%</strong></td><td><a href="notes.html#04-security-monitoring" target="_blank" rel="noopener">Bảo mật &amp; Giám sát</a></td></tr></tbody></table></div>
 <p>Phụ trợ, cũng nằm trong <code>notes.html</code>:</p>
 <ul><li><a href="notes.html#05-cheatsheet" target="_blank" rel="noopener">Cheat sheet</a> — bảng tra nhanh CLI / SDK / KQL trước ngày thi</li><li><a href="notes.html#06-cau-hoi-on-tap" target="_blank" rel="noopener">40 câu ôn tập</a> — câu hỏi tự luyện + đáp án giải thích</li><li><a href="notes.html#07-lo-trinh-hoc" target="_blank" rel="noopener">Lộ trình 6 tuần</a> — lộ trình học + lab thực hành</li></ul>
-<h2 id="README/3b-hai-file-html">3b. Hai file HTML</h2>
+<h2 id="README/3b-hai-file-html">4. Hai file HTML</h2>
 <p>Giống DP-300: hai file tự chứa, mở thẳng bằng trình duyệt, chạy offline, không cần cài gì.</p>
 <pre><button class="copybtn">copy</button><code>xdg-open practice.html
 xdg-open notes.html</code></pre>
@@ -23,32 +23,32 @@ xdg-open notes.html</code></pre>
 <ul><li>Trắc nghiệm một/nhiều đáp án — 200 câu</li><li><strong>Sắp xếp thứ tự</strong> (build list) 10 câu · <strong>điền vào code</strong> (code completion) 12 câu · <strong>Có/Không series</strong> 12 câu · <strong>case study</strong> 3 bộ / 15 câu</li><li>Chế độ <strong>Đề mô phỏng đầy đủ</strong>: trộn mọi dạng, ~40 câu / 120 phút, chấm theo domain <strong>và</strong> theo dạng câu hỏi</li><li>Ghi nhớ câu sai (localStorage) → chế độ "Ôn câu đã sai"</li></ul>
 <p><strong><code>notes.html</code></strong> — toàn bộ tài liệu ở trên trong một trang: thanh điều hướng trái, mục lục phải, tìm kiếm bằng phím <code>/</code>, checkbox tiến độ học, nút copy cho mọi khối code.</p>
 <p>Ngân hàng câu hỏi nằm ngay trong <code>practice.html</code> (các mảng <code>QUESTIONS</code>, <code>ORDER</code>, <code>FILL</code>, <code>YESNO</code>, <code>CASES</code> ở đầu thẻ <code>&lt;script&gt;</code>), nội dung tài liệu nằm ngay trong <code>notes.html</code> (mỗi tài liệu là một <code>&lt;section class="doc"&gt;</code>, heading có sẵn <code>id</code> để link neo). Sửa trực tiếp trong file HTML, không có bước build và không có file nguồn nào khác cần đồng bộ.</p>
-<h2 id="README/4-chi-tiet-noi-dung-thi-dich-nguyen-van-outline">4. Chi tiết nội dung thi (dịch nguyên văn outline)</h2>
-<h3 id="README/domain-1-develop-containerized-solutions-on-azure-2025">Domain 1 — Develop containerized solutions on Azure (20–25%)</h3>
+<h2 id="README/4-chi-tiet-noi-dung-thi-dich-nguyen-van-outline">5. Chi tiết nội dung thi (dịch nguyên văn outline)</h2>
+<h3 id="README/domain-1-develop-containerized-solutions-on-azure-2025">5.1 Domain 1 — Develop containerized solutions on Azure (20–25%)</h3>
 <p><strong>Implement container application hosting</strong></p>
 <ul><li>Build, store, version, manage container image bằng <strong>Azure Container Registry</strong></li><li>Build và run image bằng <strong>ACR Tasks</strong></li><li>Deploy container lên <strong>Azure App Service</strong>, gồm cấu hình environment variables và secrets</li></ul>
 <p><strong>Implement container-orchestrated solutions</strong></p>
 <ul><li>Deploy app lên <strong>Azure Container Apps</strong>: cấu hình environment, quản lý <strong>revision</strong></li><li>Event-driven scaling bằng <strong>KEDA</strong> trong Container Apps</li><li>Deploy &amp; quản lý app trên <strong>AKS</strong> bằng <strong>manifest files</strong></li><li>Monitor/troubleshoot AKS và Container Apps: logs, events, end-to-end connectivity</li></ul>
-<h3 id="README/domain-2-develop-ai-solutions-by-using-azure-data-management">Domain 2 — Develop AI solutions by using Azure data management services (25–30%)</h3>
+<h3 id="README/domain-2-develop-ai-solutions-by-using-azure-data-management">5.2 Domain 2 — Develop AI solutions by using Azure data management services (25–30%)</h3>
 <p><strong>Azure Cosmos DB for NoSQL</strong></p>
 <ul><li>Kết nối bằng SDK và chạy query</li><li>Tối ưu query performance &amp; <strong>RU</strong> bằng indexing policy và consistency level</li><li>Lưu/truy xuất <strong>embeddings</strong>, thực hiện <strong>vector similarity search</strong> cho semantic retrieval</li><li>Cài đặt <strong>change feed processor</strong> để phát hiện item mới/được cập nhật</li></ul>
 <p><strong>Azure Database for PostgreSQL</strong></p>
 <ul><li>Kết nối và query bằng SDK</li><li>Model schema + indexing strategy (thiết kế bảng, chọn data type phù hợp)</li><li>Indexing strategy: giảm query latency, giảm <strong>pgvector compute overhead</strong></li><li>Cấu hình compute, memory, storage cho vector workload</li><li>Vector similarity search: lưu embeddings, semantic retrieval, <strong>RAG với metadata filter</strong></li><li>Tối ưu connection để tăng throughput, giảm latency</li></ul>
 <p><strong>Azure Managed Redis</strong></p>
 <ul><li>Data operations: caching, expiration, invalidation</li><li><strong>Vector indexing</strong> để similarity search</li></ul>
-<h3 id="README/domain-3-connect-to-and-consume-azure-services-2025">Domain 3 — Connect to and consume Azure services (20–25%)</h3>
+<h3 id="README/domain-3-connect-to-and-consume-azure-services-2025">5.3 Domain 3 — Connect to and consume Azure services (20–25%)</h3>
 <p><strong>Event- and message-based AI solutions</strong></p>
 <ul><li><strong>Azure Service Bus</strong>: queue/xử lý back-end operations, <strong>dead-letter queue</strong>, messages, topics, subscriptions</li><li><strong>Azure Event Grid</strong>: event-driven workflow, filters, custom events, retries</li></ul>
 <p><strong>Azure Functions</strong></p>
 <ul><li>Serverless API: <strong>triggers và bindings</strong></li><li>Cấu hình và deploy function app</li></ul>
-<h3 id="README/domain-4-secure-monitor-and-troubleshoot-azure-solutions-202">Domain 4 — Secure, monitor, and troubleshoot Azure solutions (20–25%)</h3>
+<h3 id="README/domain-4-secure-monitor-and-troubleshoot-azure-solutions-202">5.4 Domain 4 — Secure, monitor, and troubleshoot Azure solutions (20–25%)</h3>
 <p><strong>Implement secure Azure solutions</strong></p>
 <ul><li><strong>Azure Key Vault</strong>: bảo vệ secrets, rotation, retrieval</li><li><strong>Azure App Configuration</strong>: lưu/đọc cấu hình app</li></ul>
 <p><strong>Monitor and troubleshoot</strong></p>
 <ul><li><strong>Distributed tracing với OpenTelemetry SDKs</strong></li><li>Viết <strong>KQL</strong> để phân tích logs và metrics</li></ul>
-<h2 id="README/5-ghi-chu-cua-microsoft-ve-cach-ra-de">5. Ghi chú của Microsoft về cách ra đề</h2>
+<h2 id="README/5-ghi-chu-cua-microsoft-ve-cach-ra-de">6. Ghi chú của Microsoft về cách ra đề</h2>
 <ul><li>Các bullet dưới mỗi skill chỉ <strong>minh hoạ</strong> cách đánh giá — chủ đề liên quan vẫn có thể xuất hiện.</li><li>Phần lớn câu hỏi về tính năng <strong>GA</strong>; tính năng <strong>Preview</strong> vẫn có thể xuất hiện nếu phổ biến.</li></ul>
-<h2 id="README/6-tai-nguyen-chinh-thuc">6. Tài nguyên chính thức</h2>
+<h2 id="README/6-tai-nguyen-chinh-thuc">7. Tài nguyên chính thức</h2>
 <ul><li>Study guide: https://aka.ms/AI200-StudyGuide</li><li>Trang chứng chỉ: https://learn.microsoft.com/credentials/certifications/azure-ai-cloud-developer-associate/</li><li>Azure docs theo chủ đề: Container Registry, App Service, Functions, Cosmos DB, Key Vault, Event Grid, Service Bus, Azure Cache/Managed Redis</li><li>Exam Readiness Zone (video), Microsoft Q&amp;A, Azure Community Support</li></ul>
 </section>
 <section class="doc" id="01-container" data-title="1. Container trên Azure" data-weight="20–25%" hidden>
@@ -235,46 +235,46 @@ az containerapp replica list -g rg -n rag-api -o table</code></pre>
 <h2 id="01-container/5-chon-dich-vu-compute-bang-quyet-dinh">5. Chọn dịch vụ compute — bảng quyết định</h2>
 <div class="tablewrap"><table><thead><tr><th>Yêu cầu</th><th>Chọn</th></tr></thead><tbody><tr><td>Web app/API, muốn deployment slot, không cần orchestration</td><td><strong>App Service (container)</strong></td></tr><tr><td>Microservice/worker, scale-to-zero, event-driven, không muốn quản K8s</td><td><strong>Azure Container Apps</strong></td></tr><tr><td>Cần toàn quyền K8s: CRD, service mesh, GPU node pool tuỳ biến, Helm phức tạp</td><td><strong>AKS</strong></td></tr><tr><td>Job batch ngắn, chạy 1 lần / theo cron</td><td><strong>Container Apps Jobs</strong> hoặc <strong>AKS Job</strong></td></tr><tr><td>Hàm nhỏ, trigger theo event, pay-per-execution</td><td><strong>Azure Functions</strong> (Domain 3)</td></tr></tbody></table></div>
 <hr>
-<h2 id="01-container/5b-aca-networking-ingress-chi-tiet">5b. Container Apps — networking, ingress và revision chuyên sâu</h2>
-<h3 id="01-container/5b1-ingress">5b.1 Ingress</h3>
+<h2 id="01-container/5b-aca-networking-ingress-chi-tiet">6. Container Apps — networking, ingress và revision chuyên sâu</h2>
+<h3 id="01-container/5b1-ingress">6.1 Ingress</h3>
 <ul><li><strong>External</strong> = có địa chỉ public; <strong>internal</strong> = chỉ trong environment/VNet — API nội bộ giữa các app trong cùng environment gọi nhau qua DNS nội bộ <code>http://&lt;app-name&gt;</code>, không cần đi ra ngoài.</li>
 <li><code>targetPort</code> phải đúng cổng container lắng nghe — triệu chứng sai cổng: revision "Provisioned" nhưng request timeout; đây là lỗi nộp đề hay gặp cùng <code>WEBSITES_PORT</code> bên App Service.</li>
 <li>Ingress hỗ trợ HTTP/2, gRPC, WebSocket; giới hạn IP bằng <code>ipSecurityRestrictions</code>; TLS termination có sẵn, custom domain + managed certificate miễn phí.</li></ul>
-<h3 id="01-container/5b2-revision-va-traffic">5b.2 Revision mode và chia traffic</h3>
+<h3 id="01-container/5b2-revision-va-traffic">6.2 Revision mode và chia traffic</h3>
 <ul><li><strong>Single</strong> (mặc định): revision mới thay hẳn cũ. <strong>Multiple</strong>: giữ nhiều revision sống — chia traffic 90/10 để canary, hoặc gắn <strong>label</strong> (staging/prod) để có URL riêng từng revision rồi hoán đổi.</li>
 <li>Chỉ thay đổi thuộc <strong>revision-scope</strong> (image, env var, scale rule, CPU/RAM) mới sinh revision mới; thay đổi <strong>application-scope</strong> (ingress, secrets, Dapr) áp cho mọi revision và không tạo bản mới.</li>
 <li>Rollback = trỏ 100% traffic về revision cũ — vì vậy đừng tắt revision cũ ngay sau khi deploy.</li></ul>
-<h3 id="01-container/5b3-scale">5b.3 Scale rule ngoài KEDA queue</h3>
+<h3 id="01-container/5b3-scale">6.3 Scale rule ngoài KEDA queue</h3>
 <ul><li>HTTP scale rule theo <strong>concurrent requests</strong> (mặc định 10/replica); <code>minReplicas: 0</code> cho phép scale về 0 (cold start đổi lấy tiền); job nền không có ingress thì bắt buộc scale bằng KEDA (queue, cron, Event Hubs).</li>
 <li>Bẫy đề: app xử lý queue mà đặt HTTP rule → không bao giờ scale vì không có request; ngược lại API đặt queue rule → scale sai tín hiệu.</li>
 <li>Số liệu đã đối chiếu docs (Learn, 8/2026): không khai rule thì mặc định là HTTP rule với min 0 / max <strong>10 replica</strong>; KEDA poll mỗi <strong>30 giây</strong>, scale-down đợi cửa sổ ổn định <strong>300 giây</strong> và cooldown 300 giây trước khi về 0; công thức <code>desiredReplicas = ceil(metric / target)</code>.</li>
 <li>Bẫy nguy hiểm nhất: app <strong>tắt ingress</strong> mà không đặt <code>minReplicas ≥ 1</code> hoặc scale rule riêng → scale về 0 và <strong>không có gì đánh thức nó dậy</strong>.</li></ul>
 
-<h3 id="01-container/5b4-workload-profiles">5b.4 Workload profiles — Consumption vs Dedicated trong environment</h3>
+<h3 id="01-container/5b4-workload-profiles">6.4 Workload profiles — Consumption vs Dedicated trong environment</h3>
 <ul><li>Environment kiểu <strong>workload profiles</strong> cho phép trộn: profile <strong>Consumption</strong> (serverless, trả theo dùng, scale về 0) và các profile <strong>Dedicated</strong> (D4/D8/E4… — máy riêng, chọn khi cần CPU/RAM lớn, GPU, hoặc chi phí ổn định cho tải nền).</li>
 <li>Mỗi container app/job gán vào một profile; cùng environment dùng chung VNet, log, DNS nội bộ — nên "API nhẹ chạy Consumption, worker embedding nặng chạy Dedicated" là một environment, không phải hai.</li>
 <li>Dedicated tính tiền theo <strong>node đang chạy</strong> của profile (đặt min/max node) — khác Consumption tính theo replica đang hoạt động; đề nhấn "chi phí dự đoán được cho tải đều" → Dedicated, "thỉnh thoảng mới chạy" → Consumption.</li>
 <li>Environment kiểu cũ (Consumption-only) không đổi sang workload profiles được — phải tạo environment mới; VNet tùy chỉnh cần subnet đủ lớn (khuyến nghị /23 cho workload profiles).</li></ul>
-<h3 id="01-container/5b5-duoi-nap-capo-keda">5b.5 Dưới nắp capo: KEDA = scaler + metrics + HPA</h3>
+<h3 id="01-container/5b5-duoi-nap-capo-keda">6.5 Dưới nắp capo: KEDA = scaler + metrics + HPA</h3>
 <ul><li>Chuỗi thật sự phía sau một "scale rule": <strong>scaler</strong> (trình kết nối biết hỏi Service Bus/Event Hubs "đang có bao nhiêu message") → KEDA phơi con số đó thành <strong>external metric</strong> → <strong>HPA</strong> (Horizontal Pod Autoscaler của Kubernetes) tính <code>desiredReplicas = ceil(metric / target)</code> và chỉnh số replica. Container Apps chỉ giấu chuỗi này sau một khối JSON.</li>
 <li>Polling 30 giây là nhịp <em>scaler hỏi event source</em>; cooldown/cửa sổ ổn định 300 giây là tham số <em>HPA</em> chống rung (flapping) khi metric dao động quanh ngưỡng — giờ bạn biết hai con số đó thuộc về hai tầng khác nhau.</li>
 <li>Scale 0 → 1 là việc của <strong>chính KEDA</strong> (HPA không làm được từ 0): KEDA giữ vai "activator" bật replica đầu tiên khi thấy sự kiện, rồi bàn giao cho HPA từ 1 trở lên — vì vậy độ trễ đánh thức từ 0 luôn ≥ một chu kỳ polling.</li>
 <li>Hệ quả thiết kế: metric phải <strong>đo được từ ngoài app</strong> (độ dài queue, lag consumer group) — "CPU của việc tôi sắp phải làm" không tồn tại; đó là lý do queue-based scale ưu việt hơn CPU-based cho worker: nó đo <em>backlog</em> chứ không đo <em>hậu quả</em>.</li></ul>
-<h2 id="01-container/5c-acr-nang-cao">5c. ACR nâng cao — geo-replication, Tasks, private link</h2>
+<h2 id="01-container/5c-acr-nang-cao">7. ACR nâng cao — geo-replication, Tasks, private link</h2>
 <ul><li><strong>Geo-replication (Premium)</strong>: một registry phục vụ nhiều region — pull gần nơi chạy, một endpoint duy nhất, webhook theo từng region. Đề nói "đội ở 3 region cùng pull image lớn" → geo-replication, không phải tạo 3 registry.</li>
 <li><strong>ACR Tasks</strong> có ba trigger: commit vào repo nguồn, <strong>base image update</strong> (image nền vá CVE là image của bạn tự build lại — điểm ăn tiền), và timer. <code>az acr build</code> = build ngay trên đám mây, máy dev không cần Docker.</li>
 <li><strong>Private link (Premium)</strong>: kéo registry vào VPC qua private endpoint; bật <em>dedicated data endpoints</em> để data-plane cũng có tên riêng mà firewall whitelist được.</li>
 <li>Dọn kho: retention policy cho untagged manifest, <code>az acr purge</code> chạy như một Task định kỳ; import image giữa registry bằng <code>az acr import</code> (không cần docker pull/push).</li>
 <li>Xác thực theo thứ tự ưu tiên của đề: <strong>managed identity + AcrPull</strong> &gt; token/scope map (quyền hẹp theo repo) &gt; admin user (chỉ dev/test — thấy trong phương án production là sai).</li></ul>
-<h2 id="01-container/6-checklist-on-domain-1">6. Checklist ôn Domain 1</h2>
+<h2 id="01-container/6-checklist-on-domain-1">8. Checklist ôn Domain 1</h2>
 <ul><li class="task" data-key="01-container:0"><input type="checkbox">Phân biệt SKU ACR và tính năng chỉ có ở Premium</li><li class="task" data-key="01-container:1"><input type="checkbox">Viết được <code>az acr build</code> và giải thích base image update trigger</li><li class="task" data-key="01-container:2"><input type="checkbox">Cấu hình App Service pull ACR bằng managed identity + <code>WEBSITES_PORT</code></li><li class="task" data-key="01-container:3"><input type="checkbox">Cú pháp Key Vault reference trong app settings</li><li class="task" data-key="01-container:4"><input type="checkbox">Hiểu revision, revision-scope vs application-scope, traffic splitting</li><li class="task" data-key="01-container:5"><input type="checkbox">Viết được KEDA scale rule <code>azure-servicebus</code> (metadata + auth)</li><li class="task" data-key="01-container:6"><input type="checkbox">Đọc-sửa được manifest Deployment/Service, biết requests vs limits, readiness vs liveness</li><li class="task" data-key="01-container:7"><input type="checkbox">Nhớ bảng chẩn đoán lỗi pod và các lệnh log/exec cho cả AKS và ACA</li></ul>
 </section>
 <section class="doc" id="02-data-services" data-title="2. Data services &amp; Vector" data-weight="25–30%" hidden>
 <h1 id="02-data-services/domain-2-xay-dung-ai-solution-voi-azure-data-management-serv">Domain 2 — Xây dựng AI solution với Azure data management services (25–30%)</h1>
 <p>Domain nặng điểm nhất. Trọng tâm: <strong>vector search + RAG</strong> trên ba dịch vụ: Cosmos DB for NoSQL, Azure Database for PostgreSQL, Azure Managed Redis.</p>
 <hr>
-<h2 id="02-data-services/phan-a-azure-cosmos-db-for-nosql">Phần A. Azure Cosmos DB for NoSQL</h2>
-<h3 id="02-data-services/a1-ket-noi-bang-sdk-python">A1. Kết nối bằng SDK (Python)</h3>
+<h2 id="02-data-services/phan-a-azure-cosmos-db-for-nosql">1. Azure Cosmos DB for NoSQL</h2>
+<h3 id="02-data-services/a1-ket-noi-bang-sdk-python">1.1 Kết nối bằng SDK (Python)</h3>
 <pre><button class="copybtn">copy</button><code>from azure.cosmos import CosmosClient, PartitionKey
 from azure.identity import DefaultAzureCredential
 
@@ -305,7 +305,7 @@ items = container.query_items(query="SELECT * FROM c WHERE c.status='indexed'",
 <p>Đo RU thực tế:</p>
 <pre><button class="copybtn">copy</button><code>container.query_items(...)
 print(container.client_connection.last_response_headers["x-ms-request-charge"])</code></pre>
-<h3 id="02-data-services/a2-toi-uu-ru-chu-de-chac-chan-co-trong-de">A2. Tối ưu RU (chủ đề chắc chắn có trong đề)</h3>
+<h3 id="02-data-services/a2-toi-uu-ru-chu-de-chac-chan-co-trong-de">1.2 Tối ưu RU (chủ đề chắc chắn có trong đề)</h3>
 <p><strong>Nguyên tắc:</strong></p>
 <ul><li>RU = đơn vị chi phí gộp CPU + IOPS + memory. <strong>Point read 1KB = 1 RU</strong>; ghi tốn nhiều hơn đọc; query tốn theo số item quét + số index dùng.</li><li><strong>Partition key tốt</strong> = cardinality cao, phân bố đều, xuất hiện trong hầu hết filter → tránh <strong>hot partition</strong>. Ví dụ tốt: <code>/tenantId</code>, <code>/userId</code>, <code>/documentId</code>. Xấu: <code>/type</code>, <code>/status</code>, ngày tháng.</li><li>Giới hạn logical partition: <strong>20 GB</strong> và 10.000 RU/s → chọn key tránh chạm trần. Cần thì dùng <strong>synthetic key</strong> (<code>tenantId-yyyyMM</code>).</li><li><strong>Autoscale</strong> (từ 10% → 100% max RU/s) cho tải biến động; <strong>manual/standard</strong> cho tải ổn định (rẻ hơn ~ khi dùng đều).</li><li><strong>Serverless</strong> cho dev/test hoặc tải rời rạc.</li><li><strong>Bulk mode / TransactionalBatch</strong> khi nạp hàng loạt embeddings.</li><li>Bật <code>429</code> retry: SDK tự retry theo <code>x-ms-retry-after-ms</code>; tăng <code>max_retry_attempts</code> nếu ingest lớn.</li></ul>
 <p><strong>Indexing policy</strong> — mặc định index <strong>mọi</strong> property (<code>/*</code>), tốn RU khi ghi. Tài liệu RAG có trường <code>embedding</code> dài 1536 số → <strong>bắt buộc exclude</strong> khỏi index thường:</p>
@@ -331,7 +331,7 @@ print(container.client_connection.last_response_headers["x-ms-request-charge"])<
 <div class="tablewrap"><table><thead><tr><th>Level</th><th>Đặc điểm</th><th>RU đọc</th></tr></thead><tbody><tr><td><strong>Strong</strong></td><td>Đọc luôn thấy ghi mới nhất; không dùng được với multi-region write</td><td><strong>2×</strong></td></tr><tr><td><strong>Bounded staleness</strong></td><td>Trễ tối đa K version / T giây</td><td><strong>2×</strong></td></tr><tr><td><strong>Session</strong> (mặc định)</td><td>Read-your-own-writes trong 1 session (token)</td><td>1×</td></tr><tr><td><strong>Consistent prefix</strong></td><td>Không bao giờ thấy ghi lệch thứ tự</td><td>1×</td></tr><tr><td><strong>Eventual</strong></td><td>Yếu nhất, rẻ nhất, latency thấp nhất</td><td>1×</td></tr></tbody></table></div>
 <blockquote><p>Bẫy: "giảm RU cho workload đọc nhiều, chấp nhận trễ nhỏ" → hạ từ Strong/Bounded xuống <strong>Session hoặc Eventual</strong>. Có thể override <strong>giảm</strong> mức mạnh ở từng request, không thể <strong>tăng</strong> cao hơn mức account.</p></blockquote>
 <p>Tối ưu khác: bật <strong>Integrated cache</strong> (chỉ với dedicated gateway) cho point read/query lặp lại → <strong>0 RU</strong> khi cache hit.</p>
-<h3 id="02-data-services/a3-vector-search-trong-cosmos-db-for-nosql">A3. Vector search trong Cosmos DB for NoSQL</h3>
+<h3 id="02-data-services/a3-vector-search-trong-cosmos-db-for-nosql">1.3 Vector search trong Cosmos DB for NoSQL</h3>
 <p>Các bước bắt buộc:</p>
 <ol><li>Bật feature <strong>"Vector Search for NoSQL API"</strong> ở cấp account (Features).</li><li>Định nghĩa <strong>container vector embedding policy</strong> <em>khi tạo container</em>.</li><li>Thêm <strong>vector index</strong> trong indexing policy (cũng chỉ khai báo được lúc tạo container).</li><li>Query bằng hàm <strong><code>VectorDistance()</code></strong>.</li></ol>
 <blockquote><p><strong>Bất biến — bẫy thi thường gặp:</strong> vector embedding policy và vector index <strong>không sửa được sau khi container đã tạo</strong>, và vector search <strong>không bật được trên container có sẵn</strong> → phải tạo container mới rồi copy dữ liệu sang. Các index khác (included/excluded path, composite) thì vẫn sửa được bình thường.</p></blockquote>
@@ -383,7 +383,7 @@ context = "\\n\\n".join(r["chunk"] for r in results)
 answer = aoai.chat.completions.create(model="gpt-4o", messages=[
     {"role": "system", "content": f"Chỉ trả lời dựa trên ngữ cảnh:\\n{context}"},
     {"role": "user", "content": question}])</code></pre>
-<h3 id="02-data-services/a3b-full-text-va-hybrid-search">A3b. Full-text search và hybrid search (RRF)</h3>
+<h3 id="02-data-services/a3b-full-text-va-hybrid-search">1.4 Full-text search và hybrid search (RRF)</h3>
 <p>Chỉ vector search thôi thì trượt các truy vấn có <strong>mã sản phẩm, tên riêng, thuật ngữ hiếm</strong> — đó là lúc cần hybrid: chạy BM25 và vector rồi hợp nhất thứ hạng bằng <strong>Reciprocal Rank Fusion</strong>. Cosmos DB làm việc này <em>trong một câu query</em>, không cần merge ở phía ứng dụng.</p>
 <p>Container phải được tạo với <strong>đủ 4 thứ</strong>: vector policy, full text policy, vector index, full text index.</p>
 <pre><button class="copybtn">copy</button><code>full_text_policy = {
@@ -417,7 +417,7 @@ ORDER BY RANK RRF(
            [2, 1])</code></pre>
 <p>Điểm hay bị hỏi:</p>
 <ul><li><code>FullTextScore(path, "term1", "term2", …)</code> — các từ khoá là <strong>tham số rời</strong>, không phải một mảng.</li><li>Chỉ dùng <strong>full-text search thuần</strong> thì xếp hạng bằng <code>ORDER BY RANK FullTextScore(...)</code>; lọc có/không chứa từ khoá thì dùng <code>FullTextContains</code> / <code>FullTextContainsAll</code> / <code>FullTextContainsAny</code> trong <code>WHERE</code>.</li><li><code>ORDER BY RANK</code> là mệnh đề xếp hạng riêng — <strong>không trộn chung với <code>ORDER BY</code> thường</strong>.</li><li>Thiếu full text index thì query hybrid không chạy; thiếu vector index thì rơi về brute-force, RU tăng vọt.</li><li>Vẫn nên pre-filter tenant/ngôn ngữ bằng <code>WHERE</code> để giảm RU.</li></ul>
-<h3 id="02-data-services/a4-change-feed">A4. Change feed</h3>
+<h3 id="02-data-services/a4-change-feed">1.5 Change feed</h3>
 <p>Change feed = <strong>log các thay đổi theo thứ tự</strong>, trong từng logical partition, <strong>bền vững</strong>. Ứng dụng AI: item mới → sinh embedding → cập nhật index / gửi message.</p>
 <p>Hai chế độ:</p>
 <div class="tablewrap"><table><thead><tr><th>Mode</th><th>Nội dung</th></tr></thead><tbody><tr><td><strong>Latest version</strong> (mặc định)</td><td>Chỉ bản mới nhất của item bị insert/update. <strong>Không có delete</strong> (dùng soft-delete + TTL để bắt được)</td></tr><tr><td><strong>All versions and deletes</strong></td><td>Mọi thay đổi gồm insert/update/<strong>delete</strong>, có bản trước và sau</td></tr></tbody></table></div>
@@ -444,8 +444,8 @@ def on_change(documents: func.DocumentList):
 <p>Điểm dễ mất điểm:</p>
 <ul><li><strong>Lease container bắt buộc</strong>, phải có partition key <code>/id</code>, và <strong>mỗi consumer group cần lease riêng</strong> (hoặc <code>LeasePrefix</code> khác nhau) — nếu 2 xử lý khác nhau dùng chung lease sẽ "ăn" mất thay đổi của nhau.</li><li>Change feed <strong>at-least-once</strong> → xử lý phải <strong>idempotent</strong>.</li><li>Muốn scale: tăng số instance, số physical partition quyết định mức song song tối đa.</li></ul>
 <hr>
-<h2 id="02-data-services/phan-b-azure-database-for-postgresql-flexible-server">Phần B. Azure Database for PostgreSQL (flexible server)</h2>
-<h3 id="02-data-services/b1-ket-noi-toi-uu-connection">B1. Kết nối &amp; tối ưu connection</h3>
+<h2 id="02-data-services/phan-b-azure-database-for-postgresql-flexible-server">2. Azure Database for PostgreSQL (flexible server)</h2>
+<h3 id="02-data-services/b1-ket-noi-toi-uu-connection">2.1 Kết nối &amp; tối ưu connection</h3>
 <pre><button class="copybtn">copy</button><code>import os, psycopg
 from azure.identity import DefaultAzureCredential
 
@@ -459,7 +459,7 @@ conn = psycopg.connect(host="mypg.postgres.database.azure.com", dbname="ragdb",
                        user="app@tenant.com", password=token, sslmode="require")</code></pre>
 <p><strong>Tối ưu kết nối (mục có trong outline):</strong></p>
 <ul><li><strong>Connection pooling</strong> — mỗi kết nối Postgres là một process, tốn ~10 MB RAM. Serverless/Functions mở kết nối liên tục sẽ giết server.</li><li style="margin-left:14px">Dùng <strong>PgBouncer tích hợp</strong> của flexible server: bật tham số <code>pgbouncer.enabled = true</code>, kết nối qua <strong>port 6432</strong>.</li><li style="margin-left:14px">Hoặc pool phía ứng dụng: <code>psycopg_pool.ConnectionPool(conninfo, min_size=1, max_size=10)</code>.</li><li style="margin-left:14px">Transaction pooling phù hợp app nhiều kết nối ngắn; lưu ý không dùng được prepared statement server-side/<code>LISTEN</code>.</li><li>Đặt app <strong>cùng region</strong> với DB; bật <strong>private endpoint/VNet integration</strong> để giảm latency &amp; tăng bảo mật.</li><li>Giảm round-trip: batch insert (<code>COPY</code>, <code>executemany</code>), lấy đúng cột cần thiết.</li></ul>
-<h3 id="02-data-services/b2-pgvector-thiet-lap">B2. pgvector — thiết lập</h3>
+<h3 id="02-data-services/b2-pgvector-thiet-lap">2.2 pgvector — thiết lập</h3>
 <pre><button class="copybtn">copy</button><code>CREATE EXTENSION IF NOT EXISTS vector;      -- phải allowlist trước: azure.extensions = VECTOR</code></pre>
 <p>Trên Azure phải thêm <code>vector</code> (và <code>pg_diskann</code>, <code>azure_ai</code> nếu dùng) vào server parameter <strong><code>azure.extensions</code></strong> rồi mới <code>CREATE EXTENSION</code> được — đây là bẫy thi rất hay gặp.</p>
 <p>Schema RAG chuẩn:</p>
@@ -478,7 +478,7 @@ CREATE INDEX ON doc_chunks (tenant_id, lang);          -- pre-filter cho RAG
 CREATE INDEX ON doc_chunks USING gin (metadata jsonb_path_ops);</code></pre>
 <p>Chọn kiểu dữ liệu (mục "choosing appropriate data types"):</p>
 <div class="tablewrap"><table><thead><tr><th>Kiểu</th><th>Khi nào</th></tr></thead><tbody><tr><td><code>vector(n)</code></td><td>Mặc định, float32, tối đa 2000 chiều cho index HNSW</td></tr><tr><td><code>halfvec(n)</code></td><td>float16 → <strong>giảm 50% dung lượng và compute</strong>, độ chính xác gần như không đổi; index tới 4000 chiều</td></tr><tr><td><code>bit(n)</code></td><td>Binary quantization, cực gọn, dùng cho tầng lọc thô</td></tr><tr><td><code>sparsevec</code></td><td>Vector thưa (SPLADE, keyword expansion)</td></tr><tr><td><code>jsonb</code></td><td>Metadata linh hoạt (+ GIN index)</td></tr><tr><td><code>text</code> vs <code>varchar(n)</code></td><td>Postgres không nhanh hơn khi giới hạn độ dài → dùng <code>text</code></td></tr><tr><td><code>uuid</code>, <code>timestamptz</code></td><td>Đúng kiểu thay vì <code>text</code> — index nhỏ hơn, so sánh nhanh hơn</td></tr></tbody></table></div>
-<h3 id="02-data-services/b3-index-cho-vector-giam-latency-compute-overhead">B3. Index cho vector — giảm latency &amp; compute overhead</h3>
+<h3 id="02-data-services/b3-index-cho-vector-giam-latency-compute-overhead">2.3 Index cho vector — giảm latency &amp; compute overhead</h3>
 <p><strong>Toán tử phải khớp với index, nếu lệch thì index bị bỏ qua (seq scan):</strong></p>
 <div class="tablewrap"><table><thead><tr><th>Toán tử</th><th>Ý nghĩa</th><th>Index opclass</th></tr></thead><tbody><tr><td><code>&lt;-&gt;</code></td><td>L2 / Euclidean</td><td><code>vector_l2_ops</code></td></tr><tr><td><code>&lt;=&gt;</code></td><td><strong>Cosine distance</strong> (phổ biến nhất với OpenAI embeddings)</td><td><code>vector_cosine_ops</code></td></tr><tr><td><code>&lt;#&gt;</code></td><td>Inner product (âm)</td><td><code>vector_ip_ops</code></td></tr></tbody></table></div>
 <p><strong>HNSW</strong> (mặc định nên dùng — recall cao, query nhanh, build chậm &amp; tốn RAM):</p>
@@ -497,9 +497,9 @@ CREATE INDEX idx_chunks_diskann ON doc_chunks
 USING diskann (embedding vector_cosine_ops);</code></pre>
 <p>Giảm <strong>compute overhead</strong> của pgvector:</p>
 <ul><li>Dùng <code>halfvec</code> hoặc <strong>quantization</strong>; hoặc giảm chiều embedding (<code>dimensions=768</code> với text-embedding-3-*).</li><li>Đánh index trên biểu thức: <code>USING hnsw ((embedding::halfvec(1536)) halfvec_cosine_ops)</code>.</li><li>Chuẩn hoá vector (L2 normalize) rồi dùng inner product → rẻ hơn cosine.</li><li>Tăng <code>maintenance_work_mem</code> và <code>max_parallel_maintenance_workers</code> khi build index; đặt <code>ef_construction</code> vừa đủ.</li><li>Partition bảng theo <code>tenant_id</code>/thời gian nếu dữ liệu rất lớn.</li><li><code>VACUUM ANALYZE</code> sau khi nạp lớn; theo dõi bloat.</li></ul>
-<h3 id="02-data-services/b4-cau-hinh-compute-memory-storage-cho-vector-workload">B4. Cấu hình compute / memory / storage cho vector workload</h3>
+<h3 id="02-data-services/b4-cau-hinh-compute-memory-storage-cho-vector-workload">2.4 Cấu hình compute / memory / storage cho vector workload</h3>
 <ul><li><strong>Tiers</strong>: Burstable (dev) → <strong>General Purpose</strong> (đa số production) → <strong>Memory Optimized</strong> (khuyến nghị cho vector: HNSW cần <strong>index nằm gọn trong RAM</strong> để tránh đọc disk).</li><li>Quy tắc ước lượng: kích thước index HNSW ≈ số vector × chiều × 4 byte × ~1.3–2. 1M vector 1536 chiều ≈ 6 GB dữ liệu + ~8–12 GB index → cần instance ≥ 32 GB RAM (hoặc chuyển DiskANN/halfvec).</li><li><strong>Storage</strong>: IOPS gắn với dung lượng đĩa; workload build index nặng I/O → chọn <strong>Premium SSD v2</strong> để tách IOPS/throughput khỏi size.</li><li><code>shared_buffers</code> ≈ 25% RAM, <code>effective_cache_size</code> ≈ 75% RAM, <code>work_mem</code> đủ cho sort/hash (cẩn thận nhân theo số connection).</li><li>Bật <strong>High Availability (zone-redundant)</strong> cho production, read replica để tách tải đọc RAG.</li></ul>
-<h3 id="02-data-services/b5-rag-voi-metadata-filter-nguyen-van-trong-outline">B5. RAG với metadata filter (nguyên văn trong outline)</h3>
+<h3 id="02-data-services/b5-rag-voi-metadata-filter-nguyen-van-trong-outline">2.5 RAG với metadata filter (nguyên văn trong outline)</h3>
 <pre><button class="copybtn">copy</button><code>-- Pre-filter bằng WHERE + ORDER BY khoảng cách + LIMIT
 SELECT id, doc_id, chunk, 1 - (embedding &lt;=&gt; $1) AS similarity
 FROM   doc_chunks
@@ -531,7 +531,7 @@ UPDATE doc_chunks
 SET embedding = azure_openai.create_embeddings('text-embedding-3-small', chunk)::vector
 WHERE embedding IS NULL;</code></pre>
 <hr>
-<h2 id="02-data-services/phan-c-azure-managed-redis">Phần C. Azure Managed Redis</h2>
+<h2 id="02-data-services/phan-c-azure-managed-redis">3. Azure Managed Redis</h2>
 <blockquote><p>Azure Managed Redis là thế hệ mới thay cho Azure Cache for Redis (dựa trên Redis Enterprise), có các module <strong>RediSearch, RedisJSON, RedisBloom, RedisTimeSeries</strong> → nhờ đó làm được <strong>vector index</strong>. Module là <em>managed module</em>: phải <strong>bật lúc tạo cache</strong>, không thêm được sau.</p></blockquote>
 <p><strong>Bốn tier</strong> — khác nhau ở tỉ lệ memory:vCPU:</p>
 <div class="tablewrap"><table><thead><tr><th>Tier</th><th>Memory : vCPU</th><th>Dùng khi</th></tr></thead><tbody>
@@ -542,7 +542,7 @@ WHERE embedding IS NULL;</code></pre>
 </tbody></table></div>
 <blockquote><p><strong>Bẫy thi:</strong> <strong>Flash Optimized KHÔNG hỗ trợ RediSearch/vector search</strong> (cũng không hỗ trợ RedisBloom và RedisTimeSeries). Đề mô tả "dataset lớn, key nguội, <em>và</em> cần similarity search" thì Flash Optimized là đáp án sai — phải chọn tier khác.</p></blockquote>
 <blockquote><p><strong>Cập nhật vòng đời:</strong> Azure Cache for Redis bị khai tử — tier <strong>Enterprise / Enterprise Flash ngừng 31/3/2027</strong>, tier <strong>Basic / Standard / Premium ngừng 30/9/2028</strong>. Microsoft khuyến nghị chuyển sang Azure Managed Redis; đề mới vì vậy hỏi theo tên <em>Azure Managed Redis</em>.</p></blockquote>
-<h3 id="02-data-services/c1-caching-expiration-invalidation">C1. Caching, expiration, invalidation</h3>
+<h3 id="02-data-services/c1-caching-expiration-invalidation">3.1 Caching, expiration, invalidation</h3>
 <pre><button class="copybtn">copy</button><code>import redis, json, hashlib
 r = redis.Redis(host="mycache.region.redis.azure.net", port=10000, ssl=True,
                 password=token, decode_responses=True)
@@ -563,7 +563,7 @@ def answer(q):
 <ul><li><strong>TTL-based</strong>: đơn giản nhất, chấp nhận dữ liệu cũ trong khoảng TTL.</li><li><strong>Write-through / write-behind</strong>: cập nhật cache ngay khi ghi DB.</li><li><strong>Event-driven</strong>: change feed Cosmos DB / Event Grid → Function → <code>DEL</code> key liên quan.</li><li>Thêm <strong>jitter</strong> cho TTL để tránh <strong>cache stampede</strong>; dùng <code>SET NX</code> làm lock khi rebuild.</li><li><strong>Eviction policy</strong> khi đầy bộ nhớ: <code>allkeys-lru</code> (cache thuần), <code>volatile-ttl</code>, <code>noeviction</code> (dùng cho queue/session — sẽ báo lỗi ghi khi đầy).</li></ul>
 <p>Ứng dụng AI đặc trưng:</p>
 <ul><li><strong>Semantic cache</strong>: cache câu trả lời LLM theo <em>ý nghĩa</em> câu hỏi (vector similarity) chứ không theo chuỗi khớp tuyệt đối → giảm chi phí token.</li><li><strong>Session/chat history store</strong>, <strong>rate limiting</strong> (<code>INCR</code> + <code>EXPIRE</code>), <strong>conversation state</strong>.</li></ul>
-<h3 id="02-data-services/c2-vector-index-voi-redisearch">C2. Vector index với RediSearch</h3>
+<h3 id="02-data-services/c2-vector-index-voi-redisearch">3.2 Vector index với RediSearch</h3>
 <pre><button class="copybtn">copy</button><code>from redis.commands.search.field import VectorField, TextField, TagField
 from redis.commands.search.indexDefinition import IndexDefinition, IndexType
 from redis.commands.search.query import Query
@@ -590,7 +590,7 @@ q = (Query("(@tenant:{tenant_a})=&gt;[KNN 5 @embedding $vec AS score]")
 res = r.ft("idx:chunks").search(q, {"vec": np.array(qvec, dtype=np.float32).tobytes()})</code></pre>
 <ul><li><code>FLAT</code> = brute force, chính xác, hợp tập nhỏ; <code>HNSW</code> = ANN, hợp tập lớn.</li><li>Query dạng <code>=&gt;[KNN k @field $vec AS score]</code>, bắt buộc <code>DIALECT 2</code>, vector truyền dạng <strong>bytes</strong>.</li><li>Range query: <code>@embedding:[VECTOR_RANGE 0.35 $vec]</code>.</li><li>Redis giữ toàn bộ index <strong>trong RAM</strong> → nhanh nhất nhưng đắt nhất; hợp làm <strong>cache tầng nóng</strong> trước Cosmos/Postgres.</li></ul>
 <hr>
-<h3 id="02-data-services/c9-redis-vector-chi-tiet">C9. Vector search trong Managed Redis — FT.CREATE / FT.SEARCH chi tiết</h3>
+<h3 id="02-data-services/c9-redis-vector-chi-tiet">3.3 Vector search trong Managed Redis — FT.CREATE / FT.SEARCH chi tiết</h3>
 <p>Managed Redis dùng module RediSearch: index khai bằng <code>FT.CREATE</code>, truy vấn KNN bằng <code>FT.SEARCH</code>. Cú pháp là thứ đề trích nguyên văn.</p>
 <pre><button class="copybtn">copy</button><code># Index trên các key hash có prefix doc:, trường vector 1536 chiều, cosine, HNSW
 FT.CREATE idx:docs ON HASH PREFIX 1 doc: SCHEMA
@@ -604,25 +604,25 @@ FT.SEARCH idx:docs "(@category:{faq}) =&gt; [KNN 5 @embedding $vec AS score]"
 <li>Vector truyền dưới dạng <strong>bytes FLOAT32</strong> qua <code>PARAMS</code>, và query KNN bắt buộc <code>DIALECT 2</code> — thiếu là lỗi cú pháp, distractor ưa dùng.</li>
 <li>Phần <code>(@category:{faq})</code> đứng trước <code>=&gt;</code> là <strong>pre-filter</strong>: thu hẹp tập trước khi KNN — đúng mẫu "vector search kèm metadata filter" mà study guide nêu cho cả ba data service.</li>
 <li>Vai trò trong kiến trúc: Redis vector là <strong>semantic cache</strong> (bắt câu hỏi tương tự đã trả lời) hoặc kho vector nóng cạnh cache thường — kho tri thức chính vẫn là pgvector/Cosmos.</li></ul>
-<h2 id="02-data-services/d-so-sanh-nhanh-3-vector-store-cau-hoi-chon-dich-vu-nao">D. So sánh nhanh 3 vector store (câu hỏi "chọn dịch vụ nào")</h2>
+<h2 id="02-data-services/d-so-sanh-nhanh-3-vector-store-cau-hoi-chon-dich-vu-nao">4. So sánh nhanh 3 vector store (câu hỏi "chọn dịch vụ nào")</h2>
 <div class="tablewrap"><table><thead><tr><th>Tiêu chí</th><th>Cosmos DB for NoSQL</th><th>PostgreSQL + pgvector</th><th>Azure Managed Redis</th></tr></thead><tbody><tr><td>Mô hình</td><td>Document NoSQL, global distribution</td><td>Quan hệ, SQL đầy đủ, JOIN</td><td>Key-value in-memory</td></tr><tr><td>Vector index</td><td>flat / quantizedFlat / <strong>diskANN</strong></td><td>HNSW / IVFFlat / <strong>DiskANN</strong></td><td>FLAT / <strong>HNSW</strong></td></tr><tr><td>Điểm mạnh</td><td>Scale ngang cực lớn, multi-region write, change feed, SLA độ trễ</td><td>Truy vấn phức tạp, transaction, filter SQL mạnh, chi phí tốt</td><td>Latency &lt; ms, semantic cache, session</td></tr><tr><td>Điểm yếu</td><td>Cần hiểu RU &amp; partition key</td><td>Scale ngang khó hơn, phải quản index/vacuum</td><td>RAM đắt, không bền vững bằng</td></tr><tr><td>Chọn khi</td><td>App toàn cầu, khối lượng ghi lớn, cần change feed</td><td>Đã có dữ liệu quan hệ, cần filter/JOIN phong phú</td><td>Cần cache/độ trễ cực thấp cho tầng nóng</td></tr></tbody></table></div>
 <hr>
-<h2 id="02-data-services/d2-partition-key-va-hot-partition">D2. Thiết kế partition key cho Cosmos DB — tránh hot partition</h2>
+<h2 id="02-data-services/d2-partition-key-va-hot-partition">5. Thiết kế partition key cho Cosmos DB — tránh hot partition</h2>
 <p>Câu hỏi RU throttle mà "tổng capacity vẫn dư" gần như luôn là <strong>hot partition</strong>: RU chia đều cho các physical partition, một key nóng chỉ được dùng phần của nó.</p>
 <ul><li>Chọn key có <strong>cardinality cao</strong> và <strong>trải đều cả đọc lẫn ghi</strong>: <code>/userId</code>, <code>/deviceId</code> tốt; <code>/date</code>, <code>/status</code>, <code>/tenantId</code> với một tenant khổng lồ là ứng viên hot partition kinh điển.</li>
 <li>Ưu tiên key xuất hiện trong <strong>filter của truy vấn chính</strong> để query đi một partition (point read/single-partition query rẻ nhất); query thiếu partition key là <strong>cross-partition</strong> — chậm và đốt RU theo số partition.</li>
 <li>Ghi dồn theo thời gian (telemetry, log): trộn thêm hậu tố — <strong>hierarchical partition key</strong> (<code>/tenantId</code> rồi <code>/deviceId</code>) hoặc key tổng hợp <code>deviceId_yyyyMM</code> — để một ngày/giờ không dồn vào một partition.</li>
 <li>Chẩn đoán: metric <strong>Normalized RU consumption</strong> theo <code>PartitionKeyRangeId</code> trong Azure Monitor — một range chạm 100% trong khi các range khác nhàn rỗi = hot partition; sửa bằng đổi key (tạo container mới + change feed copy), không sửa được tại chỗ.</li>
 <li>Giới hạn phải nhớ: một logical partition tối đa <strong>20 GB</strong>; vượt là lỗi ghi bất kể RU — key ít giá trị sẽ chạm trần này trước.</li></ul>
-<h2 id="02-data-services/d3-cosmos-indexing-consistency-chi-tiet">D3. Cosmos DB chuyên sâu — indexing policy và consistency</h2>
-<h3 id="02-data-services/d31-indexing-policy">D3.1 Indexing policy</h3>
+<h2 id="02-data-services/d3-cosmos-indexing-consistency-chi-tiet">6. Cosmos DB chuyên sâu — indexing policy và consistency</h2>
+<h3 id="02-data-services/d31-indexing-policy">6.1 Indexing policy</h3>
 <ul><li>Mặc định index <strong>mọi đường dẫn</strong> — tiện nhưng trả RU ghi cho cả field không bao giờ query. Container ghi nặng: chuyển sang <code>includedPaths</code> chọn lọc + <code>excludedPaths: /*</code>, RU ghi giảm rõ rệt.</li>
 <li><strong>Composite index</strong> bắt buộc cho <code>ORDER BY</code> nhiều cột và giúp filter+sort phối hợp — đề cho query <code>ORDER BY c.category, c.price</code> chậm thì đáp án là thêm composite index, không phải tăng RU.</li>
 <li>Vector index ba loại: <code>flat</code> (chính xác tuyệt đối, ≤505 chiều), <code>quantizedFlat</code> (nén, nhanh hơn), <code>diskANN</code> (ANN cho tập lớn, rẻ RU nhất) — nhớ bảng chọn theo kích thước tập và độ chính xác.</li>
 <li>Indexing mode <code>none</code> chỉ hợp container thuần key-value đọc bằng point read; TTL bật ở container (xóa nền, không tốn RU đọc).</li>
 <li>Chi tiết đã đối chiếu docs (Learn, 8/2026): <code>quantizedFlat</code>/<code>diskANN</code> cần <strong>≥ 1.000 vector</strong> mới hoạt động (ít hơn thì full scan, RU cao hơn); khuyến nghị chọn <code>quantizedFlat</code> khi tập tìm kiếm ≤ 50k vector, <code>diskANN</code> khi lớn hơn; distance function hỗ trợ cosine (mặc định) / dotproduct / euclidean, số chiều mặc định 1536, dùng <code>float16</code> giảm 50% dung lượng lưu vector.</li>
 <li>Hai bẫy vận hành: query vector <strong>luôn kèm <code>TOP N</code></strong> (thiếu là RU và độ trễ tăng vọt), và <strong>đã bật vector search trên container thì không tắt được</strong>; account shared throughput không hỗ trợ.</li></ul>
-<h3 id="02-data-services/d32-consistency">D3.2 Năm mức consistency — chọn theo câu chuyện của đề</h3>
+<h3 id="02-data-services/d32-consistency">6.2 Năm mức consistency — chọn theo câu chuyện của đề</h3>
 <table><thead><tr><th>Mức</th><th>Cam kết</th><th>Nhận dạng trong đề</th></tr></thead><tbody>
 <tr><td><strong>Strong</strong></td><td>Đọc luôn thấy bản ghi mới nhất</td><td>"không bao giờ đọc dữ liệu cũ" — chỉ trong 1 region ghi; RU đọc gấp đôi eventual</td></tr>
 <tr><td><strong>Bounded staleness</strong></td><td>Trễ tối đa K version / T giây</td><td>"chấp nhận trễ nhưng phải có giới hạn đo được"</td></tr>
@@ -632,7 +632,7 @@ FT.SEARCH idx:docs "(@category:{faq}) =&gt; [KNN 5 @embedding $vec AS score]"
 </tbody></table>
 <ul><li>Session dựa trên <strong>session token</strong> — nhiều instance app muốn chia sẻ "phiên" phải truyền token cho nhau, không thì mỗi instance một phiên riêng.</li></ul>
 
-<h2 id="02-data-services/d4-pgvector-chuyen-sau">D4. pgvector chuyên sâu — HNSW vs IVFFlat và chi phí</h2>
+<h2 id="02-data-services/d4-pgvector-chuyen-sau">7. pgvector chuyên sâu — HNSW vs IVFFlat và chi phí</h2>
 <table><thead><tr><th></th><th>HNSW</th><th>IVFFlat</th></tr></thead><tbody>
 <tr><td>Build index</td><td>Chậm, tốn RAM (<code>maintenance_work_mem</code>)</td><td>Nhanh, nhẹ</td></tr>
 <tr><td>Truy vấn</td><td>Nhanh và recall cao hơn</td><td>Chậm hơn ở cùng recall</td></tr>
@@ -643,35 +643,35 @@ FT.SEARCH idx:docs "(@category:{faq}) =&gt; [KNN 5 @embedding $vec AS score]"
 <li>Tăng recall = tăng <code>ef_search</code>/<code>probes</code> — đổi bằng độ trễ; đề hỏi "kết quả thiếu tài liệu liên quan" thì chỉnh hai núm này trước khi nghĩ tới đổi index.</li>
 <li>Filter metadata đi cùng vector: đặt cột filter vào <code>WHERE</code> và cân nhắc partial index cho tenant lớn; embedding cột <code>vector(1536)</code> phải khớp số chiều của model — đổi model là migrate cột.</li></ul>
 
-<h3 id="02-data-services/d41-sizing-postgres-cho-vector">D4.1 Sizing PostgreSQL cho vector workload</h3>
+<h3 id="02-data-services/d41-sizing-postgres-cho-vector">7.1 Sizing PostgreSQL cho vector workload</h3>
 <ul><li>Quy tắc vàng: truy vấn HNSW nhanh khi <strong>index nằm gọn trong RAM</strong> (shared_buffers + page cache). Ước lượng thô kích thước dữ liệu vector: <code>số dòng × số chiều × 4 byte</code> + overhead index (HNSW thường cỡ ~2× dữ liệu vector) — 1 triệu vector 1536 chiều ≈ 6 GB dữ liệu, index tổng ~12 GB → chọn SKU Memory Optimized (tỷ lệ RAM/vCore 8:1) thay vì General Purpose (4:1).</li>
 <li>Build index HNSW ăn <code>maintenance_work_mem</code>: đặt tạm thời lớn (ví dụ 8 GB) khi build rồi hạ lại; từ pgvector 0.6 build song song theo <code>max_parallel_maintenance_workers</code> — build chậm là thiếu hai thứ này, không phải thiếu vCore.</li>
 <li>Storage: chọn tier IOPS đủ cho lúc index <em>không</em> vừa RAM (đọc lạnh); autogrow bật sẵn nhưng IOPS đi theo dung lượng ở một số tier — dữ liệu nhỏ mà cần IOPS cao thì nâng IOPS rời (SSD v2) thay vì phình dung lượng.</li>
 <li>Triệu chứng → chỉnh gì: truy vấn vector chậm đều (index không vừa RAM → nâng RAM/SKU); chậm lúc mới khởi động rồi nhanh dần (cache nguội — bình thường); recall thấp (tăng <code>ef_search</code>, không liên quan SKU); build index cả giờ (tăng <code>maintenance_work_mem</code> + parallel workers).</li></ul>
-<h3 id="02-data-services/d42-duoi-nap-capo-hnsw">D4.2 Dưới nắp capo: HNSW duyệt đồ thị thế nào</h3>
+<h3 id="02-data-services/d42-duoi-nap-capo-hnsw">7.2 Dưới nắp capo: HNSW duyệt đồ thị thế nào</h3>
 <ul><li>HNSW = đồ thị nhiều tầng: tầng trên thưa (ít node, cạnh dài — như đường cao tốc), tầng dưới dày (mọi vector — như đường nội bộ). Truy vấn đi từ tầng trên xuống: mỗi tầng greedy-search tới node gần query nhất rồi tụt xuống tầng dưới, tầng cuối mở rộng ra <code>ef_search</code> ứng viên và lấy top-k.</li>
 <li>Từ cơ chế đó suy ra mọi hành vi đã học: <code>ef_search</code> lớn = xét nhiều ứng viên hơn = recall cao hơn nhưng chậm hơn; <code>m</code> (số cạnh mỗi node) lớn = đồ thị dày = index to và build chậm nhưng tìm chính xác hơn; recall không bao giờ 100% vì greedy có thể kẹt cực trị cục bộ — đó là bản chất "approximate".</li>
 <li>Vì mỗi bước nhảy là một lần đọc node <em>ngẫu nhiên</em> trong đồ thị, HNSW cực nhạy với việc <strong>index nằm ngoài RAM</strong>: mỗi hop thành một lần đọc đĩa → độ trễ nhảy từ ms lên trăm ms. IVFFlat khác hẳn: chia cụm (k-means) rồi quét tuần tự <code>probes</code> cụm gần nhất — đọc tuần tự nên chịu đĩa tốt hơn, nhưng cụm biên giới làm recall thấp hơn ở cùng tốc độ.</li>
 <li>DiskANN (Cosmos) là họ hàng giải đúng bài "index to hơn RAM": đồ thị nén + bố trí dữ liệu thân thiện SSD — lý do nó là lựa chọn mặc định cho tập &gt;50k vector trên Cosmos.</li></ul>
-<h2 id="02-data-services/d5-postgresql-pooling">D5. PostgreSQL Flexible Server — kết nối và pooling</h2>
+<h2 id="02-data-services/d5-postgresql-pooling">8. PostgreSQL Flexible Server — kết nối và pooling</h2>
 <ul><li><strong>PgBouncer dựng sẵn</strong>: bật tham số <code>pgbouncer.enabled</code>, kết nối qua cổng <strong>6432</strong> (cổng 5432 vẫn là kết nối thẳng). Mặc định <strong>transaction pooling</strong> — một kết nối server phục vụ nhiều client theo từng transaction.</li>
 <li>Vì transaction pooling, các tính năng bám session <strong>không dùng được qua pooler</strong>: prepared statement mức session, <code>SET</code> phiên, advisory lock, LISTEN/NOTIFY — app dùng những thứ đó thì vào cổng 5432.</li>
 <li>Kịch bản đề kinh điển: Function/Container Apps scale ra hàng trăm instance → <em>connection storm</em>, lỗi "too many connections" vì <code>max_connections</code> theo SKU — đáp án là <strong>PgBouncer</strong>, không phải nâng SKU.</li>
 <li>Đo: <code>pg_stat_activity</code> xem kết nối đang chiếm; idle connection vẫn ăn RAM — đặt <code>idle_in_transaction_session_timeout</code>.</li>
 <li>Chi tiết đã đối chiếu docs (Learn, 8/2026): PgBouncer built-in <strong>không có trên tier Burstable</strong> (đổi xuống Burstable là mất pooling); mặc định <code>default_pool_size</code> 50, <code>max_client_conn</code> 5000; từ bản hiện tại đặt <code>max_prepared_statements</code> &gt; 0 thì prepared statement <em>mức protocol</em> dùng được ngay trong transaction mode; PgBouncer restart cùng server khi scale/failover nên app phải biết reconnect.</li></ul>
 
-<h2 id="02-data-services/d6-redis-caching-patterns">D6. Managed Redis — caching pattern và eviction</h2>
+<h2 id="02-data-services/d6-redis-caching-patterns">9. Managed Redis — caching pattern và eviction</h2>
 <ul><li><strong>Cache-aside</strong> (mặc định của đề): đọc cache → miss thì đọc DB rồi ghi cache kèm TTL. <strong>Write-through</strong>: ghi cache cùng lúc ghi DB — đọc luôn ấm nhưng ghi chậm hơn. <strong>Write-behind</strong>: ghi cache trước, đẩy DB sau — nhanh nhất, rủi ro mất khi cache chết.</li>
 <li>Chống <em>cache stampede</em> (hàng nghìn request cùng miss một key hết hạn): TTL cộng <strong>jitter ngẫu nhiên</strong>, hoặc khóa một request đi tải còn lại đợi.</li>
 <li>Invalidation khi dữ liệu nguồn đổi: xóa key chủ động từ đường ghi (tốt nhất), hoặc pub/sub báo các instance xóa cache cục bộ; TTL chỉ là lưới đỡ cuối.</li>
 <li><strong>Eviction policy</strong>: <code>allkeys-lru</code> cho cache thuần; <code>volatile-lru</code> khi có key phải sống mãi; <code>noeviction</code> làm lệnh ghi lỗi khi đầy — thấy lỗi OOM ghi cache là nhìn policy này.</li>
 <li>Managed Redis chạy Redis Enterprise: có sẵn module <strong>RediSearch (vector)</strong>, RedisJSON; chọn clustering policy <em>OSS</em> (client cluster-aware, scale cao nhất) hay <em>Enterprise</em> (client thường dùng được) là câu hỏi cấu hình hay gặp.</li></ul>
-<h2 id="02-data-services/d7-duoi-nap-capo-ru-partition-change-feed">D7. Dưới nắp capo: RU, partition split và change feed</h2>
+<h2 id="02-data-services/d7-duoi-nap-capo-ru-partition-change-feed">10. Dưới nắp capo: RU, partition split và change feed</h2>
 <ul><li><strong>RU là đơn vị quy đổi tài nguyên</strong> (CPU + IO + memory của một thao tác). Mốc neo: point read 1 KB = <strong>1 RU</strong>; ghi 1 KB ≈ <strong>5 RU</strong> — vì ghi phải cập nhật <em>mọi</em> đường dẫn được index (đây là lý do tỉa indexing policy giảm RU ghi, và tài liệu lớn tốn RU hơn tuyến tính).</li>
 <li>Đọc ở strong/bounded staleness tốn ~2× vì phải <strong>chờ/đối chiếu quorum replica</strong> thay vì trả từ một replica gần nhất — cái giá của việc "không bao giờ đọc cũ" nằm ở tầng replication chứ không phải phép màu.</li>
 <li><strong>Physical partition</strong> chứa nhiều logical partition, trần ~<strong>50 GB và 10.000 RU/s</strong> mỗi physical. Vượt là engine <strong>split</strong> tự động: chia dải giá trị hash của partition key ra hai physical mới. Suy ra hai hệ quả đề hay hỏi: RU provision bị <em>chia đều</em> cho các physical (10k RU trên 5 physical = mỗi cái 2k — key nóng chỉ được 2k), và split chỉ giúp khi giá trị key <em>đa dạng</em> — một logical partition (một giá trị key) không bao giờ tách được, nên trần 20 GB logical là trần cứng.</li>
 <li><strong>Change feed</strong> thực chất là đọc tuần tự log thay đổi <em>theo từng partition key range</em>: processor chia các range cho các worker qua <strong>lease container</strong> (mỗi lease = một range + checkpoint continuation token). Vì vậy scale consumer = số range, thứ tự chỉ bảo đảm <em>trong một partition key</em>, và xóa (delete) mặc định không xuất hiện trong feed (dùng TTL soft-delete hoặc full-fidelity mode).</li></ul>
-<h2 id="02-data-services/e-checklist-on-domain-2">E. Checklist ôn Domain 2</h2>
+<h2 id="02-data-services/e-checklist-on-domain-2">11. Checklist ôn Domain 2</h2>
 <ul><li class="task" data-key="02-data-services:0"><input type="checkbox">Point read vs single-partition query vs cross-partition query — chi phí RU</li><li class="task" data-key="02-data-services:1"><input type="checkbox">Sửa được indexing policy: exclude <code>/embedding/*</code>, thêm composite index, thêm vectorIndexes</li><li class="task" data-key="02-data-services:2"><input type="checkbox">Thuộc bảng consistency level và hệ số RU 2× của Strong/Bounded staleness</li><li class="task" data-key="02-data-services:3"><input type="checkbox">Viết được query <code>VectorDistance</code> + <code>ORDER BY</code> + <code>TOP</code> + metadata filter</li><li class="task" data-key="02-data-services:4"><input type="checkbox">Change feed: lease container, 2 mode, idempotent, Functions trigger</li><li class="task" data-key="02-data-services:5"><input type="checkbox"><code>azure.extensions</code> trước khi <code>CREATE EXTENSION vector</code></li><li class="task" data-key="02-data-services:6"><input type="checkbox">Toán tử <code>&lt;=&gt;</code> ↔ <code>vector_cosine_ops</code>; tham số <code>m</code>, <code>ef_construction</code>, <code>hnsw.ef_search</code>, <code>lists</code>, <code>probes</code></li><li class="task" data-key="02-data-services:7"><input type="checkbox"><code>halfvec</code>/DiskANN để giảm RAM &amp; compute; Memory Optimized tier cho HNSW</li><li class="task" data-key="02-data-services:8"><input type="checkbox">PgBouncer port 6432 / connection pool cho serverless</li><li class="task" data-key="02-data-services:9"><input type="checkbox">Redis: <code>SET ... EX</code>, <code>TTL</code>, <code>UNLINK</code>, eviction policy, <code>FT.CREATE</code> với VectorField + KNN dialect 2</li></ul>
 </section>
 <section class="doc" id="03-messaging-functions" data-title="3. Messaging &amp; Functions" data-weight="20–25%" hidden>
@@ -887,17 +887,17 @@ az functionapp identity assign -g rg -n myfuncapp</code></pre>
 <h3 id="03-messaging-functions/46-durable-functions-thuong-xuat-hien-trong-kich-ban-ai-pipe">4.6 Durable Functions (thường xuất hiện trong kịch bản AI pipeline dài)</h3>
 <ul><li><strong>Orchestrator</strong> điều phối, <strong>activity</strong> làm việc, <strong>client</strong> khởi động.</li><li>Pattern: function chaining (chunk → embed → index), <strong>fan-out/fan-in</strong> (embed song song rồi gom), async HTTP API (long-running + status endpoint), human interaction/approval, monitor.</li><li>Orchestrator phải <strong>deterministic</strong> (không <code>datetime.now()</code>, không random, không I/O trực tiếp).</li></ul>
 <hr>
-<h2 id="03-messaging-functions/4b-do-tin-cay-retry-idempotency-thu-tu">4b. Độ tin cậy: retry, idempotency và thứ tự message</h2>
+<h2 id="03-messaging-functions/4b-do-tin-cay-retry-idempotency-thu-tu">5. Độ tin cậy: retry, idempotency và thứ tự message</h2>
 <p>Mảng hay bị hỏi dưới dạng tình huống: "message bị xử lý hai lần / sai thứ tự / lỗi tạm thời thì sao?". Ba công cụ trả lời gần hết: <strong>retry có backoff</strong>, <strong>consumer idempotent</strong>, và <strong>session/dedup của Service Bus</strong>.</p>
-<h3 id="03-messaging-functions/4b1-retry-voi-exponential-backoff">4b.1. Retry với exponential backoff + jitter</h3>
+<h3 id="03-messaging-functions/4b1-retry-voi-exponential-backoff">5.1 Retry với exponential backoff + jitter</h3>
 <ul><li>Lỗi <strong>tạm thời</strong> (429, timeout, mất kết nối) thì retry; lỗi <strong>vĩnh viễn</strong> (401, 400 sai schema) thì retry chỉ tốn tiền — phân loại trước khi thử lại.</li>
 <li>Chuẩn: <strong>exponential backoff + jitter</strong> (1s → 2s → 4s… cộng ngẫu nhiên) để cả đàn client không cùng dội lại một lúc. SDK Azure (Cosmos, Service Bus, Storage) đã có sẵn retry policy — cấu hình <code>retry_total</code>/<code>retry_backoff_max</code> thay vì tự viết vòng while.</li>
 <li>Cosmos DB trả 429 kèm header <code>x-ms-retry-after-ms</code> — SDK tự đợi đúng khoảng đó; thấy 429 dày đặc thì vấn đề là RU/partition key, không phải retry.</li></ul>
-<h3 id="03-messaging-functions/4b2-consumer-idempotent">4b.2. Consumer idempotent — vì at-least-once là mặc định</h3>
+<h3 id="03-messaging-functions/4b2-consumer-idempotent">5.2 Consumer idempotent — vì at-least-once là mặc định</h3>
 <ul><li>Service Bus (PEEK_LOCK) giao <strong>ít nhất một lần</strong>: xử lý xong mà chưa kịp <code>complete</code> thì message quay lại → consumer phải chịu được xử lý trùng.</li>
 <li>Mẫu chuẩn: dùng <strong>khóa tự nhiên</strong> (order id, <code>MessageId</code>) và thao tác <strong>upsert</strong>/điều kiện thay vì insert mù; hoặc bảng "đã xử lý" kiểm tra trước khi làm.</li>
 <li><strong>Duplicate detection</strong> của Service Bus lọc trùng theo <code>MessageId</code> trong cửa sổ cấu hình (mặc định 10 phút, tối đa 7 ngày) — chặn trùng phía <em>gửi</em>, không thay được idempotency phía <em>nhận</em>.</li></ul>
-<h3 id="03-messaging-functions/4b3-thu-tu-va-poison-message">4b.3. Thứ tự xử lý và poison message</h3>
+<h3 id="03-messaging-functions/4b3-thu-tu-va-poison-message">5.3 Thứ tự xử lý và poison message</h3>
 <ul><li>Cần đúng thứ tự theo từng thực thể (các event của một đơn hàng): bật <strong>session</strong> và đặt <code>SessionId = order id</code> — Service Bus giao lần lượt từng session cho một consumer; các session khác vẫn chạy song song.</li>
 <li>Message hỏng lặp lại: quá <code>MaxDeliveryCount</code> (mặc định 10) tự rơi vào <strong>DLQ</strong>. Quy trình chuẩn: alert trên độ sâu DLQ → xem <code>DeadLetterReason</code> → sửa nguyên nhân → resubmit về queue chính.</li>
 <li>Event Grid retry theo lịch backoff tới <strong>24 giờ</strong> rồi mới dead-letter (phải cấu hình storage cho dead-letter) — subscriber trả 2xx càng nhanh càng tốt, việc nặng đẩy vào queue.</li></ul>
@@ -908,18 +908,18 @@ az functionapp identity assign -g rg -n myfuncapp</code></pre>
 <tr><td>"Một message lỗi làm nghẽn cả queue"</td><td><code>MaxDeliveryCount</code> → DLQ → resubmit</td></tr>
 <tr><td>"Dịch vụ phía sau chập chờn 429/timeout"</td><td>Retry exponential backoff + jitter (cấu hình SDK)</td></tr>
 </tbody></table>
-<h3 id="03-messaging-functions/4b4-duoi-nap-capo-peek-lock-amqp">4b.4 Dưới nắp capo: PEEK_LOCK và lock renewal ở tầng AMQP</h3>
+<h3 id="03-messaging-functions/4b4-duoi-nap-capo-peek-lock-amqp">5.4 Dưới nắp capo: PEEK_LOCK và lock renewal ở tầng AMQP</h3>
 <ul><li>PEEK_LOCK không "lấy message ra khỏi queue": broker chỉ <strong>đánh dấu khóa</strong> message và trao cho receiver một <strong>lock token</strong>. Message vẫn nằm trên broker; <code>complete/abandon/dead-letter</code> là các thao tác <em>trên token đó</em> qua link AMQP.</li>
 <li>Khóa có hạn (mặc định 30 giây – tối đa 5 phút): xử lý lâu hơn thì SDK phải <strong>renew lock</strong> — một management operation lặp lại nền. Mất mạng, GC pause, hay xử lý quá <code>MaxAutoLockRenewalDuration</code> → khóa hết hạn → broker coi như receiver chết, <strong>tăng DeliveryCount và giao lại</strong>. Đây chính là nguồn gốc kỹ thuật của at-least-once: giữa lúc "xử lý xong" và "complete được ghi nhận" luôn có khe hở.</li>
 <li>RECEIVE_AND_DELETE xóa ngay lúc giao — nhanh (bớt một round-trip) nhưng receiver chết là mất message: at-most-once. Chọn giữa hai mode là chọn giữa <em>mất</em> và <em>trùng</em>; vì trùng xử lý được bằng idempotency còn mất thì không, PEEK_LOCK là mặc định đúng.</li>
 <li>Session dưới nắp: broker gắn <strong>khóa cấp session</strong> — một receiver giữ độc quyền cả <code>SessionId</code> chứ không phải từng message; vì thế thứ tự trong session được bảo đảm còn throughput = số session đang mở song song.</li></ul>
-<h2 id="03-messaging-functions/4c-functions-binding-cookbook-hosting">4c. Functions chuyên sâu — binding cookbook và hosting plan</h2>
-<h3 id="03-messaging-functions/4c1-binding-cookbook">4c.1 Trigger/binding hay ra đề</h3>
+<h2 id="03-messaging-functions/4c-functions-binding-cookbook-hosting">6. Functions chuyên sâu — binding cookbook và hosting plan</h2>
+<h3 id="03-messaging-functions/4c1-binding-cookbook">6.1 Trigger/binding hay ra đề</h3>
 <ul><li><strong>Service Bus trigger + output binding</strong>: nhận từ queue, ghi kết quả sang queue/Cosmos mà không viết SDK — nhớ <code>autoCompleteMessages</code> và lock renewal khi xử lý lâu.</li>
 <li><strong>Blob qua Event Grid</strong>: blob trigger kiểu polling cũ chậm và tốn — chuẩn hiện tại là Event Grid trigger (<code>source: EventGrid</code>) cho gần-tức-thì; đây là cặp phân biệt được hỏi thẳng.</li>
 <li><strong>Timer trigger</strong> dùng CRON 6 trường (<code>0 */5 * * * *</code> = mỗi 5 phút); <strong>Cosmos DB trigger</strong> = change feed processor đóng gói sẵn (cần lease container).</li>
 <li>Retry: Service Bus/Storage queue retry bằng <strong>delivery count của chính queue</strong> (đừng bật retry policy chồng lên); Event Hubs/Timer/Cosmos hỗ trợ retry policy <code>fixedDelay</code>/<code>exponentialBackoff</code> trong host.json.</li></ul>
-<h3 id="03-messaging-functions/4c2-hosting-plan">4c.2 Chọn hosting plan</h3>
+<h3 id="03-messaging-functions/4c2-hosting-plan">6.2 Chọn hosting plan</h3>
 <table><thead><tr><th>Plan</th><th>Chọn khi</th><th>Cần nhớ</th></tr></thead><tbody>
 <tr><td><strong>Flex Consumption</strong></td><td>Serverless hiện đại, cần VNet + scale nhanh</td><td>Trả theo dùng, per-instance concurrency, always-ready instances tùy chọn</td></tr>
 <tr><td><strong>Consumption (cổ điển)</strong></td><td>Rẻ nhất, tải thưa</td><td>Cold start; timeout mặc định 5 phút (max 10); không VNet</td></tr>
@@ -927,7 +927,7 @@ az functionapp identity assign -g rg -n myfuncapp</code></pre>
 <tr><td><strong>Dedicated/ACA</strong></td><td>Đã có App Service plan / muốn chạy cạnh container</td><td>Trả cố định theo plan</td></tr>
 </tbody></table>
 <ul><li>Bẫy quen: "job 30 phút trên Consumption" → chuyển Premium/Flex hoặc tách qua queue + Container Apps; "cold start làm API chậm ngẫu nhiên" → Premium pre-warmed hoặc Flex always-ready.</li></ul>
-<h2 id="03-messaging-functions/5-checklist-on-domain-3">5. Checklist ôn Domain 3</h2>
+<h2 id="03-messaging-functions/5-checklist-on-domain-3">7. Checklist ôn Domain 3</h2>
 <ul><li class="task" data-key="03-messaging-functions:0"><input type="checkbox">Phân biệt message vs event; chọn đúng Service Bus / Event Grid / Event Hubs / Queue Storage</li><li class="task" data-key="03-messaging-functions:1"><input type="checkbox">PEEK_LOCK vs RECEIVE_AND_DELETE; complete/abandon/dead-letter/defer; lock renewal</li><li class="task" data-key="03-messaging-functions:90"><input type="checkbox">Giải thích được vì sao consumer phải idempotent, và duplicate detection lọc trùng ở phía nào</li><li class="task" data-key="03-messaging-functions:91"><input type="checkbox">Chọn đúng công cụ theo triệu chứng: trùng / sai thứ tự / poison message / 429 chập chờn</li><li class="task" data-key="03-messaging-functions:2"><input type="checkbox">5 nguyên nhân message vào DLQ; đường dẫn <code>$deadletterqueue</code>; cách resubmit</li><li class="task" data-key="03-messaging-functions:3"><input type="checkbox">Ba loại filter và luôn nhớ xoá rule <code>$Default</code></li><li class="task" data-key="03-messaging-functions:4"><input type="checkbox">Event Grid: schema vs CloudEvents; subject/advanced filter; retry backoff, mã 4xx không retry</li><li class="task" data-key="03-messaging-functions:5"><input type="checkbox">Dead-letter Event Grid cần blob container, nếu không cấu hình thì event bị mất</li><li class="task" data-key="03-messaging-functions:6"><input type="checkbox">Webhook validation handshake</li><li class="task" data-key="03-messaging-functions:7"><input type="checkbox">Trigger/binding: mỗi hàm 1 trigger, cú pháp decorator Python v2</li><li class="task" data-key="03-messaging-functions:8"><input type="checkbox">Bảng chọn hosting plan (đặc biệt timeout của Consumption)</li><li class="task" data-key="03-messaging-functions:9"><input type="checkbox">Identity-based connection: hậu tố <code>__fullyQualifiedNamespace</code>, <code>__accountEndpoint</code></li></ul>
 </section>
 <section class="doc" id="04-security-monitoring" data-title="4. Bảo mật &amp; Giám sát" data-weight="20–25%" hidden>
@@ -993,21 +993,21 @@ top_k = int(config["TopK"])</code></pre>
 <p><strong>Dynamic refresh với sentinel key</strong> là mẫu chuẩn: cập nhật nhiều key rồi cuối cùng đổi giá trị key <code>Sentinel</code> → app phát hiện 1 thay đổi và nạp lại toàn bộ (tránh đọc trạng thái nửa vời).</p>
 <p>Bảo mật: dùng <strong>managed identity</strong> + role <strong>App Configuration Data Reader</strong> (đọc) / <strong>Data Owner</strong> (ghi). Tắt access key khi có thể.</p>
 <hr>
-<h2 id="04-security-monitoring/2b-key-vault-rotation-app-config-nang-cao">2b. Chuyên sâu: rotation của Key Vault và refresh của App Configuration</h2>
-<h3 id="04-security-monitoring/2b1-rotation">2b.1 Rotation</h3>
+<h2 id="04-security-monitoring/2b-key-vault-rotation-app-config-nang-cao">3. Chuyên sâu: rotation của Key Vault và refresh của App Configuration</h2>
+<h3 id="04-security-monitoring/2b1-rotation">3.1 Rotation</h3>
 <ul><li><strong>Key</strong> (khóa mã hóa): đặt được <strong>rotation policy tự động</strong> ngay trong Key Vault (ví dụ xoay mỗi 90 ngày) — ứng dụng dùng qua key URI không version thì tự nhận bản mới.</li>
 <li><strong>Secret</strong> (mật khẩu, connection string): Key Vault <strong>không tự xoay được</strong> — mẫu chuẩn: Event Grid bắn event <code>SecretNearExpiry</code> → Function tạo credential mới ở dịch vụ nguồn → ghi version secret mới. Đề hỏi "tự động xoay mật khẩu DB" là hỏi đúng pipeline này.</li>
 <li>Tham chiếu không ghim version (<code>.../secrets/DbPassword</code> không có suffix) để app lấy bản mới nhất; App Service Key Vault reference cache và <strong>tự refetch mỗi 24 giờ</strong> (đã đối chiếu docs, Learn 8/2026) — mọi thay đổi cấu hình app gây restart và refetch ngay, hoặc ép refresh bằng POST tới endpoint <code>.../config/configreferences/appsettings/refresh</code>.</li>
 <li>Quyền cần cấp cho managed identity của app: role <strong>Key Vault Secrets User</strong> (RBAC) hoặc permission Get (access policy); vault chặn mạng thì phải cho subnet của app vào — log 403 SecretGet từ IP public rồi 200 từ IP private là hành vi bình thường.</li>
 <li>Luôn bật <strong>soft delete</strong> (mặc định) + <strong>purge protection</strong> cho vault production; RBAC data-plane (role "Key Vault Secrets User") thay cho access policy kiểu cũ.</li></ul>
-<h3 id="04-security-monitoring/2b2-app-config-refresh">2b.2 App Configuration — refresh không cần restart</h3>
+<h3 id="04-security-monitoring/2b2-app-config-refresh">3.2 App Configuration — refresh không cần restart</h3>
 <ul><li>Mẫu <strong>sentinel key</strong>: app watch đúng một key "phiên bản cấu hình"; đổi xong cả loạt cấu hình thì đổi sentinel cuối cùng — mọi instance reload một lần, tránh nửa nọ nửa kia.</li>
 <li><strong>Label</strong> tách môi trường (cùng key, label dev/prod); <strong>feature flag</strong> có filter phần trăm/nhóm người dùng — bật dần tính năng không cần deploy; <strong>snapshot</strong> đóng băng một bộ cấu hình để rollback.</li>
 <li>Phân vai với Key Vault: App Config giữ <em>cấu hình</em>, secret vẫn nằm Key Vault — App Config chỉ giữ <em>reference</em> tới secret.</li></ul>
-<h2 id="04-security-monitoring/3-distributed-tracing-voi-opentelemetry">3. Distributed tracing với OpenTelemetry</h2>
-<h3 id="04-security-monitoring/31-khai-niem">3.1 Khái niệm</h3>
+<h2 id="04-security-monitoring/3-distributed-tracing-voi-opentelemetry">4. Distributed tracing với OpenTelemetry</h2>
+<h3 id="04-security-monitoring/31-khai-niem">4.1 Khái niệm</h3>
 <ul><li><strong>Trace</strong> = một request xuyên nhiều service, gồm nhiều <strong>span</strong>; mỗi span có <code>trace_id</code>, <code>span_id</code>, <code>parent_span_id</code>, thời gian, <strong>attributes</strong>, <strong>events</strong>, <strong>status</strong>.</li><li><strong>Ba tín hiệu</strong>: traces, metrics, logs.</li><li><strong>Context propagation</strong> chuẩn <strong>W3C Trace Context</strong> qua header <code>traceparent</code>: <code>00-&lt;trace-id 32 hex&gt;-&lt;span-id 16 hex&gt;-01</code>. Nhờ đó ghép được span của API → Function → Cosmos DB.</li><li>Azure Monitor / Application Insights là backend; <strong>OpenTelemetry là chuẩn instrumentation chính thức</strong> (thay dần SDK Application Insights cũ).</li></ul>
-<h3 id="04-security-monitoring/32-bat-opentelemetry-cho-python-tren-azure">3.2 Bật OpenTelemetry cho Python trên Azure</h3>
+<h3 id="04-security-monitoring/32-bat-opentelemetry-cho-python-tren-azure">4.2 Bật OpenTelemetry cho Python trên Azure</h3>
 <pre><button class="copybtn">copy</button><code>import os
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import trace
@@ -1039,23 +1039,23 @@ def answer(question: str):
         return resp</code></pre>
 <p>Điểm cần nhớ:</p>
 <ul><li>Gói: <code>azure-monitor-opentelemetry</code> (distro trọn gói) hoặc <code>opentelemetry-sdk</code> + <code>azure-monitor-opentelemetry-exporter</code>.</li><li>Biến môi trường quan trọng: <code>APPLICATIONINSIGHTS_CONNECTION_STRING</code>, <code>OTEL_SERVICE_NAME</code>, <code>OTEL_RESOURCE_ATTRIBUTES</code>, <code>OTEL_TRACES_SAMPLER_ARG</code> (tỷ lệ sampling), <code>OTEL_LOGS_EXPORTER</code>.</li><li><strong>Sampling</strong> để giảm chi phí — với Azure Monitor dùng <code>sampling_ratio</code> (0.0–1.0); Application Insights có <strong>adaptive sampling</strong> phía ingest.</li><li>Ghi ngoại lệ: <code>span.record_exception(e)</code> + <code>span.set_status(Status(StatusCode.ERROR))</code>.</li><li>Với <strong>AKS/Container Apps</strong>: có thể dùng <strong>OpenTelemetry Collector</strong> (sidecar/daemonset) rồi export sang Azure Monitor — tách cấu hình khỏi ứng dụng. Container Apps có <strong>managed OTel agent</strong> cấu hình ở cấp environment.</li><li>Khi trace không nối được giữa 2 service → kiểm tra header <code>traceparent</code> có bị proxy/gateway loại bỏ không, và cả hai bên có dùng cùng propagator W3C không.</li></ul>
-<h3 id="04-security-monitoring/33-anh-xa-opentelemetry-bang-application-insights">3.3 Ánh xạ OpenTelemetry → bảng Application Insights</h3>
+<h3 id="04-security-monitoring/33-anh-xa-opentelemetry-bang-application-insights">4.3 Ánh xạ OpenTelemetry → bảng Application Insights</h3>
 <div class="tablewrap"><table><thead><tr><th>Khái niệm OTel</th><th>Bảng trong Log Analytics (workspace-based)</th><th>Bảng "classic"</th></tr></thead><tbody><tr><td>Server span (incoming)</td><td><code>AppRequests</code></td><td><code>requests</code></td></tr><tr><td>Client span (outgoing: HTTP, DB, Redis)</td><td><code>AppDependencies</code></td><td><code>dependencies</code></td></tr><tr><td>Log record</td><td><code>AppTraces</code></td><td><code>traces</code></td></tr><tr><td>Exception</td><td><code>AppExceptions</code></td><td><code>exceptions</code></td></tr><tr><td>Custom metric</td><td><code>AppMetrics</code></td><td><code>customMetrics</code></td></tr></tbody></table></div>
 <p>Trường quan trọng: <code>OperationId</code> (= trace id), <code>ParentId</code>, <code>AppRoleName</code> (= service name), <code>DurationMs</code>, <code>Success</code>, <code>ResultCode</code>, <code>Properties</code> (custom attributes).</p>
 <hr>
-<h2 id="04-security-monitoring/3b-opentelemetry-chi-tiet">3b. OpenTelemetry chi tiết — propagation và sampling</h2>
+<h2 id="04-security-monitoring/3b-opentelemetry-chi-tiet">5. OpenTelemetry chi tiết — propagation và sampling</h2>
 <ul><li>Ba trụ: <strong>trace</strong> (span nối theo <code>traceparent</code>), <strong>metric</strong>, <strong>log</strong>. Trên Azure dùng <strong>Azure Monitor OpenTelemetry Distro</strong> — một gói bật auto-instrumentation cho HTTP, SDK Azure, DB driver phổ biến, đổ về Application Insights.</li>
 <li><strong>Context propagation</strong> theo chuẩn W3C <code>traceparent</code>; SDK Service Bus tự nhét vào <code>Diagnostic-Id</code> của message — consumer dùng SDK + distro thì trace nối liền qua queue. Trace "đứt" ở queue = bên nhận không dùng instrumentation, hoặc tự new message làm rơi header.</li>
 <li>Span thủ công cho nghiệp vụ: bọc đoạn "gọi LLM", "vector search" bằng <code>tracer.start_as_current_span("rag.search")</code> và gắn attribute (số chunk, model) — chính attribute này thành <code>customDimensions</code> để KQL lọc.</li>
 <li><strong>Sampling</strong>: production bật fixed-rate (ví dụ 10%) để giảm chi phí ingestion — Application Insights vẫn tính đúng tỷ lệ request vì nhân mẫu; log lỗi/exception nên giữ 100%.</li>
 <li>Phân vai câu hỏi: "app chậm ở đâu giữa 4 service" → distributed tracing; "CPU replica bao nhiêu" → metric; "vì sao request X lỗi" → log + trace theo <code>operation_Id</code>.</li></ul>
-<h3 id="04-security-monitoring/3b1-duoi-nap-capo-trace-context">3b.1 Dưới nắp capo: span context nằm ở đâu trong dây</h3>
+<h3 id="04-security-monitoring/3b1-duoi-nap-capo-trace-context">5.1 Dưới nắp capo: span context nằm ở đâu trong dây</h3>
 <ul><li>Một trace là cây các span; danh tính của nó gói trong <strong>16 byte trace-id + 8 byte span-id</strong>, mã hóa thành header W3C <code>traceparent: 00-&lt;trace-id&gt;-&lt;parent-span-id&gt;-&lt;flags&gt;</code>. "Propagation" chỉ là: bên gửi <em>viết</em> header này vào HTTP request hoặc property <code>Diagnostic-Id</code> của message; bên nhận <em>đọc</em> nó và tạo span con với parent tương ứng.</li>
 <li>Vì thế trace "đứt" luôn quy về một trong hai: không ai <em>viết</em> (producer thiếu instrumentation / tự new message trắng) hoặc không ai <em>đọc</em> (consumer thiếu instrumentation). Application Insights ghép cây bằng <code>operation_Id</code> = trace-id — nên câu KQL <code>union ... | where operation_Id == ...</code> hoạt động với mọi SDK nói đúng chuẩn W3C.</li>
 <li>Byte <code>flags</code> cuối header mang quyết định <strong>sampling</strong> (01 = sampled): quyết định lấy ở span gốc và <em>chảy theo header</em> xuống toàn bộ chuỗi — vì vậy một trace hoặc được giữ trọn vẹn hoặc bỏ trọn vẹn, không bao giờ thủng giữa chừng do sampling.</li>
 <li>Azure Monitor OTel Distro = bộ auto-instrumentation (HTTP, SDK Azure, DB driver) + exporter đẩy về Application Insights — "bật distro" nghĩa là cắm sẵn người viết và người đọc header ở mọi biên giới cho bạn.</li></ul>
-<h2 id="04-security-monitoring/4-kql-kusto-query-language">4. KQL — Kusto Query Language</h2>
-<h3 id="04-security-monitoring/41-cau-truc-toan-tu-cot-loi">4.1 Cấu trúc &amp; toán tử cốt lõi</h3>
+<h2 id="04-security-monitoring/4-kql-kusto-query-language">6. KQL — Kusto Query Language</h2>
+<h3 id="04-security-monitoring/41-cau-truc-toan-tu-cot-loi">6.1 Cấu trúc &amp; toán tử cốt lõi</h3>
 <pre><button class="copybtn">copy</button><code>TableName
 | where  TimeGenerated &gt; ago(1h)      // lọc — luôn đặt sớm nhất có thể
 | extend latencySec = DurationMs / 1000.0
@@ -1064,7 +1064,7 @@ def answer(question: str):
 | order by TimeGenerated desc
 | take 100</code></pre>
 <div class="tablewrap"><table><thead><tr><th>Toán tử</th><th>Công dụng</th></tr></thead><tbody><tr><td><code>where</code></td><td>Lọc dòng</td></tr><tr><td><code>project</code> / <code>project-away</code> / <code>project-rename</code></td><td>Chọn/bỏ/đổi tên cột</td></tr><tr><td><code>extend</code></td><td>Thêm cột tính toán</td></tr><tr><td><code>summarize ... by ...</code></td><td>Gộp nhóm: <code>count()</code>, <code>sum()</code>, <code>avg()</code>, <code>min/max()</code>, <code>dcount()</code>, <code>percentile(x, 95)</code>, <code>make_list()</code></td></tr><tr><td><code>bin(col, 5m)</code></td><td>Chia thời gian thành khoảng (cho biểu đồ)</td></tr><tr><td><code>order by</code> / <code>sort by</code></td><td>Sắp xếp</td></tr><tr><td><code>top N by col</code></td><td>Lấy N dòng đầu</td></tr><tr><td><code>take</code> / <code>limit</code></td><td>Lấy mẫu nhanh</td></tr><tr><td>\`join kind=inner\\</td><td>leftouter\\</td><td>leftanti\`</td><td>Ghép bảng</td></tr><tr><td><code>union</code></td><td>Gộp nhiều bảng</td></tr><tr><td><code>let</code></td><td>Biến/subquery</td></tr><tr><td><code>parse_json()</code>, <code>todynamic()</code>, <code>mv-expand</code></td><td>Xử lý JSON/mảng</td></tr><tr><td>\`render timechart\\</td><td>barchart\\</td><td>piechart\`</td><td>Vẽ biểu đồ</td></tr><tr><td><code>ago()</code>, <code>now()</code>, <code>startofday()</code>, <code>datetime_diff()</code></td><td>Thời gian</td></tr><tr><td><code>search</code>, <code>has</code>, <code>contains</code>, <code>startswith</code>, <code>matches regex</code></td><td>Tìm chuỗi (<code>has</code> nhanh hơn <code>contains</code>)</td></tr></tbody></table></div>
-<h3 id="04-security-monitoring/42-bo-truy-van-hay-dung-khi-troubleshoot-nen-thuoc">4.2 Bộ truy vấn hay dùng khi troubleshoot (nên thuộc)</h3>
+<h3 id="04-security-monitoring/42-bo-truy-van-hay-dung-khi-troubleshoot-nen-thuoc">6.2 Bộ truy vấn hay dùng khi troubleshoot (nên thuộc)</h3>
 <pre><button class="copybtn">copy</button><code>// 1. Tỷ lệ lỗi và P95 latency theo endpoint trong 24h
 AppRequests
 | where TimeGenerated &gt; ago(24h)
@@ -1126,10 +1126,10 @@ AppDependencies
 | extend inTok = toint(Properties["gen_ai.usage.input_tokens"]),
          outTok = toint(Properties["gen_ai.usage.output_tokens"])
 | summarize sum(inTok), sum(outTok) by bin(TimeGenerated, 1d)</code></pre>
-<h3 id="04-security-monitoring/43-alert-chi-phi">4.3 Alert &amp; chi phí</h3>
+<h3 id="04-security-monitoring/43-alert-chi-phi">6.3 Alert &amp; chi phí</h3>
 <ul><li>Tạo <strong>log alert rule</strong> từ query KQL (threshold + tần suất đánh giá) → Action Group (email, webhook, Logic App, Functions).</li><li><strong>Metric alert</strong> rẻ và nhanh hơn log alert cho các chỉ số dựng sẵn (CPU, DeadletteredMessages, 5xx).</li><li>Giảm chi phí ingest: sampling, <code>Basic Logs</code> cho bảng verbose, đặt <strong>retention</strong> hợp lý, dùng <strong>transformation</strong> (DCR) để lọc trước khi ingest.</li><li><strong>Live Metrics</strong>, <strong>Application Map</strong>, <strong>Transaction search</strong>, <strong>Failures/Performance blade</strong> là công cụ chẩn đoán nhanh trong Application Insights.</li></ul>
 <hr>
-<h3 id="04-security-monitoring/49-bo-truy-van-tinh-huong-cookbook">4.9 Bộ truy vấn tình huống — cookbook</h3>
+<h3 id="04-security-monitoring/49-bo-truy-van-tinh-huong-cookbook">6.4 Bộ truy vấn tình huống — cookbook</h3>
 <p>Mỗi tình huống vận hành một truy vấn mẫu — đề hay cho một yêu cầu bằng lời và bốn câu KQL chỉ khác nhau ở toán tử.</p>
 <p><strong>1) Tỷ lệ lỗi theo thời gian</strong> — "dịch vụ có đang lỗi tăng dần không?"</p>
 <pre><button class="copybtn">copy</button><code>requests
@@ -1163,10 +1163,10 @@ AppDependencies
 | summarize failRate = 100.0 * countif(success == false) / count()
 | where failRate &gt; 5</code></pre>
 <p>Quy tắc đọc nhanh khi làm đề: <code>where</code> đặt sớm nhất (giảm dữ liệu quét) → <code>summarize ... by bin()</code> cho chuỗi thời gian → <code>percentile</code> cho độ trễ → <code>union + operation_Id</code> cho trace xuyên dịch vụ.</p>
-<h2 id="04-security-monitoring/5-bao-mat-xuyen-suot-tong-hop">5. Bảo mật xuyên suốt — tổng hợp</h2>
+<h2 id="04-security-monitoring/5-bao-mat-xuyen-suot-tong-hop">7. Bảo mật xuyên suốt — tổng hợp</h2>
 <div class="tablewrap"><table><thead><tr><th>Chủ đề</th><th>Điểm chính</th></tr></thead><tbody><tr><td><strong>Managed identity</strong></td><td>System-assigned (gắn vòng đời với tài nguyên) vs user-assigned (dùng lại cho nhiều tài nguyên, tồn tại độc lập). Luôn ưu tiên hơn connection string</td></tr><tr><td><strong>RBAC data plane</strong></td><td>Cosmos DB Built-in Data Contributor, Storage Blob Data Contributor, Azure Service Bus Data Sender/Receiver, Key Vault Secrets User, App Configuration Data Reader, AcrPull</td></tr><tr><td><strong>Networking</strong></td><td>Private endpoint + tắt public access; service endpoint; VNet integration cho App Service/Functions/Container Apps</td></tr><tr><td><strong>Data protection</strong></td><td>Mã hoá at-rest mặc định; customer-managed key (CMK) khi cần; TLS 1.2+ bắt buộc</td></tr><tr><td><strong>Chống lộ khoá</strong></td><td>Không commit secret; dùng Key Vault + rotation; bật Defender for Cloud; quét secret trong CI</td></tr><tr><td><strong>AI-specific</strong></td><td>Giới hạn quyền truy cập vector store theo tenant (filter bắt buộc), lọc nội dung (content safety), log prompt cẩn thận vì có PII</td></tr></tbody></table></div>
 <hr>
-<h2 id="04-security-monitoring/6-checklist-on-domain-4">6. Checklist ôn Domain 4</h2>
+<h2 id="04-security-monitoring/6-checklist-on-domain-4">8. Checklist ôn Domain 4</h2>
 <ul><li class="task" data-key="04-security-monitoring:0"><input type="checkbox">Phân biệt secret/key/certificate; role Key Vault Secrets User vs Contributor</li><li class="task" data-key="04-security-monitoring:1"><input type="checkbox">Quy trình rotation với Event Grid <code>SecretNearExpiry</code> → Function</li><li class="task" data-key="04-security-monitoring:2"><input type="checkbox">Soft delete vs purge protection</li><li class="task" data-key="04-security-monitoring:3"><input type="checkbox"><code>DefaultAzureCredential</code> — thứ tự thử và cách hoạt động trên Azure vs local</li><li class="task" data-key="04-security-monitoring:4"><input type="checkbox">App Configuration: label, feature flag, Key Vault reference, sentinel key refresh</li><li class="task" data-key="04-security-monitoring:5"><input type="checkbox">Cấu trúc trace/span, header <code>traceparent</code>, <code>configure_azure_monitor()</code>, <code>OTEL_SERVICE_NAME</code></li><li class="task" data-key="04-security-monitoring:6"><input type="checkbox">Ánh xạ bảng <code>AppRequests</code> / <code>AppDependencies</code> / <code>AppTraces</code> / <code>AppExceptions</code>, trường <code>OperationId</code></li><li class="task" data-key="04-security-monitoring:7"><input type="checkbox">Viết được KQL: lọc thời gian, <code>summarize</code> + <code>bin</code>, <code>percentile</code>, <code>join</code>, <code>render timechart</code></li></ul>
 </section>
 <section class="doc" id="05-cheatsheet" data-title="Cheat sheet" hidden>
@@ -1294,7 +1294,7 @@ psycopg.connect(CONN).execute("SELECT chunk FROM doc_chunks ORDER BY embedding &
 <div class="tablewrap"><table><thead><tr><th>Tình huống trong đề</th><th>Đáp án thường đúng</th></tr></thead><tbody><tr><td>Build image không có Docker trên máy CI</td><td><code>az acr build</code> (ACR Tasks)</td></tr><tr><td>Tự vá base image khi có bản vá bảo mật</td><td>ACR Task với base image trigger</td></tr><tr><td>Microservice scale về 0 theo độ dài queue</td><td>Container Apps + KEDA <code>azure-servicebus</code></td></tr><tr><td>Cần CRD/Helm/service mesh/GPU node pool tuỳ biến</td><td>AKS</td></tr><tr><td>Canary 10% traffic</td><td>Container Apps multi-revision + traffic split</td></tr><tr><td>Xử lý tin nhắn có thứ tự theo khách hàng</td><td>Service Bus <strong>sessions</strong></td></tr><tr><td>Message lỗi lặp lại cần cách ly để điều tra</td><td>Dead-letter queue</td></tr><tr><td>Phản ứng khi blob mới được upload</td><td>Event Grid system topic → Function</td></tr><tr><td>Fan-out sự kiện tới nhiều hệ thống, loosely coupled</td><td>Event Grid</td></tr><tr><td>Ingest telemetry hàng triệu event/giây, replay</td><td>Event Hubs</td></tr><tr><td>API serverless trả JSON</td><td>Functions HTTP trigger</td></tr><tr><td>Job embedding chạy 20 phút</td><td>Premium/Flex plan, Durable Functions, hoặc Container Apps Job</td></tr><tr><td>Semantic search trên document NoSQL toàn cầu</td><td>Cosmos DB NoSQL + diskANN vector index</td></tr><tr><td>RAG cần JOIN với bảng nghiệp vụ quan hệ</td><td>PostgreSQL + pgvector</td></tr><tr><td>Cache câu trả lời LLM, độ trễ dưới ms</td><td>Azure Managed Redis (+ semantic cache)</td></tr><tr><td>Giảm RU khi ghi document lớn</td><td>Exclude path khỏi indexing policy</td></tr><tr><td>Giảm RU khi đọc, chấp nhận trễ nhỏ</td><td>Hạ consistency xuống Session/Eventual</td></tr><tr><td>Phát hiện document mới để tạo embedding</td><td>Cosmos DB change feed (Functions trigger + lease container)</td></tr><tr><td>App đọc secret không hard-code</td><td>Managed identity + Key Vault (hoặc Key Vault reference)</td></tr><tr><td>Bật/tắt tính năng không cần redeploy</td><td>App Configuration feature flag</td></tr><tr><td>Lần theo request qua 4 service</td><td>OpenTelemetry + <code>OperationId</code> trong Application Insights</td></tr><tr><td>Tìm endpoint chậm nhất</td><td>KQL trên <code>AppRequests</code> + <code>percentile(DurationMs, 95)</code></td></tr></tbody></table></div>
 <h2 id="05-cheatsheet/5-bay-hay-gap">5. Bẫy hay gặp</h2>
 <ol><li><code>VectorDistance</code> không có trong <code>ORDER BY</code> → không dùng index → RU tăng vọt.</li><li>Không exclude <code>/embedding/*</code> khỏi indexing policy → write RU rất cao.</li><li>Vector embedding policy của Cosmos <strong>không sửa được</strong> sau khi tạo container.</li><li>Quên xoá rule <code>$Default</code> khi thêm filter cho Service Bus subscription.</li><li>Quên cấu hình dead-letter cho Event Grid → event lỗi bị <strong>mất hẳn</strong>.</li><li>Event Grid trả 400/413 → <strong>không retry</strong>.</li><li><code>CREATE EXTENSION vector</code> fail vì chưa thêm vào <code>azure.extensions</code>.</li><li><code>&lt;-&gt;</code> với index <code>vector_cosine_ops</code> → index bị bỏ qua (phải dùng <code>&lt;=&gt;</code>).</li><li>IVFFlat tạo trên bảng rỗng → recall tệ; phải nạp dữ liệu trước.</li><li>Key Vault reference không hoạt động vì thiếu managed identity hoặc thiếu role Secrets User.</li><li>Consumption plan timeout 5–10 phút với job embedding dài.</li><li>App Service container không lên vì thiếu <code>WEBSITES_PORT</code>.</li><li>Xử lý message/event phải <strong>idempotent</strong> (at-least-once ở cả Service Bus và Event Grid).</li><li>Mỗi consumer của change feed cần <strong>lease container riêng</strong> (hoặc lease prefix riêng).</li><li><code>Key Vault Contributor</code> <strong>không</strong> cho phép đọc secret.</li></ol>
-<h2 id="05-cheatsheet/9-kien-truc-mau-rag-end-to-end">9. Kiến trúc mẫu — RAG end-to-end xâu chuỗi cả 4 domain</h2>
+<h2 id="05-cheatsheet/9-kien-truc-mau-rag-end-to-end">6. Kiến trúc mẫu — RAG end-to-end xâu chuỗi cả 4 domain</h2>
 <p>Một bức tranh gắn mọi dịch vụ trong đề vào đúng chỗ. Hai đường đi độc lập: <strong>ingest</strong> (nạp tri thức) và <strong>query</strong> (trả lời người dùng).</p>
 <p><strong>Đường ingest:</strong> tài liệu vào Blob Storage → <strong>Event Grid</strong> phát event <code>BlobCreated</code> (filter theo <code>.pdf/.md</code>) → <strong>Function</strong> (blob trigger qua Event Grid) chunk + gọi model tạo embedding → ghi vào <strong>PostgreSQL + pgvector</strong> (hoặc Cosmos DB vector) kèm metadata để filter. Việc nặng, hay hỏng → đẩy qua <strong>Service Bus</strong> làm đệm, worker là <strong>Container Apps + KEDA</strong> scale theo độ dài queue, message hỏng rơi vào <strong>DLQ</strong>.</p>
 <p><strong>Đường query:</strong> client → API trên <strong>Container Apps</strong> → tra <strong>Managed Redis</strong> (cache câu hỏi lặp lại, TTL + invalidation khi ingest bản mới) → miss thì embedding câu hỏi → <strong>vector search có metadata filter</strong> → ghép context gọi LLM → trả lời + ghi cache.</p>
@@ -1308,7 +1308,7 @@ psycopg.connect(CONN).execute("SELECT chunk FROM doc_chunks ORDER BY embedding &
 <tr><td>Quan sát</td><td>OpenTelemetry → Application Insights, KQL</td><td>4</td><td>Không propagate <code>operation_Id</code> qua queue → trace đứt ở Service Bus</td></tr>
 </tbody></table>
 <p><strong>Xuyên suốt:</strong> mọi hop xác thực bằng <strong>managed identity + RBAC</strong> (không key trong code); mọi service emit <strong>OpenTelemetry</strong> về một Application Insights để câu <code>union ... operation_Id</code> vẽ được cả chuỗi; chi phí canh bằng ba số: RU/s (hoặc vCore Postgres), số replica ACA, và kích thước cache Redis.</p>
-<h2 id="05-cheatsheet/10-ba-cach-thao-tac-portal-cli-powershell">10. Ba cách thao tác: Portal, Azure CLI, Azure PowerShell</h2>
+<h2 id="05-cheatsheet/10-ba-cach-thao-tac-portal-cli-powershell">7. Ba cách thao tác: Portal, Azure CLI, Azure PowerShell</h2>
 <p>Đề hay cho cùng một việc dưới ba vỏ khác nhau — nhận diện được cú pháp của cả ba là ăn điểm "cách nào đúng". Quy tắc nhận dạng nhanh:</p>
 <ul><li><strong>Azure CLI</strong>: chữ thường, dạng <code>az &lt;dịch vụ&gt; &lt;động từ&gt; --flag</code>, lọc output bằng <code>--query</code> (JMESPath) + <code>--output table</code>. Chạy được trong bash/CI, là vỏ "tự động hóa" phổ biến nhất của đề.</li>
 <li><strong>Azure PowerShell</strong> (module Az): dạng <code>Verb-AzNoun -Tham số</code> (Get/New/Set/Remove), trả về <strong>object</strong> nên lọc bằng pipeline <code>| Where-Object | Select-Object</code>, không phải parse text. Đăng nhập <code>Connect-AzAccount</code>, đổi subscription <code>Set-AzContext</code> (CLI: <code>az login</code> / <code>az account set</code>).</li>
@@ -1445,7 +1445,7 @@ az acr repository show-tags -n &lt;acr&gt; --repository rag-api</code></pre>
 <p><strong>Lab 6.1 — Key Vault &amp; App Configuration</strong></p>
 <ul><li>Vault ở chế độ RBAC, gán Secrets User cho identity của app.</li><li>Đặt <code>expires</code> cho secret → subscribe <code>SecretNearExpiry</code> → Function ghi version mới.</li><li>App Configuration: key theo label <code>dev</code>/<code>prod</code>, 1 feature flag, 1 Key Vault reference, refresh bằng sentinel key.</li></ul>
 <p><strong>Lab 6.2 — OpenTelemetry + KQL</strong></p>
-<ul><li>Bật <code>configure_azure_monitor()</code> cho API + worker; tạo span thủ công cho <code>embed</code>, <code>vector_search</code>, <code>llm_call</code>.</li><li>Xác nhận Application Map nối được các service.</li><li>Viết đủ 9 query KQL trong <a href="#04-security-monitoring">Bảo mật &amp; Giám sát</a> mục 4.2 trên dữ liệu thật.</li><li>Tạo 1 log alert (error rate &gt; 5%) và 1 metric alert (<code>DeadletteredMessages</code> &gt; 0).</li></ul>
+<ul><li>Bật <code>configure_azure_monitor()</code> cho API + worker; tạo span thủ công cho <code>embed</code>, <code>vector_search</code>, <code>llm_call</code>.</li><li>Xác nhận Application Map nối được các service.</li><li>Viết đủ 9 query KQL trong <a href="#04-security-monitoring">Bảo mật &amp; Giám sát</a> mục 6.2 trên dữ liệu thật.</li><li>Tạo 1 log alert (error rate &gt; 5%) và 1 metric alert (<code>DeadletteredMessages</code> &gt; 0).</li></ul>
 <p><strong>Ôn tập:</strong></p>
 <ul><li>Làm <a href="#06-cau-hoi-on-tap">40 câu ôn tập</a>, mục tiêu ≥ 36/40.</li><li>Đọc lại <a href="#05-cheatsheet">Cheat sheet</a> mỗi ngày 15 phút.</li><li>Chạy thử <strong>exam sandbox</strong> để quen giao diện: https://aka.ms/examdemo</li></ul>
 <hr>
